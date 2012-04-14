@@ -30,7 +30,7 @@ package	org.eclipse.ocl.examples.xtext.completeocl.util;
  * visitXxx method that returns null.
  */
 public abstract class AbstractNullCompleteOCLCSVisitor<R, C>
-	extends AbstractCompleteOCLCSVisitor<R, C>
+	extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractNullEssentialOCLCSVisitor<R, C> implements CompleteOCLCSVisitor<R, C>
 {
 	/**
 	 * Initializes me with an initial value for my result.

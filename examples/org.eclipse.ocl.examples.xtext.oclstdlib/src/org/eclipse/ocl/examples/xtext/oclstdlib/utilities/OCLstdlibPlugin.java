@@ -101,7 +101,7 @@ public final class OCLstdlibPlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			OCLstdlibStandaloneSetup.init();
+			OCLstdlibStandaloneSetup.doSetup();
 			super.start(context);
 		}
 	}

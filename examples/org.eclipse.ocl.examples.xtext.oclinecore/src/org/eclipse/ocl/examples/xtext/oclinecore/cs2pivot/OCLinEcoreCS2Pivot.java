@@ -29,8 +29,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
@@ -62,10 +60,6 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 
 		public OCLinEcorePreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
 			return new OCLinEcorePreOrderVisitor(converter);
-		}
-
-		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
-			return new OCLinEcoreScopeVisitor();
 		}
 
 		public EPackage getEPackage() {

@@ -212,7 +212,7 @@ public class SerializeTests extends XtextTestCase
 //		logger.setLevel(Level.TRACE);
 //		logger.addAppender(new ConsoleAppender(new SimpleLayout()));
 //		BaseScopeProvider.LOOKUP.setState(true);
-//		DocumentScopeAdapter.WORK.setState(true);
+//		DocumentAttribution.WORK.setState(true);
 //		CS2PivotConversion.CONTINUATION.setState(true);
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doSerialize("Company", "Company.reference", null, true, true);

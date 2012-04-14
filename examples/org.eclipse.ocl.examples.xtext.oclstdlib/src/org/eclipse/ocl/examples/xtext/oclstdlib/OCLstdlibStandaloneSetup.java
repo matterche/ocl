@@ -18,6 +18,7 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
 import org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot.OCLstdlibCS2Pivot;
+import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScoping;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCS2MonikerVisitor;
 
 import com.google.inject.Injector;
@@ -37,6 +38,7 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated
 	}
 
 	public static void init() {
+		OCLstdlibScoping.init();
 		OCLstdlibCS2MonikerVisitor.FACTORY.getClass();
 		OCLstdlibCS2Pivot.FACTORY.getClass();
 	}

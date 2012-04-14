@@ -16,8 +16,8 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 
 /**
  * <!-- begin-user-doc -->

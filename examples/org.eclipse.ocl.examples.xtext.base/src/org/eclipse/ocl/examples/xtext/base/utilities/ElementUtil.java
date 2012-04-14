@@ -19,10 +19,7 @@ package org.eclipse.ocl.examples.xtext.base.utilities;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
@@ -40,10 +37,11 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
+import org.eclipse.ocl.examples.pivot.attributes.RootAttribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -64,11 +62,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.LibraryDiagnostic;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.PivotScopeVisitor;
-import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PivotScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
@@ -77,8 +70,6 @@ import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 
 public class ElementUtil
 {
-	private static final Logger logger = Logger.getLogger(ElementUtil.class);
-
 	public static MetaModelManager findMetaModelManager(EObject eObject) {
 		EObject eRoot = EcoreUtil.getRootContainer(eObject);
 		if (eRoot != null) {
@@ -170,11 +161,11 @@ public class ElementUtil
 		return cs2Pivot.getCSElement(obj);
 	}
 	
-	public static RootScopeAdapter getDocumentScopeAdapter(ElementCS context) {
+	public static RootAttribution getDocumentAttribution(ElementCS context) {
 		for (ElementCS target = context, parent; (parent = target.getLogicalParent()) != null; target = parent) {
-			CSScopeAdapter scopeAdapter = getScopeAdapter(parent);
-			if (scopeAdapter instanceof RootScopeAdapter) {
-				return (RootScopeAdapter) scopeAdapter;
+			Attribution attribution = PivotUtil.getAttribution(parent);
+			if (attribution instanceof RootAttribution) {
+				return (RootAttribution) attribution;
 			}
 		}
 		return null;
@@ -223,19 +214,6 @@ public class ElementUtil
 		return csMultiplicity.getLower();
 	}
 
-	/**
-	 * Return the lower bound for scope resolution lookups in element. This is element
-	 * unless element is an UnspecifiedType in which case the derived type is returned.
-	 */
-	public static Element getLowerBound(Element element) {
-		if (element instanceof UnspecifiedType) {
-			return ((UnspecifiedType)element).getLowerBound();
-		}
-		else {
-			return element;
-		}
-	}
-
 	public static <T extends NamedElementCS> T getNamedElementCS(Collection<T> namedElements, String name) {
 		for (T namedElement : namedElements) {
 			if (name.equals(namedElement.getName())) {
@@ -255,49 +233,6 @@ public class ElementUtil
 		else {
 			return defaultValue;
 		}
-	}
-
-	public static PivotScopeAdapter getScopeAdapter(Element element) {
-		if (element == null) {
-			logger.warn("getScopeAdapter for null");
-			return null;
-		}
-		if (element.eIsProxy()) {			// Shouldn't happen, but certainly does during development
-			logger.warn("getScopeAdapter for proxy " + element);
-			return null;
-		}
-		PivotScopeAdapter adapter = PivotUtil.getAdapter(PivotScopeAdapter.class, element);
-		if (adapter != null) {
-			return adapter;
-		}
-		PivotScopeVisitor visitor = new PivotScopeVisitor();
-		PivotScopeAdapter scopeAdapter = element.accept(visitor);
-		element.eAdapters().add(scopeAdapter);
-		return scopeAdapter;	
-	}
-
-	public static CSScopeAdapter getScopeAdapter(ElementCS csElement) {
-		if (csElement == null) {
-			logger.warn("getScopeAdapter for null");
-			return null;
-		}
-		if (csElement.eIsProxy()) {			// Shouldn't happen, but certainly does during development
-			logger.warn("getScopeAdapter for proxy " + csElement);
-			return null;
-		}
-		CSScopeAdapter adapter = PivotUtil.getAdapter(CSScopeAdapter.class, csElement);
-		if (adapter != null) {
-			return adapter;
-		}
-		BaseCSResource csResource = (BaseCSResource) csElement.eResource();
-		CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
-		CS2Pivot converter = resourceAdapter.getConverter();		
-		EClass eClass = csElement.eClass();
-		EPackage ePackage = eClass.getEPackage();
-		BaseCSVisitor<CSScopeAdapter, Object> visitor = converter.getScopeVisitor(ePackage);		
-		CSScopeAdapter scopeAdapter = csElement.accept(visitor);
-		csElement.eAdapters().add(scopeAdapter);
-		return scopeAdapter;	
 	}
 
 	public static String getText(ElementCS csElement) {

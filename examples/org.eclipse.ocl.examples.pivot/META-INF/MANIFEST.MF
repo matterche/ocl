@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.pivot,
+ org.eclipse.ocl.examples.pivot.attributes,
  org.eclipse.ocl.examples.pivot.bodies,
  org.eclipse.ocl.examples.pivot.delegate,
  org.eclipse.ocl.examples.pivot.ecore,
@@ -23,6 +24,7 @@ Export-Package: org.eclipse.ocl.examples.pivot,
  org.eclipse.ocl.examples.pivot.model,
  org.eclipse.ocl.examples.pivot.options,
  org.eclipse.ocl.examples.pivot.prettyprint,
+ org.eclipse.ocl.examples.pivot.scoping,
  org.eclipse.ocl.examples.pivot.uml,
  org.eclipse.ocl.examples.pivot.util,
  org.eclipse.ocl.examples.pivot.utilities,
@@ -38,7 +40,8 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ocl.examples.common;bundle-version="[3.1.0,4.0.0)";visibility:=reexport,
  org.eclipse.ocl.examples.library;bundle-version="[3.2.0,4.0.0)";visibility:=reexport,
  org.eclipse.emf.edit;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
- org.apache.log4j;bundle-version="[1.2.15,2.0.0)"
+ org.apache.log4j;bundle-version="[1.2.15,2.0.0)",
+ com.google.inject;bundle-version="[3.0.0,4.0.0)"
 Bundle-ActivationPolicy: lazy
 Import-Package: com.google.common.base,
  com.google.common.collect

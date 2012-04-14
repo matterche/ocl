@@ -4254,7 +4254,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * The meta object id for the '<em>Scope Filter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter
+	 * @see org.eclipse.ocl.examples.pivot.scoping.ScopeFilter
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getScopeFilter()
 	 * @generated
 	 */
@@ -5695,11 +5695,11 @@ public interface BaseCSTPackage extends EPackage {
 	EEnum getIteratorKind();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter <em>Scope Filter</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.scoping.ScopeFilter <em>Scope Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Scope Filter</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter
+	 * @see org.eclipse.ocl.examples.pivot.scoping.ScopeFilter
 	 * @model instanceClass="org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter"
 	 * @generated
 	 */
@@ -6917,7 +6917,7 @@ public interface BaseCSTPackage extends EPackage {
 		 * The meta object literal for the '<em>Scope Filter</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter
+		 * @see org.eclipse.ocl.examples.pivot.scoping.ScopeFilter
 		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getScopeFilter()
 		 * @generated
 		 */

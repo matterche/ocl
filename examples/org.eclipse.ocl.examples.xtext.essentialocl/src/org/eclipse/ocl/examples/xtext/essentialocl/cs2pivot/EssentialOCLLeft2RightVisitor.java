@@ -85,18 +85,21 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.examples.pivot.scoping.Attribution;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseLeft2RightVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
-import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeView;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.BinaryOperationFilter;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ImplicitCollectFilter;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ImplicitCollectionFilter;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.UnaryOperationFilter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -133,10 +136,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralEx
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.BinaryOperationFilter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ImplicitCollectFilter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ImplicitCollectionFilter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.UnaryOperationFilter;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLUtils;
 
@@ -296,6 +295,13 @@ public class EssentialOCLLeft2RightVisitor
 		else {
 			return sourceType;
 		}
+	}
+
+	private int lookupType(EnvironmentView environmentView, Type type) {
+		type = (Type) PivotUtil.getLowerBound(type);
+		Attribution attribution = PivotUtil.getAttribution(type);
+		ScopeView innerScopeView = new BaseScopeView(metaModelManager, type, attribution, null, null, null);
+		return environmentView.computeLookups(innerScopeView);
 	}
 
 	protected EnumLiteralExp resolveEnumLiteral(ExpCS csExp, EnumerationLiteral enumerationLiteral) {
@@ -481,7 +487,7 @@ public class EssentialOCLLeft2RightVisitor
 			iteratorExp.setImplicit(true);
 			EnvironmentView environmentView = new EnvironmentView(metaModelManager, PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION, "collect");
 			environmentView.addFilter(new ImplicitCollectFilter(metaModelManager, (CollectionType) actualSourceType, elementType));
-			environmentView.computeLookups(actualSourceType);
+			lookupType(environmentView, actualSourceType);
 			Iteration resolvedIteration = (Iteration)environmentView.getContent();
 			context.setReferredIteration(iteratorExp, resolvedIteration);
 			Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
@@ -658,7 +664,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		int size = 0;
 		if (sourceType != null) {
-			size = environmentView.computeLookups(sourceType);
+			size = lookupType(environmentView, sourceType);
 		}
 		if (size == 1) {
 			Operation operation = (Operation)environmentView.getContent();
@@ -1285,7 +1291,7 @@ public class EssentialOCLLeft2RightVisitor
 		VariableExp expression = context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csSelfExp);
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, Environment.SELF_VARIABLE_NAME);
 		ElementCS parent = csSelfExp.getLogicalParent();
-		CSScopeAdapter parentScope = parent != null ? ElementUtil.getScopeAdapter(parent) : null;
+		Attribution parentScope = parent != null ? PivotUtil.getAttribution(parent) : null;
 		ScopeView scopeView = new BaseScopeView(metaModelManager, parent, parentScope, csSelfExp, csSelfExp.eContainingFeature(), null);
 		environmentView.computeLookups(scopeView);
 		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();

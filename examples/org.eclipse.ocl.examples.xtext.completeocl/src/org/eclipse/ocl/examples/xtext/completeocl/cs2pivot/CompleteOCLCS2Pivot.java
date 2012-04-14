@@ -26,19 +26,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.completeocl.attributes.IncludeCSAttribution;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.completeocl.scoping.IncludeScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
-import org.eclipse.osgi.util.NLS;
 
 public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 {	
@@ -48,7 +42,7 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 			EssentialOCLCS2Pivot.FACTORY.getClass();
 			CS2Pivot.addFactory(this);
 			MetaModelManager.addFactory(this);
-			addUnresolvedProxyMessageProvider(new IncludeCSNamespaceUnresolvedProxyMessageProvider());			
+			addUnresolvedProxyMessageProvider(IncludeCSAttribution.INSTANCE);			
 		}
 
 		public boolean canHandle(Resource resource) {
@@ -67,10 +61,6 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 
 		public CompleteOCLPreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
 			return new CompleteOCLPreOrderVisitor(converter);
-		}
-
-		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
-			return new CompleteOCLScopeVisitor();
 		}
 
 		public EPackage getEPackage() {
@@ -97,25 +87,6 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 			else {
 				throw new UnsupportedOperationException();	// FIXME
 			}
-		}
-	}
-	
-	private static final class IncludeCSNamespaceUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
-	{		
-		private IncludeCSNamespaceUnresolvedProxyMessageProvider() {
-			super(CompleteOCLCSTPackage.Literals.INCLUDE_CS__NAMESPACE);
-		}
-		
-		@Override
-		public String getMessage(EObject context, String linkText) {
-			if (context instanceof ElementCS) {
-				CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ElementCS) context);
-				if (scopeAdapter instanceof IncludeScopeAdapter) {
-					String message = ((IncludeScopeAdapter)scopeAdapter).getMessage();
-					return NLS.bind(OCLMessages.UnresolvedInclude_ERROR_, linkText, message);
-				}
-			}
-			return null;
 		}
 	}
 

@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
@@ -76,16 +77,20 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.osgi.util.NLS;
 
 public class PivotUtil extends DomainUtil
 {	
+	private static final Logger logger = Logger.getLogger(PivotUtil.class);
+
 	public static final String SCHEME_PIVOT = "pivot";
 
 	/**
@@ -703,6 +708,19 @@ public class PivotUtil extends DomainUtil
 		return null;
 	}
 
+	/**
+	 * Return the lower bound for scope resolution lookups in element. This is element
+	 * unless element is an UnspecifiedType in which case the derived type is returned.
+	 */
+	public static Element getLowerBound(Element element) {
+		if (element instanceof UnspecifiedType) {
+			return ((UnspecifiedType)element).getLowerBound();
+		}
+		else {
+			return element;
+		}
+	}
+
 	public static String getMessage(OpaqueExpression specification) {
 		List<String> messages = specification.getMessage();
 		List<String> languages = specification.getLanguage();
@@ -779,6 +797,30 @@ public class PivotUtil extends DomainUtil
 			operation = ((OperationCallExp)callExp).getReferredOperation();
 		}
 		return operation;
+	}
+
+	public static Attribution getAttribution(EObject eObject) {
+		if (eObject == null) {
+			logger.warn("getAttribution for null");
+			return null;
+		}
+		if (eObject.eIsProxy()) {			// Shouldn't happen, but certainly does during development
+			logger.warn("getAttribution for proxy " + eObject);
+			return null;
+		}
+		EClass eClass = eObject.eClass();
+		Attribution attribution = Attribution.REGISTRY.get(eClass);
+		if (attribution == null) {
+			for (EClass superClass = eClass; superClass.getESuperTypes().size() > 0; ) {
+				superClass = superClass.getESuperTypes().get(0);
+				attribution = Attribution.REGISTRY.get(superClass);
+				if (attribution != null) {
+					Attribution.REGISTRY.put(eClass, attribution);
+					break;
+				}
+			}
+		}
+		return attribution;
 	}
 
 	public static List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {

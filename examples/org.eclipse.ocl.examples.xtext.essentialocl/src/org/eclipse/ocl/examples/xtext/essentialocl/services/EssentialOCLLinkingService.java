@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.ExceptionAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
+import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.common.types.TypesPackage;

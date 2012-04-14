@@ -552,7 +552,7 @@ public class XtextTestCase extends PivotTestCase
 //		for (Map.Entry<URI,URI> entry : uriMap.entrySet()) {
 //			System.out.println(entry.getKey() + " => " + entry.getValue());
 //		}
-//		URI platformOCLstdlibURI = URI.createURI(StandardDocumentScopeAdapter.OCLSTDLIB_URI);
+//		URI platformOCLstdlibURI = URI.createURI(StandardDocumentAttribution.OCLSTDLIB_URI);
 //		URI projectURI = getProjectFileURI("dummy");
 //		URI projectOCLstdlibURI = URI.createURI("oclstdlib.oclstdlib").resolve(projectURI);
 //		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);

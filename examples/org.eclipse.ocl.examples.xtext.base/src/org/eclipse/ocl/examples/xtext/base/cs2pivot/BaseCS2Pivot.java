@@ -26,16 +26,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.xtext.base.attributes.ImportCSAttribution;
+import org.eclipse.ocl.examples.xtext.base.attributes.LibraryCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.LibraryScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * BaseCST2Pivot provides an extensible conversion from CS models to the pivot model.
@@ -86,8 +81,8 @@ public class BaseCS2Pivot extends CS2Pivot
 	{
 		private Factory() {
 			CS2Pivot.addFactory(this);
-			addUnresolvedProxyMessageProvider(new ImportCSNamespaceUnresolvedProxyMessageProvider());			
-			addUnresolvedProxyMessageProvider(new LibraryCSPackageUnresolvedProxyMessageProvider());			
+			addUnresolvedProxyMessageProvider(ImportCSAttribution.INSTANCE);			
+			addUnresolvedProxyMessageProvider(LibraryCSAttribution.INSTANCE);			
 			addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());			
 			addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());			
 		}
@@ -104,54 +99,12 @@ public class BaseCS2Pivot extends CS2Pivot
 			return new BasePreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
-			return new BaseScopeVisitor();
-		}
-
 		public EPackage getEPackage() {
 			return BaseCSTPackage.eINSTANCE;
 		}
 	}
 	
-	private static final class ImportCSNamespaceUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
-	{		
-		private ImportCSNamespaceUnresolvedProxyMessageProvider() {
-			super(BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE);
-		}
-		
-		@Override
-		public String getMessage(EObject context, String linkText) {
-			if (context instanceof ElementCS) {
-				CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ElementCS) context);
-				if (scopeAdapter instanceof ImportScopeAdapter) {
-					String message = ((ImportScopeAdapter)scopeAdapter).getMessage();
-					return NLS.bind(OCLMessages.UnresolvedImport_ERROR_, linkText, message);
-				}
-			}
-			return null;
-		}
-	}
-	
-	private static final class LibraryCSPackageUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
-	{		
-		private LibraryCSPackageUnresolvedProxyMessageProvider() {
-			super(BaseCSTPackage.Literals.LIBRARY_CS__PACKAGE);
-		}
-		
-		@Override
-		public String getMessage(EObject context, String linkText) {
-			if (context instanceof ElementCS) {
-				CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ElementCS) context);
-				if (scopeAdapter instanceof LibraryScopeAdapter) {
-					String message = ((LibraryScopeAdapter)scopeAdapter).getMessage();
-					return NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, linkText, message);
-				}
-			}
-			return null;
-		}
-	}
-	
-	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
 	{		
 		private SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider() {
 			super(BaseCSTPackage.Literals.PATH_ELEMENT_CS__ELEMENT);
@@ -175,7 +128,7 @@ public class BaseCS2Pivot extends CS2Pivot
 		}
 	}
 	
-	private static final class TypedTypeRefCSTypeUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	private static final class TypedTypeRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
 	{		
 		private TypedTypeRefCSTypeUnresolvedProxyMessageProvider() {
 			super(BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE);

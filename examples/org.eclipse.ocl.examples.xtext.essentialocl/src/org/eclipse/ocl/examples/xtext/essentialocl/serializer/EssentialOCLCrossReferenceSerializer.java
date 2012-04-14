@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
-import org.eclipse.ocl.examples.xtext.base.scope.QualifiedPath;
+import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedPath;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.conversion.IValueConverterService;

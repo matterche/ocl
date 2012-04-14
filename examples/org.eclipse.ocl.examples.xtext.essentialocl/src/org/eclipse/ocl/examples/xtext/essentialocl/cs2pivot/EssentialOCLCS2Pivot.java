@@ -44,8 +44,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -79,10 +77,6 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			return new EssentialOCLPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
-			return new EssentialOCLScopeVisitor();
-		}
-
 		public EPackage getEPackage() {
 			return EssentialOCLCSTPackage.eINSTANCE;
 		}
@@ -90,7 +84,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 
 	public static CS2Pivot.Factory FACTORY = new Factory();
 	
-	private static final class PathElementCSUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	private static final class PathElementCSUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
 	{		
 		private PathElementCSUnresolvedProxyMessageProvider() {
 			super(BaseCSTPackage.Literals.PATH_ELEMENT_CS__ELEMENT);

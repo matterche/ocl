@@ -24,10 +24,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.attributes.RootAttribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.scoping.Attribution;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -49,15 +50,15 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	private EObject context;
     private Map<String, EClassifier> parameters;
 
-	protected RootScopeAdapter getDocumentScopeAdapter() {
-		return readOnly(new IUnitOfWork<RootScopeAdapter, XtextResource>()
+	protected RootAttribution getDocumentAttribution() {
+		return readOnly(new IUnitOfWork<RootAttribution, XtextResource>()
 			{
-				public RootScopeAdapter exec(XtextResource resource) throws Exception {
+				public RootAttribution exec(XtextResource resource) throws Exception {
 					if (!resource.getContents().isEmpty()) {
 						ElementCS csElement = (ElementCS) resource.getContents().get(0);
-						CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
-						if (scopeAdapter != null) {
-							return ElementUtil.getDocumentScopeAdapter(csElement);
+						Attribution attribution = PivotUtil.getAttribution(csElement);
+						if (attribution != null) {
+							return ElementUtil.getDocumentAttribution(csElement);
 						}
 					}
 					return null;

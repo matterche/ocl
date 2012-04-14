@@ -19,7 +19,7 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
+import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 
 /**
  * This class contains custom scoping description.

@@ -101,7 +101,7 @@ public final class EssentialOCLPlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			EssentialOCLStandaloneSetup.init();
+			EssentialOCLStandaloneSetup.doSetup();
 			super.start(context);
 		}
 	}

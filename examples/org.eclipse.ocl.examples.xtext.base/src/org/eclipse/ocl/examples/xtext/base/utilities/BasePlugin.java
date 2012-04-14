@@ -21,6 +21,7 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.ocl.examples.xtext.base.BaseStandaloneSetup;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -185,6 +186,7 @@ public final class BasePlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
+			BaseStandaloneSetup.doSetup();
 //			BaseCS2MonikerSwitch.FACTORY.getClass();
 			super.start(context);
 		}

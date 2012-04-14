@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.completeocl.cs2pivot.CompleteOCLCS2Pivot;
+import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScoping;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCS2MonikerVisitor;
 
 import com.google.inject.Injector;
@@ -36,6 +37,7 @@ public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenera
 	}
 
 	public static void init() {
+		CompleteOCLScoping.init();
 		CompleteOCLCS2MonikerVisitor.FACTORY.getClass();
 		CompleteOCLCS2Pivot.FACTORY.getClass();
 //		CompleteOCLPivot2CS.FACTORY.getClass();

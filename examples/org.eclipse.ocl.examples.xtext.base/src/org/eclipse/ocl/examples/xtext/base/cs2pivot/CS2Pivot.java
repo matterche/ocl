@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
@@ -38,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -47,8 +47,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CSI2PivotMapping;
 import org.eclipse.osgi.util.NLS;
@@ -69,13 +67,10 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  */
 public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdapter
 {	
-	private static final Logger logger = Logger.getLogger(CS2Pivot.class);
-
 	public static interface Factory {
 		BaseCSVisitor<Element, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor();
 		EPackage getEPackage();
 	}
 	
@@ -85,11 +80,17 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		factoryMap.put(factory.getEPackage(), factory);
 	}
 
-	public static abstract class UnresolvedProxyMessageProvider
+	public static interface UnresolvedProxyMessageProvider
+	{
+		EReference getEReference();	
+		String getMessage(EObject context, String linkText);
+	}
+
+	public static abstract class AbstractUnresolvedProxyMessageProvider implements UnresolvedProxyMessageProvider
 	{
 		protected final EReference eReference;
 		
-		public UnresolvedProxyMessageProvider(EReference eReference) {
+		public AbstractUnresolvedProxyMessageProvider(EReference eReference) {
 			this.eReference = eReference;
 		}
 		public EReference getEReference() {
@@ -275,8 +276,6 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	 */
 	protected final CSI2PivotMapping cs2PivotMapping;
 
-	private final Map<EPackage, BaseCSVisitor<CSScopeAdapter, Object>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<CSScopeAdapter, Object>>();
-
 	/**
 	 * A lazily created inverse map that may be required for navigation from an outline.
 	 */
@@ -324,7 +323,6 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	public void dispose() {
 		cs2pivotResourceMap.clear();
 		cs2PivotMapping.clear();
-		scopeVisitorMap.clear();
 		pivot2cs = null;
 		metaModelManager.getPivotResourceSet().eAdapters().remove(this);
 	}
@@ -371,24 +369,6 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 
 	public Collection<? extends Resource> getPivotResources() {
 		return metaModelManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
-	}
-
-	public BaseCSVisitor<CSScopeAdapter, Object> getScopeVisitor(EPackage ePackage) {
-		BaseCSVisitor<CSScopeAdapter, Object> scopeVisitor = scopeVisitorMap.get(ePackage);
-		if ((scopeVisitor == null) && !scopeVisitorMap.containsKey(ePackage)) {
-			Factory factory = getFactory(ePackage);
-			if (factory != null) {
-				scopeVisitor = factory.createScopeVisitor();
-				if (scopeVisitor == null) {
-					logger.error("No Scope Visitor created for " + ePackage.getName());
-				}
-			}
-			else {
-				logger.error("No Scope Visitor Factory registered for " + ePackage.getName());
-			}
-			scopeVisitorMap.put(ePackage, scopeVisitor);
-		}
-		return scopeVisitor;
 	}
 
 	public Notifier getTarget() {
