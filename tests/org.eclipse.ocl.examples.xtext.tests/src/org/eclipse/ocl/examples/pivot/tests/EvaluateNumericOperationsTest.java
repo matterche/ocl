@@ -68,6 +68,41 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		// hashCode, equals
     }
     
+	public void testNumber() {
+		assertQueryEquals(null, 0, "0");
+		assertSemanticErrorQuery("00", "extraneous input ''{0}'' expecting EOF", "0");
+		assertSemanticErrorQuery("01", "extraneous input ''{0}'' expecting EOF", "1");
+		assertQueryEquals(null, 3, "3");
+		assertQueryEquals(null, 3.1, "3.1");
+		assertQueryEquals(null, 3.1e1, "3.1e1");
+		assertQueryEquals(null, 3.1e+1, "3.1e+1");
+		assertQueryEquals(null, 3.1e-1, "3.1e-1");
+		assertQueryEquals(null, 3e1, "3e1");
+		assertQueryEquals(null, 3e+1, "3e+1");
+		assertQueryEquals(null, 3e-1, "3e-1");
+		assertQueryEquals(null, 3, "(3)");
+		assertQueryEquals(null, 3.1, "(3.1)");
+		assertQueryEquals(null, 3.1e1, "(3.1e1)");
+		assertQueryEquals(null, 3.1e+1, "(3.1e+1)");
+		assertQueryEquals(null, 3.1e-1, "(3.1e-1)");
+		assertQueryEquals(null, 3e1, "(3e1)");
+		assertQueryEquals(null, 3e+1, "(3e+1)");
+		assertQueryEquals(null, 3e-1, "(3e-1)");
+		assertQueryEquals(null, 3, "( 3)");
+		assertQueryEquals(null, 3.1, "( 3.1 )");
+		assertQueryEquals(null, 3.1e1, "( 3.1e1 )");
+		assertQueryEquals(null, 3.1e+1, "( 3.1e+1 )");
+		assertQueryEquals(null, 3.1e-1, "( 3.1e-1 )");
+		assertQueryEquals(null, 3e1, "( 3e1 )");
+		assertQueryEquals(null, 3e+1, "( 3e+1 )");
+		assertQueryEquals(null, 3e-1, "( 3e-1 )");
+		assertSemanticErrorQuery("3 .1", "bad navigation argument");
+		assertSemanticErrorQuery("3. 1", "bad navigation argument");
+		assertSemanticErrorQuery("3.1 e1", "extraneous input ''{0}'' expecting EOF", "e1");
+		assertSemanticErrorQuery("3.1e 1", "missing EOF at ''{0}''", "e");
+		assertSemanticErrorQuery("3.1e+ 1", "missing EOF at ''{0}''", "e");
+	}
+    
 	public void testNumberAbs() {
 		// Integer::abs()
 		assertQueryEquals(null, 3, "3.abs()");
