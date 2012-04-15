@@ -134,7 +134,7 @@ public class CS2PivotConversion extends AbstractConversion
 	private final Map<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>> postOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>>();
 	private final Map<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>> preOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>>();
 
-	private InterDependency<Continuation<? extends PackageCS>> packagesHaveTypes = new InterDependency<Continuation<? extends PackageCS>>("All unspecialized types defined", null);
+	private InterDependency<Continuation<? extends ElementCS>> packagesHaveTypes = new InterDependency<Continuation<? extends ElementCS>>("All unspecialized types defined", null);
 	private InterDependency<TemplateSignatureContinuation> typesHaveSignatures = new InterDependency<TemplateSignatureContinuation>("All unspecialized signatures defined", packagesHaveTypes);
 	private InterDependency<OperationContinuation<?>> operationsHaveTemplateParameters = new InterDependency<OperationContinuation<?>>("All operation template parameters defined", typesHaveSignatures);
 
@@ -597,7 +597,7 @@ public class CS2PivotConversion extends AbstractConversion
 		return operationsHaveTemplateParameters;
 	}
 
-	public InterDependency<Continuation<? extends PackageCS>> getPackagesHaveTypesInterDependency() {
+	public InterDependency<Continuation<? extends ElementCS>> getPackagesHaveTypesInterDependency() {
 		return packagesHaveTypes;
 	}
 
