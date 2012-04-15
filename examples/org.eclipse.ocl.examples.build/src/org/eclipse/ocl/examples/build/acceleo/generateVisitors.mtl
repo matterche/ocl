@@ -265,6 +265,40 @@ public abstract class AbstractNull[visitorClass/]<R, C>
 
 [comment
 ***********************************************************************************************************
+DerivedAbstractNullVisitor
+***********************************************************************************************************
+/]
+[template public generateDerivedAbstractNullVisitor(pkg : EPackage, visitorPackage : String, modelPackage : String, visitorClass : String, visitorBasePackage : String, visitorBaseClass : String, visitableClass : String, sourceFile : String)]
+[file ('AbstractNull' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ * An AbstractNull[visitorClass/] provides a default implementation for each
+ * visitXxx method that returns null.
+ */
+public abstract class AbstractNull[visitorClass/]<R, C>
+	extends [visitorBasePackage/].AbstractNull[visitorBaseClass/]<R, C> implements [visitorClass/]<R, C>
+{
+	/**
+	 * Initializes me with an initial value for my result.
+	 * 
+	 * @param context my initial result value
+	 */
+	protected AbstractNull[visitorClass/](C context) {
+	    super(context);
+	}	
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+
+	public R visit[eClass.name/]([modelPackage/].[eClass.name/] object) {
+		return null;
+	}
+[/for]
+}
+[/file]
+[/template]
+
+[comment
+***********************************************************************************************************
 AbstractVisitor
 ***********************************************************************************************************
 /]

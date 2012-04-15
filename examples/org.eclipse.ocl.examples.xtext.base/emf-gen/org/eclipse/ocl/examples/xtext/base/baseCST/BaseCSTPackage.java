@@ -5700,7 +5700,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Scope Filter</em>'.
 	 * @see org.eclipse.ocl.examples.pivot.scoping.ScopeFilter
-	 * @model instanceClass="org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter"
+	 * @model instanceClass="org.eclipse.ocl.examples.pivot.scoping.ScopeFilter"
 	 * @generated
 	 */
 	EDataType getScopeFilter();
