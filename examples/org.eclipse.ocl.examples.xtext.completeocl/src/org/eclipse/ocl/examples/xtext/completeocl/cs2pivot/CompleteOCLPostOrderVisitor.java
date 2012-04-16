@@ -24,7 +24,6 @@ import java.util.Map;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
@@ -151,7 +150,7 @@ public class CompleteOCLPostOrderVisitor
 			intermediate.put(constrainedPivot, csConstraints);
 		}
 		csConstraints.add(csNewConstraint);
-		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csNewConstraint);
+		Constraint pivotElement = PivotUtil.getPivot(Constraint.class, csNewConstraint);
 //		context.installPivotElement(csNewConstraint, pivotElement);
 //		context.refreshName(pivotElement, csNewConstraint.getName());
 //		context.refreshComments(pivotElement, csNewConstraint);

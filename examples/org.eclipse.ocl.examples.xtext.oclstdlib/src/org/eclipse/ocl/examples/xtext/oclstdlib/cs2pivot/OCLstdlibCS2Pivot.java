@@ -36,6 +36,10 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 			CS2Pivot.addFactory(this);
 		}
 
+		public OCLstdlibContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+			return new OCLstdlibContainmentVisitor(converter);
+		}
+
 		public OCLstdlibLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
 			return new OCLstdlibLeft2RightVisitor(converter);
 		}

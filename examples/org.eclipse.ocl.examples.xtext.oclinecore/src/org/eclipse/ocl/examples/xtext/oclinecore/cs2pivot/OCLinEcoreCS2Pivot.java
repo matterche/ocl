@@ -50,6 +50,10 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 
 		public void configure(ResourceSet resourceSet) {}
 
+		public OCLinEcoreContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+			return new OCLinEcoreContainmentVisitor(converter);
+		}
+
 		public OCLinEcoreLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
 			return new OCLinEcoreLeft2RightVisitor(converter);
 		}

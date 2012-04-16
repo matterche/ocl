@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
@@ -165,7 +166,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 //		csContext.getNamespace().add(owningType);
 		csContext.setOwnedType(convertTypeRef(object));
 		context.importPackage(object.getOwningType().getPackage());
-		context.refreshList(csContext.getParameters(), context.visitDeclarations(VariableCS.class, object.getOwnedParameter(), null));
+		context.refreshList(csContext.getParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameter(), null));
 		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRule(), null));
 		context.setScope(savedScope);
 		return csContext;

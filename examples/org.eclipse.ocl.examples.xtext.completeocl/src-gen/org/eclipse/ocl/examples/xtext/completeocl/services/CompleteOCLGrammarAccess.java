@@ -871,7 +871,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_1_0 = (RuleCall)cOwnedTypeAssignment_1.eContents().get(0);
 		
-		//ParameterCS returns essentialocl::VariableCS:
+		//ParameterCS returns base::ParameterCS:
 		//
 		//	(name=UnrestrictedName ":")? ownedType=TypeExpCS;
 		public ParserRule getRule() { return rule; }
@@ -1396,7 +1396,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageDeclarationCSAccess().getRule();
 	}
 
-	//ParameterCS returns essentialocl::VariableCS:
+	//ParameterCS returns base::ParameterCS:
 	//
 	//	(name=UnrestrictedName ":")? ownedType=TypeExpCS;
 	public ParameterCSElements getParameterCSAccess() {

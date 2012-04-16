@@ -65,6 +65,10 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());			
 		}
 
+		public EssentialOCLContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+			return new EssentialOCLContainmentVisitor(converter);
+		}
+
 		public EssentialOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
 			return new EssentialOCLLeft2RightVisitor(converter);
 		}

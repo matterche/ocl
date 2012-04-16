@@ -8,6 +8,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
@@ -61,7 +62,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralEx
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLSemanticSequencer;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
@@ -128,6 +128,12 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 				if(context == grammarAccess.getMultiplicityCSRule() ||
 				   context == grammarAccess.getMultiplicityStringCSRule()) {
 					sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSTPackage.PARAMETER_CS:
+				if(context == grammarAccess.getParameterCSRule()) {
+					sequence_ParameterCS(context, (ParameterCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -587,12 +593,6 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 					return; 
 				}
 				else break;
-			case EssentialOCLCSTPackage.VARIABLE_CS:
-				if(context == grammarAccess.getParameterCSRule()) {
-					sequence_ParameterCS(context, (VariableCS) semanticObject); 
-					return; 
-				}
-				else break;
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
@@ -969,7 +969,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	 * Constraint:
 	 *     (name=UnrestrictedName? ownedType=TypeExpCS)
 	 */
-	protected void sequence_ParameterCS(EObject context, VariableCS semanticObject) {
+	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

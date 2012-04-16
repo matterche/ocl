@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrderVisitor;
@@ -27,11 +26,5 @@ public class OCLinEcorePreOrderVisitor
 {
 	public OCLinEcorePreOrderVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLPreOrderVisitor(context), context);
-	}
-
-	@Override
-	public Continuation<?> visitRootPackageCS(RootPackageCS object) {
-		// TODO Auto-generated method stub
-		return super.visitRootPackageCS(object);
 	}
 }

@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -119,7 +119,7 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<VariableCS> parameters;
+	protected EList<ParameterCS> parameters;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
@@ -220,10 +220,10 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VariableCS> getParameters() {
+	public EList<ParameterCS> getParameters() {
 		if (parameters == null)
 		{
-			parameters = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CompleteOCLCSTPackage.DEF_CS__PARAMETERS);
+			parameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, CompleteOCLCSTPackage.DEF_CS__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -337,7 +337,7 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				getParameters().clear();
-				getParameters().addAll((Collection<? extends VariableCS>)newValue);
+				getParameters().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);

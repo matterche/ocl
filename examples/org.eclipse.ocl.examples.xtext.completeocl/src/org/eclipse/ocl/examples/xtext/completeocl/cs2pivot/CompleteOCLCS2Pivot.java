@@ -51,6 +51,10 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 
 		public void configure(ResourceSet resourceSet) {}
 
+		public CompleteOCLContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+			return new CompleteOCLContainmentVisitor(converter);
+		}
+
 		public CompleteOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
 			return new CompleteOCLLeft2RightVisitor(converter);
 		}

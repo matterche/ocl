@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
@@ -55,8 +54,7 @@ public class OCLinEcoreLeft2RightVisitor
 		pivotConstraint.setIsCallable(csConstraint.isCallable());
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		if (csExpression != null) {
-			ExpressionInOcl pivotSpecification = context.refreshModelElement(ExpressionInOcl.class,
-				PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
+			ExpressionInOcl pivotSpecification = PivotUtil.getPivot(ExpressionInOcl.class, csSpecification);
 			pivotConstraint.setSpecification(pivotSpecification);
 	
 			Variable contextVariable = pivotSpecification.getContextVariable();

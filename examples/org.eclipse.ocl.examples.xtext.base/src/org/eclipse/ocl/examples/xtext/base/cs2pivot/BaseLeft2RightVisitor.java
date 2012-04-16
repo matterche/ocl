@@ -18,9 +18,6 @@ package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
@@ -77,11 +74,7 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Elemen
 
 	@Override
 	public Element visitSpecificationCS(SpecificationCS object) {
-		OpaqueExpression pivotElement = context.refreshModelElement(OpaqueExpression.class, PivotPackage.Literals.OPAQUE_EXPRESSION, object);
-		pivotElement.getLanguage().add(PivotConstants.OCL_LANGUAGE);
-		pivotElement.getBody().add(object.getExprString());
-		pivotElement.getMessage().add(null);
-		return pivotElement;
+		return null;
 	}
 
 	@Override

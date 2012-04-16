@@ -110,7 +110,7 @@ OperationContextDeclCS returns OperationContextDeclCS:
 PackageDeclarationCS returns PackageDeclarationCS:
 	'package' pathName=PathNameCS (contexts+=ContextDeclCS)* 'endpackage';
 
-ParameterCS returns essentialocl::VariableCS:
+ParameterCS returns base::ParameterCS:
 	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
 
 PostCS returns PostCS:

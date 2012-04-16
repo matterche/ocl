@@ -58,8 +58,7 @@ public class CompleteOCLLeft2RightVisitor
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csConstraint.getSpecification();
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		if (csExpression != null) {
-			ExpressionInOcl pivotSpecification = context.refreshModelElement(ExpressionInOcl.class,
-				PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
+			ExpressionInOcl pivotSpecification = PivotUtil.getPivot(ExpressionInOcl.class, csSpecification);
 //			context.installPivotUsage(csSpecification, pivotSpecification);
 			pivotConstraint.setSpecification(pivotSpecification);
 	
@@ -155,16 +154,14 @@ public class CompleteOCLLeft2RightVisitor
 			stereotype = UMLReflection.INITIAL;
 		}
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csDef.getSpecification();
-		ExpressionInOcl pivotSpecification = context.refreshModelElement(ExpressionInOcl.class,
-			PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
+		ExpressionInOcl pivotSpecification = PivotUtil.getPivot(ExpressionInOcl.class, csSpecification);
 		EObject pivotSpecificationContainer = pivotSpecification.eContainer();
 		Constraint pivotConstraint;
 		if (pivotSpecificationContainer instanceof Constraint) {
 			pivotConstraint = (Constraint) pivotSpecificationContainer;
 		}
 		else {
-			pivotConstraint = context.refreshModelElement(Constraint.class,
-				PivotPackage.Literals.CONSTRAINT, null);
+			pivotConstraint = context.refreshModelElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, null);
 		}
 		pivotConstraint.setSpecification(pivotSpecification);
 		pivotConstraint.setStereotype(stereotype);

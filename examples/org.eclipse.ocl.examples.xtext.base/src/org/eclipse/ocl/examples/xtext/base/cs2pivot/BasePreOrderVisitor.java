@@ -16,22 +16,14 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager;
@@ -45,20 +37,16 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -75,25 +63,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2PivotConversion>
 {
-	protected static class ClassContentContinuation extends SingleContinuation<ClassCS>
-	{
-		public ClassContentContinuation(CS2PivotConversion context, org.eclipse.ocl.examples.pivot.Class pivotParent, ClassCS csElement) {
-			super(context, pivotParent, null, csElement, context.getOperationsHaveTemplateParametersInterDependency());
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
-			List<Operation> newPivotOperations = new ArrayList<Operation>();
-			for (OperationCS csOperation : csElement.getOwnedOperation()) {
-				Operation pivotOperation = PivotUtil.getPivot(Operation.class, csOperation);
-				newPivotOperations.add(pivotOperation);
-			}
-			context.refreshList(pivotElement.getOwnedOperation(), newPivotOperations);
-			return null;
-		}
-	}
-
 	protected static class ClassSupersContinuation extends SingleContinuation<ClassCS>
 	{
 		private static Dependency[] computeDependencies(CS2PivotConversion context, ClassCS csElement) {
@@ -132,13 +101,12 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		private static Dependency[] computeDependencies(CS2PivotConversion context, LambdaTypeCS csElement) {
 			List<TypedRefCS> csParameterTypes = csElement.getOwnedParameterType();
 			int iMax = csParameterTypes.size();
-			Dependency[] dependencies = new Dependency[3 + iMax];
-			dependencies[0] = context.getPackagesHaveTypesInterDependency();
-			dependencies[1] = context.createTypeIsReferenceableDependency(csElement.getOwnedContextType());
-			dependencies[2] = context.createTypeIsReferenceableDependency(csElement.getOwnedResultType());
+			Dependency[] dependencies = new Dependency[2 + iMax];
+			dependencies[0] = context.createTypeIsReferenceableDependency(csElement.getOwnedContextType());
+			dependencies[1] = context.createTypeIsReferenceableDependency(csElement.getOwnedResultType());
 			for (int i = 0; i < iMax; i++) {
 				TypedRefCS csParameterType = csParameterTypes.get(i);
-				dependencies[i+3] = context.createTypeIsReferenceableDependency(csParameterType);
+				dependencies[i+2] = context.createTypeIsReferenceableDependency(csParameterType);
 			}
 			return dependencies;
 		}
@@ -161,54 +129,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			return null;
 		}
 	}
-	
-	public static class OperationContinuation<T extends OperationCS> extends SingleContinuation<T>
-	{
-		public OperationContinuation(CS2PivotConversion context, T csElement) {
-			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
-			context.getOperationsHaveTemplateParametersInterDependency().addDependency(this);
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			Operation pivotOperation = context.refreshTypedMultiplicityElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-			context.refreshTemplateSignature(csElement, pivotOperation);
-			refreshParameters(csElement.getOwnedParameter(), pivotOperation.getOwnedParameter());
-			context.getOperationsHaveTemplateParametersInterDependency().setSatisfied(this);
-			return null;
-		}
-
-		protected void refreshParameters(List<ParameterCS> csParameters, List<Parameter> pivotParameters) {
-			List<Parameter> newPivotParameters = new ArrayList<Parameter>();
-			for (ParameterCS csParameter : csParameters) {
-				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
-				newPivotParameters.add(pivotParameter);
-			}
-			context.refreshList(pivotParameters, newPivotParameters);
-		}
-	}
-	
-	protected static class PackageContentContinuation extends SingleContinuation<PackageCS>
-	{
-		private PackageContentContinuation(CS2PivotConversion context, PackageCS csElement) {
-			super(context, null, null, csElement);
-			context.getPackagesHaveTypesInterDependency().addDependency(this);
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Package pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, csElement);
-			context.refreshPivotList(Type.class, pivotElement.getOwnedType(), csElement.getOwnedType());
-			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackage(), csElement.getOwnedNestedPackage());
-			context.getPackagesHaveTypesInterDependency().setSatisfied(this);
-			return null;
-		}
-	}
 
 	protected static class PrimitiveTypeRefContinuation extends SingleContinuation<PrimitiveTypeRefCS>
 	{		
 		public PrimitiveTypeRefContinuation(CS2PivotConversion context, PrimitiveTypeRefCS csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+			super(context, null, null, csElement);
 		}
 
 		@Override
@@ -296,7 +221,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	protected static class TupleContinuation extends SingleContinuation<TupleTypeCS>
 	{
 		public TupleContinuation(CS2PivotConversion context, TupleTypeCS csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+			super(context, null, null, csElement);
 		}
 
 		@Override
@@ -349,47 +274,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		super(context);		// NB this class is stateless since separate instances exist per CS package
 	}
 
-	protected BasicContinuation<?> refreshClassifier(ClassifierCS csClassifier, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		if (csClassifier.eIsSet(BaseCSTPackage.Literals.CLASSIFIER_CS__INSTANCE_CLASS_NAME)) {
-			pivotElement.setInstanceClassName(csClassifier.getInstanceClassName());
-		}
-		else {
-			pivotElement.eUnset(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME);
-		}
-		String newInstanceClassName = csClassifier.getInstanceClassName();
-		String oldInstanceClassName = pivotElement.getInstanceClassName();
-		if ((newInstanceClassName != oldInstanceClassName) && ((newInstanceClassName == null) || !newInstanceClassName.equals(oldInstanceClassName))) {
-			pivotElement.setInstanceClassName(newInstanceClassName);
-		}
-		if (csClassifier.getOwnedTemplateSignature() != null) {
-			return new TemplateSignatureContinuation(context, pivotElement, csClassifier);
-		}
-		if (pivotElement.getOwnedTemplateSignature() != null) {
-			pivotElement.setOwnedTemplateSignature(null);
-		}
-		return null;
-	}
-
-	protected void refreshEnumerationLiterals(EnumerationCS csEnumeration, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
-		List<EnumerationLiteral> newPivotLiterals = new ArrayList<EnumerationLiteral>();
-		for (EnumerationLiteralCS csEnumerationLiteral : csEnumeration.getOwnedLiterals()) {
-			EnumerationLiteral pivotEnumerationLiteral = context.refreshNamedElement(EnumerationLiteral.class,
-				PivotPackage.Literals.ENUMERATION_LITERAL, csEnumerationLiteral);
-			newPivotLiterals.add(pivotEnumerationLiteral);
-			pivotEnumerationLiteral.setValue(BigInteger.valueOf(csEnumerationLiteral.getValue()));
-		}
-		context.refreshList(pivotElement.getOwnedLiteral(), newPivotLiterals);
-	}
-
-	protected void refreshProperties(ClassCS csClass, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		List<Property> newPivotProperties = new ArrayList<Property>();
-		for (StructuralFeatureCS csProperty : csClass.getOwnedProperty()) {
-			Property pivotProperty = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csProperty);
-			newPivotProperties.add(pivotProperty);
-		}
-		context.refreshList(pivotElement.getOwnedAttribute(), newPivotProperties);
-	}
-
 	public Continuation<?> visiting(VisitableCS visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot PreOrder pass");
 	}
@@ -401,25 +285,14 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitClassCS(ClassCS csClass) {
-		org.eclipse.ocl.examples.pivot.Class pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
-			PivotPackage.Literals.CLASS, csClass);
-		List<String> qualifiers = csClass.getQualifier();
-		pivotElement.setIsAbstract(qualifiers.contains("abstract"));
-		pivotElement.setIsInterface(qualifiers.contains("interface"));
-		pivotElement.setIsStatic(qualifiers.contains("static"));
-		boolean csTemplated = csClass.getOwnedTemplateSignature() != null;
-		if (csTemplated != (pivotElement.getOwnedTemplateSignature() != null)) {
-			if (csTemplated) {
-				pivotElement.setOwnedTemplateSignature(PivotFactory.eINSTANCE.createTemplateSignature());
-			}
-			else {
-				pivotElement.setOwnedTemplateSignature(null);
-			}
-		}
-		refreshProperties(csClass, pivotElement);
+		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csClass);
 		Continuations continuations = new Continuations();
-		continuations.add(refreshClassifier(csClass, pivotElement));
-		continuations.add(new ClassContentContinuation(context, pivotElement, csClass));
+		if (csClass.getOwnedTemplateSignature() != null) {
+			continuations.add(new TemplateSignatureContinuation(context, pivotElement, csClass));
+		}
+		else {
+			pivotElement.setOwnedTemplateSignature(null);
+		}
 		if (!(pivotElement instanceof AnyType)) {
 			continuations.add(new ClassSupersContinuation(context, pivotElement, csClass));
 		}
@@ -433,11 +306,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitDataTypeCS(DataTypeCS csDataType) {
-		DataType pivotElement = context.refreshNamedElement(DataType.class,
-			PivotPackage.Literals.DATA_TYPE, csDataType);
-		List<String> qualifiers = csDataType.getQualifier();
-		pivotElement.setIsSerializable(qualifiers.contains("serializable"));
-		return refreshClassifier(csDataType, pivotElement);
+		return null;
 	}
 
 	@Override
@@ -447,12 +316,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitEnumerationCS(EnumerationCS csEnumeration) {
-		org.eclipse.ocl.examples.pivot.Enumeration pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Enumeration.class,
-			PivotPackage.Literals.ENUMERATION, csEnumeration);
-		refreshEnumerationLiterals(csEnumeration, pivotElement);
-		List<String> qualifiers = csEnumeration.getQualifier();
-		pivotElement.setIsSerializable(qualifiers.contains("serializable"));
-		return refreshClassifier(csEnumeration, pivotElement);
+		return null;
 	}
 
 	@Override
@@ -472,7 +336,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitModelElementRefCS(ModelElementRefCS csModelElementRef) {
-		CS2Pivot.setElementType(csModelElementRef.getPathName(), PivotPackage.Literals.ELEMENT, csModelElementRef, null);
 		return null;
 	}
 
@@ -488,24 +351,12 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitOperationCS(OperationCS csOperation) {
-		return new OperationContinuation<OperationCS>(context, csOperation);
+		return null;
 	}
 
 	@Override
 	public Continuation<?> visitPackageCS(PackageCS csPackage) {
-		org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshPackage(org.eclipse.ocl.examples.pivot.Package.class,
-			PivotPackage.Literals.PACKAGE, csPackage);
-		String newNsPrefix = csPackage.getNsPrefix();
-		String oldNsPrefix = pivotElement.getNsPrefix();
-		if ((newNsPrefix != oldNsPrefix) && ((newNsPrefix == null) || !newNsPrefix.equals(oldNsPrefix))) {
-			pivotElement.setNsPrefix(newNsPrefix);
-		}
-		String newNsURI = csPackage.getNsURI();
-		String oldNsURI = pivotElement.getNsURI();
-		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
-			pivotElement.setNsURI(newNsURI);
-		}
-		return new PackageContentContinuation(context, csPackage);
+		return null;
 	}
 
 	@Override
@@ -524,37 +375,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
-	public Continuation<?> visitRootPackageCS(RootPackageCS object) {
-		for (LibraryCS csLibrary : object.getOwnedLibrary()) {
-			csLibrary.getPackage();						// Resolve the proxy to perform the import.
-		}
-		for (ImportCS csImport : object.getOwnedImport()) {
-			csImport.getNamespace();					// Resolve the proxy to perform the import.
-		}
-		@SuppressWarnings("unused")
-		Model pivotElement = context.refreshPackage(Model.class, PivotPackage.Literals.MODEL, object);
-		return super.visitRootPackageCS(object);
-	}
-
-	@Override
 	public Continuation<?> visitStructuralFeatureCS(StructuralFeatureCS csStructuralFeature) {
-		Property pivotElement = context.refreshTypedMultiplicityElement(Property.class, PivotPackage.Literals.PROPERTY, csStructuralFeature);
-		List<String> qualifiers = csStructuralFeature.getQualifier();
-		pivotElement.setIsComposite(qualifiers.contains("composes"));
-		pivotElement.setIsDerived(qualifiers.contains("derived"));
-		pivotElement.setIsID(qualifiers.contains("id"));
-		pivotElement.setIsReadOnly(qualifiers.contains("readonly"));
-		pivotElement.setIsResolveProxies(ElementUtil.getQualifier(qualifiers, "resolve", "!resolve", true));
-		pivotElement.setIsStatic(qualifiers.contains("static"));
-		pivotElement.setIsTransient(qualifiers.contains("transient"));
-		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
-		pivotElement.setIsVolatile(qualifiers.contains("volatile"));
-		if (csStructuralFeature.eIsSet(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS__DEFAULT)) {
-			pivotElement.setDefault(csStructuralFeature.getDefault());
-		}
-		else {
-			pivotElement.eUnset(PivotPackage.Literals.PROPERTY__DEFAULT);
-		}
 		return null;
 	}
 
@@ -575,7 +396,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitTypedTypeRefCS(TypedTypeRefCS csTypedTypeRef) {
-		CS2Pivot.setElementType(csTypedTypeRef.getPathName(), PivotPackage.Literals.TYPE, csTypedTypeRef, null);
 		if (csTypedTypeRef.getOwnedTemplateBinding() == null) {
 			return new UnspecializedTypeRefContinuation(context, csTypedTypeRef);
 		}
@@ -586,9 +406,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitWildcardTypeRefCS(WildcardTypeRefCS csWildcardTypeRef) {
-		org.eclipse.ocl.examples.pivot.Class pivotElement = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class,
-			PivotPackage.Literals.CLASS, null);
-		context.installPivotReference(csWildcardTypeRef, pivotElement, BaseCSTPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 		return null;
 	}
 }

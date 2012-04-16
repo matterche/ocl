@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
@@ -59,7 +60,7 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<VariableCS> parameters;
+	protected EList<ParameterCS> parameters;
 
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
@@ -95,10 +96,10 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VariableCS> getParameters() {
+	public EList<ParameterCS> getParameters() {
 		if (parameters == null)
 		{
-			parameters = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS);
+			parameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -204,7 +205,7 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				getParameters().clear();
-				getParameters().addAll((Collection<? extends VariableCS>)newValue);
+				getParameters().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
 				setResult((VariableCS)newValue);

@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
@@ -35,7 +36,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 
@@ -105,10 +105,10 @@ public class CompleteOCLCS2MonikerVisitor
 		}
 	}
 
-	protected void appendParametersCS(List<VariableCS> csParameters) {
+	protected void appendParametersCS(List<ParameterCS> csParameters) {
 		context.append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
-		for (VariableCS csParameter : csParameters) {
+		for (ParameterCS csParameter : csParameters) {
 			context.append(prefix);
 			context.appendElementCS(csParameter.getOwnedType());
 			prefix = PARAMETER_SEPARATOR;

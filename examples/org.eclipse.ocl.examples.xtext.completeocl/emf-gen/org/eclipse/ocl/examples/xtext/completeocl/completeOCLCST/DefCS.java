@@ -17,8 +17,8 @@
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,7 +121,7 @@ public interface DefCS extends ContextConstraintCS {
 
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS}.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
@@ -133,7 +133,7 @@ public interface DefCS extends ContextConstraintCS {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<VariableCS> getParameters();
+	EList<ParameterCS> getParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.

@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -119,8 +118,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitAnnotationCS(AnnotationCS csAnnotation) {
-		Annotation pivotElement = context.refreshNamedElement(Annotation.class,
-			PivotPackage.Literals.ANNOTATION, csAnnotation);
+		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csAnnotation);
 		context.handleVisitNamedElement(csAnnotation, pivotElement);
 		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csAnnotation.getOwnedDetail());
 		context.refreshPivotList(Element.class, pivotElement.getOwnedContent(), csAnnotation.getOwnedContent());
@@ -153,7 +151,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitConstraintCS(ConstraintCS csConstraint) {
-		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csConstraint);
+		Constraint pivotElement = PivotUtil.getPivot(Constraint.class, csConstraint);
 		pivotElement.setStereotype(csConstraint.getStereotype());
 		if (csConstraint.getSpecification() != null) {
 			return new ConstraintCSCompletion(context, csConstraint);
@@ -165,8 +163,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitDetailCS(DetailCS csDetail) {
-		Detail pivotElement = context.refreshNamedElement(Detail.class,
-			PivotPackage.Literals.DETAIL, csDetail);
+		Detail pivotElement = PivotUtil.getPivot(Detail.class, csDetail);
 		context.handleVisitNamedElement(csDetail, pivotElement);
 //			refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetail());
 		List<String> newValues = csDetail.getValue();
@@ -178,8 +175,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitDocumentationCS(DocumentationCS csDocumentation) {
-		Annotation pivotElement = context.refreshNamedElement(Annotation.class,
-			PivotPackage.Literals.ANNOTATION, csDocumentation);
+		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csDocumentation);
 		context.handleVisitNamedElement(csDocumentation, pivotElement);
 		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetail());
 		return null;

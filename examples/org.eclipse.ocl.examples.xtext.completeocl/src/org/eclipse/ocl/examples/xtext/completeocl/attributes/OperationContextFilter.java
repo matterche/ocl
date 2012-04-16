@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class OperationContextFilter implements ScopeFilter
 {
@@ -54,14 +54,14 @@ public class OperationContextFilter implements ScopeFilter
 		if (context != metaModelManager.getPrimaryElement(forType)) {
 			return false;
 		}
-		List<VariableCS> contextParameters = csOperationContext.getParameters();
+		List<ParameterCS> contextParameters = csOperationContext.getParameters();
 		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 		int iMax = contextParameters.size();
 		if (iMax != candidateParameters.size()) {
 			return false;
 		}
 		for (int i = 0; i < iMax; i++) {
-			VariableCS contextParameter = contextParameters.get(i);
+			ParameterCS contextParameter = contextParameters.get(i);
 			Parameter candidateParameter = candidateParameters.get(i);
 			Type contextType = metaModelManager.getPrimaryType(PivotUtil.getPivot(Type.class, contextParameter.getOwnedType()));
 			Type candidateType = metaModelManager.getPrimaryType(candidateParameter.getType());

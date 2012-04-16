@@ -18,31 +18,24 @@ package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.SelfType;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
@@ -54,70 +47,16 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContex
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.AbstractOperationFilter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrderVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class CompleteOCLPreOrderVisitor
 	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
 {	
-	
-	public class OperationDeclScopeFilter extends AbstractOperationFilter
-	{
-		private final List<VariableCS> csParameters;
-		
-		public OperationDeclScopeFilter(MetaModelManager metaModelManager, Type sourceType, List<VariableCS> csParameters) {
-			super(metaModelManager, sourceType);
-			this.csParameters = csParameters;
-		}
-
-		public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
-			if (eObject instanceof Iteration) {
-				return false;
-			}
-			if (eObject instanceof Operation) {
-				Operation candidateOperation = (Operation)eObject;
-				List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
-				int iMax = csParameters.size();
-				if (iMax != candidateParameters.size()) {
-					return false;
-				}
-				Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(candidateOperation);
-				for (int i = 0; i < iMax; i++) {
-					Parameter candidateParameter = candidateParameters.get(i);
-					VariableCS csVariable = csParameters.get(i);
-					if (csVariable == null) {
-						return false;
-					}
-					TypedRefCS csType = csVariable.getOwnedType();
-					Type pType = PivotUtil.getPivot(Type.class, csType);
-					if (pType == null) {
-						return false;
-					}
-					Type candidateType = metaModelManager.getTypeWithMultiplicity(candidateParameter);
-					if (candidateType instanceof SelfType) {
-						candidateType = candidateOperation.getOwningType();
-					}
-					pType = PivotUtil.getBehavioralType(pType);			// FIXME make this a general facility
-					if (!metaModelManager.conformsTo(pType, candidateType, bindings)) {
-						return false;
-					}
-				}
-				if (bindings != null) {
-					installBindings(environmentView, forType, eObject, bindings);
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-	}
 
 	protected class DefCSContinuation extends SingleContinuation<DefCS>
 	{
 		private DefCSContinuation(CS2PivotConversion context, DefCS csElement) {
-			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
+			super(context, null, null, csElement);
 		}
 
 		@Override
@@ -129,7 +68,7 @@ public class CompleteOCLPreOrderVisitor
 			if ((ownedType != null) && (ownedType.getPivot() == null)) {
 				return false;
 			}
-			for (VariableCS csParameter : csElement.getParameters()) {
+			for (ParameterCS csParameter : csElement.getParameters()) {
 				ownedType = csParameter.getOwnedType();
 				if (ownedType.getPivot() == null) {
 					return false;
@@ -150,15 +89,14 @@ public class CompleteOCLPreOrderVisitor
 			}
 //			org.eclipse.ocl.examples.pivot.Class classifier = (org.eclipse.ocl.examples.pivot.Class)type;
 			Type classifier = getContextClassifier(type, csElement);
-			Operation pivotOperation = null;
-			Property pivotProperty = null;
+//			Feature pivotFeature = PivotUtil.getPivot(Feature.class, csElement);
 			Feature pivotFeature = null;
 			if (csElement.isOperation()) {
-				pivotOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
+				Operation pivotOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 				pivotFeature = pivotOperation;
 			}
 			else {
-				pivotProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
+				Property pivotProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
 				pivotProperty.setIsDerived(true);
 				pivotProperty.setIsReadOnly(true);
 				pivotProperty.setIsTransient(true);
@@ -194,11 +132,12 @@ public class CompleteOCLPreOrderVisitor
 //				pivotElement.setUpper(BigInteger.valueOf(1));
 //			}
 //			context.refreshTemplateSignature(csElement, pivotOperation);
-			if (pivotOperation != null) {
-				List<VariableCS> csParameters = csElement.getParameters();
+			if (pivotFeature instanceof Operation) {
+				Operation pivotOperation = (Operation) pivotFeature;
+				List<ParameterCS> csParameters = csElement.getParameters();
 				List<Parameter> newPivotParameters = new ArrayList<Parameter>();
-				for (VariableCS csParameter : csParameters) {
-					Parameter pivotParameter = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+				for (ParameterCS csParameter : csParameters) {
+					Parameter pivotParameter = PivotUtil.getPivot(Parameter.class, csParameter);
 //					context.refreshMultiplicity(pivotParameter, csParameter);
 					pivotParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
 					newPivotParameters.add(pivotParameter);
@@ -207,6 +146,7 @@ public class CompleteOCLPreOrderVisitor
 				classifier.getOwnedOperation().add(pivotOperation);
 			}
 			else {
+				Property pivotProperty = (Property) pivotFeature;
 				classifier.getOwnedAttribute().add(pivotProperty);
 			}
 			context.refreshComments(pivotFeature, csElement);
@@ -225,7 +165,7 @@ public class CompleteOCLPreOrderVisitor
 			if (!super.canExecute()) {
 				return false;
 			}
-			for (VariableCS csParameter : csElement.getParameters()) {
+			for (ParameterCS csParameter : csElement.getParameters()) {
 				if (csParameter.getOwnedType().getPivot() == null) {
 					return false;
 				}
@@ -249,13 +189,13 @@ public class CompleteOCLPreOrderVisitor
 //				context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //				element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //			}
-			Operation contextOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
+			Operation contextOperation = PivotUtil.getPivot(Operation.class, csElement);
 			contextOperation.setName(modelOperation.getName());
 			List<Parameter> modelParameters = modelOperation.getOwnedParameter();
-			List<VariableCS> csParameters = csElement.getParameters();
+			List<ParameterCS> csParameters = csElement.getParameters();
 			for (int i = 0; i < csParameters.size(); i++) {
-				VariableCS csParameter = csParameters.get(i);
-				Parameter contextParameter = context.refreshModelElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+				ParameterCS csParameter = csParameters.get(i);
+				Parameter contextParameter = PivotUtil.getPivot(Parameter.class, csParameter);
 				Parameter modelParameter = modelParameters.get(i);
 				contextParameter.setName(csParameter.getName());
 //				contextParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
@@ -269,7 +209,6 @@ public class CompleteOCLPreOrderVisitor
 			}
 //			context.installPivotElement(csElement, contextOperation);
 			contextType.getOwnedOperation().add(contextOperation);
-			context.refreshComments(contextOperation, csElement);
 //			metaModelManager.addContextOperation(modelOperation, contextOperation);
 			return null;
 		}
@@ -290,7 +229,7 @@ public class CompleteOCLPreOrderVisitor
 			}
 		}
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelType.getPackage(), csElement.eResource(), csElement);
-		org.eclipse.ocl.examples.pivot.Class contextType = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
+		org.eclipse.ocl.examples.pivot.Class contextType = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, null);
 		contextType.setName(modelType.getName());
 		contextPackage.getOwnedType().add(contextType);
 		// WIP Install class synonym
@@ -323,7 +262,6 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE, csElement, null);
 		Type modelClassifier = csElement.getClassifier();
 		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
 			return null;
@@ -367,14 +305,11 @@ public class CompleteOCLPreOrderVisitor
 	@Override
 	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS csElement) {
 		// Must wait till parameters have types before resolving operation name
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement,
-				new OperationDeclScopeFilter(metaModelManager, null, csElement.getParameters()));
 		return new OperationContextDeclCSContinuation(context, csElement);
 	}
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE, csElement, null);
 		Element modelElement = csElement.getPathName().getElement();
 		if ((modelElement == null) || modelElement.eIsProxy()) {
 			return null;
@@ -392,7 +327,6 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PROPERTY, csElement, null);
 		Property modelProperty = csElement.getProperty();
 		if (modelProperty == null) {
 			return null;
@@ -402,11 +336,11 @@ public class CompleteOCLPreOrderVisitor
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
-		Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
+		Property contextProperty = PivotUtil.getPivot(Property.class, csElement);
 		contextProperty.setName(modelProperty.getName());
 		contextProperty.setType(modelProperty.getType());
 		contextType.getOwnedAttribute().add(contextProperty);
-		context.refreshComments(contextProperty, csElement);
+//		context.refreshComments(contextProperty, csElement);
 //		metaModelManager.addContextProperty(modelProperty, contextProperty);
 		return null;
 	}

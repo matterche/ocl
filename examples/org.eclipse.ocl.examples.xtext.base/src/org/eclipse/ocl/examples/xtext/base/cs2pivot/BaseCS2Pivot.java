@@ -87,6 +87,10 @@ public class BaseCS2Pivot extends CS2Pivot
 			addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());			
 		}
 
+		public BaseContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+			return new BaseContainmentVisitor(converter);
+		}
+
 		public BaseLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
 			return new BaseLeft2RightVisitor(converter);
 		}

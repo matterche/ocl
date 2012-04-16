@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
 import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedPath;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
@@ -39,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling.EssentialOCLLabelProvider;
 
 import com.google.inject.Inject;
@@ -95,15 +95,15 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 		appendOptionalString(s, ele.getName());
 		s.append(": ");
 		appendString(s, ele.getConstrainedName());
-		List<VariableCS> parameters = ele.getParameters();
+		List<ParameterCS> parameters = ele.getParameters();
 		if (!parameters.isEmpty()) {
 			s.append("(");
 			String prefix = "";
-			for (VariableCS csVariable : parameters) {
+			for (ParameterCS csParameter : parameters) {
 				s.append(prefix);
 //				appendName(s, csVariable);
 //				s.append(" : ");
-				appendType(s, csVariable.getOwnedType());
+				appendType(s, csParameter.getOwnedType());
 				prefix = ", ";
 			}
 			s.append(")");

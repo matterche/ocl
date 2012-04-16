@@ -54,7 +54,7 @@ public class EssentialOCLPreOrderVisitor
 	protected static class CollectionTypeContinuation extends SingleContinuation<CollectionTypeCS>
 	{
 		public CollectionTypeContinuation(CS2PivotConversion context, CollectionTypeCS csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+			super(context, null, null, csElement);
 		}
 
 		@Override
@@ -101,7 +101,7 @@ public class EssentialOCLPreOrderVisitor
 	protected static class TypeNameExpContinuation extends SingleContinuation<TypeNameExpCS>
 	{
 		public TypeNameExpContinuation(CS2PivotConversion context, TypeNameExpCS csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+			super(context, null, null, csElement);
 		}
 
 		@Override
@@ -144,16 +144,11 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitInvocationExpCS(InvocationExpCS csNavigatingExp) {
-		NameExpCS namedExp = csNavigatingExp; //.getNameExp();
-		if (namedExp != null) {
-			CS2Pivot.setElementType(namedExp.getPathName(), PivotPackage.Literals.OPERATION, csNavigatingExp, null);
-		}
-		return super.visitInvocationExpCS(csNavigatingExp);
+		return null;
 	}
 
 	@Override
 	public Continuation<?> visitNameExpCS(NameExpCS csNameExp) {
-		CS2Pivot.setElementType(csNameExp.getPathName(), PivotPackage.Literals.ELEMENT, csNameExp, null);
 		return null;
 	}
 
@@ -188,7 +183,6 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS csTypeNameExp) {
-		CS2Pivot.setElementType(csTypeNameExp.getPathName(), PivotPackage.Literals.TYPE, csTypeNameExp, null);
 		return new TypeNameExpContinuation(context, csTypeNameExp);
 	}
 
