@@ -88,6 +88,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
@@ -194,7 +195,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		}
 	}
 
-	protected void appendName(NamedElement object) {
+	protected void appendName(Nameable object) {
 		if (object == null) {
 			result.append(NULL_PLACEHOLDER);
 		}
