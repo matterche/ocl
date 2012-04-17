@@ -1296,6 +1296,7 @@ public class CS2PivotConversion extends AbstractConversion
 		//	Create the Piviotable.pivot elements for all 1:1 CS to pivot relationships.
 		//	Create the parent-child containment hierarchy.
 		//	Configure derived CS properties such as PathNameCS.elementType
+		//	Queue continuations to compute simple references
 		//
 		//	The containment pass may only access the pivot elements of immediate children.
 		//
