@@ -53,7 +53,6 @@ public class OCLValidationDelegate implements ValidationDelegate
 		this.eClassifier = classifier;
 	}
 
-	@SuppressWarnings("deprecation")
 	protected boolean check(Object object, String constraint, OCLExpression query) {
 		OCL ocl = delegateDomain.getOCL();
 		OCLStandardLibrary<EClassifier> stdlib = ocl.getEnvironment().getOCLStandardLibrary();
@@ -77,7 +76,6 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return Boolean.TRUE.equals(result);
 	}
 
-	@SuppressWarnings("deprecation")
 	protected OCLExpression createQuery(String expression) {
 		OCL ocl = delegateDomain.getOCL();
 		Helper helper = ocl.createOCLHelper();

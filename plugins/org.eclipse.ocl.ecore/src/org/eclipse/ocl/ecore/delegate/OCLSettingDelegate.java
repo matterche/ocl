@@ -53,7 +53,6 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			: ValueConverter.VERBATIM;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
 		OCL ocl = delegateDomain.getOCL();

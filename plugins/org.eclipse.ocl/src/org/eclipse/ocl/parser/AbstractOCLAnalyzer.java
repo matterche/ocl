@@ -4288,8 +4288,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// operation must either be defined by the TypeType (e.g.,
 		// allInstances())
 		// or be a static operation of the referred classifier
-		if (!(typeType.oclOperations().contains(operation) || uml
-			.isStatic(operation))) {
+		boolean isTypeTypeOperation = (typeType != null) && typeType.oclOperations().contains(operation);
+		if (!(isTypeTypeOperation || uml.isStatic(operation))) {
 
 			String message = OCLMessages.bind(
 				OCLMessages.NonStaticOperation_ERROR_, operationName);
@@ -4528,7 +4528,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected C getCollectionType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			CollectionKind kind, C elementType) {
-		@SuppressWarnings("deprecation")
 		C collectionType = getCollectionType(env, kind, elementType);
 		initASTMapping(env, collectionType, cstNode);
 		return collectionType;
@@ -4682,7 +4681,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected InvalidLiteralExp<C> createDummyInvalidLiteralExp(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			CSTNode cstNode) {
-		@SuppressWarnings("deprecation")
 		InvalidLiteralExp<C> result = createDummyInvalidLiteralExp();
 		initASTMapping(env, result, cstNode);
 

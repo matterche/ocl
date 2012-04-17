@@ -97,7 +97,6 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * Return the feature body associated with structuralFeature, if necessary using ocl to
 	 * create the relevant parsing environment for a textual definition..
 	 */
-	@SuppressWarnings("deprecation")
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
 		OCLExpression result = ExpressionCacheAdapter.getCachedOCLExpression(structuralFeature);
 		if (result != null){

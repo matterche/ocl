@@ -387,7 +387,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return namedElements.get(index);
 	}
     
-	@SuppressWarnings("deprecation")
     public void addHelperProperty(C owner, P property) {
         addProperty(owner, property);
     }
@@ -451,7 +450,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return result;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void addHelperOperation(C owner, O operation) {
 		addOperation(owner, operation);
 	}
