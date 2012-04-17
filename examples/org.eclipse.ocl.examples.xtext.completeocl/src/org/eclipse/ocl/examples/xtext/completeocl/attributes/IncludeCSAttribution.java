@@ -75,7 +75,7 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 				else {
 					environmentView.addElementsOfScope(importedElement, scopeView);
 				}
-				return scopeView.getOuterScope();
+				return scopeView.getParent();
 			}
 		}
 	

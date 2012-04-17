@@ -41,6 +41,6 @@ public class ExpressionInOclAttribution extends AbstractAttribution
 		if (resultVariable != null) {
 			environmentView.addNamedElement(resultVariable);
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

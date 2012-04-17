@@ -37,6 +37,6 @@ public class OperationCallExpAttribution extends AbstractAttribution
 			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

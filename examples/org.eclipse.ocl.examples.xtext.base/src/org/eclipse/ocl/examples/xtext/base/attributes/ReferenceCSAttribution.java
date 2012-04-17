@@ -22,15 +22,12 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeView;
 
 public class ReferenceCSAttribution extends AbstractAttribution
 {
@@ -45,16 +42,13 @@ public class ReferenceCSAttribution extends AbstractAttribution
 			if (typeRef instanceof TypedTypeRefCS) {
 				Element type = ((TypedTypeRefCS)typeRef).getPivot();
 				if (type instanceof Type) {
-					Attribution typeScope = PivotUtil.getAttribution(type);
-					BaseScopeView baseScopeView = new BaseScopeView(environmentView.getMetaModelManager(), type, typeScope, target, PivotPackage.Literals.PROPERTY__OPPOSITE, null);
-					environmentView.computeLookups(baseScopeView);
-					return null;
+					environmentView.computeLookups(type, null, PivotPackage.Literals.PROPERTY__OPPOSITE, scopeView.getTargetReference());
 				}
 			}
 			return null;
 		}
 		else {
-			return scopeView.getOuterScope();
+			return scopeView.getParent();
 		}
 	}
 }

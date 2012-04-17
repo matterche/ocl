@@ -91,6 +91,6 @@ public class ClassAttribution extends AbstractAttribution
 				addAllContents(environmentView, targetClass, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
 			}
 //		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

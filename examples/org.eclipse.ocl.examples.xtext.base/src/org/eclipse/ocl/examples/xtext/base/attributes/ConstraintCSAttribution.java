@@ -51,6 +51,6 @@ public class ConstraintCSAttribution extends AbstractAttribution
 				}
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

@@ -32,12 +32,10 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scoping.AbstractRootCSAttribution;
-import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 
 public class ContextCSAttribution extends AbstractRootCSAttribution
@@ -88,12 +86,7 @@ public class ContextCSAttribution extends AbstractRootCSAttribution
 				if (resource instanceof EvaluationContext) {
 					NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
 					if (specificationContext != null) {
-						Attribution attribution = PivotUtil.getAttribution(specificationContext);
-						if (attribution != null) {		// FIXME just redirect; it will do OclAny at its root
-							MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-							ScopeView ruleScopeView = new BaseScopeView(metaModelManager, specificationContext, attribution, null, null, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
-							environmentView.computeLookups(ruleScopeView);
-						}	
+						environmentView.computeLookups(specificationContext, null, null, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 					}
 				}
 			}

@@ -45,14 +45,14 @@ public class TypedTypeRefCSAttribution extends AbstractAttribution
 			return new BaseScopeView(metaModelManager, parent, parentScope, target, target.eContainingFeature(), null);
 		}
 		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__PATH_NAME) {
-			return scopeView.getOuterScope();
+			return scopeView.getParent();
 		}
 		else {
 			Type type = targetElement.getType();
 			if ((type != null) && !type.eIsProxy()) {
 				environmentView.addElementsOfScope(type, scopeView);
 			}
-			return scopeView.getOuterScope();
+			return scopeView.getParent();
 		}
 	}
 }

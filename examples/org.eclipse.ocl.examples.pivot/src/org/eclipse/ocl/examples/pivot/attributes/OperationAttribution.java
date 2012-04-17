@@ -41,6 +41,6 @@ public class OperationAttribution extends AbstractAttribution
 			environmentView.addNamedElements(targetOperation.getOwnedParameter());
 		}
 		environmentView.addElements(PivotUtil.getTypeTemplateParameterables(targetOperation));
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

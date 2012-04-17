@@ -91,6 +91,6 @@ public class ClassCSAttribution extends AbstractAttribution
 //				}
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

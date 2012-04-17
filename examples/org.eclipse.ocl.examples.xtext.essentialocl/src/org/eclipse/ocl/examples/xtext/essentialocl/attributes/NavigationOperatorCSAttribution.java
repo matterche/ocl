@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -80,17 +79,14 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 					return null;				// No further outer scope lookup				
 				}
 			}
-			return scopeView.getOuterScope();
+			return scopeView.getParent();
 		}
 		else {
 			ElementCS parent = targetElement.getLogicalParent();
-			Attribution attribution = parent != null ? PivotUtil.getAttribution(parent) : null;
 			ScopeFilter filter = ContextCSAttribution.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
-				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, parent, attribution, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
-				environmentView.computeLookups(baseScopeView);
+				BaseScopeView.computeLookups(environmentView, parent, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
 				return null;
 			}
 			finally {

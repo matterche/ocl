@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -213,6 +214,12 @@ public class EnvironmentView
 			}
 		}
 		return additions;
+	}
+
+	public int computeLookups(Element target, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
+		Attribution attribution = PivotUtil.getAttribution(target);
+		ScopeView pivotScopeView = new PivotScopeView(metaModelManager, target, attribution, child, containmentFeature, targetReference);
+		return computeLookups(pivotScopeView);
 	}
 	
 	public int computeLookups(ScopeView aScope) {

@@ -58,6 +58,6 @@ public class LetExpCSAttribution extends AbstractAttribution
 				return null;							// Let variables occlude outer scopes
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

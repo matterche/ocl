@@ -18,16 +18,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeView;
 
 public class PathNameCSAttribution extends AbstractAttribution
 {
@@ -40,20 +36,17 @@ public class PathNameCSAttribution extends AbstractAttribution
 		List<PathElementCS> path = targetElement.getPath();
 		int index = path.indexOf(child);
 		if (index <= 0) {						// First path element is resolved in parent scope
-			return scopeView.getOuterScope();
+			return scopeView.getParent();
 		}
 		else {									// Subsequent elements in previous scope
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			Element scopeTarget = path.get(index-1).getElement();
-			if ((scopeTarget != null) && !scopeTarget.eIsProxy()) {
+			Element parent = path.get(index-1).getElement();
+			if ((parent != null) && !parent.eIsProxy()) {
 				ScopeFilter scopeFilter = targetElement.getScopeFilter();
 				try {
 					if (scopeFilter != null) {
 						environmentView.addFilter(scopeFilter);
 					}
-					Attribution attribution = PivotUtil.getAttribution(scopeTarget);
-					BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, attribution, target, null, null);
-					environmentView.computeLookups(baseScopeView);
+					environmentView.computeLookups(parent, null, null, scopeView.getTargetReference());
 				}
 				finally {
 					if (scopeFilter != null) {

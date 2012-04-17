@@ -35,6 +35,6 @@ public class LetExpAttribution extends AbstractAttribution
 		if (containmentFeature == PivotPackage.Literals.LET_EXP__IN) {
 			environmentView.addNamedElement(targetExpression.getVariable());
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

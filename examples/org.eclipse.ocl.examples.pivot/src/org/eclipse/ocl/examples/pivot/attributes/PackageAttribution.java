@@ -33,6 +33,6 @@ public class PackageAttribution extends AbstractAttribution
 		environmentView.addNamedElements(metaModelManager.getLocalPackages(targetPackage));
 		environmentView.addNamedElements(metaModelManager.getLocalClasses(targetPackage));
 		environmentView.addNamedElements(targetPackage.getOwnedPrecedence());
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

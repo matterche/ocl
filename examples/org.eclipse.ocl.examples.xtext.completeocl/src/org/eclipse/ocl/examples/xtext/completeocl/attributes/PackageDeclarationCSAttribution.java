@@ -42,6 +42,6 @@ public class PackageDeclarationCSAttribution extends AbstractAttribution
 //				environmentView.addNamedElements(pkge.getOwnedPrecedence());
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

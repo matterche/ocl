@@ -62,6 +62,6 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 			}
 			return null;
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

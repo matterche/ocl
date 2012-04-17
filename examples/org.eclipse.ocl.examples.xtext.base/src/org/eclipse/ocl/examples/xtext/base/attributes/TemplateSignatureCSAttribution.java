@@ -35,6 +35,6 @@ public class TemplateSignatureCSAttribution extends AbstractAttribution
 		if (pivot != null) {
 			environmentView.addElements(pivot.getOwnedParameter());
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

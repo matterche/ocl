@@ -47,6 +47,6 @@ public class OperationCSAttribution extends AbstractAttribution
 				environmentView.addNamedElement((Nameable)templateParameter.getParameteredElement());
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

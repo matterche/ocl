@@ -49,12 +49,12 @@ public class TemplateParameterSubstitutionCSAttribution extends AbstractAttribut
 			return null;
 		}
 		else*/ if (containmentFeature == BaseCSTPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER) {
-			return scopeView.getOuterScope().getOuterScope();
+			return scopeView.getParent().getParent();
 		}
 		else {
 //			TypeCS type = getTarget().getType();
 //			environmentView.addElementsOfScope(type, scopeView);
-			return scopeView.getOuterScope();
+			return scopeView.getParent();
 		}
 	}
 }

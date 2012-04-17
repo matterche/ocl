@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public interface ScopeView
 {
+	Attribution getAttribution();
+
 	EObject getChild();
 
 	EStructuralFeature getContainmentFeature();
 
-	ScopeView getOuterScope();
-
-	Attribution getAttribution();
+	ScopeView getParent();
 
 	EObject getTarget();
 	

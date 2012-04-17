@@ -24,9 +24,7 @@ import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -110,11 +108,8 @@ public class InvocationExpCSAttribution extends AbstractAttribution
 			ScopeFilter filter = ContextCSAttribution.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
-				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				ElementCS parent = targetElement.getLogicalParent();
-				Attribution parentScope = parent != null ? PivotUtil.getAttribution(parent) : null;
-				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, parent, parentScope, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
-				environmentView.computeLookups(baseScopeView);
+				BaseScopeView.computeLookups(environmentView, parent, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 				return null;
 			}
 			finally {
@@ -137,7 +132,6 @@ public class InvocationExpCSAttribution extends AbstractAttribution
 			if (scopeTarget == null) {
 				scopeTarget = targetElement.getLogicalParent();
 			}
-			Attribution attribution = scopeTarget != null ? PivotUtil.getAttribution(scopeTarget) : null;
 			Type type = null;
 			if (explicitSource != null) {
 				OclExpression source = PivotUtil.getPivot(OclExpression.class, explicitSource);
@@ -145,12 +139,10 @@ public class InvocationExpCSAttribution extends AbstractAttribution
 					type = source.getType();
 				}
 			}
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			ScopeFilter filter = new OperationFilter(metaModelManager, type, targetElement);
+			ScopeFilter filter = new OperationFilter(environmentView.getMetaModelManager(), type, targetElement);
 			try {
 				environmentView.addFilter(filter);
-				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, attribution, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);
-				environmentView.computeLookups(baseScopeView);
+				BaseScopeView.computeLookups(environmentView, scopeTarget, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);
 				return null;
 			}
 			finally {

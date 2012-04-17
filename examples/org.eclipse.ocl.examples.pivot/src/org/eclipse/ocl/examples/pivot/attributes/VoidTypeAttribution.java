@@ -41,6 +41,6 @@ public class VoidTypeAttribution extends ClassAttribution
 //				}
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

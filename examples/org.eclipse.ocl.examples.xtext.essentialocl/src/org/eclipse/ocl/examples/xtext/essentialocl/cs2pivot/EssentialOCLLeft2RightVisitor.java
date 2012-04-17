@@ -69,7 +69,6 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -84,10 +83,8 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -296,13 +293,6 @@ public class EssentialOCLLeft2RightVisitor
 		}
 	}
 
-	private int lookupType(EnvironmentView environmentView, Type type) {
-		type = (Type) PivotUtil.getLowerBound(type);
-		Attribution attribution = PivotUtil.getAttribution(type);
-		ScopeView innerScopeView = new BaseScopeView(metaModelManager, type, attribution, null, null, null);
-		return environmentView.computeLookups(innerScopeView);
-	}
-
 	protected EnumLiteralExp resolveEnumLiteral(ExpCS csExp, EnumerationLiteral enumerationLiteral) {
 		EnumLiteralExp expression = context.refreshModelElement(EnumLiteralExp.class, PivotPackage.Literals.ENUM_LITERAL_EXP, csExp);
 		context.setType(expression, enumerationLiteral.getEnumeration());
@@ -486,7 +476,8 @@ public class EssentialOCLLeft2RightVisitor
 			iteratorExp.setImplicit(true);
 			EnvironmentView environmentView = new EnvironmentView(metaModelManager, PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION, "collect");
 			environmentView.addFilter(new ImplicitCollectFilter(metaModelManager, (CollectionType) actualSourceType, elementType));
-			lookupType(environmentView, actualSourceType);
+			Type lowerBoundType = (Type) PivotUtil.getLowerBound(actualSourceType);
+			environmentView.computeLookups(lowerBoundType, null, null, null);
 			Iteration resolvedIteration = (Iteration)environmentView.getContent();
 			context.setReferredIteration(iteratorExp, resolvedIteration);
 			Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
@@ -663,7 +654,8 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		int size = 0;
 		if (sourceType != null) {
-			size = lookupType(environmentView, sourceType);
+			Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
+			size = environmentView.computeLookups(lowerBoundType, null, null, null);
 		}
 		if (size == 1) {
 			Operation operation = (Operation)environmentView.getContent();
@@ -1275,9 +1267,7 @@ public class EssentialOCLLeft2RightVisitor
 		VariableExp expression = PivotUtil.getPivot(VariableExp.class, csSelfExp);
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, Environment.SELF_VARIABLE_NAME);
 		ElementCS parent = csSelfExp.getLogicalParent();
-		Attribution parentScope = parent != null ? PivotUtil.getAttribution(parent) : null;
-		ScopeView scopeView = new BaseScopeView(metaModelManager, parent, parentScope, csSelfExp, csSelfExp.eContainingFeature(), null);
-		environmentView.computeLookups(scopeView);
+		BaseScopeView.computeLookups(environmentView, parent, csSelfExp, csSelfExp.eContainingFeature(), null);
 		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();
 		expression.setReferredVariable(variableDeclaration);
 		context.setType(expression, variableDeclaration != null ? variableDeclaration.getType() : metaModelManager.getOclVoidType());

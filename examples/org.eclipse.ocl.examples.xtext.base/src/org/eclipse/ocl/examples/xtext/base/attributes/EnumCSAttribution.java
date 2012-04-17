@@ -39,6 +39,6 @@ public class EnumCSAttribution extends AbstractAttribution
 		}
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addLibContents(metaModelManager.getOclAnyType(), scopeView);
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

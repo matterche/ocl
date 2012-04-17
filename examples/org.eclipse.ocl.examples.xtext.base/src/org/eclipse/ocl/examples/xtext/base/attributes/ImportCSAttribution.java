@@ -75,7 +75,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				else {
 					environmentView.addElementsOfScope(importedElement, scopeView);
 				}
-				return scopeView.getOuterScope();
+				return scopeView.getParent();
 			}
 		}
 	

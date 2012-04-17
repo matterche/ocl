@@ -30,6 +30,6 @@ public class TupleLiteralExpCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		TupleLiteralExpCS targetElement = (TupleLiteralExpCS)target;
 		environmentView.addNamedElements(targetElement.getOwnedParts());
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

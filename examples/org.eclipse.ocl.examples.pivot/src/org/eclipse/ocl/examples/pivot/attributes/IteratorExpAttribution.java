@@ -50,6 +50,6 @@ public class IteratorExpAttribution extends AbstractAttribution
 				}
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

@@ -30,6 +30,6 @@ public class TupleTypeCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		TupleTypeCS targetElement = (TupleTypeCS)target;
 		environmentView.addNamedElements(targetElement.getOwnedParts());		// FIXME Pivot lookup
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

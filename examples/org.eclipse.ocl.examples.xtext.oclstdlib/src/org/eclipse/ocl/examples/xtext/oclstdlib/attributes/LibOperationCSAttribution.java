@@ -62,6 +62,6 @@ public class LibOperationCSAttribution extends AbstractAttribution
 				}
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

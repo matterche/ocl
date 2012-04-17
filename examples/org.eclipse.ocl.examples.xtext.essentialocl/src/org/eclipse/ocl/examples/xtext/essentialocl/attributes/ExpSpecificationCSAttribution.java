@@ -57,6 +57,6 @@ public class ExpSpecificationCSAttribution extends AbstractAttribution
 				}
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

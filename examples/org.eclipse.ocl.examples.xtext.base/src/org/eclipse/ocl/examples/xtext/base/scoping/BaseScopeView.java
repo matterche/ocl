@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.Attribution;
+import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
@@ -58,13 +58,68 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
  * for long enough to merit it, with incremental reparsing regularly trashing
  * the CST.
  */
-public class BaseScopeView extends AbstractScope implements ScopeViewScope
+public class BaseScopeView extends AbstractScope implements IScopeView
 {
 	private static final Logger logger = Logger.getLogger(BaseScopeView.class);
 
-	@Deprecated
-	private static ScopeViewScope getParent(MetaModelManager metaModelManager, EObject target, Attribution attribution, EReference targetReference) {
-//		assert target == attribution.getTarget();
+	/**
+     * The <code>NULLSCOPEVIEW</code> to be returned by the most outer scope
+     */
+    public static final IScopeView NULLSCOPEVIEW = new IScopeView()
+    {
+		public Iterable<IEObjectDescription> getAllElements() {
+	   		return Collections.emptyList();
+		}
+
+		public Attribution getAttribution() {
+			return null;
+		}
+
+		public EObject getChild() {
+			return null;
+		}
+
+		public EStructuralFeature getContainmentFeature() {
+			return null;
+		}
+
+		public Iterable<IEObjectDescription> getElements(EObject object) {
+	   		return Collections.emptyList();
+		}
+
+		public Iterable<IEObjectDescription> getElements(QualifiedName name) {
+	   		return Collections.emptyList();
+		}
+
+		public IScopeView getParent() {
+			return NULLSCOPEVIEW;
+		}
+
+		public IEObjectDescription getSingleElement(QualifiedName name) {
+			return null;
+		}
+
+		public IEObjectDescription getSingleElement(EObject object) {
+			return null;
+		}
+
+		public EObject getTarget() {
+			return null;
+		}
+
+		public EReference getTargetReference() {
+			return null;
+		}
+    };
+
+	public static void computeLookups(EnvironmentView environmentView, ElementCS parent, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		Attribution attribution = parent != null ? PivotUtil.getAttribution(parent) : null;
+		BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, parent, attribution, child, containmentFeature, targetReference);
+		environmentView.computeLookups(baseScopeView);
+	}
+
+	private static IScopeView getParent(MetaModelManager metaModelManager, EObject target, EReference targetReference) {
 		EObject parent = null;
 		Attribution parentScope = null;
 		if (target instanceof ElementCS) {
@@ -89,14 +144,14 @@ public class BaseScopeView extends AbstractScope implements ScopeViewScope
 	}
 	
 	protected final MetaModelManager metaModelManager;
-	protected final Attribution attribution;					// Adapting the CST node
-	protected final EObject target;					
+	protected final Attribution attribution;					// Attributes helper for the target CST node
+	protected final EObject target;								// The target CST node
 	protected final EObject child;								// Child targeted by containmentFeature, null for child-independent
 	protected final EStructuralFeature containmentFeature;		// Selecting child-specific candidates, null for child-independent
 	protected final EReference targetReference;					// Selecting permissible candidate types
 	
 	public BaseScopeView(MetaModelManager metaModelManager, EObject target, Attribution attribution, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
-		super(getParent(metaModelManager, target, attribution, targetReference), false);
+		super(getParent(metaModelManager, target, targetReference), false);
 		this.metaModelManager = metaModelManager;
 		this.attribution = attribution;
 		this.target = target;
@@ -104,26 +159,6 @@ public class BaseScopeView extends AbstractScope implements ScopeViewScope
 		this.containmentFeature = containmentFeature;
 		this.targetReference = targetReference;
 	}
-
-	public BaseScopeView(MetaModelManager metaModelManager, EObject target, ScopeView scopeView) {
-		super(getParent(metaModelManager, target, scopeView.getAttribution(), scopeView.getTargetReference()), false);
-		this.metaModelManager = metaModelManager;
-		this.attribution = scopeView.getAttribution();
-		this.target = target;
-		this.child = scopeView.getChild();
-		this.containmentFeature = scopeView.getContainmentFeature();
-		this.targetReference = scopeView.getTargetReference();
-	}
-
-/*	public void computeLookupWithParents(EnvironmentView environmentView) {
-		// FIXME This is not a usefully distinct functionality
-		ScopeView outerScope = attribution.computeTheLookup(attribution.getTarget(), environmentView, this);
-		if (outerScope != null) {
-			if (!environmentView.hasFinalResult()) {
-				outerScope.computeLookupWithParents(environmentView);
-			}
-		}
-	} */
 
 	@Override
 	public Iterable<IEObjectDescription> getAllElements() {
@@ -139,6 +174,17 @@ public class BaseScopeView extends AbstractScope implements ScopeViewScope
 		return getDescriptions(environmentView);
 	}
 
+	@Override
+	protected final Iterable<IEObjectDescription> getAllLocalElements() {
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
+		attribution.computeLookup(target, environmentView, this);
+		return getDescriptions(environmentView);
+	}
+	
+	public Attribution getAttribution() {
+		return attribution;
+	}
+
 	public EObject getChild() {
 		return child;
 	}
@@ -146,14 +192,6 @@ public class BaseScopeView extends AbstractScope implements ScopeViewScope
 	public EStructuralFeature getContainmentFeature() {
 		return containmentFeature;
 	}
-	
-//	@Override
-//	public IEObjectDescription getContentByName(String name) {
-//		if (name == null)
-//			throw new NullPointerException("name"); //$NON-NLS-1$
-//		EnvironmentView environmentView = new EnvironmentView(targetReference, name);
-//		return computeLookup(environmentView);
-//	}
 
 	private IEObjectDescription getDescription(EnvironmentView environmentView) {
 		int contentsSize = environmentView.getSize();
@@ -285,6 +323,35 @@ public class BaseScopeView extends AbstractScope implements ScopeViewScope
 		return super.getElements(object);		// FIXME Implement
 	}
 
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
+	
+	private String getNonPivotURI(EObject object) {
+		URI uri = null;
+		if (object instanceof PivotObjectImpl) {
+			EObject target = ((PivotObjectImpl)object).getTarget();
+			if (target != null) {
+				uri = EcoreUtil.getURI(target);
+			}
+		}
+		if (uri == null) {
+			uri = EcoreUtil.getURI(object);
+		}
+		if (uri == null) {
+			return null;
+		}
+		if (PivotUtil.isPivotURI(uri)) {
+			uri = PivotUtil.getNonPivotURI(uri);
+		}
+		return uri.toString();
+	}
+
+	@Override
+	public IScopeView getParent() {
+		return (IScopeView) super.getParent();
+	}
+
 	@Override
 	public IEObjectDescription getSingleElement(EObject object) {
 		if (object instanceof NamedElement) {
@@ -313,52 +380,12 @@ public class BaseScopeView extends AbstractScope implements ScopeViewScope
 		}
 	}
 
-	@Deprecated
-	public ScopeView getOuterScope() {
-		return (ScopeView) getParent();
-	}
-	
-	public Attribution getAttribution() {
-		return attribution;
-	}
-
 	public final EObject getTarget() {
 		return target;
 	}
 
 	public EReference getTargetReference() {
 		return targetReference;
-	}
-
-	public MetaModelManager getMetaModelManager() {
-		return metaModelManager;
-	}
-	
-	protected String getNonPivotURI(EObject object) {
-		URI uri = null;
-		if (object instanceof PivotObjectImpl) {
-			EObject target = ((PivotObjectImpl)object).getTarget();
-			if (target != null) {
-				uri = EcoreUtil.getURI(target);
-			}
-		}
-		if (uri == null) {
-			uri = EcoreUtil.getURI(object);
-		}
-		if (uri == null) {
-			return null;
-		}
-		if (PivotUtil.isPivotURI(uri)) {
-			uri = PivotUtil.getNonPivotURI(uri);
-		}
-		return uri.toString();
-	}
-
-	@Override
-	protected final Iterable<IEObjectDescription> getAllLocalElements() {
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
-		attribution.computeLookup(target, environmentView, this);
-		return getDescriptions(environmentView);
 	}
 
 	@Override

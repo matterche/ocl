@@ -37,6 +37,6 @@ public class PackageCSAttribution extends AbstractAttribution
 			environmentView.addNamedElements(metaModelManager.getLocalPackages(pivot));
 			environmentView.addNamedElements(metaModelManager.getLocalClasses(pivot));
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }

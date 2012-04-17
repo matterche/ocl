@@ -16,12 +16,9 @@ package org.eclipse.ocl.examples.xtext.base.attributes;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeView;
@@ -35,16 +32,13 @@ public class PathElementCSAttribution extends AbstractAttribution
 		PathElementCS targetElement = (PathElementCS)target;
 		EClassifier eClassifier = targetElement.getElementType();
 		if (eClassifier == null) {
-			return scopeView.getOuterScope();
+			return scopeView.getParent();
 		}
-		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		EClassifier savedRequiredType = environmentView.getRequiredType();
 		try {
 			environmentView.setRequiredType(eClassifier);
 			ElementCS scopeTarget = targetElement.getLogicalParent();
-			Attribution attribution = scopeTarget != null ? PivotUtil.getAttribution(scopeTarget) : null;
-			BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, attribution, target, null, null);
-			environmentView.computeLookups(baseScopeView);
+			BaseScopeView.computeLookups(environmentView, scopeTarget, target, null, null);
 			return null;
 		}
 		finally {

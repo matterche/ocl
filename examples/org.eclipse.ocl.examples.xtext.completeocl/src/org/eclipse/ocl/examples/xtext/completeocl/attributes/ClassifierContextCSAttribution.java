@@ -53,6 +53,6 @@ public class ClassifierContextCSAttribution extends AbstractAttribution
 				}
 			}
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getParent();
 	}
 }
