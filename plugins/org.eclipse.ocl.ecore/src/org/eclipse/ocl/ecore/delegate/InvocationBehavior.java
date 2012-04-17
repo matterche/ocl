@@ -105,7 +105,6 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * <code>ocl</code> to create the relevant parsing environment for a textual
 	 * definition.
 	 */
-	@SuppressWarnings("deprecation")
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
 		OCLExpression result = ExpressionCacheAdapter.getCachedOCLExpression(operation);
 		if (result != null) {

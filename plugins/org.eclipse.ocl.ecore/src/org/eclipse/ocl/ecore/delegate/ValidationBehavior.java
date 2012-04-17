@@ -203,7 +203,6 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	/**
 	 * @since 3.1
 	 */
-	@SuppressWarnings("deprecation")
 	public OCLExpression getInvariant(EClassifier cls, String constraintName, OCL ocl) {
 		OCLExpression result = getCachedOCLExpression(cls, constraintName);
 		if (result != null) {

@@ -60,7 +60,6 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			: ValueConverter.VERBATIM;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments)
 			throws InvocationTargetException {
