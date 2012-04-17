@@ -905,9 +905,32 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 	}
 
-	protected boolean conformsToLambdaType(LambdaType firstType, LambdaType secondType,
+	protected boolean conformsToLambdaType(LambdaType actualType, LambdaType requiredType,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		throw new UnsupportedOperationException();
+		Type actualContextType = actualType.getContextType();
+		Type requiredContextType = requiredType.getContextType();
+		if (!conformsTo(actualContextType, requiredContextType, bindings)) {
+			return false;
+		}
+		Type actualResultType = actualType.getResultType();
+		Type requiredResultType = requiredType.getResultType();
+		if (!conformsTo(requiredResultType, actualResultType, bindings)) {	// contravariant
+			return false;
+		}
+		List<Type> actualParameterTypes = actualType.getParameterType();
+		List<Type> requiredParameterTypes = requiredType.getParameterType();
+		int iMax = actualParameterTypes.size();
+		if (iMax != requiredParameterTypes.size()) {
+			return false;
+		}
+		for (int i = 0; i < iMax; i++) {
+			Type actualParameterType = actualParameterTypes.get(i);
+			Type requiredParameterType = requiredParameterTypes.get(i);
+			if (!conformsTo(actualParameterType, requiredParameterType, bindings)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	protected boolean conformsToTupleType(TupleType actualType, TupleType requiredType,
