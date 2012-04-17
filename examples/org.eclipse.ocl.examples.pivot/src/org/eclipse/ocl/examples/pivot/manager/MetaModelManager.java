@@ -957,7 +957,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(Class<T> pivotClass,
 			EClass pivotEClass, String name, String nsURI) {
 		@SuppressWarnings("unchecked")
-		T pivotPackage = (T) PivotFactory.eINSTANCE.create(pivotEClass);
+		T pivotPackage = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
 		pivotPackage.setName(name);
 		pivotPackage.setNsURI(nsURI);
 		addPackage(pivotPackage);
