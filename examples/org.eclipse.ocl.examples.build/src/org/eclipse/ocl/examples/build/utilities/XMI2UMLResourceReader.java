@@ -33,7 +33,6 @@ import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
-import org.eclipse.uml2.uml.resources.util.ResourcesUtil;
 
 /**
  * Reads a specified <tt>uri</tt> into a designated <tt>modelSlot</tt>.
@@ -65,14 +64,11 @@ public class XMI2UMLResourceReader extends WorkflowComponentWithModelSlot
 		log.info("Reading '" + fileURI + "'");
 		try {
 			ResourceSet resourceSet = getResourceSet();
-//			UMLUtils.initializeContents(resourceSet);
-//			UMLUtils.initializeContents(null);
-//			Resource resource = resourceSet.createResource(fileURI /*, XMI2UMLResource.UML_CONTENT_TYPE_IDENTIFIER*/);
-			Resource resource = resourceSet.createResource(fileURI, XMI2UMLResource.UML_2_2_CONTENT_TYPE_IDENTIFIER);
+			Resource resource = resourceSet.createResource(fileURI, XMI2UMLResource.UML_CONTENT_TYPE_IDENTIFIER);
 			resource.load(null);
 			new ProjectMap().initializeResourceSet(resourceSet);
 			EcoreUtil.resolveAll(resourceSet);
-//			ResourceUtils.checkResourceSet(resourceSet);			// FIXME BUG 365027
+			ResourceUtils.checkResourceSet(resourceSet);
 			@SuppressWarnings("unused")
 			int errorCount = 0;
 			for (Resource aResource : resourceSet.getResources()) {
@@ -104,7 +100,6 @@ public class XMI2UMLResourceReader extends WorkflowComponentWithModelSlot
 	
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
-		ResourcesUtil.init(null);
 	}
 
 	public void setNsURI(String uri) {
