@@ -27,8 +27,7 @@ package	org.eclipse.ocl.examples.xtext.oclinecore.util;
 
 /**
  */
-public interface DecorableOCLinEcoreCSVisitor<R, C> extends OCLinEcoreCSVisitor<R, C>, org.eclipse.ocl.examples.xtext.essentialocl.util.DecorableEssentialOCLCSVisitor<R, C>
+public interface DecorableOCLinEcoreCSVisitor<R> extends OCLinEcoreCSVisitor<R>, org.eclipse.ocl.examples.xtext.essentialocl.util.DecorableEssentialOCLCSVisitor<R>
 {
-//	DecorableOCLinEcoreCSVisitor<R, C> createNestedVisitor();
-	void setUndecoratedVisitor(org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor<R, C> visitor);
+	void setUndecoratedVisitor(org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor<R> visitor);
 }

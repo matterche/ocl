@@ -201,7 +201,7 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitTypedRefCS(this);
 	}
 } //TypedRefCSImpl

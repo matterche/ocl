@@ -257,7 +257,7 @@ public class ConstructorExpImpl extends OclExpressionImpl implements Constructor
 	}
 
 	@Override
-	public <R, C> R accept(Visitor<R, C> visitor) {
+	public <R> R accept(Visitor<R> visitor) {
 		return visitor.visitConstructorExp(this);
 	}
 } //ConstructorExpImpl

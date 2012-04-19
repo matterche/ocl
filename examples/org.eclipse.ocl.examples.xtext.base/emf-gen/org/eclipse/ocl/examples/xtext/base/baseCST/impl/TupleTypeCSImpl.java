@@ -245,7 +245,7 @@ public class TupleTypeCSImpl extends TypedRefCSImpl implements TupleTypeCS
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitTupleTypeCS(this);
 	}
 } //TupleTypeCSImpl

@@ -224,7 +224,7 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitReferenceCS(this);
 	}
 

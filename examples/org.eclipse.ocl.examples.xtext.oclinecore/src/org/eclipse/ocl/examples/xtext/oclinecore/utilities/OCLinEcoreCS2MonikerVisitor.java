@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPack
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcoreCS2MonikerVisitor
-	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean, CS2Moniker>>
+	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
@@ -37,7 +37,7 @@ public class OCLinEcoreCS2MonikerVisitor
 //			roleNames.put(OCLinEcoreCSTPackage.Literals.LIB_CONSTRAINT_CS__OWNED_EXPRESSION, "z");
 		}
 		
-		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
+		public BaseCSVisitor<?> create(CS2Moniker context) {
 			return new OCLinEcoreCS2MonikerVisitor(context);
 		}
 	}
@@ -46,6 +46,6 @@ public class OCLinEcoreCS2MonikerVisitor
 		
 	@SuppressWarnings("unchecked")
 	public OCLinEcoreCS2MonikerVisitor(CS2Moniker context) {
-		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+		super((EssentialOCLCSVisitor<Boolean>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 }

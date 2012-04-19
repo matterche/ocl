@@ -277,7 +277,7 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitStructuralFeatureCS(this);
 	}
 } //StructuralFeatureCSImpl

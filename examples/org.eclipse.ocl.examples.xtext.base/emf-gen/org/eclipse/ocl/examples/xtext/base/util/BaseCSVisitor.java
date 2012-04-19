@@ -27,7 +27,7 @@ package	org.eclipse.ocl.examples.xtext.base.util;
 
 /**
  */
-public interface BaseCSVisitor<R, C>
+public interface BaseCSVisitor<R>
 {
 	/**
 	 * Returns an object which is an instance of the given class

@@ -73,7 +73,7 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class EssentialOCLCS2MonikerVisitor
-	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Boolean, CS2Moniker, BaseCSVisitor<Boolean, CS2Moniker>>
+	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Boolean, CS2Moniker, BaseCSVisitor<Boolean>>
 	implements PivotConstants {
 
 	private static final class Factory implements CS2Moniker.Factory
@@ -88,7 +88,7 @@ public class EssentialOCLCS2MonikerVisitor
 //			roleNames.put(EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT, "argument");
 		}
 
-		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
+		public BaseCSVisitor<?> create(CS2Moniker context) {
 			return new EssentialOCLCS2MonikerVisitor(context);
 		}
 	}
@@ -97,7 +97,7 @@ public class EssentialOCLCS2MonikerVisitor
 
 	@SuppressWarnings("unchecked")
 	public EssentialOCLCS2MonikerVisitor(CS2Moniker context) {
-		super((BaseCSVisitor<Boolean, CS2Moniker>) context.getVisitor(BaseCSTPackage.eINSTANCE), context);
+		super((BaseCSVisitor<Boolean>) context.getVisitor(BaseCSTPackage.eINSTANCE), context);
 	}
 
 	protected void appendExpPrefix(ElementCS object) {

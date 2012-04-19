@@ -235,7 +235,7 @@ public class TypeParameterCSImpl extends TemplateParameterCSImpl implements Type
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitTypeParameterCS(this);
 	}
 } //TypeParameterCSImpl

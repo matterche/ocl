@@ -52,7 +52,7 @@ public class CollectionTypeRefCSImpl extends TypedTypeRefCSImpl implements Colle
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitCollectionTypeRefCS(this);
 	}
 } //CollectionTypeRefCSImpl

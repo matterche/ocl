@@ -251,7 +251,7 @@ public class PrefixExpCSImpl extends ExpCSImpl implements PrefixExpCS {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitPrefixExpCS(this);
 	}
 } //UnaryExpressionCSImpl

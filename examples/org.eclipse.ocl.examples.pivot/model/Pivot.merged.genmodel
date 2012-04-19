@@ -1006,9 +1006,6 @@
       <genTypeParameters>
         <ecoreTypeParameter href="Pivot.ecore#//Visitor/R"/>
       </genTypeParameters>
-      <genTypeParameters>
-        <ecoreTypeParameter href="Pivot.ecore#//Visitor/C"/>
-      </genTypeParameters>
       <ecoreClass href="Pivot.ecore#//Visitor"/>
     </genClasses>
   </genPackages>

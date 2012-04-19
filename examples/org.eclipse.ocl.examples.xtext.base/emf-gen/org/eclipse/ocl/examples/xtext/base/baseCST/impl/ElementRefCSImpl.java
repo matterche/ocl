@@ -54,7 +54,7 @@ public abstract class ElementRefCSImpl extends PivotableElementCSImpl implements
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitElementRefCS(this);
 	}
 } //ElementRefCSImpl

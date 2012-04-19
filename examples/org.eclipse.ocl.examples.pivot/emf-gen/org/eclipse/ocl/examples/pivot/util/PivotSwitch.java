@@ -2974,7 +2974,7 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <R, C> T caseVisitor(Visitor<R, C> object) {
+	public <R> T caseVisitor(Visitor<R> object) {
 		return null;
 	}
 

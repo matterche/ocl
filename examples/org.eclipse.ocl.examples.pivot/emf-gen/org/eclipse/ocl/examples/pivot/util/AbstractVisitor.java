@@ -27,7 +27,7 @@ package	org.eclipse.ocl.examples.pivot.util;
 
 /**
  */
-public abstract class AbstractVisitor<R, C> implements Visitor<R, C>
+public abstract class AbstractVisitor<R, C> implements Visitor<R>
 {    
     /**
      * Context for the AST visitation.

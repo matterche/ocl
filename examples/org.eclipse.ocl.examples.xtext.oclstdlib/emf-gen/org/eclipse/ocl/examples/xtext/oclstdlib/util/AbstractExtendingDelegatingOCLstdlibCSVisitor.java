@@ -31,9 +31,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 /**
  * An AbstractExtendingDelegatingOCLstdlibCSVisitor delegates all visits.
  */
-public abstract class AbstractExtendingDelegatingOCLstdlibCSVisitor<R, C, D extends EssentialOCLCSVisitor<R, C>>
+public abstract class AbstractExtendingDelegatingOCLstdlibCSVisitor<R, C, D extends EssentialOCLCSVisitor<R>>
 	extends AbstractDelegatingEssentialOCLCSVisitor<R, C, D>
-	implements OCLstdlibCSVisitor<R, C>
+	implements OCLstdlibCSVisitor<R>
 {
     protected AbstractExtendingDelegatingOCLstdlibCSVisitor(D delegate, C context) {
         super(delegate, context);

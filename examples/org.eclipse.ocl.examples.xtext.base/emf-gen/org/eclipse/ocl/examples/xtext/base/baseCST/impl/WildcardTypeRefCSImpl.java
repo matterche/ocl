@@ -260,7 +260,7 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitWildcardTypeRefCS(this);
 	}
 } //WildcardTypeRefCSImpl

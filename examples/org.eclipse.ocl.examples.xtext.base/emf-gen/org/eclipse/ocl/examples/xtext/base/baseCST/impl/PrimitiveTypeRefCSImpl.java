@@ -175,7 +175,7 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitPrimitiveTypeRefCS(this);
 	}
 } //PrimitiveTypeRefCSImpl

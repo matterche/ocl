@@ -27,8 +27,7 @@ package	org.eclipse.ocl.examples.pivot.util;
 
 /**
  */
-public interface DecorableVisitor<R, C> extends Visitor<R, C>
+public interface DecorableVisitor<R> extends Visitor<R>
 {
-//	DecorableVisitor<R, C> createNestedVisitor();
-	void setUndecoratedVisitor(Visitor<R, C> visitor);
+	void setUndecoratedVisitor(Visitor<R> visitor);
 }

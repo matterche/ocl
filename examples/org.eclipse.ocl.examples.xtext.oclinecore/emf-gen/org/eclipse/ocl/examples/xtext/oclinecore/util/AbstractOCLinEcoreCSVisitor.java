@@ -29,7 +29,7 @@ package	org.eclipse.ocl.examples.xtext.oclinecore.util;
  */
 public abstract class AbstractOCLinEcoreCSVisitor<R, C>
  extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractEssentialOCLCSVisitor<R, C>
-	implements OCLinEcoreCSVisitor<R, C>
+	implements OCLinEcoreCSVisitor<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.

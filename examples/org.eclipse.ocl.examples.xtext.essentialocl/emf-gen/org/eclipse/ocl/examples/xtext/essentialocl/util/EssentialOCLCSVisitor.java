@@ -27,7 +27,7 @@ package	org.eclipse.ocl.examples.xtext.essentialocl.util;
 
 /**
  */
-public interface EssentialOCLCSVisitor<R, C> extends org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor<R, C>
+public interface EssentialOCLCSVisitor<R> extends org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor<R>
 {
 	R visitBinaryOperatorCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS object);
 	R visitBooleanLiteralExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS object);

@@ -157,7 +157,7 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitDetailCS(this);
 	}
 } //DetailCSImpl

@@ -667,7 +667,7 @@ public class PivotAdapterFactory
 				return createVisitableAdapter();
 			}
 			@Override
-			public <R, C> Adapter caseVisitor(Visitor<R, C> object)
+			public <R> Adapter caseVisitor(Visitor<R> object)
 			{
 				return createVisitorAdapter();
 			}

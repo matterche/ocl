@@ -166,7 +166,7 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitAnnotationElementCS(this);
 	}
 } //AnnotationElementCSImpl

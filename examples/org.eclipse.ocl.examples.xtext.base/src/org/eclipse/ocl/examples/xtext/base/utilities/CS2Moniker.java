@@ -52,7 +52,7 @@ public class CS2Moniker
 
 	public static interface Factory {
 
-		public abstract BaseCSVisitor<?, ?> create(CS2Moniker moniker);
+		public abstract BaseCSVisitor<?> create(CS2Moniker moniker);
 	}
 
 	public static void addFactory(EPackage ePackage, Factory factory) {
@@ -87,7 +87,7 @@ public class CS2Moniker
 	/**
 	 * The Moniker Visitors created for each required EPackage.
 	 */
-	private Map<EPackage, BaseCSVisitor<?, ?>> csVisitorMap = new HashMap<EPackage, BaseCSVisitor<?, ?>>();
+	private Map<EPackage, BaseCSVisitor<?>> csVisitorMap = new HashMap<EPackage, BaseCSVisitor<?>>();
 
 	public CS2Moniker(ElementCS target) {
 		super(target);
@@ -136,7 +136,7 @@ public class CS2Moniker
 		assert csVisitable != null;
 		int oldSize = length();
 		EPackage ePackage = csVisitable.eClass().getEPackage();
-		BaseCSVisitor<?, ?> monikerVisitor = getVisitor(ePackage);
+		BaseCSVisitor<?> monikerVisitor = getVisitor(ePackage);
 		if (monikerVisitor != null) {
 			csVisitable.accept(monikerVisitor);
 		}
@@ -296,8 +296,8 @@ public class CS2Moniker
 		}
 	}
 
-	public BaseCSVisitor<?, ?> getVisitor(EPackage ePackage) {
-		BaseCSVisitor<?, ?> monikerVisitor = csVisitorMap.get(ePackage);
+	public BaseCSVisitor<?> getVisitor(EPackage ePackage) {
+		BaseCSVisitor<?> monikerVisitor = csVisitorMap.get(ePackage);
 		if ((monikerVisitor == null) && !csVisitorMap.containsKey(ePackage)) {
 			Factory factory = csFactoryMap.get(ePackage);
 			if (factory != null) {

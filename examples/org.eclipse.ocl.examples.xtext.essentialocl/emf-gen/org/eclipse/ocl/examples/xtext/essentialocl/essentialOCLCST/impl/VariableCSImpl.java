@@ -278,7 +278,7 @@ public class VariableCSImpl extends NamedElementCSImpl implements VariableCS
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitVariableCS(this);
 	}
 } //VariableCSImpl

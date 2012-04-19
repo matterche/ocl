@@ -28,9 +28,9 @@ package	org.eclipse.ocl.examples.xtext.oclinecore.util;
 /**
  * An AbstractDelegatingOCLinEcoreCSVisitor delegates all visits.
  */
-public abstract class AbstractDelegatingOCLinEcoreCSVisitor<R, C, D extends OCLinEcoreCSVisitor<R, C>>
+public abstract class AbstractDelegatingOCLinEcoreCSVisitor<R, C, D extends OCLinEcoreCSVisitor<R>>
 	extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractDelegatingEssentialOCLCSVisitor<R, C, D>
-	implements OCLinEcoreCSVisitor<R, C>
+	implements OCLinEcoreCSVisitor<R>
 {
     protected AbstractDelegatingOCLinEcoreCSVisitor(D delegate, C context) {
         super(delegate, context);

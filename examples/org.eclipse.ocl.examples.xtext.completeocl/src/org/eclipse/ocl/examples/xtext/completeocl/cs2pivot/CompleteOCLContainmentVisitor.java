@@ -58,7 +58,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.AbstractOperationFilter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLContainmentVisitor;
 
-public class CompleteOCLContainmentVisitor extends EssentialOCLContainmentVisitor implements CompleteOCLCSVisitor<Continuation<?>, CS2PivotConversion>
+public class CompleteOCLContainmentVisitor extends EssentialOCLContainmentVisitor implements CompleteOCLCSVisitor<Continuation<?>>
 {
 	public class OperationDeclScopeFilter extends AbstractOperationFilter
 	{

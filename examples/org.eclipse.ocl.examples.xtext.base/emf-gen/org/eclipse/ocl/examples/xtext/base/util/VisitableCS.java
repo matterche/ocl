@@ -44,7 +44,7 @@ public interface VisitableCS
 	 * @param visitor
 	 * @return the result of the visit.
 	 */
-	<R, C> R accept(BaseCSVisitor<R, C> visitor);
+	<R> R accept(BaseCSVisitor<R> visitor);
 	
 	EClass eClass();
 }

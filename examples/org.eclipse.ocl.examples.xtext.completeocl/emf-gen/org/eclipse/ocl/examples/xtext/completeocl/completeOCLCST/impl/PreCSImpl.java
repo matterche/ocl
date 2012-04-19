@@ -53,7 +53,7 @@ public class PreCSImpl extends ContextConstraintCSImpl implements PreCS {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPreCS(this);
 	}
 } //PreCSImpl

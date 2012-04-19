@@ -34,7 +34,7 @@ package	org.eclipse.ocl.examples.xtext.completeocl.util;
  */
 public abstract class AbstractExtendingCompleteOCLCSVisitor<R, C>
 	extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingEssentialOCLCSVisitor<R, C>
-	implements CompleteOCLCSVisitor<R, C>
+	implements CompleteOCLCSVisitor<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.

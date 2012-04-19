@@ -232,7 +232,7 @@ public class MultiplicityBoundsCSImpl extends ElementCSImpl implements Multiplic
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitMultiplicityBoundsCS(this);
 	}
 

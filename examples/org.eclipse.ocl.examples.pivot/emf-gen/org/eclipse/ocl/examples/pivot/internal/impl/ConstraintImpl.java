@@ -601,7 +601,7 @@ public class ConstraintImpl
 	}
 
 	@Override
-	public <R, C> R accept(Visitor<R, C> visitor) {
+	public <R> R accept(Visitor<R> visitor) {
 		return visitor.visitConstraint(this);
 	}
 } //ConstraintImpl

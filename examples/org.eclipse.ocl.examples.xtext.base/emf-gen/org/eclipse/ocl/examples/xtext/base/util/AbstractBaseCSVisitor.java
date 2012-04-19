@@ -27,7 +27,7 @@ package	org.eclipse.ocl.examples.xtext.base.util;
 
 /**
  */
-public abstract class AbstractBaseCSVisitor<R, C> implements BaseCSVisitor<R, C>
+public abstract class AbstractBaseCSVisitor<R, C> implements BaseCSVisitor<R>
 {    
     /**
      * Context for the AST visitation.

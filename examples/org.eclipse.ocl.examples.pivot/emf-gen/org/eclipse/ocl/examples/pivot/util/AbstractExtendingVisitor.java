@@ -34,7 +34,7 @@ package	org.eclipse.ocl.examples.pivot.util;
  */
 public abstract class AbstractExtendingVisitor<R, C>
 	extends AbstractVisitor<R, C>
-	implements Visitor<R, C>
+	implements Visitor<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.

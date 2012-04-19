@@ -533,7 +533,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitLambdaTypeCS(this);
 	}
 } //LambdaTypeCSImpl

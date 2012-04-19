@@ -53,7 +53,7 @@ public class InitCSImpl extends ContextConstraintCSImpl implements InitCS {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitInitCS(this);
 	}
 } //InitCSImpl

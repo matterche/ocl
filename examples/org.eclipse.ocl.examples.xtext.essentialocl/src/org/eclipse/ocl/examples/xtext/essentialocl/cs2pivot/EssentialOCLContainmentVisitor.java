@@ -81,7 +81,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNatu
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
-public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor implements EssentialOCLCSVisitor<Continuation<?>, CS2PivotConversion>
+public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor implements EssentialOCLCSVisitor<Continuation<?>>
 {
 	public EssentialOCLContainmentVisitor(CS2PivotConversion context) {
 		super(context);

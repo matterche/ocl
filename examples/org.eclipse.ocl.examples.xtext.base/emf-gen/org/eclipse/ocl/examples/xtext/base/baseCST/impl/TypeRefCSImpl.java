@@ -52,7 +52,7 @@ public abstract class TypeRefCSImpl extends ElementRefCSImpl implements TypeRefC
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitTypeRefCS(this);
 	}
 } //TypeCSRefImpl

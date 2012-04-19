@@ -296,7 +296,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitTypedElementCS(this);
 	}
 } //TypedElementCSImpl

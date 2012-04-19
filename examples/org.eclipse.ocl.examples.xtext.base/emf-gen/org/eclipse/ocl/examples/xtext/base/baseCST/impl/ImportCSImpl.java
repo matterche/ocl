@@ -290,7 +290,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitImportCS(this);
 	}
 } //ImportCSImpl

@@ -172,7 +172,7 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitBooleanLiteralExpCS(this);
 	}
 } //BooleanLiteralExpCSImpl

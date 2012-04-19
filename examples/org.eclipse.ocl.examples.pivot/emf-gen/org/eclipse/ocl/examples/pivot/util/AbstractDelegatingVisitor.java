@@ -28,9 +28,9 @@ package	org.eclipse.ocl.examples.pivot.util;
 /**
  * An AbstractDelegatingVisitor delegates all visits.
  */
-public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
+public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	extends AbstractVisitor<R, C>
-	implements Visitor<R, C>
+	implements Visitor<R>
 {
     protected final D delegate;
     
@@ -44,7 +44,7 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
     /**
      * Delegates to my decorated visitor.
      */
-//	public DecorableVisitor<R, C> createNestedVisitor() {
+//	public DecorableVisitor<R> createNestedVisitor() {
 //        return delegate.createNestedVisitor();
 //	}
   

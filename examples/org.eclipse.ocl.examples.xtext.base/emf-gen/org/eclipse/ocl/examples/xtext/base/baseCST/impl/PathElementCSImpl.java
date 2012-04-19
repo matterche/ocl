@@ -338,7 +338,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitPathElementCS(this);
 	}
 	

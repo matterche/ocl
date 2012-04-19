@@ -1775,7 +1775,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Visitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"
       abstract="true" interface="true">
     <eTypeParameters name="R"/>
-    <eTypeParameters name="C"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Class"/>
 </ecore:EPackage>

@@ -429,7 +429,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitOperationCS(this);
 	}
 } //OperationCSImpl

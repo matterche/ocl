@@ -351,7 +351,7 @@ public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitPackageCS(this);
 	}
 } //PackageCSImpl

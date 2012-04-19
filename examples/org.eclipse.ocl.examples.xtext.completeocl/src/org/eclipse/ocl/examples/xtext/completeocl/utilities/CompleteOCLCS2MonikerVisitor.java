@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 
 public class CompleteOCLCS2MonikerVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean, CS2Moniker>>
+	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
@@ -51,7 +51,7 @@ public class CompleteOCLCS2MonikerVisitor
 //			roleNames.put(CompleteOCLCSTPackage.Literals.LIB_CONSTRAINT_CS__OWNED_EXPRESSION, "z");
 		}
 		
-		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
+		public BaseCSVisitor<?> create(CS2Moniker context) {
 			return new CompleteOCLCS2MonikerVisitor(context);
 		}
 	}
@@ -90,7 +90,7 @@ public class CompleteOCLCS2MonikerVisitor
 		
 	@SuppressWarnings("unchecked")
 	public CompleteOCLCS2MonikerVisitor(CS2Moniker context) {
-		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+		super((EssentialOCLCSVisitor<Boolean>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 
 	public void safeAppendMonikerOf(Element element) {

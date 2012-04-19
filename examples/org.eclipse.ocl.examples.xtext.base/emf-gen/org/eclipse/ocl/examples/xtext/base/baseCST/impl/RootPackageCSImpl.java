@@ -254,7 +254,7 @@ public class RootPackageCSImpl extends PackageCSImpl implements RootPackageCS
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitRootPackageCS(this);
 	}
 } //RootPackageCSImpl

@@ -27,8 +27,7 @@ package	org.eclipse.ocl.examples.xtext.base.util;
 
 /**
  */
-public interface DecorableBaseCSVisitor<R, C> extends BaseCSVisitor<R, C>
+public interface DecorableBaseCSVisitor<R> extends BaseCSVisitor<R>
 {
-//	DecorableBaseCSVisitor<R, C> createNestedVisitor();
-	void setUndecoratedVisitor(org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor<R, C> visitor);
+	void setUndecoratedVisitor(org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor<R> visitor);
 }

@@ -259,7 +259,7 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitTemplateSignatureCS(this);
 	}
 } //TemplateSignatureCSImpl

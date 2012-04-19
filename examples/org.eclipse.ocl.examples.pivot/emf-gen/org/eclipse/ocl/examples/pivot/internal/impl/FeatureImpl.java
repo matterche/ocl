@@ -377,7 +377,7 @@ public abstract class FeatureImpl
 	}
 
 	@Override
-	public <R, C> R accept(Visitor<R, C> visitor) {
+	public <R> R accept(Visitor<R> visitor) {
 		return visitor.visitFeature(this);
 	}
 } //FeatureImpl

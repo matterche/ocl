@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstra
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.util.OCLinEcoreCSVisitor;
 
-public class OCLinEcoreContainmentVisitor extends EssentialOCLContainmentVisitor implements OCLinEcoreCSVisitor<Continuation<?>, CS2PivotConversion>
+public class OCLinEcoreContainmentVisitor extends EssentialOCLContainmentVisitor implements OCLinEcoreCSVisitor<Continuation<?>>
 {
 	public OCLinEcoreContainmentVisitor(CS2PivotConversion context) {
 		super(context);

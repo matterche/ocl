@@ -98,8 +98,8 @@
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_t35skMlAEd-bx742yyafXQ" name="MDT_OCL_Precedences">
       <ownedMember xmi:type="cmof:Enumeration" xmi:id="_2eERIMlAEd-bx742yyafXQ" name="AssociativityKind">
-        <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_5uMlIMlAEd-bx742yyafXQ" name="Left" classifier="#_2eERIMlAEd-bx742yyafXQ" enumeration="_2eERIMlAEd-bx742yyafXQ"/>
-        <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_8ybyMMlAEd-bx742yyafXQ" name="Right" classifier="#_2eERIMlAEd-bx742yyafXQ" enumeration="_2eERIMlAEd-bx742yyafXQ"/>
+        <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_5uMlIMlAEd-bx742yyafXQ" name="Left" enumeration="_2eERIMlAEd-bx742yyafXQ"/>
+        <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_8ybyMMlAEd-bx742yyafXQ" name="Right" enumeration="_2eERIMlAEd-bx742yyafXQ"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_XXNRYMlBEd-bx742yyafXQ" name="Integer"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_wOAoUMlAEd-bx742yyafXQ" name="NamedElement" isAbstract="true"/>
@@ -141,12 +141,9 @@
       <ownedMember xmi:type="cmof:Interface" xmi:id="_T5siAM9-Ed-OX-Zde0V6vA" name="Visitable" isAbstract="true"/>
       <ownedMember xmi:type="cmof:Interface" xmi:id="_GklkEOfSEd-IXbTaV_5Nsg" name="Visitor" isAbstract="true">
         <xmi:Extension extender="http://www.eclipse.org/uml2/4.0.0/UML">
-          <ownedTemplateSignature xmi:type="cmof:RedefinableTemplateSignature" xmi:id="_YfCXcOfSEd-IXbTaV_5Nsg" parameter="_aP87cOfSEd-IXbTaV_5Nsg _gPMhEOfSEd-IXbTaV_5Nsg">
+          <ownedTemplateSignature xmi:type="cmof:RedefinableTemplateSignature" xmi:id="_YfCXcOfSEd-IXbTaV_5Nsg" parameter="_aP87cOfSEd-IXbTaV_5Nsg">
             <ownedParameter xmi:type="cmof:ClassifierTemplateParameter" xmi:id="_aP87cOfSEd-IXbTaV_5Nsg" parameteredElement="_dUCXgOfSEd-IXbTaV_5Nsg" signature="_YfCXcOfSEd-IXbTaV_5Nsg">
               <ownedParameteredElement xmi:type="cmof:Class" xmi:id="_dUCXgOfSEd-IXbTaV_5Nsg" name="R" owningTemplateParameter="_aP87cOfSEd-IXbTaV_5Nsg" templateParameter="#_aP87cOfSEd-IXbTaV_5Nsg"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="cmof:ClassifierTemplateParameter" xmi:id="_gPMhEOfSEd-IXbTaV_5Nsg" parameteredElement="_hFyx4OfSEd-IXbTaV_5Nsg" signature="_YfCXcOfSEd-IXbTaV_5Nsg">
-              <ownedParameteredElement xmi:type="cmof:Class" xmi:id="_hFyx4OfSEd-IXbTaV_5Nsg" name="C" owningTemplateParameter="_gPMhEOfSEd-IXbTaV_5Nsg" templateParameter="#_gPMhEOfSEd-IXbTaV_5Nsg"/>
             </ownedParameter>
           </ownedTemplateSignature>
         </xmi:Extension>

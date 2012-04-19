@@ -124,10 +124,10 @@ public class CS2PivotConversion extends AbstractConversion
 	/**
 	 * The per-package Visitors
 	 */
-	private final Map<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>> containmentVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>>();
-	private final Map<EPackage, BaseCSVisitor<Element, CS2PivotConversion>> left2RightVisitorMap = new HashMap<EPackage, BaseCSVisitor<Element, CS2PivotConversion>>();
-	private final Map<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>> postOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>>();
-	private final Map<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>> preOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>>();
+	private final Map<EPackage, BaseCSVisitor<Continuation<?>>> containmentVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>>>();
+	private final Map<EPackage, BaseCSVisitor<Element>> left2RightVisitorMap = new HashMap<EPackage, BaseCSVisitor<Element>>();
+	private final Map<EPackage, BaseCSVisitor<Continuation<?>>> postOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>>>();
+	private final Map<EPackage, BaseCSVisitor<Continuation<?>>> preOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>>>();
 
 	private InterDependency<TemplateSignatureContinuation> typesHaveSignatures = new InterDependency<TemplateSignatureContinuation>("All unspecialized signatures defined", null);
 
@@ -564,8 +564,8 @@ public class CS2PivotConversion extends AbstractConversion
 		return (T) intermediateCache.get(key);
 	}
 
-	public BaseCSVisitor<Element, CS2PivotConversion> getLeft2RightVisitor(EPackage ePackage) {
-		BaseCSVisitor<Element, CS2PivotConversion> left2RightVisitor = left2RightVisitorMap.get(ePackage);
+	public BaseCSVisitor<Element> getLeft2RightVisitor(EPackage ePackage) {
+		BaseCSVisitor<Element> left2RightVisitor = left2RightVisitorMap.get(ePackage);
 		if ((left2RightVisitor == null) && !left2RightVisitorMap.containsKey(ePackage)) {
 			Factory factory = converter.getFactory(ePackage);
 			if (factory != null) {
@@ -595,8 +595,8 @@ public class CS2PivotConversion extends AbstractConversion
 		return oldPackagesByName.get(name);
 	}
 
-	public BaseCSVisitor<Continuation<?>, CS2PivotConversion> getPostOrderVisitor(EPackage ePackage) {
-		BaseCSVisitor<Continuation<?>, CS2PivotConversion> postOrderVisitor = postOrderVisitorMap.get(ePackage);
+	public BaseCSVisitor<Continuation<?>> getPostOrderVisitor(EPackage ePackage) {
+		BaseCSVisitor<Continuation<?>> postOrderVisitor = postOrderVisitorMap.get(ePackage);
 		if ((postOrderVisitor == null) && !postOrderVisitorMap.containsKey(ePackage)) {
 			Factory factory = converter.getFactory(ePackage);
 			if (factory != null) {
@@ -613,8 +613,8 @@ public class CS2PivotConversion extends AbstractConversion
 		return postOrderVisitor;
 	}
 
-	public BaseCSVisitor<Continuation<?>, CS2PivotConversion> getPreOrderVisitor(EPackage ePackage) {
-		BaseCSVisitor<Continuation<?>, CS2PivotConversion> preOrderVisitor = preOrderVisitorMap.get(ePackage);
+	public BaseCSVisitor<Continuation<?>> getPreOrderVisitor(EPackage ePackage) {
+		BaseCSVisitor<Continuation<?>> preOrderVisitor = preOrderVisitorMap.get(ePackage);
 		if ((preOrderVisitor == null) && !preOrderVisitorMap.containsKey(ePackage)) {
 			Factory factory = converter.getFactory(ePackage);
 			if (factory != null) {
@@ -1433,7 +1433,7 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			EClass eClass = eObject.eClass();
 			EPackage ePackage = eClass.getEPackage();
-			BaseCSVisitor<Continuation<?>, CS2PivotConversion> containmentVisitor = containmentVisitorMap.get(ePackage);
+			BaseCSVisitor<Continuation<?>> containmentVisitor = containmentVisitorMap.get(ePackage);
 			if ((containmentVisitor == null) && !containmentVisitorMap.containsKey(ePackage)) {
 				Factory factory = converter.getFactory(ePackage);
 				if (factory != null) {
@@ -1458,7 +1458,7 @@ public class CS2PivotConversion extends AbstractConversion
 		if (csObject == null) {
 			return null;
 		}
-		BaseCSVisitor<Element, CS2PivotConversion> left2RightVisitor = getLeft2RightVisitor(csObject.eClass().getEPackage());
+		BaseCSVisitor<Element> left2RightVisitor = getLeft2RightVisitor(csObject.eClass().getEPackage());
 		if (left2RightVisitor == null) {
 			throw new IllegalArgumentException("Unsupportable " + csObject.eClass().getName() + " for CS2Pivot Left2Right pass");
 		}
@@ -1477,7 +1477,7 @@ public class CS2PivotConversion extends AbstractConversion
 	protected void visitInPostOrder(List<? extends EObject> eObjects, List<BasicContinuation<?>> continuations) {
 		for (int i = eObjects.size(); i-- > 0; ) {
 			EObject eObject = eObjects.get(i);
-			BaseCSVisitor<Continuation<?>, CS2PivotConversion> postOrderVisitor = getPostOrderVisitor(eObject.eClass().getEPackage());
+			BaseCSVisitor<Continuation<?>> postOrderVisitor = getPostOrderVisitor(eObject.eClass().getEPackage());
 			if ((postOrderVisitor == null) || !(eObject instanceof VisitableCS)) {
 				throw new IllegalArgumentException("Unsupportable " + eObject.eClass().getName() + " for CS2Pivot PostOrder pass");
 			}
@@ -1494,7 +1494,7 @@ public class CS2PivotConversion extends AbstractConversion
 
 	protected void visitInPreOrder(List<? extends EObject> eObjects, List<BasicContinuation<?>> continuations) {
 		for (EObject eObject : eObjects) {
-			BaseCSVisitor<Continuation<?>, CS2PivotConversion> preOrderVisitor = getPreOrderVisitor(eObject.eClass().getEPackage());
+			BaseCSVisitor<Continuation<?>> preOrderVisitor = getPreOrderVisitor(eObject.eClass().getEPackage());
 			if ((preOrderVisitor == null) || !(eObject instanceof VisitableCS)) {
 				throw new IllegalArgumentException("Unsupportable " + eObject.eClass().getName() + " for CS2Pivot PreOrder pass");
 			}

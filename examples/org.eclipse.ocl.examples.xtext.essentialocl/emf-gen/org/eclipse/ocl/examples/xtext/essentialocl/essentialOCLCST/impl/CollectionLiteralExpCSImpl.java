@@ -240,7 +240,7 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitCollectionLiteralExpCS(this);
 	}
 } //CollectionLiteralExpCSImpl

@@ -28,9 +28,9 @@ package	org.eclipse.ocl.examples.xtext.base.util;
 /**
  * An AbstractDelegatingBaseCSVisitor delegates all visits.
  */
-public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisitor<R, C>>
+public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisitor<R>>
 	extends AbstractBaseCSVisitor<R, C>
-	implements BaseCSVisitor<R, C>
+	implements BaseCSVisitor<R>
 {
     protected final D delegate;
     
@@ -44,7 +44,7 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
     /**
      * Delegates to my decorated visitor.
      */
-//	public DecorableBaseCSVisitor<R, C> createNestedVisitor() {
+//	public DecorableBaseCSVisitor<R> createNestedVisitor() {
 //        return delegate.createNestedVisitor();
 //	}
   

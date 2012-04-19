@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * generic type parameters of this class. 
  * </p>
  */
-public interface EvaluationVisitor extends Visitor<Value, Object>, DomainEvaluator
+public interface EvaluationVisitor extends Visitor<Value>, DomainEvaluator
 {
 	EvaluationVisitor createNestedEvaluator();
 

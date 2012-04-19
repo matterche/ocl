@@ -111,7 +111,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 //		return "<" + eClass().getName() + ">";
 	}
 
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitElementCS(this);
 	}
 } //ElementCSImpl

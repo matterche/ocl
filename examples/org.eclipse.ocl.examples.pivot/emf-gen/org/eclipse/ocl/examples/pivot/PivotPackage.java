@@ -19441,7 +19441,7 @@ public interface PivotPackage
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Visitor</em>'.
 	 * @see org.eclipse.ocl.examples.pivot.util.Visitor
-	 * @model instanceClass="org.eclipse.ocl.examples.pivot.util.Visitor" typeParameters="R C"
+	 * @model instanceClass="org.eclipse.ocl.examples.pivot.util.Visitor" typeParameters="R"
 	 * @generated
 	 */
 	EClass getVisitor();

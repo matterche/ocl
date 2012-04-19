@@ -524,7 +524,7 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitClassifierCS(this);
 	}
 } //ClassifierCSImpl

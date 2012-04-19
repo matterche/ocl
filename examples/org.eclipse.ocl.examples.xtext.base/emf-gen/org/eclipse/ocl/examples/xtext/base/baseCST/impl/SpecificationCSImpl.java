@@ -183,7 +183,7 @@ public class SpecificationCSImpl extends ModelElementCSImpl implements Specifica
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitSpecificationCS(this);
 	}
 

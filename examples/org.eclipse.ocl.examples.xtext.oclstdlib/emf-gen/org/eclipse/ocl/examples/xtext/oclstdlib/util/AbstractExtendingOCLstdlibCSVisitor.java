@@ -34,7 +34,7 @@ package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
  */
 public abstract class AbstractExtendingOCLstdlibCSVisitor<R, C>
 	extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingEssentialOCLCSVisitor<R, C>
-	implements OCLstdlibCSVisitor<R, C>
+	implements OCLstdlibCSVisitor<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.

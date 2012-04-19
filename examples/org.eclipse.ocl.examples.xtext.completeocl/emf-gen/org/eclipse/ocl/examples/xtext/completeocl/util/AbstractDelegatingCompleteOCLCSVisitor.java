@@ -28,9 +28,9 @@ package	org.eclipse.ocl.examples.xtext.completeocl.util;
 /**
  * An AbstractDelegatingCompleteOCLCSVisitor delegates all visits.
  */
-public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends CompleteOCLCSVisitor<R, C>>
+public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends CompleteOCLCSVisitor<R>>
 	extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractDelegatingEssentialOCLCSVisitor<R, C, D>
-	implements CompleteOCLCSVisitor<R, C>
+	implements CompleteOCLCSVisitor<R>
 {
     protected AbstractDelegatingCompleteOCLCSVisitor(D delegate, C context) {
         super(delegate, context);

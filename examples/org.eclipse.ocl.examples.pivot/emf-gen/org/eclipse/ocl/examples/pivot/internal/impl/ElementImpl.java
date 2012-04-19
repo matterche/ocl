@@ -302,7 +302,7 @@ public abstract class ElementImpl
 		return EcoreUtil.create(eClass);
 	}
 
-	public <R, C> R accept(Visitor<R, C> visitor) {
+	public <R> R accept(Visitor<R> visitor) {
 		return visitor.visitElement(this);
 	}
 

@@ -207,7 +207,6 @@ public class OclMetaModel extends XMIResourceImpl
 		protected final Enumeration _AssociativityKind = createEnumeration("AssociativityKind");
 		protected final Enumeration _CollectionKind = createEnumeration("CollectionKind");
 		
-		protected final Class _Visitor_C = createClass("C");
 		protected final Class _Visitor_R = createClass("R");
 		
 		
@@ -693,7 +692,6 @@ public class OclMetaModel extends XMIResourceImpl
 		protected final Property pr_CollectionRange_first = createProperty("first", _OclExpression);
 		protected final Property pr_CollectionRange_last = createProperty("last", _OclExpression);
 		protected final Property pr_CollectionType_elementType = createProperty("elementType", _Type);
-		protected final Property pr_Comment_Element = createProperty("Element", _Element);
 		protected final Property pr_Comment_annotatedElement = createProperty("annotatedElement", _Element);
 		protected final Property pr_Comment_body = createProperty("body", _String);
 		protected final Property pr_Constraint_constrainedElement = createProperty("constrainedElement", _Element);
@@ -709,6 +707,7 @@ public class OclMetaModel extends XMIResourceImpl
 		protected final Property pr_DataType_isSerializable = createProperty("isSerializable", _Boolean);
 		protected final Property pr_Detail_Annotation = createProperty("Annotation", _Annotation);
 		protected final Property pr_Detail_value = createProperty("value", _String);
+		protected final Property pr_Element_Comment = createProperty("Comment", _Comment);
 		protected final Property pr_Element_Constraint = createProperty("Constraint", _Constraint);
 		protected final Property pr_Element_ownedComment = createProperty("ownedComment", _Comment);
 		protected final Property pr_EnumLiteralExp_referredEnumLiteral = createProperty("referredEnumLiteral", _EnumerationLiteral);
@@ -987,15 +986,11 @@ public class OclMetaModel extends XMIResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_CollectionType);
 			ownedProperties = _Comment.getOwnedAttribute();
-			ownedProperties.add(property = pr_Comment_Element);
-			property.setLower(BigInteger.valueOf(0));
-			property.setImplicit(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_ownedComment);
 			ownedProperties.add(property = pr_Comment_annotatedElement);
 			property.setLower(BigInteger.valueOf(0));
 			property.setUpper(BigInteger.valueOf(-1));
 			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Element_Comment);
 			ownedProperties.add(property = pr_Comment_body);
 			property.setLower(BigInteger.valueOf(0));
 			property.setIsResolveProxies(true);
@@ -1057,6 +1052,12 @@ public class OclMetaModel extends XMIResourceImpl
 			property.setUpper(BigInteger.valueOf(-1));
 			property.setIsResolveProxies(true);
 			ownedProperties = _Element.getOwnedAttribute();
+			ownedProperties.add(property = pr_Element_Comment);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Comment_annotatedElement);
 			ownedProperties.add(property = pr_Element_Constraint);
 			property.setLower(BigInteger.valueOf(0));
 			property.setUpper(BigInteger.valueOf(-1));
@@ -1068,7 +1069,6 @@ public class OclMetaModel extends XMIResourceImpl
 			property.setUpper(BigInteger.valueOf(-1));
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Comment_Element);
 			ownedProperties = _EnumLiteralExp.getOwnedAttribute();
 			ownedProperties.add(property = pr_EnumLiteralExp_referredEnumLiteral);
 			property.setLower(BigInteger.valueOf(0));
@@ -1830,10 +1830,9 @@ public class OclMetaModel extends XMIResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_VariableDeclaration_VariableExp);
 		}
-		protected final TypeTemplateParameter tp_Visitor = createTypeTemplateParameter(_Visitor_C);
-		protected final TypeTemplateParameter tp_Visitor_1 = createTypeTemplateParameter(_Visitor_R);
+		protected final TypeTemplateParameter tp_Visitor = createTypeTemplateParameter(_Visitor_R);
 		
-		protected final TemplateSignature ts_Visitor = createTemplateSignature(_Visitor, tp_Visitor_1, tp_Visitor);
+		protected final TemplateSignature ts_Visitor = createTemplateSignature(_Visitor, tp_Visitor);
 		
 		protected void installTemplateSignatures() {
 		}

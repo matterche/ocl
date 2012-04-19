@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 
-public class OCLstdlibContainmentVisitor extends EssentialOCLContainmentVisitor implements OCLstdlibCSVisitor<Continuation<?>, CS2PivotConversion>
+public class OCLstdlibContainmentVisitor extends EssentialOCLContainmentVisitor implements OCLstdlibCSVisitor<Continuation<?>>
 {
 	public OCLstdlibContainmentVisitor(CS2PivotConversion context) {
 		super(context);

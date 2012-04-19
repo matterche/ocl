@@ -29,7 +29,7 @@ package	org.eclipse.ocl.examples.xtext.completeocl.util;
  */
 public abstract class AbstractCompleteOCLCSVisitor<R, C>
  extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractEssentialOCLCSVisitor<R, C>
-	implements CompleteOCLCSVisitor<R, C>
+	implements CompleteOCLCSVisitor<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.

@@ -44,7 +44,7 @@ public interface Visitable
 	 * @param visitor
 	 * @return the result of the visit.
 	 */
-	<R, C> R accept(Visitor<R, C> visitor);
+	<R> R accept(Visitor<R> visitor);
 	
 	EClass eClass();
 }

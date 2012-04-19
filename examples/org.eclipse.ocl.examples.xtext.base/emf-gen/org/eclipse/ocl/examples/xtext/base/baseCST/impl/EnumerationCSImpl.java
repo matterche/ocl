@@ -173,7 +173,7 @@ public class EnumerationCSImpl extends ClassifierCSImpl implements EnumerationCS
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitEnumerationCS(this);
 	}
 } //EnumCSImpl

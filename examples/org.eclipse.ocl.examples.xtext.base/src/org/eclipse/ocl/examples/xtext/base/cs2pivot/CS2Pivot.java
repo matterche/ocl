@@ -68,10 +68,10 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdapter
 {	
 	public static interface Factory {
-		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createContainmentVisitor(CS2PivotConversion cs2PivotConversion);
-		BaseCSVisitor<Element, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
-		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
+		BaseCSVisitor<Continuation<?>> createContainmentVisitor(CS2PivotConversion cs2PivotConversion);
+		BaseCSVisitor<Element> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
+		BaseCSVisitor<Continuation<?>> createPostOrderVisitor(CS2PivotConversion converter);
+		BaseCSVisitor<Continuation<?>> createPreOrderVisitor(CS2PivotConversion converter);
 		EPackage getEPackage();
 	}
 	

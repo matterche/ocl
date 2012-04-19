@@ -174,7 +174,7 @@ public class DataTypeCSImpl extends ClassifierCSImpl implements DataTypeCS
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitDataTypeCS(this);
 	}
 } //DataTypeCSImpl

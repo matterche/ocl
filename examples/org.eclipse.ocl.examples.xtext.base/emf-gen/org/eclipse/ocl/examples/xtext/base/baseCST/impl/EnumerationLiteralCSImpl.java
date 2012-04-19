@@ -170,7 +170,7 @@ public class EnumerationLiteralCSImpl extends NamedElementCSImpl implements Enum
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitEnumerationLiteralCS(this);
 	}
 } //EnumLiteralCSImpl

@@ -4659,7 +4659,6 @@ public class PivotPackageImpl
 
 		// Create type parameters
 		addETypeParameter(visitorEClass, "R"); //$NON-NLS-1$
-		addETypeParameter(visitorEClass, "C"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 

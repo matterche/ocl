@@ -53,7 +53,7 @@ public class ModelImpl extends PackageImpl implements Model
 	}
 
 	@Override
-	public <R, C> R accept(Visitor<R, C> visitor) {
+	public <R> R accept(Visitor<R> visitor) {
 		return visitor.visitModel(this);
 	}
 } //ModelImpl

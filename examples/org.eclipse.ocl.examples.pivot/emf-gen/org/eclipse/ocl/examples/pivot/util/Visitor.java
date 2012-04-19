@@ -27,7 +27,7 @@ package	org.eclipse.ocl.examples.pivot.util;
 
 /**
  */
-public interface Visitor<R, C>
+public interface Visitor<R>
 {
 	/**
 	 * Returns an object which is an instance of the given class

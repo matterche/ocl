@@ -23,9 +23,9 @@ AbstractDelegatingVisitor
 /**
  * An AbstractDelegating[visitorClass/] delegates all visits.
  */
-public abstract class AbstractDelegating[visitorClass/]<R, C, D extends [visitorClass/]<R, C>>
+public abstract class AbstractDelegating[visitorClass/]<R, C, D extends [visitorClass/]<R>>
 	extends [if (isDerived)][visitorBasePackage/].AbstractDelegating[visitorBaseClass/]<R, C, D>[else][visitorBaseClass/]<R, C>[/if]
-	implements [visitorClass/]<R, C>
+	implements [visitorClass/]<R>
 {
 [if (isDerived)]
     protected AbstractDelegating[visitorClass/](D delegate, C context) {
@@ -44,7 +44,7 @@ public abstract class AbstractDelegating[visitorClass/]<R, C, D extends [visitor
     /**
      * Delegates to my decorated visitor.
      */
-//	public Decorable[visitorClass/]<R, C> createNestedVisitor() {
+//	public Decorable[visitorClass/]<R> createNestedVisitor() {
 //        return delegate.createNestedVisitor();
 //	}
   
@@ -91,9 +91,9 @@ import [visitorBasePackage/].[visitorBaseClass/];
 /**
  * An AbstractExtendingDelegating[visitorClass/] delegates all visits.
  */
-public abstract class AbstractExtendingDelegating[visitorClass/]<R, C, D extends [visitorBaseClass/]<R, C>>
+public abstract class AbstractExtendingDelegating[visitorClass/]<R, C, D extends [visitorBaseClass/]<R>>
 	extends AbstractDelegating[visitorBaseClass/]<R, C, D>
-	implements [visitorClass/]<R, C>
+	implements [visitorClass/]<R>
 {
 [if (true)]
     protected AbstractExtendingDelegating[visitorClass/](D delegate, C context) {
@@ -112,7 +112,7 @@ public abstract class AbstractExtendingDelegating[visitorClass/]<R, C, D extends
     /**
      * Delegates to my decorated visitor.
      */
-//	public Decorable[visitorClass/]<R, C> createNestedVisitor() {
+//	public Decorable[visitorClass/]<R> createNestedVisitor() {
 //        return delegate.createNestedVisitor();
 //	}
   
@@ -166,7 +166,7 @@ AbstractExtendingVisitor
  */
 public abstract class AbstractExtending[visitorClass/]<R, C>
 	extends [visitorBaseClassPath/]<R, C>
-	implements [visitorClass/]<R, C>
+	implements [visitorClass/]<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.
@@ -277,7 +277,7 @@ DerivedAbstractNullVisitor
  * visitXxx method that returns null.
  */
 public abstract class AbstractNull[visitorClass/]<R, C>
-	extends [visitorBasePackage/].AbstractNull[visitorBaseClass/]<R, C> implements [visitorClass/]<R, C>
+	extends [visitorBasePackage/].AbstractNull[visitorBaseClass/]<R, C> implements [visitorClass/]<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.
@@ -308,7 +308,7 @@ AbstractVisitor
 
 /**
  */
-public abstract class Abstract[visitorClass/]<R, C> implements [visitorClass/]<R, C>
+public abstract class Abstract[visitorClass/]<R, C> implements [visitorClass/]<R>
 {    
     /**
      * Context for the AST visitation.
@@ -374,10 +374,9 @@ DecorableVisitorInterface
 
 /**
  */
-public interface Decorable[visitorClass/]<R, C> extends [visitorClass/]<R, C>[if (visitorBaseClass.size() > 0)], [visitorBasePackage/].Decorable[visitorBaseClass/]<R, C>[/if]
+public interface Decorable[visitorClass/]<R> extends [visitorClass/]<R>[if (visitorBaseClass.size() > 0)], [visitorBasePackage/].Decorable[visitorBaseClass/]<R>[/if]
 {
-//	Decorable[visitorClass/]<R, C> createNestedVisitor();
-	void setUndecoratedVisitor([visitorRootClass/]<R, C> visitor);
+	void setUndecoratedVisitor([visitorRootClass/]<R> visitor);
 }
 [/file]
 [/template]
@@ -390,7 +389,7 @@ public interface Decorable[visitorClass/]<R, C> extends [visitorClass/]<R, C>[if
  */
 public abstract class Abstract[visitorClass/]<R, C>
 [if (visitorBaseClass.size() > 0)] extends [visitorBasePackage/].Abstract[visitorBaseClass/]<R, C>[/if]
-	implements [visitorClass/]<R, C>
+	implements [visitorClass/]<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.
@@ -410,7 +409,7 @@ public abstract class Abstract[visitorClass/]<R, C>
 
 /**
  */
-public interface [visitorClass/]<R, C>[if (visitorBaseClass.size() > 0)] extends [visitorBasePackage/].[visitorBaseClass/]<R, C>[/if]
+public interface [visitorClass/]<R>[if (visitorBaseClass.size() > 0)] extends [visitorBasePackage/].[visitorBaseClass/]<R>[/if]
 {
 [for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
 	R visit[eClass.name/]([modelPackage/].[eClass.name/] object);
@@ -471,7 +470,7 @@ public interface [visitableClass/]
 	 * @param visitor
 	 * @return the result of the visit.
 	 */
-	<R, C> R accept([visitorClass/]<R, C> visitor);
+	<R> R accept([visitorClass/]<R> visitor);
 	
 	EClass eClass();
 }
@@ -484,7 +483,7 @@ public interface [visitableClass/]
 
 /**
  */
-public interface [visitorClass/]<R, C>
+public interface [visitorClass/]<R>
 {
 	/**
 	 * Returns an object which is an instance of the given class

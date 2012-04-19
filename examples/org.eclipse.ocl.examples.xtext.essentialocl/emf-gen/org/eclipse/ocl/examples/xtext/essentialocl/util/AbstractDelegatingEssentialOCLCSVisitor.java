@@ -28,9 +28,9 @@ package	org.eclipse.ocl.examples.xtext.essentialocl.util;
 /**
  * An AbstractDelegatingEssentialOCLCSVisitor delegates all visits.
  */
-public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends EssentialOCLCSVisitor<R, C>>
+public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends EssentialOCLCSVisitor<R>>
 	extends org.eclipse.ocl.examples.xtext.base.util.AbstractDelegatingBaseCSVisitor<R, C, D>
-	implements EssentialOCLCSVisitor<R, C>
+	implements EssentialOCLCSVisitor<R>
 {
     protected AbstractDelegatingEssentialOCLCSVisitor(D delegate, C context) {
         super(delegate, context);

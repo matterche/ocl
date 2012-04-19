@@ -178,7 +178,7 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(OCLinEcoreCSVisitor.class).visitOCLinEcoreConstraintCS(this);
 	}
 } //ConstraintCSImpl

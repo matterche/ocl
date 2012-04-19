@@ -184,7 +184,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitLibraryCS(this);
 	}
 } //LibraryCSImpl

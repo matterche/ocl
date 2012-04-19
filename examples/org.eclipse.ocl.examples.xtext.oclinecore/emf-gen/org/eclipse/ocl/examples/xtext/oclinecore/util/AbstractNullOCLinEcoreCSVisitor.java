@@ -30,7 +30,7 @@ package	org.eclipse.ocl.examples.xtext.oclinecore.util;
  * visitXxx method that returns null.
  */
 public abstract class AbstractNullOCLinEcoreCSVisitor<R, C>
-	extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractNullEssentialOCLCSVisitor<R, C> implements OCLinEcoreCSVisitor<R, C>
+	extends org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractNullEssentialOCLCSVisitor<R, C> implements OCLinEcoreCSVisitor<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.

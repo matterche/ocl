@@ -228,7 +228,7 @@ public abstract class ContextConstraintCSImpl extends ConstraintCSImpl implement
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitContextConstraintCS(this);
 	}
 } //ContextConstraintCSImpl

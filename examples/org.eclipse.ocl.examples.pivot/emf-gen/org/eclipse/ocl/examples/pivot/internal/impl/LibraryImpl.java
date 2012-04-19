@@ -55,7 +55,7 @@ public class LibraryImpl extends ModelImpl implements Library
 	}
 
 	@Override
-	public <R, C> R accept(Visitor<R, C> visitor) {
+	public <R> R accept(Visitor<R> visitor) {
 		return visitor.visitLibrary(this);
 	}
 } //LibraryImpl

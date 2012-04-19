@@ -225,7 +225,7 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	}
 
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitTemplateParameterCS(this);
 	}
 } //TemplateParameterCSImpl

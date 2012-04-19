@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
 public class OCLstdlibCS2MonikerVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean, CS2Moniker>>
+	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
@@ -41,7 +41,7 @@ public class OCLstdlibCS2MonikerVisitor
 			CS2Moniker.addFactory(OCLstdlibCSTPackage.eINSTANCE, this);
 		}
 		
-		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
+		public BaseCSVisitor<?> create(CS2Moniker context) {
 			return new OCLstdlibCS2MonikerVisitor(context);
 		}
 	}
@@ -50,7 +50,7 @@ public class OCLstdlibCS2MonikerVisitor
 		
 	@SuppressWarnings("unchecked")
 	public OCLstdlibCS2MonikerVisitor(CS2Moniker context) {
-		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+		super((EssentialOCLCSVisitor<Boolean>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 
 	@Override

@@ -77,7 +77,7 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 			Pivot2MonikerVisitor.initialize();
 		}
 		
-		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
+		public BaseCSVisitor<?> create(CS2Moniker context) {
 			return new BaseCS2MonikerVisitor(context);
 		}
 	}

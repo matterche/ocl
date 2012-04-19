@@ -34,7 +34,7 @@ package	org.eclipse.ocl.examples.xtext.base.util;
  */
 public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	extends AbstractBaseCSVisitor<R, C>
-	implements BaseCSVisitor<R, C>
+	implements BaseCSVisitor<R>
 {
 	/**
 	 * Initializes me with an initial value for my result.

@@ -214,7 +214,7 @@ public class IndexExpCSImpl extends NameExpCSImpl implements IndexExpCS
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitIndexExpCS(this);
 	}
 } //IndexExpCSImpl

@@ -1201,7 +1201,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	}
 
 	@Override
-	public <R, C> R accept(Visitor<R, C> visitor) {
+	public <R> R accept(Visitor<R> visitor) {
 		return visitor.visitIteratorExp(this);
 	}
 
