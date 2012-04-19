@@ -35,30 +35,16 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.AbstractOperationFilter;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLContainmentVisitor;
 
-public class CompleteOCLContainmentVisitor extends EssentialOCLContainmentVisitor implements CompleteOCLCSVisitor<Continuation<?>>
+public class CompleteOCLContainmentVisitor extends AbstractCompleteOCLContainmentVisitor
 {
 	public class OperationDeclScopeFilter extends AbstractOperationFilter
 	{
@@ -116,31 +102,13 @@ public class CompleteOCLContainmentVisitor extends EssentialOCLContainmentVisito
 		super(context);
 	}
 
-	public Continuation<?> visitBodyCS(BodyCS csElement) {
-		return visitContextConstraintCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE, csElement, null);
 		return null;
 	}
 
-	public Continuation<?> visitCompleteOCLDocumentCS(CompleteOCLDocumentCS csElement) {
-		return visitPackageCS(csElement);
-	}
-
-	public Continuation<?> visitContextConstraintCS(ContextConstraintCS csElement) {
-		return visitConstraintCS(csElement);
-	}
-
-	public Continuation<?> visitContextDeclCS(ContextDeclCS csElement) {
-		return visitPathNameDeclCS(csElement);
-	}
-
-	public Continuation<?> visitContextSpecificationCS(ContextSpecificationCS csElement) {
-		return visitExpSpecificationCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitDefCS(DefCS csElement) {
 /*		if (csElement.isOperation()) {
 			return context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
@@ -157,30 +125,12 @@ public class CompleteOCLContainmentVisitor extends EssentialOCLContainmentVisito
 		return visitContextConstraintCS(csElement);
 	}
 
-	public Continuation<?> visitDerCS(DerCS csElement) {
-		return visitContextConstraintCS(csElement);
-	}
-
-	public Continuation<?> visitFeatureContextDeclCS(FeatureContextDeclCS csElement) {
-		return visitContextDeclCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitIncludeCS(IncludeCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitInitCS(InitCS csElement) {
-		return visitContextConstraintCS(csElement);
-	}
-
-	public Continuation<?> visitInvCS(InvCS csElement) {
-		return visitContextConstraintCS(csElement);
-	}
-
-	public Continuation<?> visitOclMessageArgCS(OclMessageArgCS csElement) {
-		return visitExpCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement,
 			new OperationDeclScopeFilter(metaModelManager, null, csElement.getParameters()));
@@ -189,23 +139,18 @@ public class CompleteOCLContainmentVisitor extends EssentialOCLContainmentVisito
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE, csElement, null);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitPathNameDeclCS(PathNameDeclCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitPostCS(PostCS csElement) {
-		return visitContextConstraintCS(csElement);
-	}
-
-	public Continuation<?> visitPreCS(PreCS csElement) {
-		return visitContextConstraintCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PROPERTY, csElement, null);
 		Property pivotElement = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);

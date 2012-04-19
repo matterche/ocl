@@ -21,26 +21,21 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
 
 public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot 
 {	
-	private static final class Factory implements CS2Pivot.Factory, MetaModelManager.Factory
+	private static final class Factory implements MetaModelManager.Factory
 	{
 		private Factory() {
-			EssentialOCLCS2Pivot.FACTORY.getClass();
-			CS2Pivot.addFactory(this);
 			MetaModelManager.addFactory(this);
 		}
 
@@ -49,26 +44,6 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 		}
 
 		public void configure(ResourceSet resourceSet) {}
-
-		public OCLinEcoreContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
-			return new OCLinEcoreContainmentVisitor(converter);
-		}
-
-		public OCLinEcoreLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
-			return new OCLinEcoreLeft2RightVisitor(converter);
-		}
-
-		public OCLinEcorePostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
-			return new OCLinEcorePostOrderVisitor(converter);
-		}
-
-		public OCLinEcorePreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
-			return new OCLinEcorePreOrderVisitor(converter);
-		}
-
-		public EPackage getEPackage() {
-			return OCLinEcoreCSTPackage.eINSTANCE;
-		}
 
 		public URI getPackageURI(EObject eObject) {
 			if (eObject instanceof PackageCS) {
@@ -102,9 +77,29 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 		}
 	}
 
-	public static CS2Pivot.Factory FACTORY = new Factory();
+	public static MetaModelManager.Factory FACTORY = new Factory();
 		
 	public OCLinEcoreCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		super(cs2pivotResourceMap, metaModelManager);
+	}
+
+	@Override
+	protected OCLinEcoreContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+		return new OCLinEcoreContainmentVisitor(converter);
+	}
+
+	@Override
+	protected OCLinEcoreLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+		return new OCLinEcoreLeft2RightVisitor(converter);
+	}
+
+	@Override
+	protected OCLinEcorePostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
+		return new OCLinEcorePostOrderVisitor(converter);
+	}
+
+	@Override
+	protected OCLinEcorePreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
+		return new OCLinEcorePreOrderVisitor(converter);
 	}
 }

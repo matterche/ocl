@@ -28,7 +28,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -65,22 +64,8 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * and their corresponding Pivot Resources creating a CS2PivotConversion
  * to update.
  */
-public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdapter
+public abstract class CS2Pivot extends AbstractConversion implements MetaModelManagedAdapter
 {	
-	public static interface Factory {
-		BaseCSVisitor<Continuation<?>> createContainmentVisitor(CS2PivotConversion cs2PivotConversion);
-		BaseCSVisitor<Element> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
-		BaseCSVisitor<Continuation<?>> createPostOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<Continuation<?>> createPreOrderVisitor(CS2PivotConversion converter);
-		EPackage getEPackage();
-	}
-	
-	private static Map<EPackage, Factory> factoryMap = new HashMap<EPackage, Factory>();
-	
-	public static void addFactory(Factory factory) {
-		factoryMap.put(factory.getEPackage(), factory);
-	}
-
 	public static interface UnresolvedProxyMessageProvider
 	{
 		EReference getEReference();	
@@ -296,7 +281,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		metaModelManager.getPivotResourceSet().eAdapters().add(this);
 	}
 	
-	public CS2Pivot(CS2Pivot aConverter) {
+	protected CS2Pivot(CS2Pivot aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
 		this.cs2PivotMapping = new CSI2PivotMapping(aConverter.cs2PivotMapping);
 		this.metaModelManager = aConverter.metaModelManager;
@@ -320,6 +305,11 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		}
 		return map;
 	}
+	
+	protected abstract BaseCSVisitor<Continuation<?>> createContainmentVisitor(CS2PivotConversion cs2PivotConversion);
+	protected abstract BaseCSVisitor<Element> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
+	protected abstract BaseCSVisitor<Continuation<?>> createPostOrderVisitor(CS2PivotConversion converter) ;
+	protected abstract BaseCSVisitor<Continuation<?>> createPreOrderVisitor(CS2PivotConversion converter);
 
 	public void dispose() {
 		cs2pivotResourceMap.clear();
@@ -337,10 +327,6 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 
 	public Collection<? extends Resource> getCSResources() {
 		return cs2pivotResourceMap.keySet();
-	}
-
-	public Factory getFactory(EPackage ePackage) {
-		return factoryMap.get(ePackage);
 	}
 
 	public Element getPivotElement(ModelElementCS csElement) {

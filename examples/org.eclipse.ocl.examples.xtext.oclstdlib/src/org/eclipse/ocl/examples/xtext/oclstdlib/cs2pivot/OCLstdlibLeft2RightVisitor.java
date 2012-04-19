@@ -36,18 +36,15 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLLeft2RightVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
-public class OCLstdlibLeft2RightVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Element, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
+public class OCLstdlibLeft2RightVisitor extends AbstractOCLstdlibLeft2RightVisitor
 {
 	public OCLstdlibLeft2RightVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLLeft2RightVisitor(context), context);
+		super(context);
 	}
 
 	@Override

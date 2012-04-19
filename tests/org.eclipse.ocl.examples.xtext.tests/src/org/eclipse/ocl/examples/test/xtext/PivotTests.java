@@ -32,11 +32,13 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot.OCLstdlibCS2Pivot;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 
@@ -45,9 +47,9 @@ import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
  */
 public class PivotTests extends XtextTestCase
 {
-	public static class Checker extends CS2Pivot
+	public static class Checker extends BaseCS2Pivot
 	{
-		private Checker(CS2Pivot aConverter) {
+		private Checker(BaseCS2Pivot aConverter) {
 			super(aConverter);
 		}
 
@@ -225,7 +227,7 @@ public class PivotTests extends XtextTestCase
 		//
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(csResource);
 		Resource pivotResource = adapter.getPivotResource(csResource);
-		CS2Pivot creator = adapter.getConverter();
+		OCLstdlibCS2Pivot creator = (OCLstdlibCS2Pivot) adapter.getConverter();
 		//
 		//	Check that Pivot model is ready for damage
 		//
@@ -245,7 +247,7 @@ public class PivotTests extends XtextTestCase
 		//
 		//	Update Pivot model from unchanged CS
 		//
-		CS2Pivot updater = new CS2Pivot(creator);
+		OCLstdlibCS2Pivot updater = new OCLstdlibCS2Pivot(creator);
 		updater.update(new ListBasedDiagnosticConsumer());
 		new Checker(creator).assertSameContents();
 		//

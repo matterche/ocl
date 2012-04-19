@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -46,10 +45,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOpe
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 
-public class EssentialOCLPreOrderVisitor
-	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Continuation<?>, CS2PivotConversion, BasePreOrderVisitor>
+public class EssentialOCLPreOrderVisitor extends AbstractEssentialOCLPreOrderVisitor
 {
 	protected static class CollectionTypeContinuation extends SingleContinuation<CollectionTypeCS>
 	{
@@ -118,7 +115,7 @@ public class EssentialOCLPreOrderVisitor
 	}
 
 	public EssentialOCLPreOrderVisitor(CS2PivotConversion context) {
-		super(new BasePreOrderVisitor(context), context);
+		super(context);
 	}
 
 	@Override

@@ -39,11 +39,9 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseContainmentVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
@@ -58,12 +56,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
@@ -76,33 +71,30 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralE
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
-public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor implements EssentialOCLCSVisitor<Continuation<?>>
+public class EssentialOCLContainmentVisitor extends AbstractEssentialOCLContainmentVisitor
 {
 	public EssentialOCLContainmentVisitor(CS2PivotConversion context) {
 		super(context);
 	}
 
-	public Continuation<?> visitBinaryOperatorCS(BinaryOperatorCS csElement) {
-		return visitOperatorCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitBooleanLiteralExpCS(BooleanLiteralExpCS csElement) {
 		BooleanLiteralExp pivotElement = context.refreshModelElement(BooleanLiteralExp.class, PivotPackage.Literals.BOOLEAN_LITERAL_EXP, csElement);
 		pivotElement.setBooleanSymbol(Boolean.valueOf(csElement.getName()));
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitCollectionLiteralExpCS(CollectionLiteralExpCS csElement) {
 		CollectionLiteralExp pivotElement = context.refreshModelElement(CollectionLiteralExp.class, PivotPackage.Literals.COLLECTION_LITERAL_EXP, csElement);
 		context.refreshPivotList(CollectionLiteralPart.class, pivotElement.getPart(), csElement.getOwnedParts());
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitCollectionLiteralPartCS(CollectionLiteralPartCS csElement) {
 		if (csElement.getLastExpressionCS() == null) {
 			context.refreshModelElement(CollectionItem.class, PivotPackage.Literals.COLLECTION_ITEM, csElement);	
@@ -113,29 +105,35 @@ public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor imple
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitConstructorExpCS(ConstructorExpCS csElement) {
 		ConstructorExp pivotElement = context.refreshModelElement(ConstructorExp.class, PivotPackage.Literals.CONSTRUCTOR_EXP, csElement);	
 		context.refreshPivotList(ConstructorPart.class, pivotElement.getPart(), csElement.getOwnedParts());
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitConstructorPartCS(ConstructorPartCS csElement) {
 		context.refreshModelElement(ConstructorPart.class, PivotPackage.Literals.CONSTRUCTOR_PART, csElement);	
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitContextCS(ContextCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitExpCS(ExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitExpSpecificationCS(ExpSpecificationCS csElement) {
 		ExpressionInOcl pivotElement = context.refreshModelElement(ExpressionInOcl.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
 		pivotElement.getLanguage().add(PivotConstants.OCL_LANGUAGE);
@@ -144,62 +142,61 @@ public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor imple
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitIfExpCS(IfExpCS csElement) {
 		context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitIndexExpCS(IndexExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitInfixExpCS(InfixExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitInvalidLiteralExpCS(InvalidLiteralExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitInvocationExpCS(InvocationExpCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement, null);
 		return null;
 	}
 
-	public Continuation<?> visitLetExpCS(LetExpCS csElement) {
-		return visitExpCS(csElement);
-	}
-
-	public Continuation<?> visitLetVariableCS(LetVariableCS csElement) {
-		return visitVariableCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitLiteralExpCS(LiteralExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitNameExpCS(NameExpCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.ELEMENT, csElement, null);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitNavigatingArgCS(NavigatingArgCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitNavigationOperatorCS(NavigationOperatorCS csElement) {
-		return visitBinaryOperatorCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitNestedExpCS(NestedExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitNullLiteralExpCS(NullLiteralExpCS csElement) {
 		context.refreshModelElement(NullLiteralExp.class, PivotPackage.Literals.NULL_LITERAL_EXP, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitNumberLiteralExpCS(NumberLiteralExpCS csElement) {
 		Number number = csElement.getName();
 		if (number instanceof BigDecimal) {
@@ -220,25 +217,30 @@ public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor imple
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitOperatorCS(OperatorCS csElement) {
 		OperationCallExp pivotElement = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csElement);
 		context.refreshName(pivotElement, csElement.getName());
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitPrefixExpCS(PrefixExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitPrimitiveLiteralExpCS(PrimitiveLiteralExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitSelfExpCS(SelfExpCS csElement) {
 		context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitStringLiteralExpCS(StringLiteralExpCS csElement) {
 		StringLiteralExp pivotElement = context.refreshModelElement(StringLiteralExp.class, PivotPackage.Literals.STRING_LITERAL_EXP, csElement);
 		List<String> names = csElement.getName();
@@ -258,30 +260,31 @@ public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor imple
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTupleLiteralExpCS(TupleLiteralExpCS csElement) {
 		TupleLiteralExp pivotElement = context.refreshModelElement(TupleLiteralExp.class, PivotPackage.Literals.TUPLE_LITERAL_EXP, csElement);	
 		context.refreshPivotList(TupleLiteralPart.class, pivotElement.getPart(), csElement.getOwnedParts());
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTupleLiteralPartCS(TupleLiteralPartCS csElement) {
 		refreshNamedElement(TupleLiteralPart.class, PivotPackage.Literals.TUPLE_LITERAL_PART, csElement);	
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTypeLiteralExpCS(TypeLiteralExpCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE, csElement, null);
 		return null;
 	}
 
-	public Continuation<?> visitUnaryOperatorCS(UnaryOperatorCS csElement) {
-		return visitOperatorCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitUnlimitedNaturalLiteralExpCS(UnlimitedNaturalLiteralExpCS csElement) {
 		UnlimitedNaturalLiteralExp pivotElement = context.refreshModelElement(UnlimitedNaturalLiteralExp.class, PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP, csElement);
 		pivotElement.setName("*");
@@ -289,6 +292,7 @@ public class EssentialOCLContainmentVisitor extends BaseContainmentVisitor imple
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitVariableCS(VariableCS csElement) {
 		refreshNamedElement(Variable.class, PivotPackage.Literals.VARIABLE, csElement);
 		return null;

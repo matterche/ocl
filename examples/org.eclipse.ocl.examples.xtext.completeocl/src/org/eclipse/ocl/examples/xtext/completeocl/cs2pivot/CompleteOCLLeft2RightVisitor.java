@@ -40,16 +40,13 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLLeft2RightVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 
-public class CompleteOCLLeft2RightVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Element, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
+public class CompleteOCLLeft2RightVisitor extends AbstractCompleteOCLLeft2RightVisitor
 {
 	public CompleteOCLLeft2RightVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLLeft2RightVisitor(context), context);
+		super(context);
 	}
 
 	@Override

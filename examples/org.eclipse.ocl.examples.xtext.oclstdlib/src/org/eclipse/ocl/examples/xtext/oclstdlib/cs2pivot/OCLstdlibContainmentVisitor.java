@@ -25,23 +25,19 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLContainmentVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 
-public class OCLstdlibContainmentVisitor extends EssentialOCLContainmentVisitor implements OCLstdlibCSVisitor<Continuation<?>>
+public class OCLstdlibContainmentVisitor extends AbstractOCLstdlibContainmentVisitor
 {
 	public OCLstdlibContainmentVisitor(CS2PivotConversion context) {
 		super(context);
 	}
 
+	@Override
 	public Continuation<?> visitLibClassCS(LibClassCS csElement) {
 		EClass eClass = null;
 		MetaTypeName metaType = csElement.getMetaTypeName();
@@ -59,10 +55,7 @@ public class OCLstdlibContainmentVisitor extends EssentialOCLContainmentVisitor 
 		return visitClassCS(csElement);
 	}
 
-	public Continuation<?> visitLibConstraintCS(LibConstraintCS csElement) {
-		return visitConstraintCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitLibIterationCS(LibIterationCS csElement) {
 		Iteration pivotElement = refreshTypedMultiplicityElement(Iteration.class, PivotPackage.Literals.ITERATION, csElement);
 		context.refreshTemplateSignature(csElement, pivotElement);
@@ -72,14 +65,7 @@ public class OCLstdlibContainmentVisitor extends EssentialOCLContainmentVisitor 
 		return null;
 	}
 
-	public Continuation<?> visitLibOperationCS(LibOperationCS csElement) {
-		return visitOperationCS(csElement);
-	}
-
-	public Continuation<?> visitLibPropertyCS(LibPropertyCS csElement) {
-		return visitAttributeCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitLibRootPackageCS(LibRootPackageCS csElement) {
 		@SuppressWarnings("unused")
 		Library pivotElement = refreshPackage(Library.class, PivotPackage.Literals.LIBRARY, csElement);
@@ -87,10 +73,7 @@ public class OCLstdlibContainmentVisitor extends EssentialOCLContainmentVisitor 
 		return null;
 	}
 
-	public Continuation<?> visitMetaTypeName(MetaTypeName csElement) {
-		return visiting(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitPrecedenceCS(PrecedenceCS csElement) {
 		Precedence pivotElement = refreshNamedElement(Precedence.class, PivotPackage.Literals.PRECEDENCE, csElement);
 		pivotElement.setAssociativity(csElement.isRightAssociative() ? AssociativityKind.RIGHT : AssociativityKind.LEFT);

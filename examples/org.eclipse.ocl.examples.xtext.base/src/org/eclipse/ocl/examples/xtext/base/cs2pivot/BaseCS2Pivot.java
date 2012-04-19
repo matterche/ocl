@@ -16,21 +16,10 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.xtext.base.attributes.ImportCSAttribution;
-import org.eclipse.ocl.examples.xtext.base.attributes.LibraryCSAttribution;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 
 /**
  * BaseCST2Pivot provides an extensible conversion from CS models to the pivot model.
@@ -77,77 +66,32 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
  */
 public class BaseCS2Pivot extends CS2Pivot
 {	
-	private static final class Factory implements CS2Pivot.Factory
-	{
-		private Factory() {
-			CS2Pivot.addFactory(this);
-			addUnresolvedProxyMessageProvider(ImportCSAttribution.INSTANCE);			
-			addUnresolvedProxyMessageProvider(LibraryCSAttribution.INSTANCE);			
-			addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());			
-			addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());			
-		}
-
-		public BaseContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
-			return new BaseContainmentVisitor(converter);
-		}
-
-		public BaseLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
-			return new BaseLeft2RightVisitor(converter);
-		}
-
-		public BasePostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
-			return new BasePostOrderVisitor(converter);
-		}
-
-		public BasePreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
-			return new BasePreOrderVisitor(converter);
-		}
-
-		public EPackage getEPackage() {
-			return BaseCSTPackage.eINSTANCE;
-		}
-	}
-	
-	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
-	{		
-		private SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider() {
-			super(BaseCSTPackage.Literals.PATH_ELEMENT_CS__ELEMENT);
-		}
-		
-		@Override
-		public String getMessage(EObject context, String linkText) {
-			PathElementCS pathElement = (PathElementCS)context;
-			EClassifier elementType = pathElement.getElementType();
-			PathNameCS pathName = pathElement.getPathName();
-			List<PathElementCS> path = pathName.getPath();
-			int index = path.indexOf(pathElement);
-			if (index > 0) {
-				Element pathScope = path.get(index-1).getElement();
-				if ((pathScope == null) || pathScope.eIsProxy()) {
-					return null;		// Suppress message for child when parent has error
-				}
-			}
-			String element = elementType != null ? elementType.getName() : "unknown";
-			return getMessageBinder().bind(context, OCLMessages.Unresolved_ERROR_, element, linkText);
-		}
-	}
-	
-	private static final class TypedTypeRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
-	{		
-		private TypedTypeRefCSTypeUnresolvedProxyMessageProvider() {
-			super(BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE);
-		}
-		
-		@Override
-		public String getMessage(EObject context, String linkText) {
-			return getMessageBinder().bind(context, OCLMessages.UnresolvedType_ERROR_, linkText);
-		}
-	}
-
-	public static CS2Pivot.Factory FACTORY = new Factory();
-
 	public BaseCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
 			MetaModelManager metaModelManager) {
 		super(cs2pivotResourceMap, metaModelManager);
+	}
+
+	public BaseCS2Pivot(BaseCS2Pivot cs2pivot) {
+		super(cs2pivot);
+	}
+
+	@Override
+	protected BaseContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+		return new BaseContainmentVisitor(converter);
+	}
+
+	@Override
+	protected BaseLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+		return new BaseLeft2RightVisitor(converter);
+	}
+
+	@Override
+	protected BasePostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
+		return new BasePostOrderVisitor(converter);
+	}
+
+	@Override
+	protected BasePreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
+		return new BasePreOrderVisitor(converter);
 	}
 }

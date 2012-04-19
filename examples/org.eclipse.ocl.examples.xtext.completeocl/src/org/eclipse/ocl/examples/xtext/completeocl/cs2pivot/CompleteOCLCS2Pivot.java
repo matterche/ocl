@@ -21,28 +21,23 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.completeocl.attributes.IncludeCSAttribution;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 
 public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 {	
-	private static final class Factory implements CS2Pivot.Factory, MetaModelManager.Factory
+	public static MetaModelManager.Factory FACTORY = new Factory();
+
+	private static final class Factory implements MetaModelManager.Factory
 	{
 		private Factory() {
-			EssentialOCLCS2Pivot.FACTORY.getClass();
-			CS2Pivot.addFactory(this);
 			MetaModelManager.addFactory(this);
-			addUnresolvedProxyMessageProvider(IncludeCSAttribution.INSTANCE);			
 		}
 
 		public boolean canHandle(Resource resource) {
@@ -50,26 +45,6 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 		}
 
 		public void configure(ResourceSet resourceSet) {}
-
-		public CompleteOCLContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
-			return new CompleteOCLContainmentVisitor(converter);
-		}
-
-		public CompleteOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
-			return new CompleteOCLLeft2RightVisitor(converter);
-		}
-
-		public CompleteOCLPostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
-			return new CompleteOCLPostOrderVisitor(converter);
-		}
-
-		public CompleteOCLPreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
-			return new CompleteOCLPreOrderVisitor(converter);
-		}
-
-		public EPackage getEPackage() {
-			return CompleteOCLCSTPackage.eINSTANCE;
-		}
 
 		public URI getPackageURI(EObject eObject) {
 			return null;
@@ -93,10 +68,28 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 			}
 		}
 	}
-
-	public static CS2Pivot.Factory FACTORY = new Factory();
 		
 	public CompleteOCLCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		super(cs2pivotResourceMap, metaModelManager);
+	}
+
+	@Override
+	public CompleteOCLContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+		return new CompleteOCLContainmentVisitor(converter);
+	}
+
+	@Override
+	public CompleteOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+		return new CompleteOCLLeft2RightVisitor(converter);
+	}
+
+	@Override
+	public CompleteOCLPostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
+		return new CompleteOCLPostOrderVisitor(converter);
+	}
+
+	@Override
+	public CompleteOCLPreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
+		return new CompleteOCLPreOrderVisitor(converter);
 	}
 }

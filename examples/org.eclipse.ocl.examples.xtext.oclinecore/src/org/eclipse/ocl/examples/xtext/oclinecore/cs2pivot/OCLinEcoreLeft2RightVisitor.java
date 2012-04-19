@@ -34,17 +34,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLLeft2RightVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
-public class OCLinEcoreLeft2RightVisitor
-	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Element, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
+public class OCLinEcoreLeft2RightVisitor extends AbstractOCLinEcoreLeft2RightVisitor
 {
 	public OCLinEcoreLeft2RightVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLLeft2RightVisitor(context), context);
+		super(context);
 	}
 
 	@Override

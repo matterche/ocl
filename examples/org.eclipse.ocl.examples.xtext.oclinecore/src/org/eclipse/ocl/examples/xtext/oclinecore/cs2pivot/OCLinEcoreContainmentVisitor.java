@@ -15,23 +15,10 @@
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLContainmentVisitor;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.util.OCLinEcoreCSVisitor;
 
-public class OCLinEcoreContainmentVisitor extends EssentialOCLContainmentVisitor implements OCLinEcoreCSVisitor<Continuation<?>>
+public class OCLinEcoreContainmentVisitor extends AbstractOCLinEcoreContainmentVisitor
 {
 	public OCLinEcoreContainmentVisitor(CS2PivotConversion context) {
 		super(context);
-	}
-
-	public Continuation<?> visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS csElement) {
-		return visitConstraintCS(csElement);
-	}
-
-	public Continuation<?> visitOCLinEcoreSpecificationCS(OCLinEcoreSpecificationCS csElement) {
-		return visitExpSpecificationCS(csElement);
 	}
 }

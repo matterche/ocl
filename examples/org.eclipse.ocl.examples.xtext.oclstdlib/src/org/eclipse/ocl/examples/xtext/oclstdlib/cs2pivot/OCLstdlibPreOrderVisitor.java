@@ -34,18 +34,15 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuations;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrderVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 import org.eclipse.xtext.common.types.JvmType;
 
-public class OCLstdlibPreOrderVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
+public class OCLstdlibPreOrderVisitor extends AbstractOCLstdlibPreOrderVisitor
 {
 	protected static class ClassifierInstanceTypeContinuation extends SingleContinuation<LibClassCS>
 	{
@@ -165,7 +162,7 @@ public class OCLstdlibPreOrderVisitor
 	}
 
 	public OCLstdlibPreOrderVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLPreOrderVisitor(context), context);
+		super(context);
 	}
 
 	@Override

@@ -20,15 +20,12 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
-public class OCLinEcorePostOrderVisitor
-	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPostOrderVisitor>
+public class OCLinEcorePostOrderVisitor extends AbstractOCLinEcorePostOrderVisitor
 {
 	public OCLinEcorePostOrderVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLPostOrderVisitor(context), context);
+		super(context);
 	}
 
 	@Override

@@ -18,15 +18,12 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
-public class OCLstdlibPostOrderVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPostOrderVisitor>
+public class OCLstdlibPostOrderVisitor extends AbstractOCLstdlibPostOrderVisitor
 {		
 	public OCLstdlibPostOrderVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLPostOrderVisitor(context), context);
+		super(context);
 	}
 
 /*	@Override

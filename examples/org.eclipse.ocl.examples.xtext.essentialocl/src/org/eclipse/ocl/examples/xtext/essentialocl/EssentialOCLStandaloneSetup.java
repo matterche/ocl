@@ -20,7 +20,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.xtext.base.BaseStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScoping;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 
@@ -44,7 +43,7 @@ public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGene
 		BaseStandaloneSetup.doSetup();
 		EssentialOCLScoping.init();
 		EssentialOCLCS2MonikerVisitor.FACTORY.getClass();
-		EssentialOCLCS2Pivot.FACTORY.getClass();
+//		EssentialOCLCS2Pivot.FACTORY.getClass();
 //		EssentialOCLPivot2CS.FACTORY.getClass();
 	}
 	

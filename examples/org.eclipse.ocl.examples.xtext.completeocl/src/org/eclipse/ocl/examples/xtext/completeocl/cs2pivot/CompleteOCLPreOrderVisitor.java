@@ -46,13 +46,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrderVisitor;
 
-public class CompleteOCLPreOrderVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
+public class CompleteOCLPreOrderVisitor extends AbstractCompleteOCLPreOrderVisitor
 {	
-
 	protected class DefCSContinuation extends SingleContinuation<DefCS>
 	{
 		private DefCSContinuation(CS2PivotConversion context, DefCS csElement) {
@@ -217,7 +213,7 @@ public class CompleteOCLPreOrderVisitor
 	protected final MetaModelManager metaModelManager;
 
 	public CompleteOCLPreOrderVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLPreOrderVisitor(context), context);
+		super(context);
 		metaModelManager = context.getMetaModelManager();
 	}
 

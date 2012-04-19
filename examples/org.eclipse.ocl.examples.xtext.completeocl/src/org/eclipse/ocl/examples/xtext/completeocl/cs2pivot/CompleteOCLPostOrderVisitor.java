@@ -36,12 +36,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstrai
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
-import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCS2MonikerVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPostOrderVisitor;
 
-public class CompleteOCLPostOrderVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPostOrderVisitor>
+public class CompleteOCLPostOrderVisitor extends AbstractCompleteOCLPostOrderVisitor
 {
 	public static final CS2PivotConversion.CacheKey<Map<NamedElement, List<ContextConstraintCS>>> rulesKey = new CS2PivotConversion.CacheKey<Map<NamedElement, List<ContextConstraintCS>>>("rules");
 	
@@ -96,7 +93,7 @@ public class CompleteOCLPostOrderVisitor
 	}
 	
 	public CompleteOCLPostOrderVisitor(CS2PivotConversion context) {
-		super(new EssentialOCLPostOrderVisitor(context), context);
+		super(context);
 	}
 
 	@Override
