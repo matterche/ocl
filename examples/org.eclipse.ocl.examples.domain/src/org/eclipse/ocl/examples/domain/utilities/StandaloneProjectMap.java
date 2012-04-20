@@ -544,12 +544,16 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 				try {
 					if (jarFile != null) {
 						ZipEntry entry = jarFile.getEntry(genModel);
-						inputStream = jarFile.getInputStream(entry);
+						if (entry != null) {
+							inputStream = jarFile.getInputStream(entry);
+						}
 					}
 					else {
 						inputStream = new FileInputStream(genModelURI.toString().substring(5));		// Lose file:
 					}
-					saxParser.parse(inputStream, genModelEcorePackageHandler);
+					if (inputStream != null) {
+						saxParser.parse(inputStream, genModelEcorePackageHandler);
+					}
 				} catch (Exception e) {
 					throw new SAXParseException("Failed to parse " + locationURI, null, e);
 				} finally {
