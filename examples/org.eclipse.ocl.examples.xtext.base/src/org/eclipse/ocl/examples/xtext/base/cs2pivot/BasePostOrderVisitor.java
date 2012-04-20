@@ -83,7 +83,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 	
 	public BasePostOrderVisitor(CS2PivotConversion context) {
-		super(context);		// NB this class is stateless since separate instances exist per CS package
+		super(context);
 	}
 
 	protected TemplateableElementCS getTemplateableElementContainer(ElementCS csElement) {

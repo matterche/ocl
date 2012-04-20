@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -60,7 +59,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
@@ -70,9 +68,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
@@ -82,22 +78,21 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitution
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.util.AbstractBaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
-public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?>, CS2PivotConversion>
+public class BaseContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2PivotConversion>
 {
 	protected final MetaModelManager metaModelManager;
 
 	public BaseContainmentVisitor(CS2PivotConversion context) {
-		super(context);		// NB this class is stateless since separate instances exist per CS package
+		super(context);
 		metaModelManager = context.getMetaModelManager();
 	}
 
@@ -205,19 +200,18 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return pivotElement;
 	}
 
+	@Override
 	public Continuation<?> visitAnnotationCS(AnnotationCS csElement) {
 		refreshNamedElement(Annotation.class, PivotPackage.Literals.ANNOTATION, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitAnnotationElementCS(AnnotationElementCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitAttributeCS(AttributeCS csElement) {
-		return visitStructuralFeatureCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitClassCS(ClassCS csElement) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
 			PivotPackage.Literals.CLASS, csElement);
@@ -231,19 +225,18 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
-	public Continuation<?> visitClassifierCS(ClassifierCS csElement) {
-		return visitNamedElementCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitCollectionTypeRefCS(CollectionTypeRefCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitConstraintCS(ConstraintCS csElement) {
 		refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitDataTypeCS(DataTypeCS csElement) {
 		DataType pivotElement = refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, csElement);
 		refreshSerializable(pivotElement, csElement);
@@ -251,26 +244,31 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitDetailCS(DetailCS csElement) {
 		refreshNamedElement(Detail.class, PivotPackage.Literals.DETAIL, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitDocumentationCS(DocumentationCS csElement) {
 		refreshNamedElement(Annotation.class, PivotPackage.Literals.ANNOTATION, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitElementCS(ElementCS csElement) {
 // FIXME		return visiting(csElement);
 		System.out.println("Unsupported " + csElement.eClass().getName() + " for CS2Pivot Containment pass");
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitElementRefCS(ElementRefCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitEnumerationCS(EnumerationCS csElement) {
 		org.eclipse.ocl.examples.pivot.Enumeration pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Enumeration.class,
 			PivotPackage.Literals.ENUMERATION, csElement);
@@ -280,47 +278,47 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitEnumerationLiteralCS(EnumerationLiteralCS csElement) {
 		EnumerationLiteral pivotElement = refreshNamedElement(EnumerationLiteral.class, PivotPackage.Literals.ENUMERATION_LITERAL, csElement);
 		pivotElement.setValue(BigInteger.valueOf(csElement.getValue()));
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitImportCS(ImportCS csElement) {
 //		csElement.getNamespace();					// Resolve the proxy to perform the import.
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitLambdaTypeCS(LambdaTypeCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitLibraryCS(LibraryCS csElement) {
 //		csElement.getPackage();						// Resolve the proxy to perform the import.
 		return null;
 	}
 
-	public Continuation<?> visitModelElementCS(ModelElementCS csElement) {
-		return visitPivotableElementCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitModelElementRefCS(ModelElementRefCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.ELEMENT, csElement, null);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitMultiplicityBoundsCS(MultiplicityBoundsCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitMultiplicityStringCS(MultiplicityStringCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitNamedElementCS(NamedElementCS csElement) {
-		return visitModelElementCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitOperationCS(OperationCS csElement) {
 		Operation pivotElement = refreshTypedMultiplicityElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 		context.refreshTemplateSignature(csElement, pivotElement);
@@ -328,42 +326,41 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitPackageCS(PackageCS csElement) {
 		refreshPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitParameterCS(ParameterCS csElement) {
 		refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitPathElementCS(PathElementCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitPathNameCS(PathNameCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitPivotableElementCS(PivotableElementCS csElement) {
-		return visitElementCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitReferenceCS(ReferenceCS csElement) {
-		return visitStructuralFeatureCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitRootPackageCS(RootPackageCS csElement) {
 		importPackages(csElement);
 		refreshPackage(Model.class, PivotPackage.Literals.MODEL, csElement);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitSpecificationCS(SpecificationCS csElement) {
 		OpaqueExpression pivotElement = context.refreshModelElement(OpaqueExpression.class, PivotPackage.Literals.OPAQUE_EXPRESSION, csElement);
 		pivotElement.getLanguage().add(PivotConstants.OCL_LANGUAGE);
@@ -372,6 +369,7 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitStructuralFeatureCS(StructuralFeatureCS csElement) {
 		Property pivotElement = refreshTypedMultiplicityElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
 		List<String> qualifiers = csElement.getQualifier();
@@ -393,10 +391,12 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTemplateBindingCS(TemplateBindingCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTemplateParameterCS(TemplateParameterCS csElement) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
 			PivotPackage.Literals.CLASS, csElement);
@@ -408,10 +408,12 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTemplateParameterSubstitutionCS(TemplateParameterSubstitutionCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTemplateSignatureCS(TemplateSignatureCS csElement) {
 		TemplateSignature pivotElement = context.refreshModelElement(TemplateSignature.class, PivotPackage.Literals.TEMPLATE_SIGNATURE, csElement);
 		List<TemplateParameter> newPivotTemplateParameters = new ArrayList<TemplateParameter>();
@@ -425,35 +427,34 @@ public class BaseContainmentVisitor extends AbstractBaseCSVisitor<Continuation<?
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTuplePartCS(TuplePartCS csElement) {
-		return visitTypedElementCS(csElement);
+		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTupleTypeCS(TupleTypeCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitTypeParameterCS(TypeParameterCS csElement) {
-		return visitTemplateParameterCS(csElement);
-	}
 
+	@Override
 	public Continuation<?> visitTypeRefCS(TypeRefCS csElement) {
 		return null;
 	}
 
-	public Continuation<?> visitTypedElementCS(TypedElementCS csElement) {
-		return visitNamedElementCS(csElement);
-	}
-
+	@Override
 	public Continuation<?> visitTypedRefCS(TypedRefCS csElement) {
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitTypedTypeRefCS(TypedTypeRefCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE, csElement, null);
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visitWildcardTypeRefCS(WildcardTypeRefCS csElement) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class,
 			PivotPackage.Literals.CLASS, null);

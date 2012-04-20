@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Element, CS2PivotConversion>
 {
 	public BaseLeft2RightVisitor(CS2PivotConversion context) {
-		super(context);		// NB this class is stateless since separate instances exist per CS package
+		super(context);
 	}
 
 	@Override
