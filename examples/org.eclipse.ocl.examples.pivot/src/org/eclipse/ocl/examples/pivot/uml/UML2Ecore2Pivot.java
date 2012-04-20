@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
@@ -191,6 +192,7 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	 * @return a failure reason, null if successful
 	 */
 	public static String initialize(ResourceSet resourceSet) {
+		UMLResourcesUtil.init(resourceSet);
 		final String resourcesPluginId = "org.eclipse.uml2.uml.resources"; //$NON-NLS-1$
 		String resourcesLocation = null;
 		StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(resourceSet);
@@ -205,11 +207,6 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 		}
 		if (resourcesLocation == null)
 			return "'" + resourcesPluginId + "' not found on class-path"; //$NON-NLS-1$
-		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
-			? resourceSet.getResourceFactoryRegistry()
-			: Resource.Factory.Registry.INSTANCE;
-		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 		Map<URI, URI> uriMap = resourceSet != null
 			? resourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		

@@ -66,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 public class UML2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
 {
@@ -130,17 +131,13 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	 * @since 3.0
 	 */
 	public static String initialize(ResourceSet resourceSet) {
+		UMLResourcesUtil.init(resourceSet);
 		String oclLocation = System.getProperty("org.eclipse.ocl.uml"); //$NON-NLS-1$
 		if (oclLocation == null)
 			return "'org.eclipse.ocl.uml' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
 		String resourcesLocation = System.getProperty("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
 		if (resourcesLocation == null)
 			return "'org.eclipse.uml2.uml.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
-		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
-			? resourceSet.getResourceFactoryRegistry()
-			: Resource.Factory.Registry.INSTANCE;
-		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 		Map<URI, URI> uriMap = resourceSet != null
 			? resourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		

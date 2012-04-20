@@ -42,6 +42,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -89,6 +90,7 @@ public class OCL extends org.eclipse.ocl.OCL<
 	 * @since 3.0
 	 */
 	public static String initialize(ResourceSet resourceSet) {
+		UMLResourcesUtil.init(resourceSet);
 		final String oclPluginId = "org.eclipse.ocl.uml"; //$NON-NLS-1$
 		final String resourcesPluginId = "org.eclipse.uml2.uml.resources"; //$NON-NLS-1$
 		String oclLocation = System.getProperty(oclPluginId);
@@ -109,11 +111,6 @@ public class OCL extends org.eclipse.ocl.OCL<
 				}
 			}
 		}
-		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
-			? resourceSet.getResourceFactoryRegistry()
-			: Resource.Factory.Registry.INSTANCE;
-		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 		Map<URI, URI> uriMap = resourceSet != null
 			? resourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		
