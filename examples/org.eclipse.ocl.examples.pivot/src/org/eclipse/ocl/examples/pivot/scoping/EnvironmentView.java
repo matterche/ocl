@@ -24,12 +24,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -181,6 +183,26 @@ public class EnvironmentView
 		matchers.add(filter);
 	}
 
+	public void addImportedElement(URI baseURI) {
+		if (baseURI != null) {
+	    	if (PivotUtil.isPivotURI(baseURI)) {
+	    		baseURI = PivotUtil.getNonPivotURI(baseURI);
+	    	}
+	    	if (baseURI != null) {
+	    		String name = getName();
+				if (name != null) {
+					URI uri = URI.createURI(name).resolve(baseURI);
+					try {
+						Element importedElement = metaModelManager.loadResource(uri, null, null);				
+						addElement(name, importedElement);
+					} catch (Exception e) {
+						// if it doesn't load just treat it as unresolved
+					}
+				}
+	    	}
+		}
+	}
+
 	public void addLibContents(Type libType, ScopeView scopeView) {
 		if (libType == null) {
 			return;
@@ -214,6 +236,20 @@ public class EnvironmentView
 			}
 		}
 		return additions;
+	}
+
+	public void addRootPackages() {
+		for (org.eclipse.ocl.examples.pivot.Package pPackage : metaModelManager.getPackageManager().getAllPackages()) {
+			if (pPackage instanceof Model) {
+				addElements(pPackage.getNestedPackage());
+			}
+			else {
+				String nsURI = pPackage.getNsURI();
+				if (nsURI != null) {
+					addElement(nsURI, pPackage);
+				}
+			}
+		}
 	}
 
 	public int computeLookups(Element target, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
