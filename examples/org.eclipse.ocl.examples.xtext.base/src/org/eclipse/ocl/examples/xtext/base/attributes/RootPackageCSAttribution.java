@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.base.attributes;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -58,32 +58,14 @@ public class RootPackageCSAttribution extends AbstractRootCSAttribution
 				}
 			}
 			if (!environmentView.hasFinalResult()) {
-				for (org.eclipse.ocl.examples.pivot.Package pPackage : metaModelManager.getPackageManager().getAllPackages()) {
-					String nsURI = pPackage.getNsURI();
-					if (nsURI != null) {
-						environmentView.addElement(nsURI, pPackage);
-					}
-				}
+				environmentView.addRootPackages();
 			}
 			if ((pivotPackage != null) && !environmentView.hasFinalResult()) {
-				URI baseURI = pivotPackage.eResource().getURI();
-            	if (baseURI != null) {
-                	if (PivotUtil.isPivotURI(baseURI)) {
-                		baseURI = PivotUtil.getNonPivotURI(baseURI);
-                	}
-                	if (baseURI != null) {
-                		String name = environmentView.getName();
-						if (name != null) {
-							URI uri = URI.createURI(name).resolve(baseURI);
-							try {
-								Element importedElement = metaModelManager.loadResource(uri, null, null);				
-								environmentView.addElement(name, importedElement);
-							} catch (Exception e) {
-								// if it doesn't load just treat it as unresolved
-							}
-						}
-                	}
-            	}
+				Resource eResource = pivotPackage.eResource();
+				if (eResource != null) {
+					URI baseURI = eResource.getURI();
+		           	environmentView.addImportedElement(baseURI);
+				}
 			}
 		}
 		if (environmentView.accepts(PivotPackage.Literals.PRECEDENCE)) {

@@ -290,17 +290,18 @@ public class ImportTests extends XtextTestCase
 		createTestImport_OCLinEcore_Bug353793_Files();
 		String testFileBad =
 				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
-				"import A0 : 'Bug353793A.oclinecore';\n" +
-				"import 'Bug353793B.oclinecore';\n" +
-				"import 'Bug353793E.ecore';\n" +
-				"import F0 : 'Bug353793F.ecore';\n" +
+				"import A0 : 'Bug353793A.oclinecore';\n" +	// package A1 : A2 = 'http://A3'{ class A; }
+				"import 'Bug353793B.oclinecore';\n" +		// package B1 : B2 = 'http://B3'{ class B; }
+				"import 'Bug353793E.ecore';\n" +			// package E1 : E2 = 'http://E3'{ class E; }
+				"import F0 : 'Bug353793F.ecore';\n" +		// package F1 : F2 = 'http://F3'{ class F; }
 				"import G0 : 'Bug353793F.ecore#/';\n" +
 				"package C1 : C2 = 'C3'\n" +
 				"{\n" +
 				"    class AD0 extends A0::A;\n" +
 				"    class AD1 extends A1::A;\n" +
-				"    class AD2 extends A2::A;\n" +
-				"    class AD3 extends A3::A;\n" +
+				"    class AD2 extends _'http://A3'::A;\n" +
+				"    class AD3 extends A2::A;\n" +
+				"    class AD4 extends A3::A;\n" +
 				"    class BD0 extends B0::B;\n" +
 				"    class BD01 extends B0::B1::B;\n" +
 				"    class BD2 extends B2::B;\n" +
@@ -310,7 +311,7 @@ public class ImportTests extends XtextTestCase
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
 		//
-		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A1"));
+//		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A1"));
 //		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
 		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A2"));

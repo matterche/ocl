@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -57,6 +58,7 @@ public class ContextCSAttribution extends AbstractRootCSAttribution
 
 	@Override
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		ContextCS targetElement = (ContextCS)target;
 		environmentView.addFilter(NoImplicitProperties.INSTANCE);
 		try {
@@ -91,7 +93,16 @@ public class ContextCSAttribution extends AbstractRootCSAttribution
 				}
 			}
 			if (!environmentView.hasFinalResult()) {
-				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+				environmentView.addRootPackages();
+			}
+			if ((pivot != null) && !environmentView.hasFinalResult()) {
+				Resource eResource = pivot.eResource();
+				if (eResource != null) {
+					URI baseURI = eResource.getURI();
+		           	environmentView.addImportedElement(baseURI);
+				}
+			}
+			if (!environmentView.hasFinalResult()) {
 				environmentView.addElementsOfScope(metaModelManager.getOclAnyType().getPackage(), scopeView);
 			}
 			return super.computeLookup(targetElement, environmentView, scopeView);
