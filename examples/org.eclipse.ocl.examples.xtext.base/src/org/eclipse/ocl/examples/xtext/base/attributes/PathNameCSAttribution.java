@@ -19,9 +19,12 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.examples.pivot.scoping.PivotScopeView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 
@@ -35,26 +38,32 @@ public class PathNameCSAttribution extends AbstractAttribution
 		EObject child = scopeView.getChild();
 		List<PathElementCS> path = targetElement.getPath();
 		int index = path.indexOf(child);
-		if (index <= 0) {						// First path element is resolved in parent scope
-			return scopeView.getParent();
-		}
-		else {									// Subsequent elements in previous scope
-			Element parent = path.get(index-1).getElement();
-			if ((parent != null) && !parent.eIsProxy()) {
-				ScopeFilter scopeFilter = targetElement.getScopeFilter();
-				try {
-					if (scopeFilter != null) {
-						environmentView.addFilter(scopeFilter);
-					}
-					environmentView.computeLookups(parent, null, null, scopeView.getTargetReference());
+		ScopeFilter scopeFilter = null;
+		try {
+			if (index >= path.size()-1) {			// Last element may have a scope filter
+				scopeFilter = targetElement.getScopeFilter();
+				if (scopeFilter != null) {
+					environmentView.addFilter(scopeFilter);
 				}
-				finally {
-					if (scopeFilter != null) {
-						environmentView.removeFilter(scopeFilter);
-					}
+			}
+			if (index <= 0) {						// First path element is resolved in parent scope
+				environmentView.computeLookups(scopeView.getParent());
+			}
+			else {									// Subsequent elements in previous scope
+				Element parent = path.get(index-1).getElement();
+				if ((parent != null) && !parent.eIsProxy()) {
+//					environmentView.computeLookups(parent, null, null, scopeView.getTargetReference());
+					Attribution parentAttribution = PivotUtil.getAttribution(parent);
+					ScopeView parentScopeView = new PivotScopeView(environmentView.getMetaModelManager(), parent, parentAttribution, null, null, scopeView.getTargetReference());
+					environmentView.addElementsOfScope(parent, parentScopeView);
 				}
 			}
 			return null;
+		}
+		finally {
+			if (scopeFilter != null) {
+				environmentView.removeFilter(scopeFilter);
+			}
 		}
 	}
 }
