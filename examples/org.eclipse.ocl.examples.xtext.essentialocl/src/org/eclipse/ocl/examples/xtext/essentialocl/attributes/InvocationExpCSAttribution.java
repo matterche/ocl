@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
@@ -139,7 +140,7 @@ public class InvocationExpCSAttribution extends AbstractAttribution
 					type = source.getType();
 				}
 			}
-			ScopeFilter filter = new OperationFilter(environmentView.getMetaModelManager(), type, targetElement);
+			ScopeFilter filter = createInvocationFilter(environmentView.getMetaModelManager(), targetElement, type);
 			try {
 				environmentView.addFilter(filter);
 				BaseScopeView.computeLookups(environmentView, scopeTarget, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);
@@ -149,5 +150,9 @@ public class InvocationExpCSAttribution extends AbstractAttribution
 				environmentView.removeFilter(filter);
 			}
 		}
+	}
+
+	protected ScopeFilter createInvocationFilter(MetaModelManager metaModelManager, InvocationExpCS targetElement, Type type) {
+		return new OperationFilter(metaModelManager, type, targetElement);
 	}
 }

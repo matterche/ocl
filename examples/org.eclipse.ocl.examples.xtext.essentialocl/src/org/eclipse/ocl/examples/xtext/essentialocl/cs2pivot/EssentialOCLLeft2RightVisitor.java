@@ -516,20 +516,24 @@ public class EssentialOCLLeft2RightVisitor extends AbstractEssentialOCLLeft2Righ
 			ModelElementCS csParent = EssentialOCLUtils.getPivotingParentCS(csChild);
 			ModelElementCS csPivotedParent = EssentialOCLUtils.getPivotedCS(csParent);
 			VariableDeclaration implicitSource = getImplicitSource(csPivotedParent, feature);
-			VariableExp sourceAccess = PivotFactory.eINSTANCE.createVariableExp();
-			sourceAccess.setReferredVariable(implicitSource);
-			context.setType(sourceAccess, implicitSource.getType());
-			sourceAccess.setImplicit(true);
-			source = sourceAccess;
+			if (implicitSource != null) {
+				VariableExp sourceAccess = PivotFactory.eINSTANCE.createVariableExp();
+				sourceAccess.setReferredVariable(implicitSource);
+				context.setType(sourceAccess, implicitSource.getType());
+				sourceAccess.setImplicit(true);
+				source = sourceAccess;
+			}
 		}
-		Type actualSourceType = source.getType();
-		if (isCollectionNavigation && !(actualSourceType instanceof CollectionType)) {
-			OperationCallExp expression = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csOperator);
-			expression.setImplicit(true);
-			expression.setSource(source);
-			expression.setName("oclAsSet");
-			resolveOperationCall(expression, csOperator, new ImplicitCollectionFilter(metaModelManager, actualSourceType));
-			source = expression;
+		if (source != null) {
+			Type actualSourceType = source.getType();
+			if (isCollectionNavigation && !(actualSourceType instanceof CollectionType)) {
+				OperationCallExp expression = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csOperator);
+				expression.setImplicit(true);
+				expression.setSource(source);
+				expression.setName("oclAsSet");
+				resolveOperationCall(expression, csOperator, new ImplicitCollectionFilter(metaModelManager, actualSourceType));
+				source = expression;
+			}
 		}
 		return source;
 	}
@@ -582,8 +586,12 @@ public class EssentialOCLLeft2RightVisitor extends AbstractEssentialOCLLeft2Righ
 			return checkImplementation(csNavigatingExp, operation, innerExpression, outerExpression);
 		}
 		else {
-			return context.addBadExpressionError(csNamedExp, "Operation name expected");
+			return resolveUnknownOperation(csNamedExp);
 		}
+	}
+
+	protected OclExpression resolveUnknownOperation(NamedExpCS csNamedExp) {
+		return context.addBadExpressionError(csNamedExp, "Operation name expected");
 	}
 
 	/**

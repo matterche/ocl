@@ -42,10 +42,10 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRol
 
 public class OperationFilter extends AbstractOperationFilter
 {
-	private final List<NavigatingArgCS> csArguments;
-	private final int iterators;
-	private final int accumulators;
-	private final int expressions;
+	protected final List<NavigatingArgCS> csArguments;
+	protected final int iterators;
+	protected final int accumulators;
+	protected final int expressions;
 	
 	public OperationFilter(MetaModelManager metaModelManager, Type sourceType, InvocationExpCS csNavigatingExp) {
 		super(metaModelManager, sourceType);
