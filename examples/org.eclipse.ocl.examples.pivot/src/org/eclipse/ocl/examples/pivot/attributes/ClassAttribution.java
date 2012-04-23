@@ -34,21 +34,6 @@ public class ClassAttribution extends AbstractAttribution
 {
 	public static final ClassAttribution INSTANCE = new ClassAttribution();
 
-	public static void addAllContents(EnvironmentView environmentView, Type forType, ScopeView scopeView,
-			Type pivotClass, Boolean selectStatic, Set<Type> alreadyVisited) {
-		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		environmentView.addNamedElements(forType, metaModelManager.getLocalOperations(pivotClass, selectStatic));
-		environmentView.addNamedElements(forType, metaModelManager.getLocalProperties(pivotClass, selectStatic));
-		alreadyVisited.add(pivotClass);
-//		if (!environmentView.hasFinalResult()) {
-			for (Type superClass : metaModelManager.getSuperClasses(pivotClass)) {
-				if (!alreadyVisited.contains(superClass)) {
-					addAllContents(environmentView, forType, scopeView, superClass, selectStatic, alreadyVisited);
-				}
-			}
-//		}
-	}
-
 	@Override
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Class targetClass = (org.eclipse.ocl.examples.pivot.Class) target;
@@ -82,13 +67,13 @@ public class ClassAttribution extends AbstractAttribution
 				Set<Type> alreadyVisitedMetaTypes = new HashSet<Type>();
 				Type instanceType = ((ClassifierType)target).getInstanceType();
 				if ((instanceType != null) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
-					addAllContents(environmentView, instanceType, scopeView, instanceType, Boolean.TRUE, alreadyVisitedMetaTypes);
+					environmentView.addAllContents(instanceType, scopeView, instanceType, Boolean.TRUE, alreadyVisitedMetaTypes);
 				}
 			}	// FIXME don't shorten non-static search after static match
 			Set<Type> alreadyVisitedTypes = new HashSet<Type>();
 //			org.eclipse.ocl.examples.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME
 			for (Type superClass : metaModelManager.getSuperClasses(targetClass)) {
-				addAllContents(environmentView, targetClass, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
+				environmentView.addAllContents(targetClass, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
 			}
 //		}
 		return scopeView.getParent();

@@ -34,7 +34,7 @@ public class EnumerationAttribution extends AbstractAttribution
 		environmentView.addElementsOfScope(metaModelManager.getEnumerationType(), scopeView);
 		if (!environmentView.hasFinalResult()) {
 			environmentView.addElementsOfScope(metaModelManager.getOclAnyType(), scopeView);
-		}	// FIXME Use ClassAttribution.addInheritedContents consistently
+		}	// FIXME Use EnvironmentView.addInheritedContents consistently
 		return scopeView.getParent();
 	}
 }

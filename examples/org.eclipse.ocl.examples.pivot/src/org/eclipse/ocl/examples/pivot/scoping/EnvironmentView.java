@@ -86,6 +86,31 @@ public class EnvironmentView
 		return PivotUtil.conformsTo(requiredType, eClass);
 	}
 
+	public void addAllContents(Type forType, ScopeView scopeView, Type pivotClass, Boolean selectStatic, Set<Type> alreadyVisited) {
+		addNamedElements(forType, metaModelManager.getLocalOperations(pivotClass, selectStatic));
+		addNamedElements(forType, metaModelManager.getLocalProperties(pivotClass, selectStatic));
+		alreadyVisited.add(pivotClass);
+		for (Type superClass : metaModelManager.getSuperClasses(pivotClass)) {
+			if (!alreadyVisited.contains(superClass)) {
+				addAllContents(forType, scopeView, superClass, selectStatic, alreadyVisited);
+			}
+		}
+	}
+
+	public void addAllProperties(Type type, Boolean selectStatic) {
+		addAllProperties(type, type, selectStatic, new HashSet<Type>());
+	}
+
+	protected void addAllProperties(Type forType, Type pivotClass, Boolean selectStatic, Set<Type> alreadyVisited) {
+		addNamedElements(metaModelManager.getLocalProperties(pivotClass, selectStatic));
+		alreadyVisited.add(pivotClass);
+		for (Type superClass : metaModelManager.getSuperClasses(pivotClass)) {
+			if (!alreadyVisited.contains(superClass)) {
+				addAllProperties(forType, superClass, selectStatic, alreadyVisited);
+			}
+		}
+	}
+
 	/**
 	 * Add an element with an elementName to the view
 	 * 
@@ -200,6 +225,19 @@ public class EnvironmentView
 					}
 				}
 	    	}
+		}
+	}
+
+	public void addInheritedContents(org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
+		List<Type> superClasses = target.getSuperClass();
+		if (superClasses.size() > 0) {
+			for (Type superClass : superClasses) {
+					addElementsOfScope(superClass, scopeView);
+			}
+		}
+		else {
+			Type libType = metaModelManager.getAnyClassifierType();
+			addLibContents(libType, scopeView);
 		}
 	}
 

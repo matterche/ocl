@@ -16,8 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.base.attributes;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -33,20 +31,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 public class ClassCSAttribution extends AbstractAttribution
 {
 	public static final ClassCSAttribution INSTANCE = new ClassCSAttribution();
-
-	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
-		List<Type> superClasses = target.getSuperClass();
-		if (superClasses.size() > 0) {
-			for (Type superClass : superClasses) {
-					environmentView.addElementsOfScope(superClass, scopeView);
-			}
-		}
-		else {
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			Type libType = metaModelManager.getAnyClassifierType();
-			environmentView.addLibContents(libType, scopeView);
-		}
-	}
 
 	@Override
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
@@ -79,7 +63,7 @@ public class ClassCSAttribution extends AbstractAttribution
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 //				if (!environmentView.hasFinalResult()) {
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
-					addInheritedContents(environmentView, pivot, scopeView);
+				environmentView.addInheritedContents(pivot, scopeView);
 //				if ((environmentView.getSize() == 0) && (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS)) { // Avoid creating bindings for nested type parameters
 //					for (org.eclipse.ocl.examples.pivot.Class superClass : pivot.getSuperClass()) {
 //						ScopeView nestedScopeView = scopeView;
