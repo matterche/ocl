@@ -160,17 +160,11 @@ public class BulletElementImpl extends CompoundElementImpl implements BulletElem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (level: ");
-		result.append(level);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //BulletElementImpl
