@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
@@ -66,6 +67,12 @@ public class EssentialOCLOutlineTreeProvider extends DefaultOutlineTreeProvider
 		else {
 			createChildren(parentNode, collectionLiteralPart);			
 		}		
+	}
+
+	protected void _createChildren(IOutlineNode parentNode, IfExp exp) {
+		createNode(parentNode, exp.getCondition());
+		createNode(parentNode, exp.getThenExpression());
+		createNode(parentNode, exp.getElseExpression());
 	}
 
 /*	protected void _createChildren(IOutlineNode parentNode, BinaryOperatorCS csOperator) {
