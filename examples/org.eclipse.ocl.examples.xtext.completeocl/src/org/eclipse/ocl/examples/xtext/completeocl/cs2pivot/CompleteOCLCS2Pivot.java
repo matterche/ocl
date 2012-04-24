@@ -74,22 +74,22 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 	}
 
 	@Override
-	public CompleteOCLContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
+	protected CompleteOCLContainmentVisitor createContainmentVisitor(CS2PivotConversion converter) {
 		return new CompleteOCLContainmentVisitor(converter);
 	}
 
 	@Override
-	public CompleteOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+	protected CompleteOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
 		return new CompleteOCLLeft2RightVisitor(converter);
 	}
 
 	@Override
-	public CompleteOCLPostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
+	protected CompleteOCLPostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
 		return new CompleteOCLPostOrderVisitor(converter);
 	}
 
 	@Override
-	public CompleteOCLPreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
+	protected CompleteOCLPreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
 		return new CompleteOCLPreOrderVisitor(converter);
 	}
 }
