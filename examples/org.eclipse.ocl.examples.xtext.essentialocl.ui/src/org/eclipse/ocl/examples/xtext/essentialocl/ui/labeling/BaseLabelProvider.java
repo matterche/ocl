@@ -96,11 +96,10 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager.TuplePart;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
@@ -617,11 +616,11 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(OclExpression ele) {
-		Namespace namespace = PrettyPrintNameVisitor.getNamespace(ele.eContainer());
+		Namespace namespace = PivotUtil.getNamespace(ele.eContainer());
 		StringBuilder s = new StringBuilder();
-		s.append(PrettyPrintExprVisitor.prettyPrint(ele, namespace));
+		s.append(PrettyPrinter.printName(ele, namespace));
 		s.append(" : ");
-		s.append(PrettyPrintTypeVisitor.prettyPrint(ele.getType(), namespace));
+		s.append(PrettyPrinter.printType(ele.getType(), namespace));
 		return s.toString();
 	}
 
@@ -678,7 +677,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(Precedence ele) {
-		return PrettyPrintExprVisitor.prettyPrint(ele);
+		return PrettyPrinter.print(ele);
 	}
 
 	protected String image(PrimitiveLiteralExp ele) {
@@ -801,7 +800,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(Variable ele) {
-		return PrettyPrintExprVisitor.prettyPrint(ele);
+		return PrettyPrinter.print(ele);
 	}
 
 	protected String image(VariableExp ele) {

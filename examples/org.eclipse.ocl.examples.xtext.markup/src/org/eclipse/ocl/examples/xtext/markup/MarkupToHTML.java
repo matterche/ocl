@@ -30,9 +30,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
@@ -174,7 +173,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		String oclString = MarkupToString.toString(object.getElements());		
 		try {
 			ExpressionInOcl query = createQuery(oclString);
-			String text = PrettyPrintExprVisitor.prettyPrint(query);
+			String text = PrettyPrinter.print(query);
 			s.append(text);
 		} catch (ParserException e) {
 			throw new InvalidMarkupException(e);
@@ -209,9 +208,9 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		String oclString = MarkupToString.toString(object.getElements());		
 		try {
 			ExpressionInOcl query = createQuery(oclString);
-			PrettyPrintOptions.Global options = PrettyPrintTypeVisitor.createOptions(null);
+			PrettyPrintOptions.Global options = PrettyPrinter.createOptions(null);
 			options.setLinelength(Integer.MAX_VALUE);
-			String text = PrettyPrintExprVisitor.prettyPrint(query, options);
+			String text = PrettyPrinter.print(query, options);
 			s.append(text);
 		} catch (ParserException e) {
 			throw new InvalidMarkupException(e);

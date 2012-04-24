@@ -33,10 +33,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -135,14 +133,14 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		}
 		if (csElement != null) {
 			csElement.setStereotype(stereotype);
-			Namespace namespace = PrettyPrintNameVisitor.getNamespace(object);
+			Namespace namespace = PivotUtil.getNamespace(object);
 			ValueSpecification specification = object.getSpecification();
 			ContextSpecificationCS csSpec = context.refreshElement(ContextSpecificationCS.class, CompleteOCLCSTPackage.Literals.CONTEXT_SPECIFICATION_CS, specification);
 			csElement.setSpecification(csSpec);
 			if (specification instanceof OpaqueExpression) {
-				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrintTypeVisitor.createOptions(namespace);
+				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(namespace);
 				prettyPrintOptions.setMetaModelManager(context.getMetaModelManager());
-				String expr = PrettyPrintExprVisitor.prettyPrint(specification, prettyPrintOptions);		
+				String expr = PrettyPrinter.print(specification, prettyPrintOptions);		
 				csSpec.setExprString("\t" + expr.trim().replaceAll("\\r", "").replaceAll("\\n", "\n\t\t"));
 				OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
 				String message = PivotUtil.getMessage(opaqueExpression);

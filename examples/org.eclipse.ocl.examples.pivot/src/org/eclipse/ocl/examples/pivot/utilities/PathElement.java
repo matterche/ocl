@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -34,8 +35,8 @@ public class PathElement
 	public static int getCommonLength(List<PathElement> firstPath, List<PathElement> secondPath) {
 		int iMax = Math.min(firstPath.size(), secondPath.size());
 		for (int i = 0; i < iMax; i++) {
-			EObject objectElement = firstPath.get(i).element;
-			EObject contextElement = secondPath.get(i).element;
+			Element objectElement = firstPath.get(i).element;
+			Element contextElement = secondPath.get(i).element;
 			if (!objectElement.equals(contextElement)) {
 				return i;
 			}
@@ -71,15 +72,15 @@ public class PathElement
     }
 
 	protected final String name;
-	protected final EObject element;
+	protected final Element element;
 	
-	public PathElement(String name, EObject element) {
+	public PathElement(String name, Element element) {
 		super();
 		this.name = name;
 		this.element = element;
 	}
 
-	public final EObject getElement() {
+	public final Element getElement() {
 		return element;
 	}
 

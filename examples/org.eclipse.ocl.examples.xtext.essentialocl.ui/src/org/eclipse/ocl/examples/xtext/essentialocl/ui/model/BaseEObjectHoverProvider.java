@@ -21,9 +21,7 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -50,16 +48,16 @@ public class BaseEObjectHoverProvider extends DefaultEObjectHoverProvider
 			pivotElement = (Element)eObject;
 		}
 		if (pivotElement != null) {
-			Namespace namespace = PrettyPrintExprVisitor.getNamespace(pivotElement);
+			Namespace namespace = PivotUtil.getNamespace(pivotElement);
 			String description;
 			if (pivotElement instanceof CallExp) {
-				description = PrettyPrintNameVisitor.prettyPrint(PivotUtil.getReferredFeature((CallExp)pivotElement), namespace);
+				description = PrettyPrinter.printName(PivotUtil.getReferredFeature((CallExp)pivotElement), namespace);
 			}
 			else if (pivotElement instanceof OclExpression) {
-				description = PrettyPrintTypeVisitor.prettyPrint(((OclExpression)pivotElement).getType(), namespace);
+				description = PrettyPrinter.printType(((OclExpression)pivotElement).getType(), namespace);
 			}
 			else {
-				description = PrettyPrintExprVisitor.prettyPrint(pivotElement, namespace);
+				description = PrettyPrinter.print(pivotElement, namespace);
 			}
 			return firstLine + "\n<br>" + pivotElement.eClass().getName() + " <b>" + description + "</b>";
 		}

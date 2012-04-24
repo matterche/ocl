@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -38,7 +37,7 @@ public class TestPrettyPrinter extends XtextTestCase
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof NamedElement) {
-				String s = PrettyPrintNameVisitor.prettyPrint((Element) eObject);
+				String s = PrettyPrinter.printName((Element) eObject);
 				System.out.println(eObject.eClass().getName() + " : " + s);
 			}
 		}
@@ -52,7 +51,7 @@ public class TestPrettyPrinter extends XtextTestCase
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof NamedElement) {
-				String s = PrettyPrintTypeVisitor.prettyPrint((Element) eObject);
+				String s = PrettyPrinter.printType((Element) eObject);
 				System.out.println(eObject.eClass().getName() + " : " + s);
 			}
 		}

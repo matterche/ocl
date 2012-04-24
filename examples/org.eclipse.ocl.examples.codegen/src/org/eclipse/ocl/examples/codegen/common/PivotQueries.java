@@ -47,10 +47,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -94,12 +92,12 @@ public class PivotQueries
 	protected static PrettyPrintOptions.Global createOptions(Visitable element) {
 		Namespace scope = null;
 		if (element instanceof ExpressionInOcl) {
-			scope = PrettyPrintNameVisitor.getNamespace(((ExpressionInOcl)element).getContextVariable().getType());
+			scope = PivotUtil.getNamespace(((ExpressionInOcl)element).getContextVariable().getType());
 		}
 		else if (element instanceof EObject) {
-			scope = PrettyPrintNameVisitor.getNamespace((EObject)element);
+			scope = PivotUtil.getNamespace((EObject)element);
 		}
-		PrettyPrintOptions.Global createOptions = PrettyPrintTypeVisitor.createOptions(scope);
+		PrettyPrintOptions.Global createOptions = PrettyPrinter.createOptions(scope);
 		createOptions.setLinelength(80);
 		if (element instanceof EObject) {
 			Resource resource = EcoreUtil.getRootContainer((EObject)element).eResource();
@@ -226,7 +224,7 @@ public class PivotQueries
 		if (anOperation == null) {
 			return "null";
 		}
-		String qualifiedSignature = PrettyPrintTypeVisitor.prettyPrint(anOperation, (Namespace)anOperation.getOwningType());	// FIXME cast
+		String qualifiedSignature = PrettyPrinter.printType(anOperation, (Namespace)anOperation.getOwningType());	// FIXME cast
 		int index = qualifiedSignature.indexOf("::");
 		return index > 0 ? qualifiedSignature.substring(index+2) : qualifiedSignature;	// FIXME with PrettyPrintOptions
 	}
@@ -246,14 +244,14 @@ public class PivotQueries
 		return parameters.get(0).getType() instanceof SelfType;
 	}
 	
-	public static String prettyPrint(Visitable element) {
+	public static String prettyPrint(Element element) {
 		PrettyPrintOptions.Global createOptions = createOptions(element);
-		return PrettyPrintExprVisitor.prettyPrint(element, createOptions);
+		return PrettyPrinter.print(element, createOptions);
 	}
 	
-	public static String prettyPrintName(Visitable element) {
+	public static String prettyPrintName(Element element) {
 		PrettyPrintOptions.Global createOptions = createOptions(element);
-		return PrettyPrintNameVisitor.prettyPrint(element, createOptions);
+		return PrettyPrinter.printName(element, createOptions);
 	}
 	
 }

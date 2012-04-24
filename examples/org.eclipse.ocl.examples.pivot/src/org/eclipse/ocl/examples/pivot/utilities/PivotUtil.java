@@ -55,6 +55,7 @@ import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -613,6 +614,30 @@ public class PivotUtil extends DomainUtil
 		return bindings;
 	}
 
+	public static Attribution getAttribution(EObject eObject) {
+		if (eObject == null) {
+			logger.warn("getAttribution for null");
+			return null;
+		}
+		if (eObject.eIsProxy()) {			// Shouldn't happen, but certainly does during development
+			logger.warn("getAttribution for proxy " + eObject);
+			return null;
+		}
+		EClass eClass = eObject.eClass();
+		Attribution attribution = Attribution.REGISTRY.get(eClass);
+		if (attribution == null) {
+			for (EClass superClass = eClass; superClass.getESuperTypes().size() > 0; ) {
+				superClass = superClass.getESuperTypes().get(0);
+				attribution = Attribution.REGISTRY.get(superClass);
+				if (attribution != null) {
+					Attribution.REGISTRY.put(eClass, attribution);
+					break;
+				}
+			}
+		}
+		return attribution;
+	}
+
 	public static Type getBehavioralType(Type type) {		// FIXME fold this into normal code
 		if (type instanceof DataType) {
 			DataType dataType = (DataType)type;
@@ -736,17 +761,16 @@ public class PivotUtil extends DomainUtil
 		return null;
 	}
 
-	public static <T extends Element> T getPivot(Class<T> pivotClass, Pivotable pivotableElement) {
-		Element pivotElement = pivotableElement.getPivot();
-		if (pivotElement == null) {
-			return null;
+	public static Namespace getNamespace(EObject element) {
+		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof Type) {
+				return (Namespace) eObject;
+			}
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				return (Namespace) eObject;
+			}
 		}
-		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			throw new ClassCastException(pivotElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) pivotElement;
-		return castElement;
+		return null;
 	}
 
 	public static URI getNonPivotURI(URI uri) {
@@ -758,6 +782,19 @@ public class PivotUtil extends DomainUtil
 		URI pivotURI = URI.createHierarchicalURI(oldSegments[0], uri.authority(), uri.device(), newSegments,
 				uri.query(), uri.fragment());
 		return pivotURI;
+	}
+
+	public static <T extends Element> T getPivot(Class<T> pivotClass, Pivotable pivotableElement) {
+		Element pivotElement = pivotableElement.getPivot();
+		if (pivotElement == null) {
+			return null;
+		}
+		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
+			throw new ClassCastException(pivotElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) pivotElement;
+		return castElement;
 	}
 
 	public static URI getPivotURI(URI uri) {
@@ -799,30 +836,6 @@ public class PivotUtil extends DomainUtil
 		return operation;
 	}
 
-	public static Attribution getAttribution(EObject eObject) {
-		if (eObject == null) {
-			logger.warn("getAttribution for null");
-			return null;
-		}
-		if (eObject.eIsProxy()) {			// Shouldn't happen, but certainly does during development
-			logger.warn("getAttribution for proxy " + eObject);
-			return null;
-		}
-		EClass eClass = eObject.eClass();
-		Attribution attribution = Attribution.REGISTRY.get(eClass);
-		if (attribution == null) {
-			for (EClass superClass = eClass; superClass.getESuperTypes().size() > 0; ) {
-				superClass = superClass.getESuperTypes().get(0);
-				attribution = Attribution.REGISTRY.get(superClass);
-				if (attribution != null) {
-					Attribution.REGISTRY.put(eClass, attribution);
-					break;
-				}
-			}
-		}
-		return attribution;
-	}
-
 	public static List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {
 		if (templateableElement != null) {
 			TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
@@ -860,28 +873,6 @@ public class PivotUtil extends DomainUtil
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		assert metaModelManager != null;
 		return metaModelManager;
-	}
-
-	public static List<Type> getTypeTemplateParameterables(TemplateableElement templateableElement) {
-		if (templateableElement == null) {
-			return Collections.emptyList();
-		}
-		TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
-		if (ownedTemplateSignature == null) {
-			return Collections.emptyList();
-		}
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameter();
-		if (templateParameters.size() == 0) {
-			return Collections.emptyList();
-		}
-		if (templateParameters.size() == 1) {
-			return Collections.singletonList((Type)templateParameters.get(0).getParameteredElement());
-		}
-		List<Type> results = new ArrayList<Type>(templateParameters.size());
-		for (TemplateParameter templateParameter : templateParameters) {
-			results.add((Type) templateParameter.getParameteredElement());
-		}
-		return results;
 	}
 
 	/**
@@ -976,6 +967,28 @@ public class PivotUtil extends DomainUtil
 			s.append(".");
 			s.append(index);
 		}
+	}
+
+	public static List<Type> getTypeTemplateParameterables(TemplateableElement templateableElement) {
+		if (templateableElement == null) {
+			return Collections.emptyList();
+		}
+		TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
+		if (ownedTemplateSignature == null) {
+			return Collections.emptyList();
+		}
+		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameter();
+		if (templateParameters.size() == 0) {
+			return Collections.emptyList();
+		}
+		if (templateParameters.size() == 1) {
+			return Collections.singletonList((Type)templateParameters.get(0).getParameteredElement());
+		}
+		List<Type> results = new ArrayList<Type>(templateParameters.size());
+		for (TemplateParameter templateParameter : templateParameters) {
+			results.add((Type) templateParameter.getParameteredElement());
+		}
+		return results;
 	}
 
 	public static <T extends Type> T getUnspecializedTemplateableElement(T templateableElement) {

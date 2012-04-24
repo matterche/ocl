@@ -35,9 +35,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -184,13 +183,13 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 				description = PrettyPrintNameVisitor.prettyPrint(PivotUtil.getReferredFeature((CallExp)pivotElement), prettyPrintOptions);
 			}
 			else*/ if (pivotElement instanceof VariableExp) {
-				description = PrettyPrintExprVisitor.prettyPrint(((VariableExp)pivotElement).getReferredVariable(), prettyPrintOptions);
+				description = PrettyPrinter.print(((VariableExp)pivotElement).getReferredVariable(), prettyPrintOptions);
 			}
 			else if (pivotElement instanceof OclExpression) {
-				description = PrettyPrintTypeVisitor.prettyPrint(((OclExpression)pivotElement).getType(), prettyPrintOptions);
+				description = PrettyPrinter.printType(((OclExpression)pivotElement).getType(), prettyPrintOptions);
 			}
 			else {
-				description = PrettyPrintExprVisitor.prettyPrint(pivotElement, prettyPrintOptions);
+				description = PrettyPrinter.print(pivotElement, prettyPrintOptions);
 			}
 			return pivotElement.eClass().getName() + " <b>" + description + "</b>";
 		}

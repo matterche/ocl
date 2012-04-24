@@ -58,9 +58,8 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -168,11 +167,11 @@ public class Pivot2Ecore extends AbstractConversion
 			return false;
 		}
 		String exprString = PivotUtil.getBody((OpaqueExpression) specification);
-		Namespace namespace = PrettyPrintExprVisitor.getNamespace(specification);
-		PrettyPrintOptions.Global options = PrettyPrintTypeVisitor.createOptions(namespace);
+		Namespace namespace = PivotUtil.getNamespace(specification);
+		PrettyPrintOptions.Global options = PrettyPrinter.createOptions(namespace);
 		options.setBaseURI(ecoreURI);
 		if ((exprString == null) && (specification instanceof ExpressionInOcl)) {
-			exprString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getBodyExpression(), options);
+			exprString = PrettyPrinter.print(((ExpressionInOcl)specification).getBodyExpression(), options);
 		}
 		if (exprString == null) {
 			return false;
@@ -194,7 +193,7 @@ public class Pivot2Ecore extends AbstractConversion
 				oclAnnotation.getDetails().put(name, exprString);
 				String messageString = PivotUtil.getMessage((OpaqueExpression) specification);
 				if ((messageString == null) && (specification instanceof ExpressionInOcl)) {
-					messageString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getMessageExpression(), options);
+					messageString = PrettyPrinter.print(((ExpressionInOcl)specification).getMessageExpression(), options);
 				}
 				if ((messageString != null) && (messageString.length() > 0)) {
 					oclAnnotation.getDetails().put(name + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX, messageString);
