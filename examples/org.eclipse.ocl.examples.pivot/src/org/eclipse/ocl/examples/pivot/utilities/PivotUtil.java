@@ -785,6 +785,9 @@ public class PivotUtil extends DomainUtil
 	}
 
 	public static <T extends Element> T getPivot(Class<T> pivotClass, Pivotable pivotableElement) {
+		if (pivotableElement == null) {
+			return null;
+		}
 		Element pivotElement = pivotableElement.getPivot();
 		if (pivotElement == null) {
 			return null;

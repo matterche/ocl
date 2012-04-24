@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -58,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.util.AbstractVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -66,26 +68,18 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  */
 public class EssentialOCLPrettyPrintVisitor extends PivotPrettyPrintVisitor
 {	
-/*	public static String prettyPrint(Visitable element) {
-		return prettyPrint(element, PrettyPrintTypeVisitor.createOptions(null));
+	private static final class Factory implements PrettyPrinter.Factory
+	{
+		private Factory() {
+			PrettyPrinter.addFactory(PivotPackage.eINSTANCE, this);
+		}
+
+		public AbstractVisitor<Object, PrettyPrinter> createPrettyPrintVisitor(PrettyPrinter printer) {
+			return new EssentialOCLPrettyPrintVisitor(printer);
+		}
 	}
 
-	public static String prettyPrint(Visitable element, Namespace namespace) {
-		return prettyPrint(element, PrettyPrintTypeVisitor.createOptions(namespace));
-	}
-
-	public static String prettyPrint(Visitable element, PrettyPrintOptions options) {
-		PrettyPrintContext context = new PrettyPrintContext(options);
-		PrettyPrintNameVisitor visitor = new EssentialOCLPrettyPrintVisitor(context);
-		try {
-			visitor.safeVisit(element);
-			return visitor.toString();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return visitor.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
-		}
-	} */
+	public static PrettyPrinter.Factory FACTORY = new Factory();
 
 	public EssentialOCLPrettyPrintVisitor(PrettyPrinter context) {
 		super(context);

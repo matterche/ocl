@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.ocl.examples.domain.messages.StatusCodes;
 import org.eclipse.ocl.examples.pivot.OCLDebugOptions;
+import org.eclipse.ocl.examples.pivot.PivotStandaloneSetup;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryRegistryReader;
 import org.osgi.framework.BundleContext;
 
@@ -193,6 +194,7 @@ public final class PivotPlugin
 			//			EnvironmentRegistryImpl envreg = ((EnvironmentRegistryImpl) Environment.Registry.INSTANCE);
 			//			envreg.new RegistryReader(getInstance()).readRegistry();
 			new StandardLibraryRegistryReader().readRegistry();
+			PivotStandaloneSetup.doSetup();
 		}
 	}
 

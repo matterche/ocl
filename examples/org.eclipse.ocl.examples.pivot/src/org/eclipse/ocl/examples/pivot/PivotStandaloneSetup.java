@@ -21,8 +21,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.pivot.prettyprint.EssentialOCLPrettyPrintVisitor;
 import org.eclipse.ocl.examples.pivot.scoping.PivotScoping;
 import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
+import org.eclipse.ocl.examples.pivot.utilities.PivotSaver;
+import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -44,6 +47,9 @@ public class PivotStandaloneSetup //implements ISetup
 		EcorePackage.eINSTANCE.getClass();
 		UMLUtils.initializeContents();
 		PivotScoping.init();
+		EssentialOCLPrettyPrintVisitor.FACTORY.getClass();
+		PivotSaver.FACTORY.getClass();
+		ToStringVisitor.FACTORY.getClass();
 	}
 	
 	/**

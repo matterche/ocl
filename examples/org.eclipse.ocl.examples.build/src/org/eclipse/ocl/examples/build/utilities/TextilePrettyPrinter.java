@@ -18,10 +18,10 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import java.util.Set;
 
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
@@ -35,17 +35,21 @@ public class TextilePrettyPrinter
 		public Expr() {}
 
 		public String prettyPrint(Visitable element, Namespace scope) {
+			return prettyPrint((Element)element, scope);
+		}
+		public String prettyPrint(Element element, Namespace scope) {
 			PrettyPrintOptions options = createOptions(scope);
-			PrettyPrintExprVisitor visitor = new PrettyPrintExprVisitor(options);
+//			PrettyPrintExprVisitor visitor = new PrettyPrintExprVisitor(options);
+			PrettyPrinter printer = PrettyPrinter.createPrinter(element, options);
 			try {
-				visitor.safeVisit(element);
-				String string = visitor.toString(options.getIndentStep(), options.getLinelength());
+				printer.appendElement(element);
+				String string = printer.toString(options.getIndentStep(), options.getLinelength());
 				//				System.out.println("Expr-prettyPrint : " + element.eClass().getName() + "/" + element.eClass().getName() + " => " + string);
 				return string;
 			}
 			catch (Exception e) {
 				e.printStackTrace();
-				return visitor.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
+				return printer.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
 			}
 		}
 	}
@@ -55,17 +59,20 @@ public class TextilePrettyPrinter
 		public Name() {}
 		
 		public String prettyPrint(Visitable element, Namespace scope) {
+			return prettyPrint((Element)element, scope);
+		}
+		public String prettyPrint(Element element, Namespace scope) {
 			PrettyPrintOptions options = createOptions(scope);
-			PrettyPrintNameVisitor visitor = new PrettyPrintNameVisitor(options);
+			PrettyPrinter printer = PrettyPrinter.createNamePrinter(element, options);
 			try {
-				visitor.safeVisit(element);
-				String string = visitor.toString(options.getIndentStep(), options.getLinelength());
+				printer.appendElement(element);
+				String string = printer.toString(options.getIndentStep(), options.getLinelength());
 //				System.out.println("Name-prettyPrint : " + element.eClass().getName() + "/" + element.eClass().getName() + " => " + string);
 				return string;
 			}
 			catch (Exception e) {
 				e.printStackTrace();
-				return visitor.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
+				return printer.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
 			}
 		}
 	}

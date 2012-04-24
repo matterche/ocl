@@ -18,15 +18,15 @@ package org.eclipse.ocl.examples.pivot.prettyprint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -62,24 +62,15 @@ public class PrettyPrinter
 	public static List<String> reservedNameList = Arrays.asList("and", "else", "endif", "false", "if", "implies", "in", "invalid", "let", "not", "null", "or", "self", "then", "true", "xor");
 	public static List<String> restrictedNameList = Arrays.asList("Bag", "Boolean", "Collection", "Integer", "OclAny", "OclInvalid", "OclVoid", "OrderedSet", "Real", "Sequence", "Set", "String", "Tuple", "UnlimitedNatural");
 
-	public static interface PrettyPrintAdapter extends Adapter.Internal
+	public static interface Factory
 	{
-		public static PrettyPrintAdapter INSTANCE = new PrettyPrintAdapterImpl();
-
 		AbstractVisitor<Object, PrettyPrinter> createPrettyPrintVisitor(PrettyPrinter printer);
 	}
-
-	private static class PrettyPrintAdapterImpl extends AdapterImpl implements PrettyPrintAdapter
-	{
-
-		@Override
-		public boolean isAdapterForType(Object type) {
-			return type == PrettyPrintAdapter.class;
-		}
-		
-		public AbstractVisitor<Object, PrettyPrinter> createPrettyPrintVisitor(PrettyPrinter printer) {
-			return new EssentialOCLPrettyPrintVisitor(printer);
-		}
+	
+	private static Map<EPackage, Factory> factoryMap = new HashMap<EPackage, Factory>();
+	
+	public static void addFactory(EPackage ePackage, Factory factory) {
+		factoryMap.put(ePackage, factory);
 	}
 	
 	private static class Fragment
@@ -240,7 +231,14 @@ public class PrettyPrinter
 		}
 	}
 
-	
+	public static PrettyPrinter createNamePrinter(Element element, PrettyPrintOptions options) {
+		return new PrettyPrinter(options, Mode.NAME, element);
+	}
+
+	public static PrettyPrinter createPrinter(Element element, PrettyPrintOptions options) {
+		return new PrettyPrinter(options, Mode.FULL, element);
+	}
+
 	public static Global createOptions(Namespace scope) {
 		PrettyPrintOptions.Global options = new PrettyPrintOptions.Global(scope);
 		options.addReservedNames(PrettyPrinter.reservedNameList);
@@ -256,6 +254,9 @@ public class PrettyPrinter
 		return print(element, createOptions(namespace));
 	}
 	public static String print(Element element, PrettyPrintOptions options) {
+		if (element == null) {
+			return NULL_PLACEHOLDER;
+		}
 		PrettyPrinter printer = new PrettyPrinter(options, Mode.FULL, element);
 		try {
 			printer.appendElement(element);
@@ -274,7 +275,10 @@ public class PrettyPrinter
 		return printName(element, createOptions(namespace));
 	}
 	public static String printName(Element element, PrettyPrintOptions options) {
-		PrettyPrinter printer = new PrettyPrinter(options, Mode.NAME, element);
+		if (element == null) {
+			return NULL_PLACEHOLDER;
+		}
+		PrettyPrinter printer = createNamePrinter(element, options);
 		try {
 			printer.appendElement(element);
 			return printer.toString();
@@ -292,6 +296,9 @@ public class PrettyPrinter
 		return printType(element, createOptions(namespace));
 	}
 	public static String printType(Element element, PrettyPrintOptions options) {
+		if (element == null) {
+			return NULL_PLACEHOLDER;
+		}
 		PrettyPrinter printer = new PrettyPrinter(options, Mode.TYPE, element);
 		try {
 			printer.appendElement(element);
@@ -324,18 +331,13 @@ public class PrettyPrinter
 		this.scope = options.getScope();
 		pendingText = new StringBuilder();
 		fragment = new Fragment(null, 0, "", "", "");
-		PrettyPrintAdapter adapter = null;
-		if (element != null) {
-			Resource resource = element.eResource();
-			adapter = EcoreUtils.getAdapter(resource, PrettyPrintAdapter.class);			
-		}
-		if (adapter == null) {
-			adapter = PrettyPrintAdapter.INSTANCE;
-		}
-		this.visitor = adapter.createPrettyPrintVisitor(this);
+		EObject rootObject = EcoreUtil.getRootContainer(element);	// root is a dialect-dependent Model class.
+		EPackage rootPackage = rootObject.eClass().getEPackage();	// rootPackage is dialect-dependent EPackage.
+		Factory factory = factoryMap.get(rootPackage);
+		this.visitor = factory.createPrettyPrintVisitor(this);
 	}
 
-	protected void append(Number number) {
+	public void append(Number number) {
 		if (number != null) {
 			append(number.toString());
 		}
@@ -353,23 +355,23 @@ public class PrettyPrinter
 		}
 	}
 
-	protected void appendElement(Element element) {
+	public void appendElement(Element element) {
 		visitor.safeVisit(element);
 	}
 
-	protected void appendMultiplicity(int lower, int upper) {
+	public void appendMultiplicity(int lower, int upper) {
 		PivotUtil.appendMultiplicity(pendingText, lower, upper);
 	}
 
-	protected void appendName(NamedElement object) {
+	public void appendName(NamedElement object) {
 		appendName(object, options.getRestrictedNames());
 	}
 		
-	protected void appendName(NamedElement object, Set<String> keywords) {
+	public void appendName(NamedElement object, Set<String> keywords) {
 		append(getName(object, keywords));
 	}
 
-	protected void appendParameters(Operation operation, boolean withNames) {
+	public void appendParameters(Operation operation, boolean withNames) {
 		append("(");
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
@@ -409,7 +411,7 @@ public class PrettyPrinter
 		append(")");
 	}
 
-    protected void appendParent(EObject scope, Element element, String parentSeparator) { // FIXME Use appendQualifiedName instead
+	public void appendParent(EObject scope, Element element, String parentSeparator) { // FIXME Use appendQualifiedName instead
     	Mode savedMode = pushMode(Mode.TYPE);
     	try {
 			for (EObject eObject = scope; eObject != null; eObject = eObject.eContainer()) {
@@ -542,7 +544,7 @@ public class PrettyPrinter
     	}
     }
 
-	protected void appendTemplateBindings(TemplateableElement typeRef) {
+    public void appendTemplateBindings(TemplateableElement typeRef) {
     	Mode savedMode = pushMode(Mode.TYPE);
 		try {
 			List<TemplateBinding> templateBindings = typeRef.getTemplateBinding();
