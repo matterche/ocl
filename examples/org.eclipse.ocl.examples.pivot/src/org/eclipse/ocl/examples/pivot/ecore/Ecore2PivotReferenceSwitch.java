@@ -159,6 +159,23 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 					oppositeProperty.setOpposite(pivotElement);
 				}
 			}
+			else {
+				oppositeRole = eObject.getEAnnotation(EMOFExtendedMetaData.EMOF_PROPERTY_OPPOSITE_ROLE_NAME_ANNOTATION_SOURCE);
+				if (oppositeRole != null) {
+					EMap<String, String> details = oppositeRole.getDetails();
+					String oppositeName = details.get(EMOFExtendedMetaData.EMOF_COMMENT_BODY);
+					if (oppositeName != null) {
+						oppositeProperty = PivotFactory.eINSTANCE.createProperty();
+						oppositeProperty.setName(oppositeName);
+						oppositeProperty.setImplicit(true);
+						Type remoteType = pivotElement.getType();
+						Type localType = PivotUtil.getOwningType(pivotElement);
+						oppositeProperty.setType(localType);
+						remoteType.getOwnedAttribute().add(oppositeProperty);
+						oppositeProperty.setOpposite(pivotElement);
+					}
+				}
+			}
 		}
 		if (oppositeProperty != null) {
 			pivotElement.setOpposite(oppositeProperty);

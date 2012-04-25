@@ -393,9 +393,10 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromEcore("OCLEcore");
 	}
 
+	/* BUG 377626
 	public void testQVTRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("QVT");
-	}	
+	} */
 
 	public void testTypes_ecore() throws IOException, InterruptedException {
 		doRoundTripFromEcore("Types");

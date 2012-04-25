@@ -380,14 +380,24 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public Property caseEReference(EReference eObject) {
 		Property pivotElement = converter.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, eObject);	
+		List<EAnnotation> excludedAnnotations = null;
 		EAnnotation oppositeRole = eObject.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
-		List<EAnnotation> excludedAnnotations = oppositeRole != null ? Collections.singletonList(oppositeRole) : null;
+		if (oppositeRole != null) {
+			excludedAnnotations = new ArrayList<EAnnotation>();
+			excludedAnnotations.add(oppositeRole);
+		}
+		oppositeRole = eObject.getEAnnotation(EMOFExtendedMetaData.EMOF_PROPERTY_OPPOSITE_ROLE_NAME_ANNOTATION_SOURCE);
+		if (oppositeRole != null) {
+			if (excludedAnnotations == null) {
+				excludedAnnotations = new ArrayList<EAnnotation>();
+			}
+			excludedAnnotations.add(oppositeRole);
+		}
 		copyStructuralFeature(pivotElement, eObject, excludedAnnotations);
 		pivotElement.setIsComposite(eObject.isContainment());			
 		pivotElement.setIsResolveProxies(eObject.isResolveProxies());			
 		if ((eObject.getEOpposite() != null)
 		 || (excludedAnnotations != null)
-		 || (oppositeRole != null)
 		 || !eObject.getEKeys().isEmpty()) {
 			converter.queueReference(eObject);	// Defer
 		}

@@ -231,7 +231,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 					csElement.setOpposite(opposite);
 				}
 				else {
-					// FIXME
+					// FIXME BUG 377626
 				}
 			}
 			context.refreshList(csElement.getKeys(), object.getKeys());

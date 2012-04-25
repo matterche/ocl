@@ -260,9 +260,10 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("OCLCST");
 	}
 
+	/* BUG 377626
 	public void testSerialize_QVT() throws Exception {
 		doSerialize("QVT");
-	}	
+	} */
 
 	public void testSerialize_RoyalAndLoyal() throws Exception {
 		doSerialize("RoyalAndLoyal");
