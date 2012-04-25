@@ -127,6 +127,9 @@ public class EnvironmentView
 		if (element == null) {
 			return 0;
 		}
+		if (elementName == null) {
+			return 0;
+		}
 		element = metaModelManager.getPrimaryElement(element);
 		if ((name != null) && !name.equals(elementName)) {
 			return 0;
