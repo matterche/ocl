@@ -75,9 +75,6 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 					}
 					
 				}
-				if (scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
-					return null;				// No further outer scope lookup				
-				}
 			}
 			return scopeView.getParent();
 		}

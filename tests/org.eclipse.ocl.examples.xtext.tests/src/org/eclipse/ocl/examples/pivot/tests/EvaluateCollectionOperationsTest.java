@@ -1578,4 +1578,10 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		assertQueryResults(null, "Bag{'a', null, 'b', null}", "Bag{'a', null}->union(Set{'b', null})");
 		assertQueryResults(null, "Sequence{'a', null, 'b', null}", "Sequence{'a', null}->union(Sequence{'b', null})");
 	}
+
+	public void testCollectionIntersectionReturnType() {
+		assertQueryResults(null, "Set{'c'}", "Set{'a'}->intersection(Set{'b'})->including('c')");
+		assertQueryResults(null, "Set{'c'}", "let domainVars: Set(String) = Set{'a'}, whenVars: Set(String) = Set{'b'}, tev: String = 'c' in domainVars->intersection(whenVars)->including(tev)");
+		assertQueryTrue(null, "let domainTopVars: Set(String) = Set{'c'}, domainVars: Set(String) = Set{'a'}, whenVars: Set(String) = Set{'b'}, tev: String = 'c' in domainTopVars = domainVars->intersection(whenVars)->including(tev)");
+	}
 }

@@ -17,7 +17,9 @@
 
 package org.eclipse.ocl.examples.pivot.tests;
 
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Tests for OclAny operations.
@@ -76,7 +78,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(pkg2, "null.oclContainer()");
 		assertQueryResults(pkg1, "null", "oclContainer()");
 		assertQueryEquals(pkg2, pkg1, "oclContainer()");
-		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "UnlimitedNatural");
+		assertQueryInvalid(null, "1.oclContainer()", NLS.bind(EvaluatorMessages.TypedValueRequired, "Object", "UnlimitedNatural"), null);
 	}
 	
 	/**
@@ -88,6 +90,6 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(pkg1, valueFactory.createSetOf(bob, pkg2, pkg3), "oclContents()");
 		assertQueryEquals(pkg2, valueFactory.createSetOf(jim), "oclContents()");
 		assertQueryEquals(george, valueFactory.createSetOf(), "oclContents()");
-		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "UnlimitedNatural");
+		assertQueryInvalid(null, "1.oclContents()", NLS.bind(EvaluatorMessages.TypedValueRequired, "Object", "UnlimitedNatural"), null);
 	}
 }
