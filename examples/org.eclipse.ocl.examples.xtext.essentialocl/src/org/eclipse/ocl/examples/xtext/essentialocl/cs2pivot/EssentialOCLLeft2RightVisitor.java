@@ -461,36 +461,38 @@ public class EssentialOCLLeft2RightVisitor extends AbstractEssentialOCLLeft2Righ
 	 */
 	protected CallExp resolveNavigationFeature(NamedExpCS csElement, OclExpression source, Feature feature, CallExp callExp) {
 		CallExp navigationExp = callExp;
-		Type actualSourceType = source.getType();
 		Type requiredSourceType = PivotUtil.getOwningType(feature);
 		boolean isDotNavigation = false;
 		if (csElement.getParent() instanceof NavigationOperatorCS) {
 			isDotNavigation = PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(((NavigationOperatorCS)csElement.getParent()).getName());
-		}
-		if (isDotNavigation && (actualSourceType instanceof CollectionType) && !(requiredSourceType instanceof CollectionType)) {
-			Type elementType = ((CollectionType)actualSourceType).getElementType();
-			IteratorExp iteratorExp = context.refreshModelElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, null);
-			iteratorExp.setImplicit(true);
-			EnvironmentView environmentView = new EnvironmentView(metaModelManager, PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION, "collect");
-			environmentView.addFilter(new ImplicitCollectFilter(metaModelManager, (CollectionType) actualSourceType, elementType));
-			Type lowerBoundType = (Type) PivotUtil.getLowerBound(actualSourceType);
-			environmentView.computeLookups(lowerBoundType, null, null, null);
-			Iteration resolvedIteration = (Iteration)environmentView.getContent();
-			context.setReferredIteration(iteratorExp, resolvedIteration);
-			Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
-			Parameter resolvedIterator = resolvedIteration.getOwnedIterator().get(0);
-			iterator.setRepresentedParameter(resolvedIterator);
-			context.refreshName(iterator, "1_");
-			context.setType(iterator, elementType);
-			iterator.setImplicit(true);
-			iteratorExp.getIterator().add(iterator);
-			VariableExp variableExp = context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, null); // FIXME reuse
-			variableExp.setReferredVariable(iterator);
-			variableExp.setImplicit(true);
-			context.setType(variableExp, elementType);
-			callExp.setSource(variableExp);			
-			iteratorExp.setBody(callExp);
-			navigationExp = iteratorExp;
+			if (isDotNavigation) {
+				Type actualSourceType = source.getType();
+				if ((actualSourceType instanceof CollectionType) && !(requiredSourceType instanceof CollectionType)) {
+					Type elementType = ((CollectionType)actualSourceType).getElementType();
+					IteratorExp iteratorExp = context.refreshModelElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, null);
+					iteratorExp.setImplicit(true);
+					EnvironmentView environmentView = new EnvironmentView(metaModelManager, PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION, "collect");
+					environmentView.addFilter(new ImplicitCollectFilter(metaModelManager, (CollectionType) actualSourceType, elementType));
+					Type lowerBoundType = (Type) PivotUtil.getLowerBound(actualSourceType);
+					environmentView.computeLookups(lowerBoundType, null, null, null);
+					Iteration resolvedIteration = (Iteration)environmentView.getContent();
+					context.setReferredIteration(iteratorExp, resolvedIteration);
+					Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
+					Parameter resolvedIterator = resolvedIteration.getOwnedIterator().get(0);
+					iterator.setRepresentedParameter(resolvedIterator);
+					context.refreshName(iterator, "1_");
+					context.setType(iterator, elementType);
+					iterator.setImplicit(true);
+					iteratorExp.getIterator().add(iterator);
+					VariableExp variableExp = context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, null); // FIXME reuse
+					variableExp.setReferredVariable(iterator);
+					variableExp.setImplicit(true);
+					context.setType(variableExp, elementType);
+					callExp.setSource(variableExp);			
+					iteratorExp.setBody(callExp);
+					navigationExp = iteratorExp;
+				}
+			}
 		}
 		navigationExp.setSource(source);
 		return navigationExp;
