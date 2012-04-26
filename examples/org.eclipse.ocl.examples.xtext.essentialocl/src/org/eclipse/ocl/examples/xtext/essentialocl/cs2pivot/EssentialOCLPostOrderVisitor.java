@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
@@ -33,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil.PrecedenceComparator;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
@@ -260,7 +262,9 @@ public class EssentialOCLPostOrderVisitor extends AbstractEssentialOCLPostOrderV
 			ILeafNode leafNode = ElementUtil.getLeafNode(node);
 			String varName = leafNode.getText();
 			context.refreshName(parameter, varName);
-			ElementUtil.setPathName(csPathName, parameter, null);	// Resolve the reference that is actually a definition
+			List<PathElementCS> path = csPathName.getPath();
+			PathElementCS csPathElement = path.get(path.size()-1);
+			csPathElement.setElement(parameter);	// Resolve the reference that is actually a definition
 		}
 	}
 
