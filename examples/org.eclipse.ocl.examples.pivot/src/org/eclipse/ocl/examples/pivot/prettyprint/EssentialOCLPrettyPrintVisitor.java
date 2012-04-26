@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
@@ -251,54 +252,16 @@ public class EssentialOCLPrettyPrintVisitor extends PivotPrettyPrintVisitor
 
 	@Override
 	public Object visitIterateExp(IterateExp object) {
-		List<Variable> iterators = object.getIterator();
-		Operation referredOperation = object.getReferredIteration();
-		appendSourceNavigation(object);
-		context.appendName(referredOperation);
-		context.push("(", "");
-		String prefix = null;
-		if (iterators.size() > 0) {
-			boolean hasExplicitIterator = false;
-			for (Variable iterator : iterators) {
-				if (!iterator.isImplicit()) {
-					if (prefix != null) {
-						context.next(null, prefix, " ");
-					}
-					safeVisit(iterator);
-					prefix = ",";
-					hasExplicitIterator = true;
-				}
-			}
-			if (hasExplicitIterator) {
-				prefix = ";";
-			}
-			if (prefix != null) {
-				context.next(null, prefix, " ");
-			}
-			safeVisit(object.getResult());
-			context.next(null, " |", " ");
-		}
-		safeVisit(object.getBody());
-		context.next("", ")", "");
-		context.pop();
-		return null;
-	}
-
-	@Override
-	public Object visitIteratorExp(IteratorExp object) {
 		Iteration referredIteration = object.getReferredIteration();
-		List<Variable> iterators = object.getIterator();
-		appendSourceNavigation(object);
-		if (object.isImplicit()) {
-			assert referredIteration.getName().equals("collect");
-			assert iterators.size() == 1;
-			safeVisit(object.getBody());
-		}
-		else {
+		OclExpression body = object.getBody();
+		Variable result = object.getResult();
+		if (context.showNames()) {
+			List<Variable> iterators = object.getIterator();
+			appendSourceNavigation(object);
 			context.appendName(referredIteration);
 			context.push("(", "");
+			String prefix = null;
 			if (iterators.size() > 0) {
-				String prefix = null;
 				boolean hasExplicitIterator = false;
 				for (Variable iterator : iterators) {
 					if (!iterator.isImplicit()) {
@@ -311,15 +274,114 @@ public class EssentialOCLPrettyPrintVisitor extends PivotPrettyPrintVisitor
 					}
 				}
 				if (hasExplicitIterator) {
-					context.next(null, " |", " ");
+					prefix = ";";
 				}
-				else if (prefix != null) {
+				if (prefix != null) {
 					context.next(null, prefix, " ");
 				}
+				safeVisit(result);
+				context.next(null, " |", " ");
 			}
-			safeVisit(object.getBody());
+			safeVisit(body);
 			context.next("", ")", "");
 			context.pop();
+		}
+		else {
+			OclExpression source = object.getSource();
+			if (source != null) {
+				safeVisit(source.getType());
+				context.append("::");
+			}
+			context.appendName(referredIteration);
+			context.push("(", "");
+			String prefix = null;
+			for (Variable iterator : object.getIterator()) {
+				if (prefix != null) {
+					context.next(null, prefix, " ");
+				}
+				context.appendName(iterator);
+				context.append(" : ");
+				safeVisit(iterator.getType());
+				prefix = ",";
+			}
+			context.next(null, ";", " ");
+			context.appendName(result);
+			context.append(" : ");
+			safeVisit(result.getType());
+			context.next(null, " |", " ");
+			safeVisit(body != null ? body.getType() : null);
+			context.next("", ")", "");
+			context.pop();
+			context.append(" : ");
+			safeVisit(object.getType());
+		}
+		return null;
+	}
+
+	@Override
+	public Object visitIteratorExp(IteratorExp object) {
+		Iteration referredIteration = object.getReferredIteration();
+		OclExpression body = object.getBody();
+		if (context.showNames()) {
+			List<Variable> iterators = object.getIterator();
+			appendSourceNavigation(object);
+			if (object.isImplicit()) {
+				assert referredIteration.getName().equals("collect");
+				assert iterators.size() == 1;
+				safeVisit(body);
+			}
+			else {
+				context.appendName(referredIteration);
+				context.push("(", "");
+				if (iterators.size() > 0) {
+					String prefix = null;
+					boolean hasExplicitIterator = false;
+					for (Variable iterator : iterators) {
+						if (!iterator.isImplicit()) {
+							if (prefix != null) {
+								context.next(null, prefix, " ");
+							}
+							safeVisit(iterator);
+							prefix = ",";
+							hasExplicitIterator = true;
+						}
+					}
+					if (hasExplicitIterator) {
+						context.next(null, " |", " ");
+					}
+					else if (prefix != null) {
+						context.next(null, prefix, " ");
+					}
+				}
+				safeVisit(body);
+				context.next("", ")", "");
+				context.pop();
+			}
+		}
+		else {
+			OclExpression source = object.getSource();
+			if (source != null) {
+				safeVisit(source.getType());
+				context.append("::");
+			}
+			context.appendName(referredIteration);
+			context.push("(", "");
+			String prefix = null;
+			for (Variable iterator : object.getIterator()) {
+				if (prefix != null) {
+					context.next(null, prefix, " ");
+				}
+				context.appendName(iterator);
+				context.append(" : ");
+				safeVisit(iterator.getType());
+				prefix = ",";
+			}
+			context.next(null, " |", " ");
+			safeVisit(body != null ? body.getType() : null);
+			context.next("", ")", "");
+			context.pop();
+			context.append(" : ");
+			safeVisit(object.getType());
 		}
 		return null;
 	}
@@ -359,46 +421,68 @@ public class EssentialOCLPrettyPrintVisitor extends PivotPrettyPrintVisitor
 		OclExpression source = object.getSource();
 		List<OclExpression> arguments = object.getArgument();
 		Operation referredOperation = object.getReferredOperation();
-		Precedence precedence = referredOperation != null ? referredOperation.getPrecedence() : null;
-		if (precedence == null) {
-			appendSourceNavigation(object);
-			if (!object.isImplicit()) {
-				context.appendName(referredOperation);
-				context.push("(", "");
-				String prefix = null; //$NON-NLS-1$
-				for (OclExpression argument : arguments) {
-					if (prefix != null) {
-						context.next(null, prefix, " ");
+		if (context.showNames()) {
+			Precedence precedence = referredOperation != null ? referredOperation.getPrecedence() : null;
+			if (precedence == null) {
+				appendSourceNavigation(object);
+				if (!object.isImplicit()) {
+					context.appendName(referredOperation);
+					context.push("(", "");
+					String prefix = null; //$NON-NLS-1$
+					for (OclExpression argument : arguments) {
+						if (prefix != null) {
+							context.next(null, prefix, " ");
+						}
+						context.precedenceVisit(argument, null);
+						prefix = ",";
 					}
-					context.precedenceVisit(argument, null);
-					prefix = ",";
+					context.next("", ")", "");
+					context.pop();
 				}
-				context.next("", ")", "");
-				context.pop();
+			}
+			else {
+				Precedence currentPrecedence = context.getCurrentPrecedence();
+				boolean lowerPrecedence = (currentPrecedence  != null) && precedence.getOrder().compareTo(currentPrecedence.getOrder()) > 0;
+				if (lowerPrecedence) {
+					context.push("(", null);
+				}
+				if (arguments.size() == 0) {			// Prefix
+					context.appendName(referredOperation, null);
+					if ((referredOperation != null) && PivotUtil.isValidIdentifier(referredOperation.getName())) {
+						context.append(" ");			// No space for unary minus
+					}
+					context.precedenceVisit(source, precedence);
+				}
+				else {			// Infix
+					context.precedenceVisit(source, precedence);
+					context.next(" ", context.getName(referredOperation, null), " ");
+					context.precedenceVisit(arguments.get(0), precedence);
+				}
+				if (lowerPrecedence) {
+					context.exdent("", ")", "");
+					context.pop();
+				}
 			}
 		}
 		else {
-			Precedence currentPrecedence = context.getCurrentPrecedence();
-			boolean lowerPrecedence = (currentPrecedence  != null) && precedence.getOrder().compareTo(currentPrecedence.getOrder()) > 0;
-			if (lowerPrecedence) {
-				context.push("(", null);
+			if (source != null) {
+				safeVisit(source.getType());
+				context.append("::");
 			}
-			if (arguments.size() == 0) {			// Prefix
-				context.appendName(referredOperation, null);
-				if ((referredOperation != null) && PivotUtil.isValidIdentifier(referredOperation.getName())) {
-					context.append(" ");			// No space for unary minus
+			context.appendName(referredOperation);
+			context.push("(", "");
+			String prefix = null;
+			for (OclExpression argument : arguments) {
+				if (prefix != null) {
+					context.next(null, prefix, " ");
 				}
-				context.precedenceVisit(source, precedence);
+				safeVisit(argument.getType());
+				prefix = ",";
 			}
-			else {			// Infix
-				context.precedenceVisit(source, precedence);
-				context.next(" ", context.getName(referredOperation, null), " ");
-				context.precedenceVisit(arguments.get(0), precedence);
-			}
-			if (lowerPrecedence) {
-				context.exdent("", ")", "");
-				context.pop();
-			}
+			context.next("", ")", "");
+			context.pop();
+			context.append(" : ");
+			safeVisit(object.getType());
 		}
 		return null;
 	}
@@ -416,8 +500,14 @@ public class EssentialOCLPrettyPrintVisitor extends PivotPrettyPrintVisitor
 
 	@Override
 	public Object visitPropertyCallExp(PropertyCallExp object) {
-		appendSourceNavigation(object);
-		context.appendName(object.getReferredProperty());
+		Property referredProperty = object.getReferredProperty();
+		if (context.showNames()) {
+			appendSourceNavigation(object);
+			context.appendName(referredProperty);
+		}
+		else {
+			safeVisit(referredProperty);
+		}
 		return null;
 	}
 

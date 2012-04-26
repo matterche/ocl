@@ -34,6 +34,9 @@ public class PivotResourceServiceProvider extends DefaultResourceServiceProvider
 		if (PivotUtil.SCHEME_PIVOT.equals(uri.scheme())) {
 			return true;
 		}
+		else if ("oclstdlib".equals(uri.fileExtension())) {		// FIXME Use rather than fight Xtext
+			return true;
+		}
 		else {
 			return super.canHandle(uri);
 		}

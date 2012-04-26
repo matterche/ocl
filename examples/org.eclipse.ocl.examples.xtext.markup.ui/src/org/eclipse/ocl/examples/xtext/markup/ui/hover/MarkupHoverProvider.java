@@ -28,9 +28,13 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -148,6 +152,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 
 	@Override
 	protected String getFirstLine(EObject eObject) {
+//		System.out.println("getFirstLine " + eObject.eClass().getName());
 		Element pivotElement = null;
 		if (eObject instanceof Pivotable) {
 			pivotElement = PivotUtil.getPivot(Element.class, (Pivotable)eObject);
@@ -179,10 +184,10 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 					prettyPrintOptions.setMetaModelManager(MetaModelManager.getAdapter(eResource.getResourceSet()));
 				}
 			}
-			/*if (pivotElement instanceof CallExp) {
-				description = PrettyPrintNameVisitor.prettyPrint(PivotUtil.getReferredFeature((CallExp)pivotElement), prettyPrintOptions);
+			if (pivotElement instanceof CallExp) {
+				description = PrettyPrinter.printType(pivotElement, prettyPrintOptions);
 			}
-			else*/ if (pivotElement instanceof VariableExp) {
+			else if (pivotElement instanceof VariableExp) {
 				description = PrettyPrinter.print(((VariableExp)pivotElement).getReferredVariable(), prettyPrintOptions);
 			}
 			else if (pivotElement instanceof OclExpression) {
@@ -191,10 +196,12 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			else {
 				description = PrettyPrinter.print(pivotElement, prettyPrintOptions);
 			}
+//			System.out.println(" => " + description);
 			return pivotElement.eClass().getName() + " <b>" + description + "</b>";
 		}
 		else {
 			String firstLine = super.getFirstLine(eObject);
+//			System.out.println(" => " + firstLine);
 			return firstLine + "\n<br>" + eObject.eClass().getName();		// FIXME do better					
 		}
 	}
