@@ -91,64 +91,21 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class NUMBER_LITERALElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER_LITERAL");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Alternatives cAlternatives_2_0 = (Alternatives)cGroup_2.eContents().get(0);
-		private final Keyword cEKeyword_2_0_0 = (Keyword)cAlternatives_2_0.eContents().get(0);
-		private final Keyword cEKeyword_2_0_1 = (Keyword)cAlternatives_2_0.eContents().get(1);
-		private final Alternatives cAlternatives_2_1 = (Alternatives)cGroup_2.eContents().get(1);
-		private final Keyword cPlusSignKeyword_2_1_0 = (Keyword)cAlternatives_2_1.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_2_1_1 = (Keyword)cAlternatives_2_1.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
+		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//// Not terminal to allow parser backtracking to sort out "5..7"
-		// NUMBER_LITERAL returns BigNumber:
 		//
-		//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
+		//
+		//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
+		// NUMBER_LITERAL returns
+		//
+		//BigNumber:
+		//
+		//	INT;
 		public ParserRule getRule() { return rule; }
 
-		//INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?
-		public Group getGroup() { return cGroup; }
-
 		//INT
-		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
-
-		//("." INT)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"."
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
-
-		//INT
-		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
-
-		//(("e" | "E") ("+" | "-")? INT)?
-		public Group getGroup_2() { return cGroup_2; }
-
-		//"e" | "E"
-		public Alternatives getAlternatives_2_0() { return cAlternatives_2_0; }
-
-		//"e"
-		public Keyword getEKeyword_2_0_0() { return cEKeyword_2_0_0; }
-
-		//"E"
-		public Keyword getEKeyword_2_0_1() { return cEKeyword_2_0_1; }
-
-		//("+" | "-")?
-		public Alternatives getAlternatives_2_1() { return cAlternatives_2_1; }
-
-		//"+"
-		public Keyword getPlusSignKeyword_2_1_0() { return cPlusSignKeyword_2_1_0; }
-
-		//"-"
-		public Keyword getHyphenMinusKeyword_2_1_1() { return cHyphenMinusKeyword_2_1_1; }
-
-		//INT
-		public RuleCall getINTTerminalRuleCall_2_2() { return cINTTerminalRuleCall_2_2; }
+		public RuleCall getINTTerminalRuleCall() { return cINTTerminalRuleCall; }
 	}
 
 	public class URIElements extends AbstractParserRuleElementFinder {
@@ -219,27 +176,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"xor"
 		public Keyword getXorKeyword_10() { return cXorKeyword_10; }
-	}
-
-	public class EssentialOCLUnrestrictedIdentifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EssentialOCLUnrestrictedIdentifier");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cEKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cEKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		
-		//EssentialOCLUnrestrictedIdentifier:
-		//
-		//	"e" | "E";
-		public ParserRule getRule() { return rule; }
-
-		//"e" | "E"
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//"e"
-		public Keyword getEKeyword_0() { return cEKeyword_0; }
-
-		//"E"
-		public Keyword getEKeyword_1() { return cEKeyword_1; }
 	}
 
 	public class EssentialOCLPrefixOperatorElements extends AbstractParserRuleElementFinder {
@@ -355,23 +291,15 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class IdentifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifier");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cEssentialOCLUnrestrictedIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIDParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//Identifier:
 		//
-		//	ID | EssentialOCLUnrestrictedIdentifier;
+		//	ID;
 		public ParserRule getRule() { return rule; }
 
-		//ID | EssentialOCLUnrestrictedIdentifier
-		public Alternatives getAlternatives() { return cAlternatives; }
-
 		//ID
-		public RuleCall getIDParserRuleCall_0() { return cIDParserRuleCall_0; }
-
-		//EssentialOCLUnrestrictedIdentifier
-		public RuleCall getEssentialOCLUnrestrictedIdentifierParserRuleCall_1() { return cEssentialOCLUnrestrictedIdentifierParserRuleCall_1; }
+		public RuleCall getIDParserRuleCall() { return cIDParserRuleCall; }
 	}
 
 	public class StringLiteralElements extends AbstractParserRuleElementFinder {
@@ -2504,7 +2432,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private ModelElements pModel;
 	private TerminalRule tESCAPED_CHARACTER;
 	private TerminalRule tLETTER_CHARACTER;
-	private TerminalRule tDIGIT_CHARACTER;
 	private TerminalRule tDOUBLE_QUOTED_STRING;
 	private TerminalRule tSINGLE_QUOTED_STRING;
 	private TerminalRule tML_SINGLE_QUOTED_STRING;
@@ -2521,7 +2448,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tANY_OTHER;
 	private URIElements pURI;
 	private EssentialOCLReservedKeywordElements pEssentialOCLReservedKeyword;
-	private EssentialOCLUnrestrictedIdentifierElements pEssentialOCLUnrestrictedIdentifier;
 	private EssentialOCLPrefixOperatorElements pEssentialOCLPrefixOperator;
 	private EssentialOCLInfixOperatorElements pEssentialOCLInfixOperator;
 	private EssentialOCLNavigationOperatorElements pEssentialOCLNavigationOperator;
@@ -2621,13 +2547,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return (tLETTER_CHARACTER != null) ? tLETTER_CHARACTER : (tLETTER_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LETTER_CHARACTER"));
 	} 
 
-	//terminal fragment DIGIT_CHARACTER:
-	//
-	//	"0".."9";
-	public TerminalRule getDIGIT_CHARACTERRule() {
-		return (tDIGIT_CHARACTER != null) ? tDIGIT_CHARACTER : (tDIGIT_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DIGIT_CHARACTER"));
-	} 
-
 	//terminal DOUBLE_QUOTED_STRING:
 	//
 	//	"\"" (ESCAPED_CHARACTER | !("\\" | "\""))* "\"";
@@ -2651,7 +2570,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal SIMPLE_ID:
 	//
-	//	LETTER_CHARACTER (LETTER_CHARACTER | DIGIT_CHARACTER)*;
+	//	LETTER_CHARACTER (LETTER_CHARACTER | "0".."9")*;
 	public TerminalRule getSIMPLE_IDRule() {
 		return (tSIMPLE_ID != null) ? tSIMPLE_ID : (tSIMPLE_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIMPLE_ID"));
 	} 
@@ -2675,9 +2594,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// String to allow diverse re-use
+	// // multiple leading zeroes occur as floating point fractional part
 	// terminal INT:
 	//
-	//	DIGIT_CHARACTER+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
@@ -2705,9 +2625,14 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
-	// NUMBER_LITERAL returns BigNumber:
 	//
-	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
+	//
+	//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
+	// NUMBER_LITERAL returns
+	//
+	//BigNumber:
+	//
+	//	INT;
 	public NUMBER_LITERALElements getNUMBER_LITERALAccess() {
 		return (pNUMBER_LITERAL != null) ? pNUMBER_LITERAL : (pNUMBER_LITERAL = new NUMBER_LITERALElements());
 	}
@@ -2766,17 +2691,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLReservedKeywordAccess().getRule();
 	}
 
-	//EssentialOCLUnrestrictedIdentifier:
-	//
-	//	"e" | "E";
-	public EssentialOCLUnrestrictedIdentifierElements getEssentialOCLUnrestrictedIdentifierAccess() {
-		return (pEssentialOCLUnrestrictedIdentifier != null) ? pEssentialOCLUnrestrictedIdentifier : (pEssentialOCLUnrestrictedIdentifier = new EssentialOCLUnrestrictedIdentifierElements());
-	}
-	
-	public ParserRule getEssentialOCLUnrestrictedIdentifierRule() {
-		return getEssentialOCLUnrestrictedIdentifierAccess().getRule();
-	}
-
 	//EssentialOCLPrefixOperator:
 	//
 	//	"-" | "not";
@@ -2812,7 +2726,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Identifier:
 	//
-	//	ID | EssentialOCLUnrestrictedIdentifier;
+	//	ID;
 	public IdentifierElements getIdentifierAccess() {
 		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
 	}

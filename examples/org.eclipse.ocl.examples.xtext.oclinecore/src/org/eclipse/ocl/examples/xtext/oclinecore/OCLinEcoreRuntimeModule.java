@@ -16,9 +16,13 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
+import org.antlr.runtime.TokenSource;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.RetokenizingTokenSource;
+import org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr.OCLinEcoreParser;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.resource.XtextResource;
 
 import com.google.inject.Binder;
@@ -33,6 +37,19 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	public void configure(Binder binder) {
 		super.configure(binder);
 		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
+	}
+	
+	@Override
+	public Class<? extends org.eclipse.xtext.parser.IParser> bindIParser() {
+		return RetokenizingOCLinEcoreParser.class;
+	}
+
+	public static class RetokenizingOCLinEcoreParser extends OCLinEcoreParser
+	{
+		@Override
+		protected XtextTokenStream createTokenStream(TokenSource tokenSource) {
+			return super.createTokenStream(new RetokenizingTokenSource(tokenSource, getTokenDefProvider().getTokenDefMap()));
+		}
 	}
 
 	@Override

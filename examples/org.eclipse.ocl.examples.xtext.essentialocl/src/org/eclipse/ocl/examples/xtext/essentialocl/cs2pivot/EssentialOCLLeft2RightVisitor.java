@@ -1215,6 +1215,9 @@ public class EssentialOCLLeft2RightVisitor extends AbstractEssentialOCLLeft2Righ
 		else if (argument instanceof NamedExpCS) {
 			navigatingExp = resolvePropertyNavigation((NamedExpCS) argument);
 		}
+		else {
+			navigatingExp = context.addBadExpressionError(argument, "bad navigation argument");
+		}
 		context.installPivotUsage(csOperator, navigatingExp);
 //		assert sourceExp.eContainer() != null; -- need to insert into invalidLiteralExp for bad navigation
 		return navigatingExp;

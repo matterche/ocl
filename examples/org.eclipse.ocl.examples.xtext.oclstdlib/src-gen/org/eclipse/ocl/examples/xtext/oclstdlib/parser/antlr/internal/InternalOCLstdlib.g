@@ -306,18 +306,6 @@ ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
     { 
         afterParserOrEnumRuleCall();
     }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getIdentifierAccess().getEssentialOCLUnrestrictedIdentifierParserRuleCall_2()); 
-    }
-    this_EssentialOCLUnrestrictedIdentifier_2=ruleEssentialOCLUnrestrictedIdentifier    {
-		$current.merge(this_EssentialOCLUnrestrictedIdentifier_2);
-    }
-
-    { 
-        afterParserOrEnumRuleCall();
-    }
 )
     ;
 
@@ -3837,60 +3825,14 @@ ruleNUMBER_LITERAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_INT_0=RULE_INT    {
+    this_INT_0=RULE_INT    {
 		$current.merge(this_INT_0);
     }
 
     { 
-    newLeafNode(this_INT_0, grammarAccess.getNUMBER_LITERALAccess().getINTTerminalRuleCall_0()); 
-    }
-(
-	kw='.' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getNUMBER_LITERALAccess().getFullStopKeyword_1_0()); 
-    }
-    this_INT_2=RULE_INT    {
-		$current.merge(this_INT_2);
+    newLeafNode(this_INT_0, grammarAccess.getNUMBER_LITERALAccess().getINTTerminalRuleCall()); 
     }
 
-    { 
-    newLeafNode(this_INT_2, grammarAccess.getNUMBER_LITERALAccess().getINTTerminalRuleCall_1_1()); 
-    }
-)?((
-	kw='e' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getNUMBER_LITERALAccess().getEKeyword_2_0_0()); 
-    }
-
-    |
-	kw='E' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getNUMBER_LITERALAccess().getEKeyword_2_0_1()); 
-    }
-)(
-	kw='+' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getNUMBER_LITERALAccess().getPlusSignKeyword_2_1_0()); 
-    }
-
-    |
-	kw='-' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getNUMBER_LITERALAccess().getHyphenMinusKeyword_2_1_1()); 
-    }
-)?    this_INT_7=RULE_INT    {
-		$current.merge(this_INT_7);
-    }
-
-    { 
-    newLeafNode(this_INT_7, grammarAccess.getNUMBER_LITERALAccess().getINTTerminalRuleCall_2_2()); 
-    }
-)?)
     ;
 
 
@@ -4014,40 +3956,6 @@ ruleEssentialOCLReservedKeyword returns [AntlrDatatypeRuleToken current=new Antl
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getEssentialOCLReservedKeywordAccess().getXorKeyword_10()); 
-    }
-)
-    ;
-
-
-
-
-
-// Entry rule entryRuleEssentialOCLUnrestrictedIdentifier
-entryRuleEssentialOCLUnrestrictedIdentifier returns [String current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getEssentialOCLUnrestrictedIdentifierRule()); } 
-	 iv_ruleEssentialOCLUnrestrictedIdentifier=ruleEssentialOCLUnrestrictedIdentifier 
-	 { $current=$iv_ruleEssentialOCLUnrestrictedIdentifier.current.getText(); }  
-	 EOF 
-;
-
-// Rule EssentialOCLUnrestrictedIdentifier
-ruleEssentialOCLUnrestrictedIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-	kw='e' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getEKeyword_0()); 
-    }
-
-    |
-	kw='E' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getEKeyword_1()); 
     }
 )
     ;
@@ -7924,19 +7832,17 @@ fragment RULE_ESCAPED_CHARACTER : '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\');
 
 fragment RULE_LETTER_CHARACTER : ('a'..'z'|'A'..'Z'|'_');
 
-fragment RULE_DIGIT_CHARACTER : '0'..'9';
-
 RULE_DOUBLE_QUOTED_STRING : '"' (RULE_ESCAPED_CHARACTER|~(('\\'|'"')))* '"';
 
 RULE_SINGLE_QUOTED_STRING : '\'' (RULE_ESCAPED_CHARACTER|~(('\\'|'\'')))* '\'';
 
 RULE_ML_SINGLE_QUOTED_STRING : '/\'' ( options {greedy=false;} : . )*'\'/';
 
-RULE_SIMPLE_ID : RULE_LETTER_CHARACTER (RULE_LETTER_CHARACTER|RULE_DIGIT_CHARACTER)*;
+RULE_SIMPLE_ID : RULE_LETTER_CHARACTER (RULE_LETTER_CHARACTER|'0'..'9')*;
 
 RULE_ESCAPED_ID : '_' RULE_SINGLE_QUOTED_STRING;
 
-RULE_INT : RULE_DIGIT_CHARACTER+;
+RULE_INT : ('0'..'9')+;
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

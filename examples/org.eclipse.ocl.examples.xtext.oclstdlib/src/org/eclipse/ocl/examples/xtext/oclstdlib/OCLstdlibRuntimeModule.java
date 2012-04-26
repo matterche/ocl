@@ -17,12 +17,16 @@
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
+import org.antlr.runtime.TokenSource;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.RetokenizingTokenSource;
+import org.eclipse.ocl.examples.xtext.oclstdlib.parser.antlr.OCLstdlibParser;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.validation.OCLstdlibCompositeEValidator;
 import org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.CompositeEValidator;
@@ -44,6 +48,19 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 
 	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
 		return OCLstdlibCompositeEValidator.class;
+	}
+	
+	@Override
+	public Class<? extends org.eclipse.xtext.parser.IParser> bindIParser() {
+		return RetokenizingOCLstdlibParser.class;
+	}
+
+	public static class RetokenizingOCLstdlibParser extends OCLstdlibParser
+	{
+		@Override
+		protected XtextTokenStream createTokenStream(TokenSource tokenSource) {
+			return super.createTokenStream(new RetokenizingTokenSource(tokenSource, getTokenDefProvider().getTokenDefMap()));
+		}
 	}
 
 	@Override

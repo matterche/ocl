@@ -26,11 +26,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__39=39;
     public static final int T__30=30;
     public static final int T__46=46;
-    public static final int T__128=128;
     public static final int T__96=96;
     public static final int T__49=49;
     public static final int T__119=119;
-    public static final int RULE_DOUBLE_QUOTED_STRING=13;
+    public static final int RULE_DOUBLE_QUOTED_STRING=12;
     public static final int T__108=108;
     public static final int T__112=112;
     public static final int T__48=48;
@@ -51,7 +50,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__90=90;
     public static final int T__63=63;
     public static final int T__114=114;
-    public static final int RULE_WS=16;
+    public static final int RULE_WS=15;
     public static final int T__125=125;
     public static final int T__110=110;
     public static final int T__43=43;
@@ -60,17 +59,16 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__85=85;
     public static final int T__26=26;
     public static final int T__25=25;
-    public static final int RULE_SL_COMMENT=15;
+    public static final int RULE_SL_COMMENT=14;
     public static final int T__124=124;
     public static final int T__60=60;
     public static final int T__41=41;
     public static final int T__93=93;
     public static final int T__86=86;
     public static final int T__28=28;
-    public static final int T__57=57;
     public static final int T__23=23;
+    public static final int T__57=57;
     public static final int T__94=94;
-    public static final int RULE_DIGIT_CHARACTER=12;
     public static final int T__51=51;
     public static final int T__80=80;
     public static final int T__100=100;
@@ -90,10 +88,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__74=74;
     public static final int T__52=52;
     public static final int T__68=68;
+    public static final int T__17=17;
     public static final int T__62=62;
     public static final int RULE_INT=4;
     public static final int T__27=27;
-    public static final int T__127=127;
     public static final int T__24=24;
     public static final int RULE_SINGLE_QUOTED_STRING=5;
     public static final int T__61=61;
@@ -102,7 +100,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__120=120;
     public static final int T__98=98;
     public static final int T__56=56;
-    public static final int RULE_ML_COMMENT=14;
+    public static final int RULE_ML_COMMENT=13;
     public static final int T__35=35;
     public static final int T__78=78;
     public static final int T__117=117;
@@ -113,7 +111,6 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__33=33;
     public static final int RULE_UNQUOTED_STRING=7;
     public static final int T__77=77;
-    public static final int T__129=129;
     public static final int T__29=29;
     public static final int T__45=45;
     public static final int T__55=55;
@@ -121,8 +118,8 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__121=121;
     public static final int T__84=84;
     public static final int T__97=97;
-    public static final int T__105=105;
     public static final int T__75=75;
+    public static final int T__105=105;
     public static final int T__111=111;
     public static final int T__31=31;
     public static final int T__116=116;
@@ -133,7 +130,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__76=76;
     public static final int T__37=37;
     public static final int T__82=82;
-    public static final int RULE_ANY_OTHER=17;
+    public static final int RULE_ANY_OTHER=16;
     public static final int T__81=81;
     public static final int T__83=83;
     public static final int T__71=71;
@@ -153,15 +150,36 @@ public class InternalOCLinEcoreLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g"; }
 
-    // $ANTLR start "T__18"
-    public final void mT__18() throws RecognitionException {
+    // $ANTLR start "T__17"
+    public final void mT__17() throws RecognitionException {
         try {
-            int _type = T__18;
+            int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11:7: ( 'module' )
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11:9: 'module'
             {
             match("module"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__17"
+
+    // $ANTLR start "T__18"
+    public final void mT__18() throws RecognitionException {
+        try {
+            int _type = T__18;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:12:7: ( 'abstract' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:12:9: 'abstract'
+            {
+            match("abstract"); 
 
 
             }
@@ -179,10 +197,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:12:7: ( 'abstract' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:12:9: 'abstract'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:13:7: ( 'attribute' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:13:9: 'attribute'
             {
-            match("abstract"); 
+            match("attribute"); 
 
 
             }
@@ -200,10 +218,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:13:7: ( 'attribute' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:13:9: 'attribute'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:14:7: ( 'body' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:14:9: 'body'
             {
-            match("attribute"); 
+            match("body"); 
 
 
             }
@@ -221,10 +239,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:14:7: ( 'body' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:14:9: 'body'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:15:7: ( 'callable' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:15:9: 'callable'
             {
-            match("body"); 
+            match("callable"); 
 
 
             }
@@ -242,10 +260,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:15:7: ( 'callable' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:15:9: 'callable'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:16:7: ( 'class' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:16:9: 'class'
             {
-            match("callable"); 
+            match("class"); 
 
 
             }
@@ -263,10 +281,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:16:7: ( 'class' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:16:9: 'class'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:17:7: ( 'composes' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:17:9: 'composes'
             {
-            match("class"); 
+            match("composes"); 
 
 
             }
@@ -284,10 +302,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:17:7: ( 'composes' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:17:9: 'composes'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:18:7: ( 'datatype' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:18:9: 'datatype'
             {
-            match("composes"); 
+            match("datatype"); 
 
 
             }
@@ -305,10 +323,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:18:7: ( 'datatype' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:18:9: 'datatype'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:19:7: ( 'definition' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:19:9: 'definition'
             {
-            match("datatype"); 
+            match("definition"); 
 
 
             }
@@ -326,10 +344,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:19:7: ( 'definition' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:19:9: 'definition'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:20:7: ( 'derivation' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:20:9: 'derivation'
             {
-            match("definition"); 
+            match("derivation"); 
 
 
             }
@@ -347,10 +365,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:20:7: ( 'derivation' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:20:9: 'derivation'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:21:7: ( 'derived' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:21:9: 'derived'
             {
-            match("derivation"); 
+            match("derived"); 
 
 
             }
@@ -368,10 +386,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:21:7: ( 'derived' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:21:9: 'derived'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:22:7: ( 'enum' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:22:9: 'enum'
             {
-            match("derived"); 
+            match("enum"); 
 
 
             }
@@ -389,10 +407,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:22:7: ( 'enum' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:22:9: 'enum'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:23:7: ( 'extends' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:23:9: 'extends'
             {
-            match("enum"); 
+            match("extends"); 
 
 
             }
@@ -410,10 +428,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:23:7: ( 'extends' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:23:9: 'extends'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:24:7: ( 'id' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:24:9: 'id'
             {
-            match("extends"); 
+            match("id"); 
 
 
             }
@@ -431,10 +449,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:24:7: ( 'id' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:24:9: 'id'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:25:7: ( 'import' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:25:9: 'import'
             {
-            match("id"); 
+            match("import"); 
 
 
             }
@@ -452,10 +470,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:25:7: ( 'import' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:25:9: 'import'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:26:7: ( 'initial' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:26:9: 'initial'
             {
-            match("import"); 
+            match("initial"); 
 
 
             }
@@ -473,10 +491,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:26:7: ( 'initial' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:26:9: 'initial'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:27:7: ( 'interface' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:27:9: 'interface'
             {
-            match("initial"); 
+            match("interface"); 
 
 
             }
@@ -494,10 +512,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:27:7: ( 'interface' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:27:9: 'interface'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:28:7: ( 'key' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:28:9: 'key'
             {
-            match("interface"); 
+            match("key"); 
 
 
             }
@@ -515,10 +533,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:28:7: ( 'key' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:28:9: 'key'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:29:7: ( 'library' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:29:9: 'library'
             {
-            match("key"); 
+            match("library"); 
 
 
             }
@@ -536,10 +554,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:29:7: ( 'library' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:29:9: 'library'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:30:7: ( 'operation' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:30:9: 'operation'
             {
-            match("library"); 
+            match("operation"); 
 
 
             }
@@ -557,10 +575,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:30:7: ( 'operation' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:30:9: 'operation'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:31:7: ( 'ordered' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:31:9: 'ordered'
             {
-            match("operation"); 
+            match("ordered"); 
 
 
             }
@@ -578,10 +596,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:31:7: ( 'ordered' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:31:9: 'ordered'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:32:7: ( 'package' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:32:9: 'package'
             {
-            match("ordered"); 
+            match("package"); 
 
 
             }
@@ -599,10 +617,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:32:7: ( 'package' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:32:9: 'package'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:33:7: ( 'postcondition' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:33:9: 'postcondition'
             {
-            match("package"); 
+            match("postcondition"); 
 
 
             }
@@ -620,10 +638,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:33:7: ( 'postcondition' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:33:9: 'postcondition'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:34:7: ( 'precondition' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:34:9: 'precondition'
             {
-            match("postcondition"); 
+            match("precondition"); 
 
 
             }
@@ -641,10 +659,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:34:7: ( 'precondition' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:34:9: 'precondition'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:35:7: ( 'property' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:35:9: 'property'
             {
-            match("precondition"); 
+            match("property"); 
 
 
             }
@@ -662,10 +680,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:35:7: ( 'property' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:35:9: 'property'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:36:7: ( 'readonly' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:36:9: 'readonly'
             {
-            match("property"); 
+            match("readonly"); 
 
 
             }
@@ -683,10 +701,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:36:7: ( 'readonly' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:36:9: 'readonly'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:37:7: ( 'reference' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:37:9: 'reference'
             {
-            match("readonly"); 
+            match("reference"); 
 
 
             }
@@ -704,10 +722,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:37:7: ( 'reference' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:37:9: 'reference'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:38:7: ( 'resolve' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:38:9: 'resolve'
             {
-            match("reference"); 
+            match("resolve"); 
 
 
             }
@@ -725,10 +743,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:38:7: ( 'resolve' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:38:9: 'resolve'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:39:7: ( 'static' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:39:9: 'static'
             {
-            match("resolve"); 
+            match("static"); 
 
 
             }
@@ -746,10 +764,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:39:7: ( 'static' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:39:9: 'static'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:40:7: ( 'super' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:40:9: 'super'
             {
-            match("static"); 
+            match("super"); 
 
 
             }
@@ -767,10 +785,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:40:7: ( 'super' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:40:9: 'super'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:41:7: ( 'throws' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:41:9: 'throws'
             {
-            match("super"); 
+            match("throws"); 
 
 
             }
@@ -788,10 +806,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:41:7: ( 'throws' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:41:9: 'throws'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:42:7: ( 'transient' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:42:9: 'transient'
             {
-            match("throws"); 
+            match("transient"); 
 
 
             }
@@ -809,10 +827,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:42:7: ( 'transient' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:42:9: 'transient'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:43:7: ( 'unique' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:43:9: 'unique'
             {
-            match("transient"); 
+            match("unique"); 
 
 
             }
@@ -830,10 +848,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:43:7: ( 'unique' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:43:9: 'unique'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:44:7: ( 'unsettable' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:44:9: 'unsettable'
             {
-            match("unique"); 
+            match("unsettable"); 
 
 
             }
@@ -851,10 +869,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:44:7: ( 'unsettable' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:44:9: 'unsettable'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:45:7: ( 'volatile' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:45:9: 'volatile'
             {
-            match("unsettable"); 
+            match("volatile"); 
 
 
             }
@@ -872,10 +890,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:45:7: ( 'volatile' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:45:9: 'volatile'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:46:7: ( 'annotation' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:46:9: 'annotation'
             {
-            match("volatile"); 
+            match("annotation"); 
 
 
             }
@@ -893,10 +911,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:46:7: ( 'annotation' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:46:9: 'annotation'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:47:7: ( 'documentation' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:47:9: 'documentation'
             {
-            match("annotation"); 
+            match("documentation"); 
 
 
             }
@@ -914,10 +932,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:47:7: ( 'documentation' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:47:9: 'documentation'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:48:7: ( 'invariant' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:48:9: 'invariant'
             {
-            match("documentation"); 
+            match("invariant"); 
 
 
             }
@@ -935,10 +953,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:48:7: ( 'invariant' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:48:9: 'invariant'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:49:7: ( 'literal' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:49:9: 'literal'
             {
-            match("invariant"); 
+            match("literal"); 
 
 
             }
@@ -956,10 +974,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:49:7: ( 'literal' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:49:9: 'literal'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:50:7: ( 'serializable' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:50:9: 'serializable'
             {
-            match("literal"); 
+            match("serializable"); 
 
 
             }
@@ -977,11 +995,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:50:7: ( 'serializable' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:50:9: 'serializable'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:51:7: ( ':' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:51:9: ':'
             {
-            match("serializable"); 
-
+            match(':'); 
 
             }
 
@@ -998,10 +1015,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:51:7: ( ':' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:51:9: ':'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:52:7: ( ';' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:52:9: ';'
             {
-            match(':'); 
+            match(';'); 
 
             }
 
@@ -1018,10 +1035,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:52:7: ( ';' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:52:9: ';'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:53:7: ( '(' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:53:9: '('
             {
-            match(';'); 
+            match('('); 
 
             }
 
@@ -1038,10 +1055,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:53:7: ( '(' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:53:9: '('
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:54:7: ( ')' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:54:9: ')'
             {
-            match('('); 
+            match(')'); 
 
             }
 
@@ -1058,10 +1075,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:54:7: ( ')' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:54:9: ')'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:55:7: ( ',' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:55:9: ','
             {
-            match(')'); 
+            match(','); 
 
             }
 
@@ -1078,10 +1095,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:55:7: ( ',' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:55:9: ','
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:56:7: ( '{' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:56:9: '{'
             {
-            match(','); 
+            match('{'); 
 
             }
 
@@ -1098,10 +1115,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:56:7: ( '{' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:56:9: '{'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:57:7: ( '}' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:57:9: '}'
             {
-            match('{'); 
+            match('}'); 
 
             }
 
@@ -1118,10 +1135,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:57:7: ( '}' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:57:9: '}'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:58:7: ( '=' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:58:9: '='
             {
-            match('}'); 
+            match('='); 
 
             }
 
@@ -1138,10 +1155,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:58:7: ( '=' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:58:9: '='
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:59:7: ( '!derived' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:59:9: '!derived'
             {
-            match('='); 
+            match("!derived"); 
+
 
             }
 
@@ -1158,10 +1176,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:59:7: ( '!derived' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:59:9: '!derived'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:60:7: ( '!id' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:60:9: '!id'
             {
-            match("!derived"); 
+            match("!id"); 
 
 
             }
@@ -1179,10 +1197,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:60:7: ( '!id' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:60:9: '!id'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:61:7: ( '!ordered' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:61:9: '!ordered'
             {
-            match("!id"); 
+            match("!ordered"); 
 
 
             }
@@ -1200,10 +1218,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:61:7: ( '!ordered' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:61:9: '!ordered'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:62:7: ( '!readonly' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:62:9: '!readonly'
             {
-            match("!ordered"); 
+            match("!readonly"); 
 
 
             }
@@ -1221,10 +1239,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:62:7: ( '!readonly' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:62:9: '!readonly'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:63:7: ( '!transient' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:63:9: '!transient'
             {
-            match("!readonly"); 
+            match("!transient"); 
 
 
             }
@@ -1242,10 +1260,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:63:7: ( '!transient' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:63:9: '!transient'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:64:7: ( '!unique' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:64:9: '!unique'
             {
-            match("!transient"); 
+            match("!unique"); 
 
 
             }
@@ -1263,10 +1281,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:64:7: ( '!unique' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:64:9: '!unique'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:65:7: ( '!unsettable' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:65:9: '!unsettable'
             {
-            match("!unique"); 
+            match("!unsettable"); 
 
 
             }
@@ -1284,10 +1302,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:65:7: ( '!unsettable' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:65:9: '!unsettable'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:66:7: ( '!volatile' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:66:9: '!volatile'
             {
-            match("!unsettable"); 
+            match("!volatile"); 
 
 
             }
@@ -1305,10 +1323,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:66:7: ( '!volatile' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:66:9: '!volatile'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:67:7: ( '!serializable' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:67:9: '!serializable'
             {
-            match("!volatile"); 
+            match("!serializable"); 
 
 
             }
@@ -1326,10 +1344,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:67:7: ( '!serializable' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:67:9: '!serializable'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:68:7: ( '::' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:68:9: '::'
             {
-            match("!serializable"); 
+            match("::"); 
 
 
             }
@@ -1347,11 +1365,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:68:7: ( '::' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:68:9: '::'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:69:7: ( '*' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:69:9: '*'
             {
-            match("::"); 
-
+            match('*'); 
 
             }
 
@@ -1368,10 +1385,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:69:7: ( '*' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:69:9: '*'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:70:7: ( '#' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:70:9: '#'
             {
-            match('*'); 
+            match('#'); 
 
             }
 
@@ -1388,10 +1405,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:70:7: ( '#' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:70:9: '#'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:71:7: ( '!composes' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:71:9: '!composes'
             {
-            match('#'); 
+            match("!composes"); 
+
 
             }
 
@@ -1408,10 +1426,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:71:7: ( '!composes' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:71:9: '!composes'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:72:7: ( '!resolve' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:72:9: '!resolve'
             {
-            match("!composes"); 
+            match("!resolve"); 
 
 
             }
@@ -1429,11 +1447,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:72:7: ( '!resolve' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:72:9: '!resolve'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:73:7: ( '<' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:73:9: '<'
             {
-            match("!resolve"); 
-
+            match('<'); 
 
             }
 
@@ -1450,10 +1467,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:73:7: ( '<' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:73:9: '<'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:74:7: ( '>' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:74:9: '>'
             {
-            match('<'); 
+            match('>'); 
 
             }
 
@@ -1470,10 +1487,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:74:7: ( '>' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:74:9: '>'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:75:7: ( '&&' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:75:9: '&&'
             {
-            match('>'); 
+            match("&&"); 
+
 
             }
 
@@ -1490,11 +1508,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:75:7: ( '&&' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:75:9: '&&'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:76:7: ( '?' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:76:9: '?'
             {
-            match("&&"); 
-
+            match('?'); 
 
             }
 
@@ -1511,10 +1528,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:76:7: ( '?' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:76:9: '?'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:77:7: ( '-' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:77:9: '-'
             {
-            match('?'); 
+            match('-'); 
 
             }
 
@@ -1531,10 +1548,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:77:7: ( '.' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:77:9: '.'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:78:7: ( 'not' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:78:9: 'not'
             {
-            match('.'); 
+            match("not"); 
+
 
             }
 
@@ -1551,10 +1569,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:78:7: ( 'e' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:78:9: 'e'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:79:7: ( '/' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:79:9: '/'
             {
-            match('e'); 
+            match('/'); 
 
             }
 
@@ -1571,10 +1589,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:79:7: ( 'E' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:79:9: 'E'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:80:7: ( '+' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:80:9: '+'
             {
-            match('E'); 
+            match('+'); 
 
             }
 
@@ -1591,10 +1609,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:80:7: ( '+' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:80:9: '+'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:81:7: ( '>=' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:81:9: '>='
             {
-            match('+'); 
+            match(">="); 
+
 
             }
 
@@ -1611,10 +1630,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:81:7: ( '-' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:81:9: '-'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:82:7: ( '<=' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:82:9: '<='
             {
-            match('-'); 
+            match("<="); 
+
 
             }
 
@@ -1631,10 +1651,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:82:7: ( 'not' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:82:9: 'not'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:83:7: ( '<>' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:83:9: '<>'
             {
-            match("not"); 
+            match("<>"); 
 
 
             }
@@ -1652,10 +1672,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:83:7: ( '/' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:83:9: '/'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:84:7: ( 'and' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:84:9: 'and'
             {
-            match('/'); 
+            match("and"); 
+
 
             }
 
@@ -1672,10 +1693,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:84:7: ( '>=' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:84:9: '>='
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:85:7: ( 'or' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:85:9: 'or'
             {
-            match(">="); 
+            match("or"); 
 
 
             }
@@ -1693,10 +1714,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:85:7: ( '<=' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:85:9: '<='
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:86:7: ( 'xor' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:86:9: 'xor'
             {
-            match("<="); 
+            match("xor"); 
 
 
             }
@@ -1714,10 +1735,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:86:7: ( '<>' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:86:9: '<>'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:87:7: ( 'implies' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:87:9: 'implies'
             {
-            match("<>"); 
+            match("implies"); 
 
 
             }
@@ -1735,11 +1756,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:87:7: ( 'and' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:87:9: 'and'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:88:7: ( '.' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:88:9: '.'
             {
-            match("and"); 
-
+            match('.'); 
 
             }
 
@@ -1756,10 +1776,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:88:7: ( 'or' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:88:9: 'or'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:89:7: ( '->' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:89:9: '->'
             {
-            match("or"); 
+            match("->"); 
 
 
             }
@@ -1777,10 +1797,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:89:7: ( 'xor' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:89:9: 'xor'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:90:7: ( 'Tuple' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:90:9: 'Tuple'
             {
-            match("xor"); 
+            match("Tuple"); 
 
 
             }
@@ -1798,10 +1818,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:90:7: ( 'implies' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:90:9: 'implies'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:91:7: ( 'Boolean' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:91:9: 'Boolean'
             {
-            match("implies"); 
+            match("Boolean"); 
 
 
             }
@@ -1819,10 +1839,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:91:7: ( '->' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:91:9: '->'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:92:7: ( 'Integer' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:92:9: 'Integer'
             {
-            match("->"); 
+            match("Integer"); 
 
 
             }
@@ -1840,10 +1860,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:92:7: ( 'Tuple' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:92:9: 'Tuple'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:93:7: ( 'Real' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:93:9: 'Real'
             {
-            match("Tuple"); 
+            match("Real"); 
 
 
             }
@@ -1861,10 +1881,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:93:8: ( 'Boolean' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:93:10: 'Boolean'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:94:8: ( 'String' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:94:10: 'String'
             {
-            match("Boolean"); 
+            match("String"); 
 
 
             }
@@ -1882,10 +1902,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:94:8: ( 'Integer' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:94:10: 'Integer'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:95:8: ( 'UnlimitedNatural' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:95:10: 'UnlimitedNatural'
             {
-            match("Integer"); 
+            match("UnlimitedNatural"); 
 
 
             }
@@ -1903,10 +1923,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:95:8: ( 'Real' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:95:10: 'Real'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:96:8: ( 'OclAny' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:96:10: 'OclAny'
             {
-            match("Real"); 
+            match("OclAny"); 
 
 
             }
@@ -1924,10 +1944,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:96:8: ( 'String' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:96:10: 'String'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:97:8: ( 'OclInvalid' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:97:10: 'OclInvalid'
             {
-            match("String"); 
+            match("OclInvalid"); 
 
 
             }
@@ -1945,10 +1965,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:97:8: ( 'UnlimitedNatural' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:97:10: 'UnlimitedNatural'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:98:8: ( 'OclVoid' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:98:10: 'OclVoid'
             {
-            match("UnlimitedNatural"); 
+            match("OclVoid"); 
 
 
             }
@@ -1966,10 +1986,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:98:8: ( 'OclAny' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:98:10: 'OclAny'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:99:8: ( 'Set' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:99:10: 'Set'
             {
-            match("OclAny"); 
+            match("Set"); 
 
 
             }
@@ -1987,10 +2007,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:99:8: ( 'OclInvalid' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:99:10: 'OclInvalid'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:100:8: ( 'Bag' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:100:10: 'Bag'
             {
-            match("OclInvalid"); 
+            match("Bag"); 
 
 
             }
@@ -2008,10 +2028,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__107;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:100:8: ( 'OclVoid' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:100:10: 'OclVoid'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:101:8: ( 'Sequence' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:101:10: 'Sequence'
             {
-            match("OclVoid"); 
+            match("Sequence"); 
 
 
             }
@@ -2029,10 +2049,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__108;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:101:8: ( 'Set' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:101:10: 'Set'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:102:8: ( 'Collection' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:102:10: 'Collection'
             {
-            match("Set"); 
+            match("Collection"); 
 
 
             }
@@ -2050,10 +2070,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__109;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:102:8: ( 'Bag' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:102:10: 'Bag'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:103:8: ( 'OrderedSet' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:103:10: 'OrderedSet'
             {
-            match("Bag"); 
+            match("OrderedSet"); 
 
 
             }
@@ -2071,10 +2091,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__110;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:103:8: ( 'Sequence' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:103:10: 'Sequence'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:104:8: ( '..' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:104:10: '..'
             {
-            match("Sequence"); 
+            match(".."); 
 
 
             }
@@ -2092,11 +2112,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__111;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:104:8: ( 'Collection' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:104:10: 'Collection'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:105:8: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:105:10: '['
             {
-            match("Collection"); 
-
+            match('['); 
 
             }
 
@@ -2113,11 +2132,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__112;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:105:8: ( 'OrderedSet' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:105:10: 'OrderedSet'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:106:8: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:106:10: ']'
             {
-            match("OrderedSet"); 
-
+            match(']'); 
 
             }
 
@@ -2134,10 +2152,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__113;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:106:8: ( '..' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:106:10: '..'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:107:8: ( 'true' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:107:10: 'true'
             {
-            match(".."); 
+            match("true"); 
 
 
             }
@@ -2155,10 +2173,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__114;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:107:8: ( '[' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:107:10: '['
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:108:8: ( 'false' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:108:10: 'false'
             {
-            match('['); 
+            match("false"); 
+
 
             }
 
@@ -2175,10 +2194,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__115;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:108:8: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:108:10: ']'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:109:8: ( 'invalid' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:109:10: 'invalid'
             {
-            match(']'); 
+            match("invalid"); 
+
 
             }
 
@@ -2195,10 +2215,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__116;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:109:8: ( 'true' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:109:10: 'true'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:110:8: ( 'null' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:110:10: 'null'
             {
-            match("true"); 
+            match("null"); 
 
 
             }
@@ -2216,11 +2236,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__117;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:110:8: ( 'false' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:110:10: 'false'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:111:8: ( '@' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:111:10: '@'
             {
-            match("false"); 
-
+            match('@'); 
 
             }
 
@@ -2237,10 +2256,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__118;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:111:8: ( 'invalid' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:111:10: 'invalid'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:112:8: ( 'pre' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:112:10: 'pre'
             {
-            match("invalid"); 
+            match("pre"); 
 
 
             }
@@ -2258,11 +2277,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__119;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:112:8: ( 'null' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:112:10: 'null'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:113:8: ( '|' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:113:10: '|'
             {
-            match("null"); 
-
+            match('|'); 
 
             }
 
@@ -2279,10 +2297,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__120;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:113:8: ( '@' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:113:10: '@'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:114:8: ( 'if' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:114:10: 'if'
             {
-            match('@'); 
+            match("if"); 
+
 
             }
 
@@ -2299,10 +2318,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__121;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:114:8: ( 'pre' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:114:10: 'pre'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:115:8: ( 'then' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:115:10: 'then'
             {
-            match("pre"); 
+            match("then"); 
 
 
             }
@@ -2320,10 +2339,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__122;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:115:8: ( '|' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:115:10: '|'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:116:8: ( 'else' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:116:10: 'else'
             {
-            match('|'); 
+            match("else"); 
+
 
             }
 
@@ -2340,10 +2360,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__123;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:116:8: ( 'if' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:116:10: 'if'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:117:8: ( 'endif' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:117:10: 'endif'
             {
-            match("if"); 
+            match("endif"); 
 
 
             }
@@ -2361,10 +2381,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__124;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:117:8: ( 'then' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:117:10: 'then'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:118:8: ( 'let' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:118:10: 'let'
             {
-            match("then"); 
+            match("let"); 
 
 
             }
@@ -2382,10 +2402,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__125;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:118:8: ( 'else' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:118:10: 'else'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:119:8: ( 'in' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:119:10: 'in'
             {
-            match("else"); 
+            match("in"); 
 
 
             }
@@ -2403,71 +2423,8 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = T__126;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:119:8: ( 'endif' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:119:10: 'endif'
-            {
-            match("endif"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__126"
-
-    // $ANTLR start "T__127"
-    public final void mT__127() throws RecognitionException {
-        try {
-            int _type = T__127;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:120:8: ( 'let' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:120:10: 'let'
-            {
-            match("let"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__127"
-
-    // $ANTLR start "T__128"
-    public final void mT__128() throws RecognitionException {
-        try {
-            int _type = T__128;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:121:8: ( 'in' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:121:10: 'in'
-            {
-            match("in"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__128"
-
-    // $ANTLR start "T__129"
-    public final void mT__129() throws RecognitionException {
-        try {
-            int _type = T__129;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:122:8: ( 'self' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:122:10: 'self'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:120:8: ( 'self' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:120:10: 'self'
             {
             match("self"); 
 
@@ -2480,15 +2437,15 @@ public class InternalOCLinEcoreLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__129"
+    // $ANTLR end "T__126"
 
     // $ANTLR start "RULE_UNQUOTED_STRING"
     public final void mRULE_UNQUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_UNQUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9242:22: ( '\\u00C2\\u00A3$%^\\u00C2\\u00A3$%^' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9242:24: '\\u00C2\\u00A3$%^\\u00C2\\u00A3$%^'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9150:22: ( '\\u00C2\\u00A3$%^\\u00C2\\u00A3$%^' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9150:24: '\\u00C2\\u00A3$%^\\u00C2\\u00A3$%^'
             {
             match("\u00C2\u00A3$%^\u00C2\u00A3$%^"); 
 
@@ -2506,8 +2463,8 @@ public class InternalOCLinEcoreLexer extends Lexer {
     // $ANTLR start "RULE_ESCAPED_CHARACTER"
     public final void mRULE_ESCAPED_CHARACTER() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9244:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9244:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9152:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9152:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
             if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -2531,8 +2488,8 @@ public class InternalOCLinEcoreLexer extends Lexer {
     // $ANTLR start "RULE_LETTER_CHARACTER"
     public final void mRULE_LETTER_CHARACTER() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9246:32: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9246:34: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:32: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:34: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2552,32 +2509,16 @@ public class InternalOCLinEcoreLexer extends Lexer {
     }
     // $ANTLR end "RULE_LETTER_CHARACTER"
 
-    // $ANTLR start "RULE_DIGIT_CHARACTER"
-    public final void mRULE_DIGIT_CHARACTER() throws RecognitionException {
-        try {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9248:31: ( '0' .. '9' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9248:33: '0' .. '9'
-            {
-            matchRange('0','9'); 
-
-            }
-
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_DIGIT_CHARACTER"
-
     // $ANTLR start "RULE_DOUBLE_QUOTED_STRING"
     public final void mRULE_DOUBLE_QUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_DOUBLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9250:27: ( '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9250:29: '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9156:27: ( '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9156:29: '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9250:33: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9156:33: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )*
             loop1:
             do {
                 int alt1=3;
@@ -2593,14 +2534,14 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9250:34: RULE_ESCAPED_CHARACTER
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9156:34: RULE_ESCAPED_CHARACTER
             	    {
             	    mRULE_ESCAPED_CHARACTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9250:57: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9156:57: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2637,11 +2578,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_SINGLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9252:27: ( '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9252:29: '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9158:27: ( '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9158:29: '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9252:34: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9158:34: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop2:
             do {
                 int alt2=3;
@@ -2657,14 +2598,14 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9252:35: RULE_ESCAPED_CHARACTER
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9158:35: RULE_ESCAPED_CHARACTER
             	    {
             	    mRULE_ESCAPED_CHARACTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9252:58: ~ ( ( '\\\\' | '\\'' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9158:58: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2701,12 +2642,12 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_ML_SINGLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9254:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9254:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9160:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9160:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
             {
             match("/'"); 
 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9254:38: ( options {greedy=false; } : . )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9160:38: ( options {greedy=false; } : . )*
             loop3:
             do {
                 int alt3=2;
@@ -2731,7 +2672,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9254:66: .
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9160:66: .
             	    {
             	    matchAny(); 
 
@@ -2761,11 +2702,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_SIMPLE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9256:16: ( RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | RULE_DIGIT_CHARACTER )* )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9256:18: RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | RULE_DIGIT_CHARACTER )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9162:16: ( RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | '0' .. '9' )* )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9162:18: RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | '0' .. '9' )*
             {
             mRULE_LETTER_CHARACTER(); 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9256:40: ( RULE_LETTER_CHARACTER | RULE_DIGIT_CHARACTER )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9162:40: ( RULE_LETTER_CHARACTER | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -2814,8 +2755,8 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_ESCAPED_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9258:17: ( '_' RULE_SINGLE_QUOTED_STRING )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9258:19: '_' RULE_SINGLE_QUOTED_STRING
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9164:17: ( '_' RULE_SINGLE_QUOTED_STRING )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9164:19: '_' RULE_SINGLE_QUOTED_STRING
             {
             match('_'); 
             mRULE_SINGLE_QUOTED_STRING(); 
@@ -2835,10 +2776,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9260:10: ( ( RULE_DIGIT_CHARACTER )+ )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9260:12: ( RULE_DIGIT_CHARACTER )+
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9166:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9166:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9260:12: ( RULE_DIGIT_CHARACTER )+
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9166:12: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -2852,9 +2793,9 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9260:12: RULE_DIGIT_CHARACTER
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9166:13: '0' .. '9'
             	    {
-            	    mRULE_DIGIT_CHARACTER(); 
+            	    matchRange('0','9'); 
 
             	    }
             	    break;
@@ -2884,12 +2825,12 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9262:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9262:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9168:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9168:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9262:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9168:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -2914,7 +2855,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9262:52: .
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9168:52: .
             	    {
             	    matchAny(); 
 
@@ -2944,12 +2885,12 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("--"); 
 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -2962,7 +2903,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2982,7 +2923,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2991,9 +2932,9 @@ public class InternalOCLinEcoreLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:41: ( '\\r' )?
+                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -3002,7 +2943,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9264:41: '\\r'
+                            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9170:41: '\\r'
                             {
                             match('\r'); 
 
@@ -3034,10 +2975,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9266:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9266:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9172:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9172:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9266:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9172:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -3091,8 +3032,8 @@ public class InternalOCLinEcoreLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9268:16: ( . )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9268:18: .
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9174:16: ( . )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9174:18: .
             {
             matchAny(); 
 
@@ -3107,866 +3048,852 @@ public class InternalOCLinEcoreLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:8: ( T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt11=123;
+        // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:8: ( T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt11=121;
         alt11 = dfa11.predict(input);
         switch (alt11) {
             case 1 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:10: T__18
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:10: T__17
+                {
+                mT__17(); 
+
+                }
+                break;
+            case 2 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:16: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
-            case 2 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:16: T__19
+            case 3 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:22: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
-            case 3 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:22: T__20
+            case 4 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:28: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
-            case 4 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:28: T__21
+            case 5 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:34: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
-            case 5 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:34: T__22
+            case 6 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:40: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
-            case 6 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:40: T__23
+            case 7 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:46: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
-            case 7 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:46: T__24
+            case 8 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:52: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
-            case 8 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:52: T__25
+            case 9 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:58: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
-            case 9 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:58: T__26
+            case 10 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:64: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
-            case 10 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:64: T__27
+            case 11 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:70: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
-            case 11 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:70: T__28
+            case 12 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:76: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
-            case 12 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:76: T__29
+            case 13 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:82: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
-            case 13 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:82: T__30
+            case 14 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:88: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
-            case 14 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:88: T__31
+            case 15 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:94: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
-            case 15 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:94: T__32
+            case 16 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:100: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
-            case 16 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:100: T__33
+            case 17 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:106: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
-            case 17 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:106: T__34
+            case 18 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:112: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
-            case 18 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:112: T__35
+            case 19 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:118: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:118: T__36
+            case 20 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:124: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
-            case 20 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:124: T__37
+            case 21 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:130: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
-            case 21 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:130: T__38
+            case 22 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:136: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
-            case 22 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:136: T__39
+            case 23 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:142: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
-            case 23 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:142: T__40
+            case 24 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:148: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
-            case 24 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:148: T__41
+            case 25 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:154: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
-            case 25 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:154: T__42
+            case 26 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:160: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
-            case 26 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:160: T__43
+            case 27 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:166: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
-            case 27 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:166: T__44
+            case 28 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:172: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
-            case 28 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:172: T__45
+            case 29 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:178: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
-            case 29 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:178: T__46
+            case 30 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:184: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
-            case 30 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:184: T__47
+            case 31 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:190: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
-            case 31 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:190: T__48
+            case 32 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:196: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
-            case 32 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:196: T__49
+            case 33 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:202: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
-            case 33 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:202: T__50
+            case 34 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:208: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
-            case 34 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:208: T__51
+            case 35 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:214: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
-            case 35 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:214: T__52
+            case 36 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:220: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
-            case 36 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:220: T__53
+            case 37 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:226: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
-            case 37 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:226: T__54
+            case 38 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:232: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
-            case 38 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:232: T__55
+            case 39 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:238: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
-            case 39 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:238: T__56
+            case 40 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:244: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
-            case 40 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:244: T__57
+            case 41 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:250: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
-            case 41 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:250: T__58
+            case 42 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:256: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
-            case 42 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:256: T__59
+            case 43 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:262: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
-            case 43 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:262: T__60
+            case 44 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:268: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
-            case 44 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:268: T__61
+            case 45 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:274: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
-            case 45 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:274: T__62
+            case 46 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:280: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
-            case 46 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:280: T__63
+            case 47 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:286: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
-            case 47 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:286: T__64
+            case 48 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:292: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
-            case 48 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:292: T__65
+            case 49 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:298: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
-            case 49 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:298: T__66
+            case 50 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:304: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
-            case 50 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:304: T__67
+            case 51 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:310: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
-            case 51 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:310: T__68
+            case 52 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:316: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
-            case 52 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:316: T__69
+            case 53 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:322: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
-            case 53 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:322: T__70
+            case 54 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:328: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
-            case 54 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:328: T__71
+            case 55 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:334: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
-            case 55 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:334: T__72
+            case 56 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:340: T__72
                 {
                 mT__72(); 
 
                 }
                 break;
-            case 56 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:340: T__73
+            case 57 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:346: T__73
                 {
                 mT__73(); 
 
                 }
                 break;
-            case 57 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:346: T__74
+            case 58 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:352: T__74
                 {
                 mT__74(); 
 
                 }
                 break;
-            case 58 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:352: T__75
+            case 59 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:358: T__75
                 {
                 mT__75(); 
 
                 }
                 break;
-            case 59 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:358: T__76
+            case 60 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:364: T__76
                 {
                 mT__76(); 
 
                 }
                 break;
-            case 60 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:364: T__77
+            case 61 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:370: T__77
                 {
                 mT__77(); 
 
                 }
                 break;
-            case 61 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:370: T__78
+            case 62 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:376: T__78
                 {
                 mT__78(); 
 
                 }
                 break;
-            case 62 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:376: T__79
+            case 63 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:382: T__79
                 {
                 mT__79(); 
 
                 }
                 break;
-            case 63 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:382: T__80
+            case 64 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:388: T__80
                 {
                 mT__80(); 
 
                 }
                 break;
-            case 64 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:388: T__81
+            case 65 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:394: T__81
                 {
                 mT__81(); 
 
                 }
                 break;
-            case 65 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:394: T__82
+            case 66 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:400: T__82
                 {
                 mT__82(); 
 
                 }
                 break;
-            case 66 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:400: T__83
+            case 67 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:406: T__83
                 {
                 mT__83(); 
 
                 }
                 break;
-            case 67 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:406: T__84
+            case 68 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:412: T__84
                 {
                 mT__84(); 
 
                 }
                 break;
-            case 68 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:412: T__85
+            case 69 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:418: T__85
                 {
                 mT__85(); 
 
                 }
                 break;
-            case 69 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:418: T__86
+            case 70 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:424: T__86
                 {
                 mT__86(); 
 
                 }
                 break;
-            case 70 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:424: T__87
+            case 71 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:430: T__87
                 {
                 mT__87(); 
 
                 }
                 break;
-            case 71 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:430: T__88
+            case 72 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:436: T__88
                 {
                 mT__88(); 
 
                 }
                 break;
-            case 72 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:436: T__89
+            case 73 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:442: T__89
                 {
                 mT__89(); 
 
                 }
                 break;
-            case 73 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:442: T__90
+            case 74 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:448: T__90
                 {
                 mT__90(); 
 
                 }
                 break;
-            case 74 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:448: T__91
+            case 75 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:454: T__91
                 {
                 mT__91(); 
 
                 }
                 break;
-            case 75 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:454: T__92
+            case 76 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:460: T__92
                 {
                 mT__92(); 
 
                 }
                 break;
-            case 76 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:460: T__93
+            case 77 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:466: T__93
                 {
                 mT__93(); 
 
                 }
                 break;
-            case 77 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:466: T__94
+            case 78 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:472: T__94
                 {
                 mT__94(); 
 
                 }
                 break;
-            case 78 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:472: T__95
+            case 79 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:478: T__95
                 {
                 mT__95(); 
 
                 }
                 break;
-            case 79 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:478: T__96
+            case 80 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:484: T__96
                 {
                 mT__96(); 
 
                 }
                 break;
-            case 80 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:484: T__97
+            case 81 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:490: T__97
                 {
                 mT__97(); 
 
                 }
                 break;
-            case 81 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:490: T__98
+            case 82 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:496: T__98
                 {
                 mT__98(); 
 
                 }
                 break;
-            case 82 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:496: T__99
+            case 83 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:502: T__99
                 {
                 mT__99(); 
 
                 }
                 break;
-            case 83 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:502: T__100
+            case 84 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:508: T__100
                 {
                 mT__100(); 
 
                 }
                 break;
-            case 84 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:509: T__101
+            case 85 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:515: T__101
                 {
                 mT__101(); 
 
                 }
                 break;
-            case 85 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:516: T__102
+            case 86 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:522: T__102
                 {
                 mT__102(); 
 
                 }
                 break;
-            case 86 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:523: T__103
+            case 87 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:529: T__103
                 {
                 mT__103(); 
 
                 }
                 break;
-            case 87 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:530: T__104
+            case 88 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:536: T__104
                 {
                 mT__104(); 
 
                 }
                 break;
-            case 88 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:537: T__105
+            case 89 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:543: T__105
                 {
                 mT__105(); 
 
                 }
                 break;
-            case 89 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:544: T__106
+            case 90 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:550: T__106
                 {
                 mT__106(); 
 
                 }
                 break;
-            case 90 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:551: T__107
+            case 91 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:557: T__107
                 {
                 mT__107(); 
 
                 }
                 break;
-            case 91 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:558: T__108
+            case 92 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:564: T__108
                 {
                 mT__108(); 
 
                 }
                 break;
-            case 92 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:565: T__109
+            case 93 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:571: T__109
                 {
                 mT__109(); 
 
                 }
                 break;
-            case 93 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:572: T__110
+            case 94 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:578: T__110
                 {
                 mT__110(); 
 
                 }
                 break;
-            case 94 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:579: T__111
+            case 95 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:585: T__111
                 {
                 mT__111(); 
 
                 }
                 break;
-            case 95 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:586: T__112
+            case 96 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:592: T__112
                 {
                 mT__112(); 
 
                 }
                 break;
-            case 96 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:593: T__113
+            case 97 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:599: T__113
                 {
                 mT__113(); 
 
                 }
                 break;
-            case 97 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:600: T__114
+            case 98 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:606: T__114
                 {
                 mT__114(); 
 
                 }
                 break;
-            case 98 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:607: T__115
+            case 99 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:613: T__115
                 {
                 mT__115(); 
 
                 }
                 break;
-            case 99 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:614: T__116
+            case 100 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:620: T__116
                 {
                 mT__116(); 
 
                 }
                 break;
-            case 100 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:621: T__117
+            case 101 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:627: T__117
                 {
                 mT__117(); 
 
                 }
                 break;
-            case 101 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:628: T__118
+            case 102 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:634: T__118
                 {
                 mT__118(); 
 
                 }
                 break;
-            case 102 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:635: T__119
+            case 103 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:641: T__119
                 {
                 mT__119(); 
 
                 }
                 break;
-            case 103 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:642: T__120
+            case 104 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:648: T__120
                 {
                 mT__120(); 
 
                 }
                 break;
-            case 104 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:649: T__121
+            case 105 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:655: T__121
                 {
                 mT__121(); 
 
                 }
                 break;
-            case 105 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:656: T__122
+            case 106 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:662: T__122
                 {
                 mT__122(); 
 
                 }
                 break;
-            case 106 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:663: T__123
+            case 107 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:669: T__123
                 {
                 mT__123(); 
 
                 }
                 break;
-            case 107 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:670: T__124
+            case 108 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:676: T__124
                 {
                 mT__124(); 
 
                 }
                 break;
-            case 108 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:677: T__125
+            case 109 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:683: T__125
                 {
                 mT__125(); 
 
                 }
                 break;
-            case 109 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:684: T__126
+            case 110 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:690: T__126
                 {
                 mT__126(); 
 
                 }
                 break;
-            case 110 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:691: T__127
-                {
-                mT__127(); 
-
-                }
-                break;
             case 111 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:698: T__128
-                {
-                mT__128(); 
-
-                }
-                break;
-            case 112 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:705: T__129
-                {
-                mT__129(); 
-
-                }
-                break;
-            case 113 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:712: RULE_UNQUOTED_STRING
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:697: RULE_UNQUOTED_STRING
                 {
                 mRULE_UNQUOTED_STRING(); 
 
                 }
                 break;
-            case 114 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:733: RULE_DOUBLE_QUOTED_STRING
+            case 112 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:718: RULE_DOUBLE_QUOTED_STRING
                 {
                 mRULE_DOUBLE_QUOTED_STRING(); 
 
                 }
                 break;
-            case 115 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:759: RULE_SINGLE_QUOTED_STRING
+            case 113 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:744: RULE_SINGLE_QUOTED_STRING
                 {
                 mRULE_SINGLE_QUOTED_STRING(); 
 
                 }
                 break;
-            case 116 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:785: RULE_ML_SINGLE_QUOTED_STRING
+            case 114 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:770: RULE_ML_SINGLE_QUOTED_STRING
                 {
                 mRULE_ML_SINGLE_QUOTED_STRING(); 
 
                 }
                 break;
-            case 117 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:814: RULE_SIMPLE_ID
+            case 115 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:799: RULE_SIMPLE_ID
                 {
                 mRULE_SIMPLE_ID(); 
 
                 }
                 break;
-            case 118 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:829: RULE_ESCAPED_ID
+            case 116 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:814: RULE_ESCAPED_ID
                 {
                 mRULE_ESCAPED_ID(); 
 
                 }
                 break;
-            case 119 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:845: RULE_INT
+            case 117 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:830: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 120 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:854: RULE_ML_COMMENT
+            case 118 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:839: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 121 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:870: RULE_SL_COMMENT
+            case 119 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:855: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 122 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:886: RULE_WS
+            case 120 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:871: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 123 :
-                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:894: RULE_ANY_OTHER
+            case 121 :
+                // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1:879: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -3980,68 +3907,68 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     protected DFA11 dfa11 = new DFA11(this);
     static final String DFA11_eotS =
-        "\1\uffff\5\75\1\113\12\75\1\141\7\uffff\1\73\2\uffff\1\166\1\170"+
-        "\1\73\1\uffff\1\174\1\175\1\uffff\1\u0081\1\75\1\u0086\11\75\2\uffff"+
-        "\1\75\2\uffff\3\73\1\75\4\uffff\1\75\1\uffff\15\75\1\uffff\1\u00af"+
-        "\1\75\1\u00b4\1\u00b5\4\75\1\u00bc\13\75\42\uffff\2\75\3\uffff\14"+
-        "\75\2\uffff\1\75\10\uffff\4\75\1\u00e5\14\75\1\uffff\4\75\2\uffff"+
-        "\1\u00f7\2\75\1\u00fa\2\75\1\uffff\2\75\1\u0100\17\75\2\uffff\1"+
-        "\u0114\1\75\1\u0116\2\75\1\u0119\3\75\1\u011d\12\75\1\uffff\1\u012a"+
-        "\7\75\1\u0132\2\75\1\u0135\5\75\1\uffff\2\75\1\uffff\5\75\1\uffff"+
-        "\7\75\1\u014a\1\75\1\u014c\1\75\1\u014e\3\75\5\uffff\1\u0152\1\uffff"+
-        "\2\75\1\uffff\1\75\1\u0156\1\75\1\uffff\14\75\1\uffff\1\75\1\u0165"+
-        "\5\75\1\uffff\1\u016c\1\75\1\uffff\22\75\1\u0180\1\75\1\uffff\1"+
-        "\75\1\uffff\1\75\1\uffff\3\75\1\uffff\1\u0187\2\75\1\uffff\10\75"+
-        "\1\u0192\1\u0193\4\75\1\uffff\6\75\1\uffff\1\75\1\u019f\20\75\1"+
-        "\u01b0\1\uffff\1\75\1\u01b2\1\75\1\u01b4\2\75\1\uffff\2\75\1\u01b9"+
-        "\2\75\1\u01bc\4\75\2\uffff\10\75\1\u01c9\1\75\1\u01cb\1\uffff\1"+
-        "\u01cc\1\u01cd\2\75\1\u01d0\1\u01d1\1\u01d2\1\75\1\u01d4\1\u01d5"+
-        "\5\75\1\u01db\1\uffff\1\75\1\uffff\1\75\1\uffff\2\75\1\u01e0\1\u01e1"+
-        "\1\uffff\2\75\1\uffff\1\75\1\u01e5\2\75\1\u01e8\2\75\1\u01eb\1\u01ec"+
-        "\1\u01ed\2\75\1\uffff\1\75\3\uffff\2\75\3\uffff\1\75\2\uffff\2\75"+
-        "\1\u01f6\1\u01f7\1\75\1\uffff\3\75\1\u01fc\2\uffff\1\u01fd\2\75"+
-        "\1\uffff\2\75\1\uffff\1\u0202\1\75\3\uffff\3\75\1\u0207\1\u0208"+
-        "\1\u0209\2\75\2\uffff\1\u020c\1\75\1\u020e\1\75\2\uffff\4\75\1\uffff"+
-        "\1\u0214\1\u0215\1\u0216\1\75\3\uffff\2\75\1\uffff\1\75\1\uffff"+
-        "\1\u021b\1\75\1\u021d\1\u021e\1\u021f\3\uffff\4\75\1\uffff\1\75"+
-        "\3\uffff\2\75\1\u0227\1\u0228\1\75\1\u022a\1\u022b\2\uffff\1\75"+
-        "\2\uffff\2\75\1\u022f\1\uffff";
+        "\1\uffff\20\74\1\137\7\uffff\1\72\2\uffff\1\164\1\166\1\72\1\uffff"+
+        "\1\173\1\74\1\u0080\1\uffff\1\74\1\u0084\10\74\2\uffff\1\74\2\uffff"+
+        "\3\72\1\74\4\uffff\1\74\1\uffff\15\74\1\u00ac\1\74\1\u00b1\1\u00b2"+
+        "\4\74\1\u00b9\13\74\36\uffff\2\74\4\uffff\1\74\2\uffff\13\74\2\uffff"+
+        "\1\74\10\uffff\4\74\1\u00e2\14\74\1\uffff\4\74\2\uffff\1\u00f4\2"+
+        "\74\1\u00f7\2\74\1\uffff\2\74\1\u00fd\17\74\2\uffff\1\u0111\1\74"+
+        "\1\u0113\2\74\1\u0116\3\74\1\u011a\12\74\1\uffff\1\u0127\7\74\1"+
+        "\u012f\2\74\1\u0132\5\74\1\uffff\2\74\1\uffff\5\74\1\uffff\7\74"+
+        "\1\u0147\1\74\1\u0149\1\74\1\u014b\3\74\5\uffff\1\u014f\1\uffff"+
+        "\2\74\1\uffff\1\74\1\u0153\1\74\1\uffff\14\74\1\uffff\1\74\1\u0162"+
+        "\5\74\1\uffff\1\u0169\1\74\1\uffff\22\74\1\u017d\1\74\1\uffff\1"+
+        "\74\1\uffff\1\74\1\uffff\3\74\1\uffff\1\u0184\2\74\1\uffff\10\74"+
+        "\1\u018f\1\u0190\4\74\1\uffff\6\74\1\uffff\1\74\1\u019c\20\74\1"+
+        "\u01ad\1\uffff\1\74\1\u01af\1\74\1\u01b1\2\74\1\uffff\2\74\1\u01b6"+
+        "\2\74\1\u01b9\4\74\2\uffff\10\74\1\u01c6\1\74\1\u01c8\1\uffff\1"+
+        "\u01c9\1\u01ca\2\74\1\u01cd\1\u01ce\1\u01cf\1\74\1\u01d1\1\u01d2"+
+        "\5\74\1\u01d8\1\uffff\1\74\1\uffff\1\74\1\uffff\2\74\1\u01dd\1\u01de"+
+        "\1\uffff\2\74\1\uffff\1\74\1\u01e2\2\74\1\u01e5\2\74\1\u01e8\1\u01e9"+
+        "\1\u01ea\2\74\1\uffff\1\74\3\uffff\2\74\3\uffff\1\74\2\uffff\2\74"+
+        "\1\u01f3\1\u01f4\1\74\1\uffff\3\74\1\u01f9\2\uffff\1\u01fa\2\74"+
+        "\1\uffff\2\74\1\uffff\1\u01ff\1\74\3\uffff\3\74\1\u0204\1\u0205"+
+        "\1\u0206\2\74\2\uffff\1\u0209\1\74\1\u020b\1\74\2\uffff\4\74\1\uffff"+
+        "\1\u0211\1\u0212\1\u0213\1\74\3\uffff\2\74\1\uffff\1\74\1\uffff"+
+        "\1\u0218\1\74\1\u021a\1\u021b\1\u021c\3\uffff\4\74\1\uffff\1\74"+
+        "\3\uffff\2\74\1\u0224\1\u0225\1\74\1\u0227\1\u0228\2\uffff\1\74"+
+        "\2\uffff\2\74\1\u022c\1\uffff";
     static final String DFA11_eofS =
-        "\u0230\uffff";
+        "\u022d\uffff";
     static final String DFA11_minS =
-        "\1\0\1\157\1\142\1\157\2\141\1\60\1\144\2\145\1\160\1\141\2\145"+
+        "\1\0\1\157\1\142\1\157\2\141\1\154\1\144\2\145\1\160\1\141\2\145"+
         "\1\150\1\156\1\157\1\72\7\uffff\1\143\2\uffff\2\75\1\46\1\uffff"+
-        "\1\56\1\60\1\uffff\1\55\1\157\1\47\1\157\1\165\1\141\1\156\2\145"+
-        "\1\156\1\143\1\157\2\uffff\1\141\2\uffff\1\u00a3\2\0\1\47\4\uffff"+
-        "\1\144\1\uffff\1\163\1\164\2\144\1\154\1\141\1\155\1\164\1\146\1"+
-        "\143\1\144\1\164\1\163\1\uffff\1\60\1\160\2\60\1\171\1\142\1\164"+
-        "\1\145\1\60\1\143\1\163\1\145\2\141\1\160\1\154\1\145\1\141\1\151"+
-        "\1\154\14\uffff\1\145\1\uffff\1\156\23\uffff\1\164\1\154\3\uffff"+
-        "\1\162\1\160\1\157\1\147\1\164\1\141\1\162\1\161\2\154\1\144\1\154"+
-        "\2\uffff\1\154\10\uffff\1\165\1\164\1\162\1\157\1\60\1\171\1\154"+
-        "\1\163\1\160\1\141\2\151\1\165\1\155\1\151\2\145\1\uffff\1\154\1"+
-        "\164\1\145\1\141\2\uffff\1\60\1\162\1\145\1\60\1\162\1\145\1\uffff"+
-        "\1\153\1\164\1\60\1\160\1\144\1\145\1\157\1\164\1\145\1\151\1\146"+
-        "\1\157\2\156\1\145\1\161\1\145\2\141\1\151\1\60\1\154\1\60\2\154"+
-        "\1\60\1\145\1\154\1\151\1\60\1\165\1\151\1\101\1\145\1\154\1\163"+
-        "\1\154\1\162\1\151\1\164\1\uffff\1\60\1\141\1\163\1\157\1\164\1"+
-        "\156\1\166\1\155\1\60\1\146\1\156\1\60\1\162\2\151\1\162\1\154\1"+
-        "\uffff\1\141\1\162\1\uffff\1\141\1\162\1\141\1\143\1\157\1\uffff"+
-        "\1\145\1\157\1\162\1\154\1\151\1\162\1\141\1\60\1\167\1\60\1\163"+
-        "\1\60\1\165\2\164\5\uffff\1\60\1\uffff\2\145\1\uffff\1\147\1\60"+
-        "\1\156\1\uffff\1\145\1\155\2\156\1\157\1\162\3\145\1\141\1\142\1"+
-        "\141\1\uffff\1\142\1\60\1\163\1\171\1\151\1\141\1\145\1\uffff\1"+
-        "\60\1\144\1\uffff\1\164\1\145\1\141\1\146\2\151\1\162\1\141\1\164"+
-        "\1\145\1\147\1\157\1\156\1\162\1\156\1\145\1\166\1\143\1\60\1\154"+
-        "\1\uffff\1\163\1\uffff\1\151\1\uffff\1\145\1\164\1\151\1\uffff\1"+
-        "\60\1\141\1\145\1\uffff\1\147\1\156\1\151\1\171\1\166\1\151\1\145"+
-        "\1\143\2\60\1\143\1\165\1\164\1\154\1\uffff\1\145\1\160\2\164\1"+
-        "\144\1\156\1\uffff\1\163\1\60\1\163\1\154\2\141\1\144\1\171\1\154"+
-        "\1\151\1\144\1\145\1\156\1\144\1\164\1\154\1\156\1\145\1\60\1\uffff"+
-        "\1\151\1\60\1\145\1\60\1\141\1\154\1\uffff\1\156\1\162\1\60\1\143"+
-        "\1\164\1\60\1\141\2\144\1\164\2\uffff\2\164\1\151\1\145\1\163\1"+
-        "\145\2\151\1\60\1\164\1\60\1\uffff\2\60\1\143\1\156\3\60\1\157\2"+
-        "\60\1\144\1\151\2\171\1\143\1\60\1\uffff\1\172\1\uffff\1\156\1\uffff"+
+        "\1\55\1\157\1\47\1\uffff\1\157\1\56\1\165\1\141\1\156\2\145\1\156"+
+        "\1\143\1\157\2\uffff\1\141\2\uffff\1\u00a3\2\0\1\47\4\uffff\1\144"+
+        "\1\uffff\1\163\1\164\2\144\1\154\1\141\1\155\1\164\1\146\1\143\1"+
+        "\144\1\164\1\163\1\60\1\160\2\60\1\171\1\142\1\164\1\145\1\60\1"+
+        "\143\1\163\1\145\2\141\1\160\1\154\1\145\1\141\1\151\1\154\14\uffff"+
+        "\1\145\1\uffff\1\156\17\uffff\1\164\1\154\4\uffff\1\162\2\uffff"+
+        "\1\160\1\157\1\147\1\164\1\141\1\162\1\161\2\154\1\144\1\154\2\uffff"+
+        "\1\154\10\uffff\1\165\1\164\1\162\1\157\1\60\1\171\1\154\1\163\1"+
+        "\160\1\141\2\151\1\165\1\155\1\151\2\145\1\uffff\1\154\1\164\1\145"+
+        "\1\141\2\uffff\1\60\1\162\1\145\1\60\1\162\1\145\1\uffff\1\153\1"+
+        "\164\1\60\1\160\1\144\1\145\1\157\1\164\1\145\1\151\1\146\1\157"+
+        "\2\156\1\145\1\161\1\145\2\141\1\151\1\60\1\154\1\60\2\154\1\60"+
+        "\1\145\1\154\1\151\1\60\1\165\1\151\1\101\1\145\1\154\1\163\1\154"+
+        "\1\162\1\151\1\164\1\uffff\1\60\1\141\1\163\1\157\1\164\1\156\1"+
+        "\166\1\155\1\60\1\146\1\156\1\60\1\162\2\151\1\162\1\154\1\uffff"+
+        "\1\141\1\162\1\uffff\1\141\1\162\1\141\1\143\1\157\1\uffff\1\145"+
+        "\1\157\1\162\1\154\1\151\1\162\1\141\1\60\1\167\1\60\1\163\1\60"+
+        "\1\165\2\164\5\uffff\1\60\1\uffff\2\145\1\uffff\1\147\1\60\1\156"+
+        "\1\uffff\1\145\1\155\2\156\1\157\1\162\3\145\1\141\1\142\1\141\1"+
+        "\uffff\1\142\1\60\1\163\1\171\1\151\1\141\1\145\1\uffff\1\60\1\144"+
+        "\1\uffff\1\164\1\145\1\141\1\146\2\151\1\162\1\141\1\164\1\145\1"+
+        "\147\1\157\1\156\1\162\1\156\1\145\1\166\1\143\1\60\1\154\1\uffff"+
+        "\1\163\1\uffff\1\151\1\uffff\1\145\1\164\1\151\1\uffff\1\60\1\141"+
+        "\1\145\1\uffff\1\147\1\156\1\151\1\171\1\166\1\151\1\145\1\143\2"+
+        "\60\1\143\1\165\1\164\1\154\1\uffff\1\145\1\160\2\164\1\144\1\156"+
+        "\1\uffff\1\163\1\60\1\163\1\154\2\141\1\144\1\171\1\154\1\151\1"+
+        "\144\1\145\1\156\1\144\1\164\1\154\1\156\1\145\1\60\1\uffff\1\151"+
+        "\1\60\1\145\1\60\1\141\1\154\1\uffff\1\156\1\162\1\60\1\143\1\164"+
+        "\1\60\1\141\2\144\1\164\2\uffff\2\164\1\151\1\145\1\163\1\145\2"+
+        "\151\1\60\1\164\1\60\1\uffff\2\60\1\143\1\156\3\60\1\157\2\60\1"+
+        "\144\1\151\2\171\1\143\1\60\1\uffff\1\172\1\uffff\1\156\1\uffff"+
         "\1\142\1\145\2\60\1\uffff\2\145\1\uffff\1\154\1\60\1\123\1\151\1"+
         "\60\1\145\1\157\3\60\2\157\1\uffff\1\141\3\uffff\1\145\1\164\3\uffff"+
         "\1\156\2\uffff\1\151\1\164\2\60\1\145\1\uffff\1\141\1\164\1\154"+
@@ -4052,99 +3979,98 @@ public class InternalOCLinEcoreLexer extends Lexer {
         "\1\156\1\145\1\uffff\1\164\3\uffff\2\156\2\60\1\165\2\60\2\uffff"+
         "\1\162\2\uffff\1\141\1\154\1\60\1\uffff";
     static final String DFA11_maxS =
-        "\1\uffff\1\157\1\164\3\157\1\172\1\156\1\145\1\151\2\162\1\145"+
+        "\1\uffff\1\157\1\164\3\157\1\170\1\156\1\145\1\151\2\162\1\145"+
         "\1\165\1\162\1\156\1\157\1\72\7\uffff\1\166\2\uffff\1\76\1\75\1"+
-        "\46\1\uffff\1\56\1\172\1\uffff\1\76\1\165\1\52\1\157\1\165\1\157"+
-        "\1\156\1\145\1\164\1\156\1\162\1\157\2\uffff\1\141\2\uffff\1\u00a3"+
-        "\2\uffff\1\47\4\uffff\1\144\1\uffff\1\163\1\164\1\156\1\144\1\154"+
-        "\1\141\1\155\1\164\1\162\1\143\1\165\1\164\1\163\1\uffff\1\172\1"+
-        "\160\2\172\1\171\2\164\1\145\1\172\1\143\1\163\1\157\1\163\1\141"+
-        "\1\160\2\162\1\165\1\163\1\154\14\uffff\1\145\1\uffff\1\156\23\uffff"+
-        "\1\164\1\154\3\uffff\1\162\1\160\1\157\1\147\1\164\1\141\1\162\1"+
-        "\164\2\154\1\144\1\154\2\uffff\1\154\10\uffff\1\165\1\164\1\162"+
-        "\1\157\1\172\1\171\1\154\1\163\1\160\1\141\2\151\1\165\1\155\1\151"+
-        "\2\145\1\uffff\1\157\1\164\1\145\1\141\2\uffff\1\172\1\162\1\145"+
-        "\1\172\1\162\1\145\1\uffff\1\153\1\164\1\172\1\160\1\144\1\145\1"+
-        "\157\1\164\1\145\1\151\1\146\1\157\2\156\1\145\1\161\1\145\1\141"+
-        "\2\163\1\172\1\154\1\172\2\154\1\172\1\145\1\154\1\151\1\172\1\165"+
-        "\1\151\1\126\1\145\1\154\1\163\1\154\1\162\1\151\1\164\1\uffff\1"+
-        "\172\1\141\1\163\1\157\1\164\1\156\1\166\1\155\1\172\1\146\1\156"+
-        "\1\172\1\162\2\151\2\162\1\uffff\1\141\1\162\1\uffff\1\141\1\162"+
-        "\1\141\1\143\1\157\1\uffff\1\145\1\157\1\162\1\154\1\151\1\162\1"+
-        "\141\1\172\1\167\1\172\1\163\1\172\1\165\2\164\5\uffff\1\172\1\uffff"+
-        "\2\145\1\uffff\1\147\1\172\1\156\1\uffff\1\145\1\155\2\156\1\157"+
-        "\1\162\3\145\1\141\1\142\1\141\1\uffff\1\142\1\172\1\163\1\171\1"+
-        "\151\2\145\1\uffff\1\172\1\144\1\uffff\1\164\1\145\1\141\1\146\2"+
-        "\151\1\162\1\141\1\164\1\145\1\147\1\157\1\156\1\162\1\156\1\145"+
-        "\1\166\1\143\1\172\1\154\1\uffff\1\163\1\uffff\1\151\1\uffff\1\145"+
-        "\1\164\1\151\1\uffff\1\172\1\141\1\145\1\uffff\1\147\1\156\1\151"+
-        "\1\171\1\166\1\151\1\145\1\143\2\172\1\143\1\165\1\164\1\154\1\uffff"+
-        "\1\145\1\160\2\164\1\144\1\156\1\uffff\1\163\1\172\1\163\1\154\2"+
-        "\141\1\144\1\171\1\154\1\151\1\144\1\145\1\156\1\144\1\164\1\154"+
-        "\1\156\1\145\1\172\1\uffff\1\151\1\172\1\145\1\172\1\141\1\154\1"+
-        "\uffff\1\156\1\162\1\172\1\143\1\164\1\172\1\141\2\144\1\164\2\uffff"+
-        "\2\164\1\151\1\145\1\163\1\145\2\151\1\172\1\164\1\172\1\uffff\2"+
-        "\172\1\143\1\156\3\172\1\157\2\172\1\144\1\151\2\171\1\143\1\172"+
-        "\1\uffff\1\172\1\uffff\1\156\1\uffff\1\142\1\145\2\172\1\uffff\2"+
-        "\145\1\uffff\1\154\1\172\1\123\1\151\1\172\1\145\1\157\3\172\2\157"+
-        "\1\uffff\1\141\3\uffff\1\145\1\164\3\uffff\1\156\2\uffff\1\151\1"+
-        "\164\2\172\1\145\1\uffff\1\141\1\164\1\154\1\172\2\uffff\1\172\1"+
-        "\144\1\151\1\uffff\1\145\1\157\1\uffff\1\172\1\156\3\uffff\2\156"+
-        "\1\164\3\172\1\164\1\151\2\uffff\1\172\1\142\1\172\1\145\2\uffff"+
-        "\1\116\1\144\1\164\1\156\1\uffff\3\172\1\151\3\uffff\1\151\1\157"+
-        "\1\uffff\1\154\1\uffff\1\172\1\141\3\172\3\uffff\2\157\1\156\1\145"+
-        "\1\uffff\1\164\3\uffff\2\156\2\172\1\165\2\172\2\uffff\1\162\2\uffff"+
-        "\1\141\1\154\1\172\1\uffff";
+        "\46\1\uffff\1\76\1\165\1\52\1\uffff\1\157\1\56\1\165\1\157\1\156"+
+        "\1\145\1\164\1\156\1\162\1\157\2\uffff\1\141\2\uffff\1\u00a3\2\uffff"+
+        "\1\47\4\uffff\1\144\1\uffff\1\163\1\164\1\156\1\144\1\154\1\141"+
+        "\1\155\1\164\1\162\1\143\1\165\1\164\1\163\1\172\1\160\2\172\1\171"+
+        "\2\164\1\145\1\172\1\143\1\163\1\157\1\163\1\141\1\160\2\162\1\165"+
+        "\1\163\1\154\14\uffff\1\145\1\uffff\1\156\17\uffff\1\164\1\154\4"+
+        "\uffff\1\162\2\uffff\1\160\1\157\1\147\1\164\1\141\1\162\1\164\2"+
+        "\154\1\144\1\154\2\uffff\1\154\10\uffff\1\165\1\164\1\162\1\157"+
+        "\1\172\1\171\1\154\1\163\1\160\1\141\2\151\1\165\1\155\1\151\2\145"+
+        "\1\uffff\1\157\1\164\1\145\1\141\2\uffff\1\172\1\162\1\145\1\172"+
+        "\1\162\1\145\1\uffff\1\153\1\164\1\172\1\160\1\144\1\145\1\157\1"+
+        "\164\1\145\1\151\1\146\1\157\2\156\1\145\1\161\1\145\1\141\2\163"+
+        "\1\172\1\154\1\172\2\154\1\172\1\145\1\154\1\151\1\172\1\165\1\151"+
+        "\1\126\1\145\1\154\1\163\1\154\1\162\1\151\1\164\1\uffff\1\172\1"+
+        "\141\1\163\1\157\1\164\1\156\1\166\1\155\1\172\1\146\1\156\1\172"+
+        "\1\162\2\151\2\162\1\uffff\1\141\1\162\1\uffff\1\141\1\162\1\141"+
+        "\1\143\1\157\1\uffff\1\145\1\157\1\162\1\154\1\151\1\162\1\141\1"+
+        "\172\1\167\1\172\1\163\1\172\1\165\2\164\5\uffff\1\172\1\uffff\2"+
+        "\145\1\uffff\1\147\1\172\1\156\1\uffff\1\145\1\155\2\156\1\157\1"+
+        "\162\3\145\1\141\1\142\1\141\1\uffff\1\142\1\172\1\163\1\171\1\151"+
+        "\2\145\1\uffff\1\172\1\144\1\uffff\1\164\1\145\1\141\1\146\2\151"+
+        "\1\162\1\141\1\164\1\145\1\147\1\157\1\156\1\162\1\156\1\145\1\166"+
+        "\1\143\1\172\1\154\1\uffff\1\163\1\uffff\1\151\1\uffff\1\145\1\164"+
+        "\1\151\1\uffff\1\172\1\141\1\145\1\uffff\1\147\1\156\1\151\1\171"+
+        "\1\166\1\151\1\145\1\143\2\172\1\143\1\165\1\164\1\154\1\uffff\1"+
+        "\145\1\160\2\164\1\144\1\156\1\uffff\1\163\1\172\1\163\1\154\2\141"+
+        "\1\144\1\171\1\154\1\151\1\144\1\145\1\156\1\144\1\164\1\154\1\156"+
+        "\1\145\1\172\1\uffff\1\151\1\172\1\145\1\172\1\141\1\154\1\uffff"+
+        "\1\156\1\162\1\172\1\143\1\164\1\172\1\141\2\144\1\164\2\uffff\2"+
+        "\164\1\151\1\145\1\163\1\145\2\151\1\172\1\164\1\172\1\uffff\2\172"+
+        "\1\143\1\156\3\172\1\157\2\172\1\144\1\151\2\171\1\143\1\172\1\uffff"+
+        "\1\172\1\uffff\1\156\1\uffff\1\142\1\145\2\172\1\uffff\2\145\1\uffff"+
+        "\1\154\1\172\1\123\1\151\1\172\1\145\1\157\3\172\2\157\1\uffff\1"+
+        "\141\3\uffff\1\145\1\164\3\uffff\1\156\2\uffff\1\151\1\164\2\172"+
+        "\1\145\1\uffff\1\141\1\164\1\154\1\172\2\uffff\1\172\1\144\1\151"+
+        "\1\uffff\1\145\1\157\1\uffff\1\172\1\156\3\uffff\2\156\1\164\3\172"+
+        "\1\164\1\151\2\uffff\1\172\1\142\1\172\1\145\2\uffff\1\116\1\144"+
+        "\1\164\1\156\1\uffff\3\172\1\151\3\uffff\1\151\1\157\1\uffff\1\154"+
+        "\1\uffff\1\172\1\141\3\172\3\uffff\2\157\1\156\1\145\1\uffff\1\164"+
+        "\3\uffff\2\156\2\172\1\165\2\172\2\uffff\1\162\2\uffff\1\141\1\154"+
+        "\1\172\1\uffff";
     static final String DFA11_acceptS =
         "\22\uffff\1\52\1\53\1\54\1\55\1\56\1\57\1\60\1\uffff\1\73\1\74"+
-        "\3\uffff\1\102\2\uffff\1\106\14\uffff\1\141\1\142\1\uffff\1\147"+
-        "\1\151\4\uffff\1\165\1\167\1\172\1\173\1\uffff\1\165\15\uffff\1"+
-        "\104\24\uffff\1\72\1\51\1\52\1\53\1\54\1\55\1\56\1\57\1\60\1\61"+
-        "\1\62\1\63\1\uffff\1\65\1\uffff\1\70\1\71\1\75\1\73\1\74\1\113\1"+
-        "\114\1\77\1\112\1\100\1\101\1\102\1\140\1\103\1\105\1\106\1\121"+
-        "\1\171\1\107\2\uffff\1\164\1\170\1\111\14\uffff\1\141\1\142\1\uffff"+
-        "\1\147\1\151\1\161\1\162\1\163\1\166\1\167\1\172\21\uffff\1\16\4"+
-        "\uffff\1\157\1\152\6\uffff\1\116\50\uffff\1\115\21\uffff\1\22\2"+
-        "\uffff\1\156\5\uffff\1\150\17\uffff\1\64\1\76\1\66\1\67\1\110\1"+
-        "\uffff\1\117\2\uffff\1\134\3\uffff\1\133\14\uffff\1\4\7\uffff\1"+
-        "\14\2\uffff\1\154\24\uffff\1\160\1\uffff\1\153\1\uffff\1\143\3\uffff"+
-        "\1\146\3\uffff\1\125\16\uffff\1\6\6\uffff\1\155\23\uffff\1\36\6"+
-        "\uffff\1\122\12\uffff\1\144\1\1\13\uffff\1\17\20\uffff\1\35\1\uffff"+
-        "\1\37\1\uffff\1\41\4\uffff\1\126\2\uffff\1\130\14\uffff\1\13\1\uffff"+
-        "\1\15\1\120\1\20\2\uffff\1\145\1\23\1\47\1\uffff\1\25\1\26\5\uffff"+
-        "\1\34\4\uffff\1\123\1\124\3\uffff\1\132\2\uffff\1\2\2\uffff\1\5"+
-        "\1\7\1\10\10\uffff\1\31\1\32\4\uffff\1\43\1\135\4\uffff\1\3\4\uffff"+
-        "\1\21\1\46\1\24\2\uffff\1\33\1\uffff\1\40\5\uffff\1\44\1\11\1\12"+
-        "\4\uffff\1\42\1\uffff\1\131\1\137\1\136\7\uffff\1\30\1\50\1\uffff"+
-        "\1\45\1\27\3\uffff\1\127";
+        "\3\uffff\1\102\3\uffff\1\106\12\uffff\1\137\1\140\1\uffff\1\145"+
+        "\1\147\4\uffff\1\163\1\165\1\170\1\171\1\uffff\1\163\41\uffff\1"+
+        "\72\1\51\1\52\1\53\1\54\1\55\1\56\1\57\1\60\1\61\1\62\1\63\1\uffff"+
+        "\1\65\1\uffff\1\70\1\71\1\75\1\73\1\74\1\110\1\111\1\77\1\107\1"+
+        "\100\1\101\1\102\1\117\1\167\1\103\2\uffff\1\162\1\166\1\105\1\106"+
+        "\1\uffff\1\136\1\116\13\uffff\1\137\1\140\1\uffff\1\145\1\147\1"+
+        "\157\1\160\1\161\1\164\1\165\1\170\21\uffff\1\16\4\uffff\1\155\1"+
+        "\150\6\uffff\1\113\50\uffff\1\112\21\uffff\1\22\2\uffff\1\154\5"+
+        "\uffff\1\146\17\uffff\1\64\1\76\1\66\1\67\1\104\1\uffff\1\114\2"+
+        "\uffff\1\132\3\uffff\1\131\14\uffff\1\4\7\uffff\1\14\2\uffff\1\152"+
+        "\24\uffff\1\156\1\uffff\1\151\1\uffff\1\141\3\uffff\1\144\3\uffff"+
+        "\1\123\16\uffff\1\6\6\uffff\1\153\23\uffff\1\36\6\uffff\1\120\12"+
+        "\uffff\1\142\1\1\13\uffff\1\17\20\uffff\1\35\1\uffff\1\37\1\uffff"+
+        "\1\41\4\uffff\1\124\2\uffff\1\126\14\uffff\1\13\1\uffff\1\15\1\115"+
+        "\1\20\2\uffff\1\143\1\23\1\47\1\uffff\1\25\1\26\5\uffff\1\34\4\uffff"+
+        "\1\121\1\122\3\uffff\1\130\2\uffff\1\2\2\uffff\1\5\1\7\1\10\10\uffff"+
+        "\1\31\1\32\4\uffff\1\43\1\133\4\uffff\1\3\4\uffff\1\21\1\46\1\24"+
+        "\2\uffff\1\33\1\uffff\1\40\5\uffff\1\44\1\11\1\12\4\uffff\1\42\1"+
+        "\uffff\1\127\1\135\1\134\7\uffff\1\30\1\50\1\uffff\1\45\1\27\3\uffff"+
+        "\1\125";
     static final String DFA11_specialS =
-        "\1\1\64\uffff\1\0\1\2\u01f9\uffff}>";
+        "\1\2\63\uffff\1\0\1\1\u01f7\uffff}>";
     static final String[] DFA11_transitionS = {
-            "\11\73\2\72\2\73\1\72\22\73\1\72\1\31\1\65\1\33\2\73\1\36\1"+
-            "\66\1\23\1\24\1\32\1\42\1\25\1\43\1\40\1\45\12\71\1\21\1\22"+
-            "\1\34\1\30\1\35\1\37\1\62\1\70\1\50\1\56\1\70\1\41\3\70\1\51"+
-            "\5\70\1\55\2\70\1\52\1\53\1\47\1\54\5\70\1\57\1\73\1\60\1\73"+
-            "\1\67\1\73\1\2\1\3\1\4\1\5\1\6\1\61\2\70\1\7\1\70\1\10\1\11"+
-            "\1\1\1\44\1\12\1\13\1\70\1\14\1\15\1\16\1\17\1\20\1\70\1\46"+
-            "\2\70\1\26\1\63\1\27\104\73\1\64\uff3d\73",
-            "\1\74",
-            "\1\76\13\uffff\1\100\5\uffff\1\77",
-            "\1\101",
-            "\1\102\12\uffff\1\103\2\uffff\1\104",
-            "\1\105\3\uffff\1\106\11\uffff\1\107",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\13\75\1\112\1\75"+
-            "\1\110\11\75\1\111\2\75",
-            "\1\114\1\uffff\1\117\6\uffff\1\115\1\116",
-            "\1\120",
-            "\1\122\3\uffff\1\121",
-            "\1\123\1\uffff\1\124",
-            "\1\125\15\uffff\1\126\2\uffff\1\127",
-            "\1\130",
-            "\1\133\16\uffff\1\131\1\132",
-            "\1\134\11\uffff\1\135",
+            "\11\72\2\71\2\72\1\71\22\72\1\71\1\31\1\64\1\33\2\72\1\36\1"+
+            "\65\1\23\1\24\1\32\1\43\1\25\1\40\1\45\1\42\12\70\1\21\1\22"+
+            "\1\34\1\30\1\35\1\37\1\61\1\67\1\47\1\55\5\67\1\50\5\67\1\54"+
+            "\2\67\1\51\1\52\1\46\1\53\5\67\1\56\1\72\1\57\1\72\1\66\1\72"+
+            "\1\2\1\3\1\4\1\5\1\6\1\60\2\67\1\7\1\67\1\10\1\11\1\1\1\41\1"+
+            "\12\1\13\1\67\1\14\1\15\1\16\1\17\1\20\1\67\1\44\2\67\1\26\1"+
+            "\62\1\27\104\72\1\63\uff3d\72",
+            "\1\73",
+            "\1\75\13\uffff\1\77\5\uffff\1\76",
+            "\1\100",
+            "\1\101\12\uffff\1\102\2\uffff\1\103",
+            "\1\104\3\uffff\1\105\11\uffff\1\106",
+            "\1\111\1\uffff\1\107\11\uffff\1\110",
+            "\1\112\1\uffff\1\115\6\uffff\1\113\1\114",
+            "\1\116",
+            "\1\120\3\uffff\1\117",
+            "\1\121\1\uffff\1\122",
+            "\1\123\15\uffff\1\124\2\uffff\1\125",
+            "\1\126",
+            "\1\131\16\uffff\1\127\1\130",
+            "\1\132\11\uffff\1\133",
+            "\1\134",
+            "\1\135",
             "\1\136",
-            "\1\137",
-            "\1\140",
             "",
             "",
             "",
@@ -4152,147 +4078,147 @@ public class InternalOCLinEcoreLexer extends Lexer {
             "",
             "",
             "",
-            "\1\161\1\151\4\uffff\1\152\5\uffff\1\153\2\uffff\1\154\1\160"+
-            "\1\155\1\156\1\157",
+            "\1\157\1\147\4\uffff\1\150\5\uffff\1\151\2\uffff\1\152\1\156"+
+            "\1\153\1\154\1\155",
             "",
             "",
-            "\1\164\1\165",
+            "\1\162\1\163",
+            "\1\165",
             "\1\167",
-            "\1\171",
             "",
-            "\1\173",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\172\20\uffff\1\171",
+            "\1\174\5\uffff\1\175",
+            "\1\176\2\uffff\1\177",
             "",
-            "\1\u0080\20\uffff\1\177",
-            "\1\u0082\5\uffff\1\u0083",
-            "\1\u0084\2\uffff\1\u0085",
-            "\1\u0087",
+            "\1\u0082",
+            "\1\u0083",
+            "\1\u0085",
+            "\1\u0087\15\uffff\1\u0086",
             "\1\u0088",
-            "\1\u008a\15\uffff\1\u0089",
-            "\1\u008b",
+            "\1\u0089",
+            "\1\u008b\16\uffff\1\u008a",
             "\1\u008c",
-            "\1\u008e\16\uffff\1\u008d",
+            "\1\u008d\16\uffff\1\u008e",
             "\1\u008f",
-            "\1\u0090\16\uffff\1\u0091",
+            "",
+            "",
             "\1\u0092",
             "",
             "",
             "\1\u0095",
-            "",
-            "",
+            "\0\u0096",
+            "\0\u0097",
             "\1\u0098",
-            "\0\u0099",
-            "\0\u009a",
+            "",
+            "",
+            "",
+            "",
             "\1\u009b",
             "",
-            "",
-            "",
-            "",
-            "\1\u009e",
-            "",
-            "\1\u009f",
+            "\1\u009c",
+            "\1\u009d",
+            "\1\u009f\11\uffff\1\u009e",
             "\1\u00a0",
-            "\1\u00a2\11\uffff\1\u00a1",
+            "\1\u00a1",
+            "\1\u00a2",
             "\1\u00a3",
             "\1\u00a4",
-            "\1\u00a5",
-            "\1\u00a6",
+            "\1\u00a5\13\uffff\1\u00a6",
             "\1\u00a7",
-            "\1\u00a8\13\uffff\1\u00a9",
+            "\1\u00a9\20\uffff\1\u00a8",
             "\1\u00aa",
-            "\1\u00ac\20\uffff\1\u00ab",
+            "\1\u00ab",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u00ad",
-            "\1\u00ae",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u00b0",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\10\75\1\u00b1\12"+
-            "\75\1\u00b2\1\75\1\u00b3\4\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\10\74\1\u00ae\12"+
+            "\74\1\u00af\1\74\1\u00b0\4\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u00b3",
+            "\1\u00b4\21\uffff\1\u00b5",
             "\1\u00b6",
-            "\1\u00b7\21\uffff\1\u00b8",
-            "\1\u00b9",
+            "\1\u00b7",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\3\74\1\u00b8\26"+
+            "\74",
             "\1\u00ba",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\3\75\1\u00bb\26"+
-            "\75",
-            "\1\u00bd",
-            "\1\u00be",
-            "\1\u00bf\11\uffff\1\u00c0",
-            "\1\u00c1\4\uffff\1\u00c2\14\uffff\1\u00c3",
-            "\1\u00c4",
-            "\1\u00c5",
-            "\1\u00c7\5\uffff\1\u00c6",
-            "\1\u00c9\14\uffff\1\u00c8",
-            "\1\u00ca\23\uffff\1\u00cb",
-            "\1\u00cc\11\uffff\1\u00cd",
+            "\1\u00bb",
+            "\1\u00bc\11\uffff\1\u00bd",
+            "\1\u00be\4\uffff\1\u00bf\14\uffff\1\u00c0",
+            "\1\u00c1",
+            "\1\u00c2",
+            "\1\u00c4\5\uffff\1\u00c3",
+            "\1\u00c6\14\uffff\1\u00c5",
+            "\1\u00c7\23\uffff\1\u00c8",
+            "\1\u00c9\11\uffff\1\u00ca",
+            "\1\u00cb",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\u00cc",
+            "",
+            "\1\u00cd",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u00ce",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\u00cf",
+            "",
+            "",
+            "",
             "",
             "\1\u00d0",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\u00d1",
             "\1\u00d2",
-            "",
-            "",
-            "",
             "\1\u00d3",
             "\1\u00d4",
             "\1\u00d5",
             "\1\u00d6",
-            "\1\u00d7",
-            "\1\u00d8",
+            "\1\u00d8\2\uffff\1\u00d7",
             "\1\u00d9",
-            "\1\u00db\2\uffff\1\u00da",
+            "\1\u00da",
+            "\1\u00db",
             "\1\u00dc",
+            "",
+            "",
             "\1\u00dd",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u00de",
             "\1\u00df",
-            "",
-            "",
             "\1\u00e0",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\u00e1",
-            "\1\u00e2",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u00e3",
             "\1\u00e4",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u00e5",
             "\1\u00e6",
             "\1\u00e7",
             "\1\u00e8",
@@ -4302,27 +4228,27 @@ public class InternalOCLinEcoreLexer extends Lexer {
             "\1\u00ec",
             "\1\u00ed",
             "\1\u00ee",
-            "\1\u00ef",
-            "\1\u00f0",
-            "\1\u00f1",
             "",
-            "\1\u00f3\2\uffff\1\u00f2",
-            "\1\u00f4",
+            "\1\u00f0\2\uffff\1\u00ef",
+            "\1\u00f1",
+            "\1\u00f2",
+            "\1\u00f3",
+            "",
+            "",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u00f5",
             "\1\u00f6",
-            "",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u00f8",
             "\1\u00f9",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u00fb",
-            "\1\u00fc",
             "",
-            "\1\u00fd",
+            "\1\u00fa",
+            "\1\u00fb",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\2\74\1\u00fc\27"+
+            "\74",
             "\1\u00fe",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\2\75\1\u00ff\27"+
-            "\75",
+            "\1\u00ff",
+            "\1\u0100",
             "\1\u0101",
             "\1\u0102",
             "\1\u0103",
@@ -4335,88 +4261,88 @@ public class InternalOCLinEcoreLexer extends Lexer {
             "\1\u010a",
             "\1\u010b",
             "\1\u010c",
-            "\1\u010d",
-            "\1\u010e",
-            "\1\u010f",
-            "\1\u0110\21\uffff\1\u0111",
-            "\1\u0112\11\uffff\1\u0113",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u010d\21\uffff\1\u010e",
+            "\1\u010f\11\uffff\1\u0110",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u0112",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u0114",
             "\1\u0115",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0117",
             "\1\u0118",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u011a",
+            "\1\u0119",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u011b",
             "\1\u011c",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u011e",
-            "\1\u011f",
-            "\1\u0120\7\uffff\1\u0121\14\uffff\1\u0122",
+            "\1\u011d\7\uffff\1\u011e\14\uffff\1\u011f",
+            "\1\u0120",
+            "\1\u0121",
+            "\1\u0122",
             "\1\u0123",
             "\1\u0124",
             "\1\u0125",
             "\1\u0126",
-            "\1\u0127",
+            "",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0128",
             "\1\u0129",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u012a",
             "\1\u012b",
             "\1\u012c",
             "\1\u012d",
             "\1\u012e",
-            "\1\u012f",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0130",
             "\1\u0131",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0133",
             "\1\u0134",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u0135",
             "\1\u0136",
-            "\1\u0137",
-            "\1\u0138",
-            "\1\u0139",
-            "\1\u013b\5\uffff\1\u013a",
+            "\1\u0138\5\uffff\1\u0137",
             "",
+            "\1\u0139",
+            "\1\u013a",
+            "",
+            "\1\u013b",
             "\1\u013c",
             "\1\u013d",
-            "",
             "\1\u013e",
             "\1\u013f",
+            "",
             "\1\u0140",
             "\1\u0141",
             "\1\u0142",
-            "",
             "\1\u0143",
             "\1\u0144",
             "\1\u0145",
             "\1\u0146",
-            "\1\u0147",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0148",
-            "\1\u0149",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u014b",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u014a",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u014c",
             "\1\u014d",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u014f",
+            "\1\u014e",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "",
             "\1\u0150",
             "\1\u0151",
             "",
-            "",
-            "",
-            "",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "",
-            "\1\u0153",
+            "\1\u0152",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0154",
             "",
             "\1\u0155",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u0156",
             "\1\u0157",
-            "",
             "\1\u0158",
             "\1\u0159",
             "\1\u015a",
@@ -4426,21 +4352,21 @@ public class InternalOCLinEcoreLexer extends Lexer {
             "\1\u015e",
             "\1\u015f",
             "\1\u0160",
+            "",
             "\1\u0161",
-            "\1\u0162",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0163",
-            "",
             "\1\u0164",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u0166",
-            "\1\u0167",
+            "\1\u0165",
+            "\1\u0166\3\uffff\1\u0167",
             "\1\u0168",
-            "\1\u0169\3\uffff\1\u016a",
+            "",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u016a",
+            "",
             "\1\u016b",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u016c",
             "\1\u016d",
-            "",
             "\1\u016e",
             "\1\u016f",
             "\1\u0170",
@@ -4456,48 +4382,48 @@ public class InternalOCLinEcoreLexer extends Lexer {
             "\1\u017a",
             "\1\u017b",
             "\1\u017c",
-            "\1\u017d",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u017e",
+            "",
             "\1\u017f",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "",
+            "\1\u0180",
+            "",
             "\1\u0181",
-            "",
             "\1\u0182",
-            "",
             "\1\u0183",
             "",
-            "\1\u0184",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0185",
             "\1\u0186",
             "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u0187",
             "\1\u0188",
             "\1\u0189",
-            "",
             "\1\u018a",
             "\1\u018b",
             "\1\u018c",
             "\1\u018d",
             "\1\u018e",
-            "\1\u018f",
-            "\1\u0190",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0191",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u0192",
+            "\1\u0193",
             "\1\u0194",
+            "",
             "\1\u0195",
             "\1\u0196",
             "\1\u0197",
-            "",
             "\1\u0198",
             "\1\u0199",
             "\1\u019a",
-            "\1\u019b",
-            "\1\u019c",
-            "\1\u019d",
             "",
+            "\1\u019b",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u019d",
             "\1\u019e",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u019f",
             "\1\u01a0",
             "\1\u01a1",
             "\1\u01a2",
@@ -4511,185 +4437,182 @@ public class InternalOCLinEcoreLexer extends Lexer {
             "\1\u01aa",
             "\1\u01ab",
             "\1\u01ac",
-            "\1\u01ad",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "",
             "\1\u01ae",
-            "\1\u01af",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "",
-            "\1\u01b1",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u01b0",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u01b2",
             "\1\u01b3",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u01b5",
-            "\1\u01b6",
             "",
+            "\1\u01b4",
+            "\1\u01b5",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01b7",
             "\1\u01b8",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01ba",
             "\1\u01bb",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u01bc",
             "\1\u01bd",
+            "",
+            "",
             "\1\u01be",
             "\1\u01bf",
             "\1\u01c0",
-            "",
-            "",
             "\1\u01c1",
             "\1\u01c2",
             "\1\u01c3",
             "\1\u01c4",
             "\1\u01c5",
-            "\1\u01c6",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01c7",
-            "\1\u01c8",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u01ca",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u01ce",
-            "\1\u01cf",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u01cb",
+            "\1\u01cc",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u01d0",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01d3",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u01d4",
+            "\1\u01d5",
             "\1\u01d6",
             "\1\u01d7",
-            "\1\u01d8",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "",
             "\1\u01d9",
+            "",
             "\1\u01da",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
             "",
+            "\1\u01db",
             "\1\u01dc",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "",
-            "\1\u01dd",
-            "",
-            "\1\u01de",
             "\1\u01df",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u01e0",
             "",
-            "\1\u01e2",
+            "\1\u01e1",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01e3",
-            "",
             "\1\u01e4",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01e6",
             "\1\u01e7",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u01e9",
-            "\1\u01ea",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u01eb",
+            "\1\u01ec",
+            "",
+            "\1\u01ed",
+            "",
+            "",
+            "",
             "\1\u01ee",
             "\1\u01ef",
+            "",
+            "",
             "",
             "\1\u01f0",
             "",
             "",
-            "",
             "\1\u01f1",
             "\1\u01f2",
-            "",
-            "",
-            "",
-            "\1\u01f3",
-            "",
-            "",
-            "\1\u01f4",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01f5",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "",
+            "\1\u01f6",
+            "\1\u01f7",
             "\1\u01f8",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "",
-            "\1\u01f9",
-            "\1\u01fa",
+            "",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u01fb",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u01fc",
             "",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u01fd",
             "\1\u01fe",
-            "\1\u01ff",
             "",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0200",
+            "",
+            "",
+            "",
             "\1\u0201",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u0202",
             "\1\u0203",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u0207",
+            "\1\u0208",
             "",
             "",
-            "",
-            "\1\u0204",
-            "\1\u0205",
-            "\1\u0206",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u020a",
-            "\1\u020b",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u020c",
             "",
             "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
             "\1\u020d",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u020e",
             "\1\u020f",
-            "",
-            "",
             "\1\u0210",
-            "\1\u0211",
-            "\1\u0212",
-            "\1\u0213",
             "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\1\u0214",
+            "",
+            "",
+            "",
+            "\1\u0215",
+            "\1\u0216",
+            "",
             "\1\u0217",
             "",
-            "",
-            "",
-            "\1\u0218",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0219",
-            "",
-            "\1\u021a",
-            "",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\1\u021c",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "",
             "",
             "",
+            "\1\u021d",
+            "\1\u021e",
+            "\1\u021f",
             "\1\u0220",
+            "",
             "\1\u0221",
+            "",
+            "",
+            "",
             "\1\u0222",
             "\1\u0223",
-            "",
-            "\1\u0224",
-            "",
-            "",
-            "",
-            "\1\u0225",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\1\u0226",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "",
+            "",
             "\1\u0229",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
             "",
             "",
-            "\1\u022c",
-            "",
-            "",
-            "\1\u022d",
-            "\1\u022e",
-            "\12\75\7\uffff\32\75\4\uffff\1\75\1\uffff\32\75",
+            "\1\u022a",
+            "\1\u022b",
+            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             ""
     };
 
@@ -4723,23 +4646,33 @@ public class InternalOCLinEcoreLexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA11_53 = input.LA(1);
+                        int LA11_52 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_53>='\u0000' && LA11_53<='\uFFFF')) ) {s = 153;}
+                        if ( ((LA11_52>='\u0000' && LA11_52<='\uFFFF')) ) {s = 150;}
 
-                        else s = 59;
+                        else s = 58;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+                        int LA11_53 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA11_53>='\u0000' && LA11_53<='\uFFFF')) ) {s = 151;}
+
+                        else s = 58;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA11_0 = input.LA(1);
 
                         s = -1;
@@ -4805,71 +4738,59 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                         else if ( (LA11_0=='?') ) {s = 31;}
 
-                        else if ( (LA11_0=='.') ) {s = 32;}
+                        else if ( (LA11_0=='-') ) {s = 32;}
 
-                        else if ( (LA11_0=='E') ) {s = 33;}
+                        else if ( (LA11_0=='n') ) {s = 33;}
 
-                        else if ( (LA11_0=='+') ) {s = 34;}
+                        else if ( (LA11_0=='/') ) {s = 34;}
 
-                        else if ( (LA11_0=='-') ) {s = 35;}
+                        else if ( (LA11_0=='+') ) {s = 35;}
 
-                        else if ( (LA11_0=='n') ) {s = 36;}
+                        else if ( (LA11_0=='x') ) {s = 36;}
 
-                        else if ( (LA11_0=='/') ) {s = 37;}
+                        else if ( (LA11_0=='.') ) {s = 37;}
 
-                        else if ( (LA11_0=='x') ) {s = 38;}
+                        else if ( (LA11_0=='T') ) {s = 38;}
 
-                        else if ( (LA11_0=='T') ) {s = 39;}
+                        else if ( (LA11_0=='B') ) {s = 39;}
 
-                        else if ( (LA11_0=='B') ) {s = 40;}
+                        else if ( (LA11_0=='I') ) {s = 40;}
 
-                        else if ( (LA11_0=='I') ) {s = 41;}
+                        else if ( (LA11_0=='R') ) {s = 41;}
 
-                        else if ( (LA11_0=='R') ) {s = 42;}
+                        else if ( (LA11_0=='S') ) {s = 42;}
 
-                        else if ( (LA11_0=='S') ) {s = 43;}
+                        else if ( (LA11_0=='U') ) {s = 43;}
 
-                        else if ( (LA11_0=='U') ) {s = 44;}
+                        else if ( (LA11_0=='O') ) {s = 44;}
 
-                        else if ( (LA11_0=='O') ) {s = 45;}
+                        else if ( (LA11_0=='C') ) {s = 45;}
 
-                        else if ( (LA11_0=='C') ) {s = 46;}
+                        else if ( (LA11_0=='[') ) {s = 46;}
 
-                        else if ( (LA11_0=='[') ) {s = 47;}
+                        else if ( (LA11_0==']') ) {s = 47;}
 
-                        else if ( (LA11_0==']') ) {s = 48;}
+                        else if ( (LA11_0=='f') ) {s = 48;}
 
-                        else if ( (LA11_0=='f') ) {s = 49;}
+                        else if ( (LA11_0=='@') ) {s = 49;}
 
-                        else if ( (LA11_0=='@') ) {s = 50;}
+                        else if ( (LA11_0=='|') ) {s = 50;}
 
-                        else if ( (LA11_0=='|') ) {s = 51;}
+                        else if ( (LA11_0=='\u00C2') ) {s = 51;}
 
-                        else if ( (LA11_0=='\u00C2') ) {s = 52;}
+                        else if ( (LA11_0=='\"') ) {s = 52;}
 
-                        else if ( (LA11_0=='\"') ) {s = 53;}
+                        else if ( (LA11_0=='\'') ) {s = 53;}
 
-                        else if ( (LA11_0=='\'') ) {s = 54;}
+                        else if ( (LA11_0=='_') ) {s = 54;}
 
-                        else if ( (LA11_0=='_') ) {s = 55;}
+                        else if ( (LA11_0=='A'||(LA11_0>='D' && LA11_0<='H')||(LA11_0>='J' && LA11_0<='N')||(LA11_0>='P' && LA11_0<='Q')||(LA11_0>='V' && LA11_0<='Z')||(LA11_0>='g' && LA11_0<='h')||LA11_0=='j'||LA11_0=='q'||LA11_0=='w'||(LA11_0>='y' && LA11_0<='z')) ) {s = 55;}
 
-                        else if ( (LA11_0=='A'||LA11_0=='D'||(LA11_0>='F' && LA11_0<='H')||(LA11_0>='J' && LA11_0<='N')||(LA11_0>='P' && LA11_0<='Q')||(LA11_0>='V' && LA11_0<='Z')||(LA11_0>='g' && LA11_0<='h')||LA11_0=='j'||LA11_0=='q'||LA11_0=='w'||(LA11_0>='y' && LA11_0<='z')) ) {s = 56;}
+                        else if ( ((LA11_0>='0' && LA11_0<='9')) ) {s = 56;}
 
-                        else if ( ((LA11_0>='0' && LA11_0<='9')) ) {s = 57;}
+                        else if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {s = 57;}
 
-                        else if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {s = 58;}
-
-                        else if ( ((LA11_0>='\u0000' && LA11_0<='\b')||(LA11_0>='\u000B' && LA11_0<='\f')||(LA11_0>='\u000E' && LA11_0<='\u001F')||(LA11_0>='$' && LA11_0<='%')||LA11_0=='\\'||LA11_0=='^'||LA11_0=='`'||(LA11_0>='~' && LA11_0<='\u00C1')||(LA11_0>='\u00C3' && LA11_0<='\uFFFF')) ) {s = 59;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA11_54 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA11_54>='\u0000' && LA11_54<='\uFFFF')) ) {s = 154;}
-
-                        else s = 59;
+                        else if ( ((LA11_0>='\u0000' && LA11_0<='\b')||(LA11_0>='\u000B' && LA11_0<='\f')||(LA11_0>='\u000E' && LA11_0<='\u001F')||(LA11_0>='$' && LA11_0<='%')||LA11_0=='\\'||LA11_0=='^'||LA11_0=='`'||(LA11_0>='~' && LA11_0<='\u00C1')||(LA11_0>='\u00C3' && LA11_0<='\uFFFF')) ) {s = 58;}
 
                         if ( s>=0 ) return s;
                         break;

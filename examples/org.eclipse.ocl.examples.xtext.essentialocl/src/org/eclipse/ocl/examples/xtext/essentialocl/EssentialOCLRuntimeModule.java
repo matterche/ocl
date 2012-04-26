@@ -16,6 +16,11 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
+import org.antlr.runtime.TokenSource;
+import org.eclipse.ocl.examples.xtext.essentialocl.parser.antlr.EssentialOCLParser;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.RetokenizingTokenSource;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
 
@@ -32,12 +37,16 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
 	}
 	
-//	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
-//		return NoEObjectCompositeEValidator.class;
-//	}
+	@Override
+	public Class<? extends org.eclipse.xtext.parser.IParser> bindIParser() {
+		return RetokenizingEssentialOCLParser.class;
+	}
 
-//	@Override
-//	public Class<? extends IScopeProvider> bindIScopeProvider() {
-//		return EssentialOCLCSScopeProvider.class;
-//	}
+	public static class RetokenizingEssentialOCLParser extends EssentialOCLParser
+	{
+		@Override
+		protected XtextTokenStream createTokenStream(TokenSource tokenSource) {
+			return super.createTokenStream(new RetokenizingTokenSource(tokenSource, getTokenDefProvider().getTokenDefMap()));
+		}
+	}
 }

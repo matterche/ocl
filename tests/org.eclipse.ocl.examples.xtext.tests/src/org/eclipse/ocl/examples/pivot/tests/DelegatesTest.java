@@ -1069,7 +1069,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToLexicalError"), null);
 		validateWithDelegationSeverity("parsingToLexicalError", Diagnostic.ERROR, badClassInstance, "'part",
-			"1: mismatched character ''{0}'' expecting ''{1}''", "<EOF>", "'");
+			"1: Invalid token {0}", "'part");
 	}
 	
 	public void test_validationParsingToSemanticError() {

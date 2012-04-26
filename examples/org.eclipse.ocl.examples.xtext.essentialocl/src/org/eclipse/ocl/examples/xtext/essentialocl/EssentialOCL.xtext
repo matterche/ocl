@@ -29,9 +29,6 @@ terminal fragment ESCAPED_CHARACTER:
 terminal fragment LETTER_CHARACTER:
 	'a'..'z' | 'A'..'Z' | '_';
 
-terminal fragment DIGIT_CHARACTER:
-	'0'..'9';
-
 terminal DOUBLE_QUOTED_STRING:
 	'"' (ESCAPED_CHARACTER | !('\\' | '"'))* '"';
 
@@ -42,7 +39,7 @@ terminal ML_SINGLE_QUOTED_STRING:
 	"/'"->"'/";
 
 terminal SIMPLE_ID:
-	LETTER_CHARACTER (LETTER_CHARACTER | DIGIT_CHARACTER)*;
+	LETTER_CHARACTER (LETTER_CHARACTER | ('0'..'9'))*;
 
 terminal ESCAPED_ID:
 	"_" SINGLE_QUOTED_STRING;
@@ -50,7 +47,7 @@ terminal ESCAPED_ID:
 ID: SIMPLE_ID | ESCAPED_ID;
 
 terminal INT: // String to allow diverse re-use
-	DIGIT_CHARACTER+;
+	('0'..'9')+;		// multiple leading zeroes occur as floating point fractional part
 
 LOWER returns ecore::EInt:
 	INT
@@ -61,7 +58,7 @@ UPPER returns ecore::EInt:
 ;
 
 NUMBER_LITERAL returns BigNumber: // Not terminal to allow parser backtracking to sort out "5..7"
-	INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
+	INT; // EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
 
 terminal ML_COMMENT:
 	'/*' ->'*/';
@@ -91,10 +88,6 @@ EssentialOCLReservedKeyword:
 	| 'then'
 	| 'xor';
 
-EssentialOCLUnrestrictedIdentifier:
-	'e'
-	| 'E';
-
 EssentialOCLPrefixOperator:
 	'-' | 'not';
 
@@ -105,8 +98,7 @@ EssentialOCLNavigationOperator:
 	'.' | '->';
 
 Identifier:
-	ID
-	| EssentialOCLUnrestrictedIdentifier;
+	ID;
 
 StringLiteral:
 	SINGLE_QUOTED_STRING;

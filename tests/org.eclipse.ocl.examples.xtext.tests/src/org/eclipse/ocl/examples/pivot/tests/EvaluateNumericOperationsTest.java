@@ -70,8 +70,8 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
     
 	public void testNumber() {
 		assertQueryEquals(null, 0, "0");
-		assertSemanticErrorQuery("00", "extraneous input ''{0}'' expecting EOF", "0");
-		assertSemanticErrorQuery("01", "extraneous input ''{0}'' expecting EOF", "1");
+//		assertSemanticErrorQuery("00", "extraneous input ''{0}'' expecting EOF", "0");
+//		assertSemanticErrorQuery("01", "extraneous input ''{0}'' expecting EOF", "1");
 		assertQueryEquals(null, 3, "3");
 		assertQueryEquals(null, 3.1, "3.1");
 		assertQueryEquals(null, 3.1e1, "3.1e1");

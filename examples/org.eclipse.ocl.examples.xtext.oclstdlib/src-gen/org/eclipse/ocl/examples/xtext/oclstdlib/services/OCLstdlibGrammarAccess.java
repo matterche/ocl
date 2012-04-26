@@ -166,14 +166,13 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRestrictedKeywordsParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cEssentialOCLUnrestrictedIdentifierParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Identifier:
 		//
-		//	ID | RestrictedKeywords | EssentialOCLUnrestrictedIdentifier;
+		//	ID | RestrictedKeywords;
 		public ParserRule getRule() { return rule; }
 
-		//ID | RestrictedKeywords | EssentialOCLUnrestrictedIdentifier
+		//ID | RestrictedKeywords
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -181,9 +180,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RestrictedKeywords
 		public RuleCall getRestrictedKeywordsParserRuleCall_1() { return cRestrictedKeywordsParserRuleCall_1; }
-
-		//EssentialOCLUnrestrictedIdentifier
-		public RuleCall getEssentialOCLUnrestrictedIdentifierParserRuleCall_2() { return cEssentialOCLUnrestrictedIdentifierParserRuleCall_2; }
 	}
 
 	public class RestrictedKeywordsElements extends AbstractParserRuleElementFinder {
@@ -2383,7 +2379,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Identifier:
 	//
-	//	ID | RestrictedKeywords | EssentialOCLUnrestrictedIdentifier;
+	//	ID | RestrictedKeywords;
 	public IdentifierElements getIdentifierAccess() {
 		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
 	}
@@ -2872,13 +2868,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return gaEssentialOCL.getLETTER_CHARACTERRule();
 	} 
 
-	//terminal fragment DIGIT_CHARACTER:
-	//
-	//	"0".."9";
-	public TerminalRule getDIGIT_CHARACTERRule() {
-		return gaEssentialOCL.getDIGIT_CHARACTERRule();
-	} 
-
 	//terminal DOUBLE_QUOTED_STRING:
 	//
 	//	"\"" (ESCAPED_CHARACTER | !("\\" | "\""))* "\"";
@@ -2902,7 +2891,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal SIMPLE_ID:
 	//
-	//	LETTER_CHARACTER (LETTER_CHARACTER | DIGIT_CHARACTER)*;
+	//	LETTER_CHARACTER (LETTER_CHARACTER | "0".."9")*;
 	public TerminalRule getSIMPLE_IDRule() {
 		return gaEssentialOCL.getSIMPLE_IDRule();
 	} 
@@ -2926,9 +2915,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// String to allow diverse re-use
+	// // multiple leading zeroes occur as floating point fractional part
 	// terminal INT:
 	//
-	//	DIGIT_CHARACTER+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaEssentialOCL.getINTRule();
 	} 
@@ -2956,9 +2946,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
-	// NUMBER_LITERAL returns BigNumber:
 	//
-	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
+	//
+	//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
+	// NUMBER_LITERAL returns
+	//
+	//BigNumber:
+	//
+	//	INT;
 	public EssentialOCLGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
 		return gaEssentialOCL.getNUMBER_LITERALAccess();
 	}
@@ -3015,17 +3010,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEssentialOCLReservedKeywordRule() {
 		return getEssentialOCLReservedKeywordAccess().getRule();
-	}
-
-	//EssentialOCLUnrestrictedIdentifier:
-	//
-	//	"e" | "E";
-	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedIdentifierElements getEssentialOCLUnrestrictedIdentifierAccess() {
-		return gaEssentialOCL.getEssentialOCLUnrestrictedIdentifierAccess();
-	}
-	
-	public ParserRule getEssentialOCLUnrestrictedIdentifierRule() {
-		return getEssentialOCLUnrestrictedIdentifierAccess().getRule();
 	}
 
 	//EssentialOCLPrefixOperator:

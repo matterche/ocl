@@ -4084,13 +4084,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return gaEssentialOCL.getLETTER_CHARACTERRule();
 	} 
 
-	//terminal fragment DIGIT_CHARACTER:
-	//
-	//	"0".."9";
-	public TerminalRule getDIGIT_CHARACTERRule() {
-		return gaEssentialOCL.getDIGIT_CHARACTERRule();
-	} 
-
 	//terminal DOUBLE_QUOTED_STRING:
 	//
 	//	"\"" (ESCAPED_CHARACTER | !("\\" | "\""))* "\"";
@@ -4114,7 +4107,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal SIMPLE_ID:
 	//
-	//	LETTER_CHARACTER (LETTER_CHARACTER | DIGIT_CHARACTER)*;
+	//	LETTER_CHARACTER (LETTER_CHARACTER | "0".."9")*;
 	public TerminalRule getSIMPLE_IDRule() {
 		return gaEssentialOCL.getSIMPLE_IDRule();
 	} 
@@ -4138,9 +4131,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// String to allow diverse re-use
+	// // multiple leading zeroes occur as floating point fractional part
 	// terminal INT:
 	//
-	//	DIGIT_CHARACTER+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaEssentialOCL.getINTRule();
 	} 
@@ -4168,9 +4162,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
-	// NUMBER_LITERAL returns BigNumber:
 	//
-	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
+	//
+	//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
+	// NUMBER_LITERAL returns
+	//
+	//BigNumber:
+	//
+	//	INT;
 	public EssentialOCLGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
 		return gaEssentialOCL.getNUMBER_LITERALAccess();
 	}
@@ -4229,17 +4228,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLReservedKeywordAccess().getRule();
 	}
 
-	//EssentialOCLUnrestrictedIdentifier:
-	//
-	//	"e" | "E";
-	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedIdentifierElements getEssentialOCLUnrestrictedIdentifierAccess() {
-		return gaEssentialOCL.getEssentialOCLUnrestrictedIdentifierAccess();
-	}
-	
-	public ParserRule getEssentialOCLUnrestrictedIdentifierRule() {
-		return getEssentialOCLUnrestrictedIdentifierAccess().getRule();
-	}
-
 	//EssentialOCLPrefixOperator:
 	//
 	//	"-" | "not";
@@ -4275,7 +4263,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Identifier:
 	//
-	//	ID | EssentialOCLUnrestrictedIdentifier;
+	//	ID;
 	public EssentialOCLGrammarAccess.IdentifierElements getIdentifierAccess() {
 		return gaEssentialOCL.getIdentifierAccess();
 	}

@@ -40,7 +40,6 @@ Library returns LibRootPackageCS:
 Identifier:
 	ID
 |	RestrictedKeywords
-|	EssentialOCLUnrestrictedIdentifier
 ;
 
 RestrictedKeywords:
