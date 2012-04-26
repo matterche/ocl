@@ -16,6 +16,8 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
@@ -31,8 +33,11 @@ public class EssentialOCLSemanticHighlightingCalculator implements ISemanticHigh
 		ICompositeNode rootNode = resource.getParseResult().getRootNode();
 		for (INode abstractNode : rootNode.getAsTreeIterable()) {
 			if (abstractNode.getGrammarElement() instanceof CrossReference) {
-				acceptor.addPosition(abstractNode.getOffset(), abstractNode.getLength(),
-					EssentialOCLHighlightingConfiguration.CROSS_REF);
+				EObject semanticElement = abstractNode.getSemanticElement();
+				if (!(semanticElement instanceof PathElementCS) || (((PathElementCS)semanticElement).getElementType() != null)) {
+					acceptor.addPosition(abstractNode.getOffset(), abstractNode.getLength(),
+						EssentialOCLHighlightingConfiguration.CROSS_REF);
+				}
 			}
 		}
 	}
