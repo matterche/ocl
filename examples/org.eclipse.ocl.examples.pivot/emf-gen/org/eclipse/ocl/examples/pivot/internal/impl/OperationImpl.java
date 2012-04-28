@@ -1204,7 +1204,8 @@ public class OperationImpl
 		if (bodyImplementation == null) {
 //			List<Constraint> ownedRules = getOwnedRule();
 			for (Constraint rule : getOwnedRule()) {
-				if (rule.getStereotype().equals(UMLReflection.BODY)) {
+				String stereotype = rule.getStereotype();
+				if (UMLReflection.BODY.equals(stereotype)) {
 					ValueSpecification specification = rule.getSpecification();
 					if (specification instanceof ExpressionInOcl) {
 						bodyImplementation = new ConstrainedOperation((ExpressionInOcl) specification);
