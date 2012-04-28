@@ -1249,7 +1249,9 @@ public class CS2PivotConversion extends AbstractConversion
 		//	The containment pass may only access the pivot elements of immediate children.
 		//
 		for (Resource csResource : csResources) {
-			visitContainment(csResource.getContents(), continuations);
+			for (EObject eObject : csResource.getContents()) {
+				visitContainment(eObject, continuations);
+			}
 		}
 		while (continuations.size() > 0) {
 			List<BasicContinuation<?>> moreContinuations = progressContinuations(continuations);
@@ -1273,7 +1275,9 @@ public class CS2PivotConversion extends AbstractConversion
 		//	Perform the pre-order traversal to resolve specializations and references.
 		//
 		for (Resource csResource : csResources) {
-			visitInPreOrder(csResource.getContents(), continuations);
+			for (EObject eObject : csResource.getContents()) {
+				visitInPreOrder(eObject, continuations);
+			}
 		}
 		//
 		//	Perform pre-order continuations to establish package, class containment and classifier template signatures.
@@ -1308,7 +1312,9 @@ public class CS2PivotConversion extends AbstractConversion
 		//	elements.
 		//
 		for (Resource csResource : csResources) {
-			visitInPostOrder(csResource.getContents(), continuations);
+			for (EObject eObject : csResource.getContents()) {
+				visitInPostOrder(eObject, continuations);
+			}
 		}
 		boolean hasNoErrors = checkForNoErrors(csResources);
 		if (!hasNoErrors) {
@@ -1373,19 +1379,13 @@ public class CS2PivotConversion extends AbstractConversion
 		return true;
 	}
 
-	protected void visitContainment(List<? extends EObject> eObjects, List<BasicContinuation<?>> continuations) {
-		for (EObject eObject : eObjects) {
-			List<EObject> eContents = eObject.eContents();
-			if (eContents.size() > 0) {
-				visitContainment(eContents, continuations);
-			}
-			if (!(eObject instanceof VisitableCS)) {
-				throw new IllegalArgumentException("Unvisitable " + eObject.eClass().getName() + " for CS2Pivot PreOrder pass");
-			}
-			Continuation<?> continuation = ((VisitableCS)eObject).accept(containmentVisitor);
-			if (continuation != null) {
-				continuation.addTo(continuations);
-			}
+	protected void visitContainment(EObject eObject, List<BasicContinuation<?>> continuations) {
+		for (EObject eContent : eObject.eContents()) {
+			visitContainment(eContent, continuations);
+		}
+		Continuation<?> continuation = ((VisitableCS)eObject).accept(containmentVisitor);
+		if (continuation != null) {
+			continuation.addTo(continuations);
 		}
 	}
 
@@ -1405,36 +1405,23 @@ public class CS2PivotConversion extends AbstractConversion
 		return castElement;
 	}
 
-	protected void visitInPostOrder(List<? extends EObject> eObjects, List<BasicContinuation<?>> continuations) {
-		for (int i = eObjects.size(); i-- > 0; ) {
-			EObject eObject = eObjects.get(i);
-			if (!(eObject instanceof VisitableCS)) {
-				throw new IllegalArgumentException("Unsupportable " + eObject.eClass().getName() + " for CS2Pivot PostOrder pass");
-			}
-			List<EObject> eContents = eObject.eContents();
-			if (eContents.size() > 0) {
-				visitInPostOrder(eContents, continuations);
-			}
-			Continuation<?> continuation = ((VisitableCS)eObject).accept(postOrderVisitor);
-			if (continuation != null) {
-				continuation.addTo(continuations);
-			}
+	protected void visitInPostOrder(EObject eObject, List<BasicContinuation<?>> continuations) {
+		for (EObject eContent : eObject.eContents()) {
+			visitInPostOrder(eContent, continuations);
+		}
+		Continuation<?> continuation = ((VisitableCS)eObject).accept(postOrderVisitor);
+		if (continuation != null) {
+			continuation.addTo(continuations);
 		}
 	}
 
-	protected void visitInPreOrder(List<? extends EObject> eObjects, List<BasicContinuation<?>> continuations) {
-		for (EObject eObject : eObjects) {
-			if (!(eObject instanceof VisitableCS)) {
-				throw new IllegalArgumentException("Unsupportable " + eObject.eClass().getName() + " for CS2Pivot PreOrder pass");
-			}
-			Continuation<?> continuation = ((VisitableCS)eObject).accept(preOrderVisitor);
-			if (continuation != null) {
-				continuation.addTo(continuations);
-			}
-			List<EObject> eContents = eObject.eContents();
-			if (eContents.size() > 0) {
-				visitInPreOrder(eContents, continuations);
-			}
+	protected void visitInPreOrder(EObject eObject, List<BasicContinuation<?>> continuations) {
+		Continuation<?> continuation = ((VisitableCS)eObject).accept(preOrderVisitor);
+		if (continuation != null) {
+			continuation.addTo(continuations);
+		}
+		for (EObject eContent : eObject.eContents()) {
+			visitInPreOrder(eContent, continuations);
 		}
 	}
 }
