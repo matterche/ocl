@@ -1842,6 +1842,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public Type getSpecializedType(Type type, Map<TemplateParameter, ParameterableElement> usageBindings) {
+		if (type == null) {
+			return null;
+		}
 		TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
 		if (owningTemplateParameter != null) {
 			if (usageBindings == null) {
