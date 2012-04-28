@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -138,8 +139,9 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			ContextSpecificationCS csSpec = context.refreshElement(ContextSpecificationCS.class, CompleteOCLCSTPackage.Literals.CONTEXT_SPECIFICATION_CS, specification);
 			csElement.setSpecification(csSpec);
 			if (specification instanceof OpaqueExpression) {
-				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(namespace);
-				prettyPrintOptions.setMetaModelManager(context.getMetaModelManager());
+				MetaModelManager metaModelManager = context.getMetaModelManager();
+				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(metaModelManager.getPrimaryElement(namespace));
+				prettyPrintOptions.setMetaModelManager(metaModelManager);
 				String expr = PrettyPrinter.print(specification, prettyPrintOptions);		
 				csSpec.setExprString("\t" + expr.trim().replaceAll("\\r", "").replaceAll("\\n", "\n\t\t"));
 				OpaqueExpression opaqueExpression = (OpaqueExpression)specification;

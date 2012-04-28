@@ -31,7 +31,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -222,6 +224,53 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(defCS);
 				if (result == null) result = casePivotable(defCS);
 				if (result == null) result = caseVisitableCS(defCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CompleteOCLCSTPackage.DEF_FEATURE_CS:
+			{
+				DefFeatureCS defFeatureCS = (DefFeatureCS)theEObject;
+				T result = caseDefFeatureCS(defFeatureCS);
+				if (result == null) result = caseTypedElementCS(defFeatureCS);
+				if (result == null) result = caseNamedElementCS(defFeatureCS);
+				if (result == null) result = caseModelElementCS(defFeatureCS);
+				if (result == null) result = caseNameable(defFeatureCS);
+				if (result == null) result = casePivotableElementCS(defFeatureCS);
+				if (result == null) result = caseElementCS(defFeatureCS);
+				if (result == null) result = casePivotable(defFeatureCS);
+				if (result == null) result = caseVisitableCS(defFeatureCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CompleteOCLCSTPackage.DEF_OPERATION_CS:
+			{
+				DefOperationCS defOperationCS = (DefOperationCS)theEObject;
+				T result = caseDefOperationCS(defOperationCS);
+				if (result == null) result = caseDefFeatureCS(defOperationCS);
+				if (result == null) result = caseTypedElementCS(defOperationCS);
+				if (result == null) result = caseNamedElementCS(defOperationCS);
+				if (result == null) result = caseModelElementCS(defOperationCS);
+				if (result == null) result = caseNameable(defOperationCS);
+				if (result == null) result = casePivotableElementCS(defOperationCS);
+				if (result == null) result = caseElementCS(defOperationCS);
+				if (result == null) result = casePivotable(defOperationCS);
+				if (result == null) result = caseVisitableCS(defOperationCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CompleteOCLCSTPackage.DEF_PROPERTY_CS:
+			{
+				DefPropertyCS defPropertyCS = (DefPropertyCS)theEObject;
+				T result = caseDefPropertyCS(defPropertyCS);
+				if (result == null) result = caseDefFeatureCS(defPropertyCS);
+				if (result == null) result = caseTypedElementCS(defPropertyCS);
+				if (result == null) result = caseNamedElementCS(defPropertyCS);
+				if (result == null) result = caseModelElementCS(defPropertyCS);
+				if (result == null) result = caseNameable(defPropertyCS);
+				if (result == null) result = casePivotableElementCS(defPropertyCS);
+				if (result == null) result = caseElementCS(defPropertyCS);
+				if (result == null) result = casePivotable(defPropertyCS);
+				if (result == null) result = caseVisitableCS(defPropertyCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -556,6 +605,54 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Def Feature CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Def Feature CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDefFeatureCS(DefFeatureCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Def Operation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Def Operation CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDefOperationCS(DefOperationCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Def Property CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Def Property CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDefPropertyCS(DefPropertyCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Der CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -935,6 +1032,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	 * @generated
 	 */
 	public T caseExpSpecificationCS(ExpSpecificationCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedElementCS(TypedElementCS object)
 	{
 		return null;
 	}

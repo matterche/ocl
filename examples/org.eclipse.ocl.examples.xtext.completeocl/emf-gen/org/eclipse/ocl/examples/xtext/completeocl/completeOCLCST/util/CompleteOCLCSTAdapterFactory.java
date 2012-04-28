@@ -32,7 +32,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -153,6 +155,21 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseDefCS(DefCS object)
 			{
 				return createDefCSAdapter();
+			}
+			@Override
+			public Adapter caseDefFeatureCS(DefFeatureCS object)
+			{
+				return createDefFeatureCSAdapter();
+			}
+			@Override
+			public Adapter caseDefOperationCS(DefOperationCS object)
+			{
+				return createDefOperationCSAdapter();
+			}
+			@Override
+			public Adapter caseDefPropertyCS(DefPropertyCS object)
+			{
+				return createDefPropertyCSAdapter();
 			}
 			@Override
 			public Adapter caseDerCS(DerCS object)
@@ -283,6 +300,11 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseExpSpecificationCS(ExpSpecificationCS object)
 			{
 				return createExpSpecificationCSAdapter();
+			}
+			@Override
+			public Adapter caseTypedElementCS(TypedElementCS object)
+			{
+				return createTypedElementCSAdapter();
 			}
 			@Override
 			public Adapter caseExpCS(ExpCS object)
@@ -447,6 +469,51 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS <em>Def Feature CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS
+	 * @generated
+	 */
+	public Adapter createDefFeatureCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS <em>Def Operation CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS
+	 * @generated
+	 */
+	public Adapter createDefOperationCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS <em>Def Property CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS
+	 * @generated
+	 */
+	public Adapter createDefPropertyCSAdapter()
+	{
+		return null;
+	}
+
+/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS <em>Der CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -802,6 +869,21 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createExpSpecificationCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS <em>Typed Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS
+	 * @generated
+	 */
+	public Adapter createTypedElementCSAdapter()
 	{
 		return null;
 	}

@@ -350,38 +350,22 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cConstrainedNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cConstrainedNameUnrestrictedNameParserRuleCall_4_0 = (RuleCall)cConstrainedNameAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Assignment cOperationAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final Keyword cOperationLeftParenthesisKeyword_5_0_0 = (Keyword)cOperationAssignment_5_0.eContents().get(0);
-		private final Group cGroup_5_1 = (Group)cGroup_5.eContents().get(1);
-		private final Assignment cParametersAssignment_5_1_0 = (Assignment)cGroup_5_1.eContents().get(0);
-		private final RuleCall cParametersParameterCSParserRuleCall_5_1_0_0 = (RuleCall)cParametersAssignment_5_1_0.eContents().get(0);
-		private final Group cGroup_5_1_1 = (Group)cGroup_5_1.eContents().get(1);
-		private final Keyword cCommaKeyword_5_1_1_0 = (Keyword)cGroup_5_1_1.eContents().get(0);
-		private final Assignment cParametersAssignment_5_1_1_1 = (Assignment)cGroup_5_1_1.eContents().get(1);
-		private final RuleCall cParametersParameterCSParserRuleCall_5_1_1_1_0 = (RuleCall)cParametersAssignment_5_1_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
-		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cOwnedTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_7_0 = (RuleCall)cOwnedTypeAssignment_7.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cSpecificationAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cSpecificationSpecificationCSParserRuleCall_9_0 = (RuleCall)cSpecificationAssignment_9.eContents().get(0);
+		private final Assignment cFeatureAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cFeatureAlternatives_4_0 = (Alternatives)cFeatureAssignment_4.eContents().get(0);
+		private final RuleCall cFeatureDefOperationCSParserRuleCall_4_0_0 = (RuleCall)cFeatureAlternatives_4_0.eContents().get(0);
+		private final RuleCall cFeatureDefPropertyCSParserRuleCall_4_0_1 = (RuleCall)cFeatureAlternatives_4_0.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cSpecificationAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cSpecificationSpecificationCSParserRuleCall_6_0 = (RuleCall)cSpecificationAssignment_6.eContents().get(0);
 		
 		//DefCS:
 		//
-		//	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
-		//
-		//	(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
+		//	static?="static"? stereotype="def" name=UnrestrictedName? ":" feature=(DefOperationCS | DefPropertyCS) "="
 		//
 		//	specification=SpecificationCS;
 		public ParserRule getRule() { return rule; }
 
-		//static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
-		//
-		//(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
+		//static?="static"? stereotype="def" name=UnrestrictedName? ":" feature=(DefOperationCS | DefPropertyCS) "="
 		//
 		//specification=SpecificationCS
 		public Group getGroup() { return cGroup; }
@@ -407,62 +391,163 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
 
-		//constrainedName=UnrestrictedName
-		public Assignment getConstrainedNameAssignment_4() { return cConstrainedNameAssignment_4; }
+		//feature=(DefOperationCS | DefPropertyCS)
+		public Assignment getFeatureAssignment_4() { return cFeatureAssignment_4; }
 
-		//UnrestrictedName
-		public RuleCall getConstrainedNameUnrestrictedNameParserRuleCall_4_0() { return cConstrainedNameUnrestrictedNameParserRuleCall_4_0; }
+		//DefOperationCS | DefPropertyCS
+		public Alternatives getFeatureAlternatives_4_0() { return cFeatureAlternatives_4_0; }
 
-		//(operation?="(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")?
-		public Group getGroup_5() { return cGroup_5; }
+		//DefOperationCS
+		public RuleCall getFeatureDefOperationCSParserRuleCall_4_0_0() { return cFeatureDefOperationCSParserRuleCall_4_0_0; }
 
-		//operation?="("
-		public Assignment getOperationAssignment_5_0() { return cOperationAssignment_5_0; }
-
-		//"("
-		public Keyword getOperationLeftParenthesisKeyword_5_0_0() { return cOperationLeftParenthesisKeyword_5_0_0; }
-
-		//(parameters+=ParameterCS ("," parameters+=ParameterCS)*)?
-		public Group getGroup_5_1() { return cGroup_5_1; }
-
-		//parameters+=ParameterCS
-		public Assignment getParametersAssignment_5_1_0() { return cParametersAssignment_5_1_0; }
-
-		//ParameterCS
-		public RuleCall getParametersParameterCSParserRuleCall_5_1_0_0() { return cParametersParameterCSParserRuleCall_5_1_0_0; }
-
-		//("," parameters+=ParameterCS)*
-		public Group getGroup_5_1_1() { return cGroup_5_1_1; }
-
-		//","
-		public Keyword getCommaKeyword_5_1_1_0() { return cCommaKeyword_5_1_1_0; }
-
-		//parameters+=ParameterCS
-		public Assignment getParametersAssignment_5_1_1_1() { return cParametersAssignment_5_1_1_1; }
-
-		//ParameterCS
-		public RuleCall getParametersParameterCSParserRuleCall_5_1_1_1_0() { return cParametersParameterCSParserRuleCall_5_1_1_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_5_2() { return cRightParenthesisKeyword_5_2; }
-
-		//":"
-		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
-
-		//ownedType=TypeExpCS?
-		public Assignment getOwnedTypeAssignment_7() { return cOwnedTypeAssignment_7; }
-
-		//TypeExpCS
-		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_7_0() { return cOwnedTypeTypeExpCSParserRuleCall_7_0; }
+		//DefPropertyCS
+		public RuleCall getFeatureDefPropertyCSParserRuleCall_4_0_1() { return cFeatureDefPropertyCSParserRuleCall_4_0_1; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_8() { return cEqualsSignKeyword_8; }
+		public Keyword getEqualsSignKeyword_5() { return cEqualsSignKeyword_5; }
 
 		//specification=SpecificationCS
-		public Assignment getSpecificationAssignment_9() { return cSpecificationAssignment_9; }
+		public Assignment getSpecificationAssignment_6() { return cSpecificationAssignment_6; }
 
 		//SpecificationCS
-		public RuleCall getSpecificationSpecificationCSParserRuleCall_9_0() { return cSpecificationSpecificationCSParserRuleCall_9_0; }
+		public RuleCall getSpecificationSpecificationCSParserRuleCall_6_0() { return cSpecificationSpecificationCSParserRuleCall_6_0; }
+	}
+
+	public class DefOperationCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DefOperationCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameUnrestrictedNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cParametersAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cParametersDefParameterCSParserRuleCall_2_0_0 = (RuleCall)cParametersAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cParametersAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cParametersDefParameterCSParserRuleCall_2_1_1_0 = (RuleCall)cParametersAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cOwnedTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_5_0 = (RuleCall)cOwnedTypeAssignment_5.eContents().get(0);
+		
+		//DefOperationCS:
+		//
+		//	name=UnrestrictedName "(" (parameters+=DefParameterCS ("," parameters+=DefParameterCS)*)? ")" ":"
+		//
+		//	ownedType=TypeExpCS?;
+		public ParserRule getRule() { return rule; }
+
+		//name=UnrestrictedName "(" (parameters+=DefParameterCS ("," parameters+=DefParameterCS)*)? ")" ":" ownedType=TypeExpCS?
+		public Group getGroup() { return cGroup; }
+
+		//name=UnrestrictedName
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//UnrestrictedName
+		public RuleCall getNameUnrestrictedNameParserRuleCall_0_0() { return cNameUnrestrictedNameParserRuleCall_0_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+
+		//(parameters+=DefParameterCS ("," parameters+=DefParameterCS)*)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//parameters+=DefParameterCS
+		public Assignment getParametersAssignment_2_0() { return cParametersAssignment_2_0; }
+
+		//DefParameterCS
+		public RuleCall getParametersDefParameterCSParserRuleCall_2_0_0() { return cParametersDefParameterCSParserRuleCall_2_0_0; }
+
+		//("," parameters+=DefParameterCS)*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//","
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
+
+		//parameters+=DefParameterCS
+		public Assignment getParametersAssignment_2_1_1() { return cParametersAssignment_2_1_1; }
+
+		//DefParameterCS
+		public RuleCall getParametersDefParameterCSParserRuleCall_2_1_1_0() { return cParametersDefParameterCSParserRuleCall_2_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+
+		//":"
+		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
+
+		//ownedType=TypeExpCS?
+		public Assignment getOwnedTypeAssignment_5() { return cOwnedTypeAssignment_5; }
+
+		//TypeExpCS
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_5_0() { return cOwnedTypeTypeExpCSParserRuleCall_5_0; }
+	}
+
+	public class DefParameterCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DefParameterCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameUnrestrictedNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
+		
+		//DefParameterCS returns base::ParameterCS:
+		//
+		//	name=UnrestrictedName ":" ownedType=TypeExpCS;
+		public ParserRule getRule() { return rule; }
+
+		//name=UnrestrictedName ":" ownedType=TypeExpCS
+		public Group getGroup() { return cGroup; }
+
+		//name=UnrestrictedName
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//UnrestrictedName
+		public RuleCall getNameUnrestrictedNameParserRuleCall_0_0() { return cNameUnrestrictedNameParserRuleCall_0_0; }
+
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
+		//ownedType=TypeExpCS
+		public Assignment getOwnedTypeAssignment_2() { return cOwnedTypeAssignment_2; }
+
+		//TypeExpCS
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_0; }
+	}
+
+	public class DefPropertyCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DefPropertyCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameUnrestrictedNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
+		
+		//DefPropertyCS:
+		//
+		//	name=UnrestrictedName ":" ownedType=TypeExpCS;
+		public ParserRule getRule() { return rule; }
+
+		//name=UnrestrictedName ":" ownedType=TypeExpCS
+		public Group getGroup() { return cGroup; }
+
+		//name=UnrestrictedName
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//UnrestrictedName
+		public RuleCall getNameUnrestrictedNameParserRuleCall_0_0() { return cNameUnrestrictedNameParserRuleCall_0_0; }
+
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
+		//ownedType=TypeExpCS
+		public Assignment getOwnedTypeAssignment_2() { return cOwnedTypeAssignment_2; }
+
+		//TypeExpCS
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_0; }
 	}
 
 	public class DerCSElements extends AbstractParserRuleElementFinder {
@@ -1150,6 +1235,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private ClassifierContextDeclCSElements pClassifierContextDeclCS;
 	private ContextDeclCSElements pContextDeclCS;
 	private DefCSElements pDefCS;
+	private DefOperationCSElements pDefOperationCS;
+	private DefParameterCSElements pDefParameterCS;
+	private DefPropertyCSElements pDefPropertyCS;
 	private DerCSElements pDerCS;
 	private ImportCSElements pImportCS;
 	private IncludeCSElements pIncludeCS;
@@ -1291,9 +1379,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//DefCS:
 	//
-	//	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
-	//
-	//	(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
+	//	static?="static"? stereotype="def" name=UnrestrictedName? ":" feature=(DefOperationCS | DefPropertyCS) "="
 	//
 	//	specification=SpecificationCS;
 	public DefCSElements getDefCSAccess() {
@@ -1302,6 +1388,41 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getDefCSRule() {
 		return getDefCSAccess().getRule();
+	}
+
+	//DefOperationCS:
+	//
+	//	name=UnrestrictedName "(" (parameters+=DefParameterCS ("," parameters+=DefParameterCS)*)? ")" ":"
+	//
+	//	ownedType=TypeExpCS?;
+	public DefOperationCSElements getDefOperationCSAccess() {
+		return (pDefOperationCS != null) ? pDefOperationCS : (pDefOperationCS = new DefOperationCSElements());
+	}
+	
+	public ParserRule getDefOperationCSRule() {
+		return getDefOperationCSAccess().getRule();
+	}
+
+	//DefParameterCS returns base::ParameterCS:
+	//
+	//	name=UnrestrictedName ":" ownedType=TypeExpCS;
+	public DefParameterCSElements getDefParameterCSAccess() {
+		return (pDefParameterCS != null) ? pDefParameterCS : (pDefParameterCS = new DefParameterCSElements());
+	}
+	
+	public ParserRule getDefParameterCSRule() {
+		return getDefParameterCSAccess().getRule();
+	}
+
+	//DefPropertyCS:
+	//
+	//	name=UnrestrictedName ":" ownedType=TypeExpCS;
+	public DefPropertyCSElements getDefPropertyCSAccess() {
+		return (pDefPropertyCS != null) ? pDefPropertyCS : (pDefPropertyCS = new DefPropertyCSElements());
+	}
+	
+	public ParserRule getDefPropertyCSRule() {
+		return getDefPropertyCSAccess().getRule();
 	}
 
 	//DerCS:

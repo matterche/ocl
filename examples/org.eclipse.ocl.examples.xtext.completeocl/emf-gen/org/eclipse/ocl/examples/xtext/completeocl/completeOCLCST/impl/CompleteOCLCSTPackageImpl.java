@@ -32,6 +32,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstrai
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
@@ -150,6 +153,27 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * @generated
 	 */
 	private EClass defCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass defFeatureCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass defOperationCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass defPropertyCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -529,18 +553,9 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDefCS_ConstrainedName() {
-		return (EAttribute)defCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDefCS_Operation()
+	public EReference getDefCS_Feature()
 	{
-		return (EAttribute)defCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)defCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -548,18 +563,49 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDefCS_Parameters() {
-		return (EReference)defCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDefCS_OwnedType()
+	public EClass getDefFeatureCS()
 	{
-		return (EReference)defCSEClass.getEStructuralFeatures().get(4);
+		return defFeatureCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDefFeatureCS_Def()
+	{
+		return (EReference)defFeatureCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDefOperationCS()
+	{
+		return defOperationCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDefOperationCS_Parameters()
+	{
+		return (EReference)defOperationCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDefPropertyCS()
+	{
+		return defPropertyCSEClass;
 	}
 
 	/**
@@ -693,10 +739,15 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 
 		defCSEClass = createEClass(DEF_CS);
 		createEAttribute(defCSEClass, DEF_CS__STATIC);
-		createEAttribute(defCSEClass, DEF_CS__CONSTRAINED_NAME);
-		createEAttribute(defCSEClass, DEF_CS__OPERATION);
-		createEReference(defCSEClass, DEF_CS__PARAMETERS);
-		createEReference(defCSEClass, DEF_CS__OWNED_TYPE);
+		createEReference(defCSEClass, DEF_CS__FEATURE);
+
+		defFeatureCSEClass = createEClass(DEF_FEATURE_CS);
+		createEReference(defFeatureCSEClass, DEF_FEATURE_CS__DEF);
+
+		defOperationCSEClass = createEClass(DEF_OPERATION_CS);
+		createEReference(defOperationCSEClass, DEF_OPERATION_CS__PARAMETERS);
+
+		defPropertyCSEClass = createEClass(DEF_PROPERTY_CS);
 
 		derCSEClass = createEClass(DER_CS);
 
@@ -775,6 +826,9 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		contextDeclCSEClass.getESuperTypes().add(this.getPathNameDeclCS());
 		contextSpecificationCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpSpecificationCS());
 		defCSEClass.getESuperTypes().add(this.getContextConstraintCS());
+		defFeatureCSEClass.getESuperTypes().add(theBaseCSTPackage.getTypedElementCS());
+		defOperationCSEClass.getESuperTypes().add(this.getDefFeatureCS());
+		defPropertyCSEClass.getESuperTypes().add(this.getDefFeatureCS());
 		derCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		featureContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		includeCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamespaceCS());
@@ -811,10 +865,15 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 
 		initEClass(defCSEClass, DefCS.class, "DefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDefCS_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDefCS_ConstrainedName(), ecorePackage.getEString(), "constrainedName", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDefCS_Operation(), ecorePackage.getEBoolean(), "operation", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDefCS_Parameters(), theBaseCSTPackage.getParameterCS(), null, "parameters", null, 0, -1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDefCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefCS_Feature(), this.getDefFeatureCS(), this.getDefFeatureCS_Def(), "feature", null, 1, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(defFeatureCSEClass, DefFeatureCS.class, "DefFeatureCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDefFeatureCS_Def(), this.getDefCS(), this.getDefCS_Feature(), "def", null, 0, 1, DefFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(defOperationCSEClass, DefOperationCS.class, "DefOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDefOperationCS_Parameters(), theBaseCSTPackage.getParameterCS(), null, "parameters", null, 0, -1, DefOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(defPropertyCSEClass, DefPropertyCS.class, "DefPropertyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(derCSEClass, DerCS.class, "DerCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

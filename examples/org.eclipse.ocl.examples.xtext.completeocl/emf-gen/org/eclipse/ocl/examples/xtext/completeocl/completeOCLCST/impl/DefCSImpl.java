@@ -16,21 +16,15 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS;
 import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
@@ -41,10 +35,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#isStatic <em>Static</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#getConstrainedName <em>Constrained Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#isOperation <em>Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,64 +63,14 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	protected boolean static_ = STATIC_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getConstrainedName() <em>Constrained Name</em>}' attribute.
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstrainedName()
+	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CONSTRAINED_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getConstrainedName() <em>Constrained Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstrainedName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String constrainedName = CONSTRAINED_NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isOperation() <em>Operation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean OPERATION_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isOperation() <em>Operation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean operation = OPERATION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ParameterCS> parameters;
-
-	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypedRefCS ownedType;
+	protected DefFeatureCS feature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,30 +117,9 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getConstrainedName() {
-		return constrainedName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstrainedName(String newConstrainedName) {
-		String oldConstrainedName = constrainedName;
-		constrainedName = newConstrainedName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME, oldConstrainedName, constrainedName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isOperation()
+	public DefFeatureCS getFeature()
 	{
-		return operation;
+		return feature;
 	}
 
 	/**
@@ -207,49 +127,13 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperation(boolean newOperation)
+	public NotificationChain basicSetFeature(DefFeatureCS newFeature, NotificationChain msgs)
 	{
-		boolean oldOperation = operation;
-		operation = newOperation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__OPERATION, oldOperation, operation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ParameterCS> getParameters() {
-		if (parameters == null)
-		{
-			parameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, CompleteOCLCSTPackage.DEF_CS__PARAMETERS);
-		}
-		return parameters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypedRefCS getOwnedType()
-	{
-		return ownedType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedType(TypedRefCS newOwnedType, NotificationChain msgs)
-	{
-		TypedRefCS oldOwnedType = ownedType;
-		ownedType = newOwnedType;
+		DefFeatureCS oldFeature = feature;
+		feature = newFeature;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE, oldOwnedType, newOwnedType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__FEATURE, oldFeature, newFeature);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -260,20 +144,38 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedType(TypedRefCS newOwnedType)
+	public void setFeature(DefFeatureCS newFeature)
 	{
-		if (newOwnedType != ownedType)
+		if (newFeature != feature)
 		{
 			NotificationChain msgs = null;
-			if (ownedType != null)
-				msgs = ((InternalEObject)ownedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE, null, msgs);
-			if (newOwnedType != null)
-				msgs = ((InternalEObject)newOwnedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE, null, msgs);
-			msgs = basicSetOwnedType(newOwnedType, msgs);
+			if (feature != null)
+				msgs = ((InternalEObject)feature).eInverseRemove(this, CompleteOCLCSTPackage.DEF_FEATURE_CS__DEF, DefFeatureCS.class, msgs);
+			if (newFeature != null)
+				msgs = ((InternalEObject)newFeature).eInverseAdd(this, CompleteOCLCSTPackage.DEF_FEATURE_CS__DEF, DefFeatureCS.class, msgs);
+			msgs = basicSetFeature(newFeature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE, newOwnedType, newOwnedType));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__FEATURE, newFeature, newFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case CompleteOCLCSTPackage.DEF_CS__FEATURE:
+				if (feature != null)
+					msgs = ((InternalEObject)feature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.DEF_CS__FEATURE, null, msgs);
+				return basicSetFeature((DefFeatureCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -285,10 +187,8 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
-				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:
-				return basicSetOwnedType(null, msgs);
+			case CompleteOCLCSTPackage.DEF_CS__FEATURE:
+				return basicSetFeature(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -304,14 +204,8 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 		{
 			case CompleteOCLCSTPackage.DEF_CS__STATIC:
 				return isStatic();
-			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				return getConstrainedName();
-			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
-				return isOperation();
-			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
-				return getParameters();
-			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:
-				return getOwnedType();
+			case CompleteOCLCSTPackage.DEF_CS__FEATURE:
+				return getFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -321,7 +215,6 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
@@ -329,18 +222,8 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 			case CompleteOCLCSTPackage.DEF_CS__STATIC:
 				setStatic((Boolean)newValue);
 				return;
-			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				setConstrainedName((String)newValue);
-				return;
-			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
-				setOperation((Boolean)newValue);
-				return;
-			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends ParameterCS>)newValue);
-				return;
-			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:
-				setOwnedType((TypedRefCS)newValue);
+			case CompleteOCLCSTPackage.DEF_CS__FEATURE:
+				setFeature((DefFeatureCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -358,17 +241,8 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 			case CompleteOCLCSTPackage.DEF_CS__STATIC:
 				setStatic(STATIC_EDEFAULT);
 				return;
-			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				setConstrainedName(CONSTRAINED_NAME_EDEFAULT);
-				return;
-			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
-				setOperation(OPERATION_EDEFAULT);
-				return;
-			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
-				getParameters().clear();
-				return;
-			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:
-				setOwnedType((TypedRefCS)null);
+			case CompleteOCLCSTPackage.DEF_CS__FEATURE:
+				setFeature((DefFeatureCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -385,14 +259,8 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 		{
 			case CompleteOCLCSTPackage.DEF_CS__STATIC:
 				return static_ != STATIC_EDEFAULT;
-			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				return CONSTRAINED_NAME_EDEFAULT == null ? constrainedName != null : !CONSTRAINED_NAME_EDEFAULT.equals(constrainedName);
-			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
-				return operation != OPERATION_EDEFAULT;
-			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
-			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:
-				return ownedType != null;
+			case CompleteOCLCSTPackage.DEF_CS__FEATURE:
+				return feature != null;
 		}
 		return super.eIsSet(featureID);
 	}

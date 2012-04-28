@@ -30,6 +30,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
@@ -57,36 +59,6 @@ public class CompleteOCLCS2MonikerVisitor
 	}
 
 	public static CS2Moniker.Factory FACTORY = new Factory();
-
-	public static String getStereotype(String stereotype) {
-		if (stereotype == null) {
-			return null;
-		}
-		else if (stereotype.equals("body")) {
-			return UMLReflection.BODY;
-		}
-		else if (stereotype.equals("def")) {
-			return UMLReflection.DEFINITION;
-		}
-		else if (stereotype.equals("derive")) {
-			return UMLReflection.DERIVATION;
-		}
-		else if (stereotype.equals("init")) {
-			return UMLReflection.INITIAL;
-		}
-		else if (stereotype.equals("inv")) {
-			return UMLReflection.INVARIANT;
-		}
-		else if (stereotype.equals("pre")) {
-			return UMLReflection.PRECONDITION;
-		}
-		else if (stereotype.equals("post")) {
-			return UMLReflection.POSTCONDITION;
-		}
-		else {
-			return stereotype;
-		}
-	}
 		
 	@SuppressWarnings("unchecked")
 	public CompleteOCLCS2MonikerVisitor(CS2Moniker context) {
@@ -161,10 +133,27 @@ public class CompleteOCLCS2MonikerVisitor
 	public Boolean visitDefCS(DefCS object) {
 		context.appendElement(object.getContextDecl().getPivot());
 		context.append(MONIKER_SCOPE_SEPARATOR);
-		context.append(object.getConstrainedName());
-		if (object.isOperation()) {
-			appendParametersCS(object.getParameters());
-		}
+//		context.append(object.getConstrainedName());
+//		if (object.isOperation()) {
+//			appendParametersCS(object.getParameters());
+//		}
+		return true;
+	}
+
+	@Override
+	public Boolean visitDefOperationCS(DefOperationCS object) {
+		context.appendElement(object.getDef().getContextDecl().getPivot());
+		context.append(MONIKER_SCOPE_SEPARATOR);
+		context.append(object.getName());
+		appendParametersCS(object.getParameters());
+		return true;
+	}
+
+	@Override
+	public Boolean visitDefPropertyCS(DefPropertyCS object) {
+		context.appendElement(object.getDef().getContextDecl().getPivot());
+		context.append(MONIKER_SCOPE_SEPARATOR);
+		context.append(object.getName());
 		return true;
 	}
 

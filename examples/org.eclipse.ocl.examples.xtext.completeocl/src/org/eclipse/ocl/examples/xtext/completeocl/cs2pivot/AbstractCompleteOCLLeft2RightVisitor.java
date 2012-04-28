@@ -59,6 +59,18 @@ public class AbstractCompleteOCLLeft2RightVisitor
 		return visitContextConstraintCS(object);
 	}
 
+	public Element visitDefFeatureCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS object) {
+		return visitTypedElementCS(object);
+	}
+
+	public Element visitDefOperationCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS object) {
+		return visitDefFeatureCS(object);
+	}
+
+	public Element visitDefPropertyCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS object) {
+		return visitDefFeatureCS(object);
+	}
+
 	public Element visitDerCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS object) {
 		return visitContextConstraintCS(object);
 	}

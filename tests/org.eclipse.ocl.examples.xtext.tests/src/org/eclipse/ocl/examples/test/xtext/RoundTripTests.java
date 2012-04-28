@@ -137,7 +137,7 @@ public class RoundTripTests extends XtextTestCase
 			MetaModelManager metaModelManager1 = new MetaModelManager(projectMap);
 			MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager1);
 			BaseCSResource xtextResource1 = createXtextFromURI(metaModelManager1, inputURI);
-			PivotResource pivotResource1 = createPivotFromXtext(metaModelManager1, xtextResource1, 2);
+			PivotResource pivotResource1 = createPivotFromXtext(metaModelManager1, xtextResource1, 1);
 			Resource pivotResource2 = CompleteOCLSplitter.separate(metaModelManager1, pivotResource1);
 			@SuppressWarnings("unused")
 			BaseCSResource xtextResource2 = createCompleteOCLXtextFromPivot(metaModelManager1, pivotResource2, outputURI);
@@ -147,7 +147,7 @@ public class RoundTripTests extends XtextTestCase
 			MetaModelManager metaModelManager3 = new MetaModelManager(projectMap);
 			BaseCSResource xtextResource3 = createXtextFromURI(metaModelManager3, outputURI);
 			@SuppressWarnings("unused")
-			PivotResource pivotResource3 = createPivotFromXtext(metaModelManager3, xtextResource3, 2);
+			PivotResource pivotResource3 = createPivotFromXtext(metaModelManager3, xtextResource3, 1);
 //			Map<String,Object> options = new HashMap<String,Object>();
 //			options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
 //			options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);

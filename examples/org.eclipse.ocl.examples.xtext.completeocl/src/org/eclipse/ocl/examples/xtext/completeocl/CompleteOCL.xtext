@@ -79,9 +79,16 @@ ContextDeclCS returns ContextDeclCS:
 	| OperationContextDeclCS;
 
 DefCS returns DefCS:
-	(static?='static')? stereotype='def' (name=UnrestrictedName)? ':' constrainedName=UnrestrictedName
-	(operation?='(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')')?
-	':' (ownedType=TypeExpCS)? '=' specification=SpecificationCS;
+	(static?='static')? stereotype='def' (name=UnrestrictedName)? ':' feature=(DefOperationCS|DefPropertyCS) '=' specification=SpecificationCS;
+
+DefOperationCS returns DefOperationCS:
+	name=UnrestrictedName '(' (parameters+=DefParameterCS (',' parameters+=DefParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?;
+
+DefParameterCS returns base::ParameterCS:
+	name=UnrestrictedName ':' ownedType=TypeExpCS;
+
+DefPropertyCS returns DefPropertyCS:
+	name=UnrestrictedName ':' ownedType=TypeExpCS;
 
 DerCS returns DerCS:
 	stereotype='derive' ':' specification=SpecificationCS;

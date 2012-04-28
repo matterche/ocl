@@ -69,6 +69,18 @@ public abstract class AbstractNullCompleteOCLCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitDefFeatureCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS object) {
+		return null;
+	}
+
+	public R visitDefOperationCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS object) {
+		return null;
+	}
+
+	public R visitDefPropertyCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS object) {
+		return null;
+	}
+
 	public R visitDerCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS object) {
 		return null;
 	}

@@ -524,6 +524,11 @@ public class LoadTests extends XtextTestCase
 		doLoad("Names", "ocl");
 	}	
 
+	public void testLoad_OCLTest_ocl() throws IOException, InterruptedException {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
+		doLoad("OCLTest", "ocl", false);	/* FIXME waiting for BUG 361649 */
+	}	
+
 	public void testLoad_Pivot_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doLoad_OCL(URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model/Pivot.ocl", true));

@@ -20,6 +20,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAcc
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.BodyCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.ClassifierContextDeclCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.DefCSElements;
+import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.DefOperationCSElements;
+import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.DefPropertyCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.DerCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.ImportCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.InitCSElements;
@@ -80,12 +82,19 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 			DefCSElements a = f.getDefCSAccess();
 		    c.setLinewrap(2).before(a.getStereotypeDefKeyword_1_0());
 		    c.setNoSpace().before(a.getColonKeyword_3());
-		    c.setNoSpace().around(a.getOperationLeftParenthesisKeyword_5_0_0());
-		    c.setNoSpace().before(a.getCommaKeyword_5_1_1_0());
-		    c.setNoSpace().before(a.getRightParenthesisKeyword_5_2());
-			setNoSpaceLineWrap(c, a.getColonKeyword_6());
 //		    c.setIndentation(a.getExpressionAssignment_9(), a.getExpressionAssignment_9());
-		    c.setLinewrap(2).after(a.getSpecificationAssignment_9());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_6());
+	    }
+	    {
+			DefOperationCSElements a = f.getDefOperationCSAccess();
+		    c.setNoSpace().around(a.getLeftParenthesisKeyword_1());
+		    c.setNoSpace().before(a.getCommaKeyword_2_1_0());
+		    c.setNoSpace().before(a.getRightParenthesisKeyword_3());
+			setNoSpaceLineWrap(c, a.getColonKeyword_4());
+	    }
+	    {
+			DefPropertyCSElements a = f.getDefPropertyCSAccess();
+			setNoSpaceLineWrap(c, a.getColonKeyword_1());
 	    }
 	    {
 			DerCSElements a = f.getDerCSAccess();

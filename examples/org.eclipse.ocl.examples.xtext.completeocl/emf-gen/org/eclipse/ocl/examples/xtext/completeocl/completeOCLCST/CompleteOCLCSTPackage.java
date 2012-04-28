@@ -188,7 +188,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPackageDeclarationCS()
 	 * @generated
 	 */
-	int PACKAGE_DECLARATION_CS = 14;
+	int PACKAGE_DECLARATION_CS = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
@@ -208,7 +208,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPropertyContextDeclCS()
 	 * @generated
 	 */
-	int PROPERTY_CONTEXT_DECL_CS = 18;
+	int PROPERTY_CONTEXT_DECL_CS = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.InitCSImpl <em>Init CS</em>}' class.
@@ -218,7 +218,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getInitCS()
 	 * @generated
 	 */
-	int INIT_CS = 10;
+	int INIT_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DerCSImpl <em>Der CS</em>}' class.
@@ -228,7 +228,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getDerCS()
 	 * @generated
 	 */
-	int DER_CS = 7;
+	int DER_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ClassifierContextDeclCSImpl <em>Classifier Context Decl CS</em>}' class.
@@ -248,7 +248,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getInvCS()
 	 * @generated
 	 */
-	int INV_CS = 11;
+	int INV_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl <em>Def CS</em>}' class.
@@ -268,7 +268,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOperationContextDeclCS()
 	 * @generated
 	 */
-	int OPERATION_CONTEXT_DECL_CS = 13;
+	int OPERATION_CONTEXT_DECL_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreCSImpl <em>Pre CS</em>}' class.
@@ -278,7 +278,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPreCS()
 	 * @generated
 	 */
-	int PRE_CS = 17;
+	int PRE_CS = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PostCSImpl <em>Post CS</em>}' class.
@@ -288,7 +288,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPostCS()
 	 * @generated
 	 */
-	int POST_CS = 16;
+	int POST_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.BodyCSImpl <em>Body CS</em>}' class.
@@ -407,7 +407,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPathNameDeclCS()
 	 * @generated
 	 */
-	int PATH_NAME_DECL_CS = 15;
+	int PATH_NAME_DECL_CS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -970,40 +970,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int DEF_CS__STATIC = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Constrained Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__CONSTRAINED_NAME = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Operation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_CS__OPERATION = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_CS__PARAMETERS = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_CS__OWNED_TYPE = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 4;
+	int DEF_CS__FEATURE = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Def CS</em>' class.
@@ -1012,7 +985,343 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 5;
+	int DEF_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefFeatureCSImpl <em>Def Feature CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefFeatureCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getDefFeatureCS()
+	 * @generated
+	 */
+	int DEF_FEATURE_CS = 7;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__LOGICAL_PARENT = BaseCSTPackage.TYPED_ELEMENT_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__PIVOT = BaseCSTPackage.TYPED_ELEMENT_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__OWNED_ANNOTATION = BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__CSI = BaseCSTPackage.TYPED_ELEMENT_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__NAME = BaseCSTPackage.TYPED_ELEMENT_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__OWNED_TYPE = BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__OWNED_CONSTRAINT = BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__QUALIFIER = BaseCSTPackage.TYPED_ELEMENT_CS__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Def</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS__DEF = BaseCSTPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Def Feature CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_FEATURE_CS_FEATURE_COUNT = BaseCSTPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefOperationCSImpl <em>Def Operation CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefOperationCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getDefOperationCS()
+	 * @generated
+	 */
+	int DEF_OPERATION_CS = 8;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__LOGICAL_PARENT = DEF_FEATURE_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__PIVOT = DEF_FEATURE_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__OWNED_ANNOTATION = DEF_FEATURE_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__ORIGINAL_XMI_ID = DEF_FEATURE_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__CSI = DEF_FEATURE_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__NAME = DEF_FEATURE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__OWNED_TYPE = DEF_FEATURE_CS__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__OWNED_CONSTRAINT = DEF_FEATURE_CS__OWNED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__QUALIFIER = DEF_FEATURE_CS__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Def</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__DEF = DEF_FEATURE_CS__DEF;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__PARAMETERS = DEF_FEATURE_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Def Operation CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS_FEATURE_COUNT = DEF_FEATURE_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefPropertyCSImpl <em>Def Property CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefPropertyCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getDefPropertyCS()
+	 * @generated
+	 */
+	int DEF_PROPERTY_CS = 9;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__LOGICAL_PARENT = DEF_FEATURE_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__PIVOT = DEF_FEATURE_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__OWNED_ANNOTATION = DEF_FEATURE_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__ORIGINAL_XMI_ID = DEF_FEATURE_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__CSI = DEF_FEATURE_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__NAME = DEF_FEATURE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__OWNED_TYPE = DEF_FEATURE_CS__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__OWNED_CONSTRAINT = DEF_FEATURE_CS__OWNED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__QUALIFIER = DEF_FEATURE_CS__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Def</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__DEF = DEF_FEATURE_CS__DEF;
+
+	/**
+	 * The number of structural features of the '<em>Def Property CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS_FEATURE_COUNT = DEF_FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1121,7 +1430,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getFeatureContextDeclCS()
 	 * @generated
 	 */
-	int FEATURE_CONTEXT_DECL_CS = 8;
+	int FEATURE_CONTEXT_DECL_CS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1221,7 +1530,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getIncludeCS()
 	 * @generated
 	 */
-	int INCLUDE_CS = 9;
+	int INCLUDE_CS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1501,7 +1810,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOclMessageArgCS()
 	 * @generated
 	 */
-	int OCL_MESSAGE_ARG_CS = 12;
+	int OCL_MESSAGE_ARG_CS = 15;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2377,48 +2686,67 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	EAttribute getDefCS_Static();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName <em>Constrained Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Constrained Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName()
+	 * @return the meta object for the containment reference '<em>Feature</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getFeature()
 	 * @see #getDefCS()
 	 * @generated
 	 */
-	EAttribute getDefCS_ConstrainedName();
+	EReference getDefCS_Feature();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation <em>Operation</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS <em>Def Feature CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operation</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation()
-	 * @see #getDefCS()
+	 * @return the meta object for class '<em>Def Feature CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS
 	 * @generated
 	 */
-	EAttribute getDefCS_Operation();
+	EClass getDefFeatureCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS#getDef <em>Def</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Def</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS#getDef()
+	 * @see #getDefFeatureCS()
+	 * @generated
+	 */
+	EReference getDefFeatureCS_Def();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS <em>Def Operation CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Def Operation CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS
+	 * @generated
+	 */
+	EClass getDefOperationCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getParameters()
-	 * @see #getDefCS()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS#getParameters()
+	 * @see #getDefOperationCS()
 	 * @generated
 	 */
-	EReference getDefCS_Parameters();
+	EReference getDefOperationCS_Parameters();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getOwnedType <em>Owned Type</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS <em>Def Property CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Type</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getOwnedType()
-	 * @see #getDefCS()
+	 * @return the meta object for class '<em>Def Property CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS
 	 * @generated
 	 */
-	EReference getDefCS_OwnedType();
+	EClass getDefPropertyCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS <em>Operation Context Decl CS</em>}'.
@@ -2797,20 +3125,40 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		EAttribute DEF_CS__STATIC = eINSTANCE.getDefCS_Static();
 
 		/**
-		 * The meta object literal for the '<em><b>Constrained Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Feature</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DEF_CS__CONSTRAINED_NAME = eINSTANCE.getDefCS_ConstrainedName();
+		EReference DEF_CS__FEATURE = eINSTANCE.getDefCS_Feature();
 
 		/**
-		 * The meta object literal for the '<em><b>Operation</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefFeatureCSImpl <em>Def Feature CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefFeatureCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getDefFeatureCS()
+		 * @generated
+		 */
+		EClass DEF_FEATURE_CS = eINSTANCE.getDefFeatureCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Def</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DEF_CS__OPERATION = eINSTANCE.getDefCS_Operation();
+		EReference DEF_FEATURE_CS__DEF = eINSTANCE.getDefFeatureCS_Def();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefOperationCSImpl <em>Def Operation CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefOperationCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getDefOperationCS()
+		 * @generated
+		 */
+		EClass DEF_OPERATION_CS = eINSTANCE.getDefOperationCS();
 
 		/**
 		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
@@ -2818,15 +3166,17 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEF_CS__PARAMETERS = eINSTANCE.getDefCS_Parameters();
+		EReference DEF_OPERATION_CS__PARAMETERS = eINSTANCE.getDefOperationCS_Parameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefPropertyCSImpl <em>Def Property CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefPropertyCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getDefPropertyCS()
 		 * @generated
 		 */
-		EReference DEF_CS__OWNED_TYPE = eINSTANCE.getDefCS_OwnedType();
+		EClass DEF_PROPERTY_CS = eINSTANCE.getDefPropertyCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl <em>Operation Context Decl CS</em>}' class.

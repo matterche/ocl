@@ -20,6 +20,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
@@ -132,7 +134,11 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 				}
 				else break;
 			case BaseCSTPackage.PARAMETER_CS:
-				if(context == grammarAccess.getParameterCSRule()) {
+				if(context == grammarAccess.getDefParameterCSRule()) {
+					sequence_DefParameterCS(context, (ParameterCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getParameterCSRule()) {
 					sequence_ParameterCS(context, (ParameterCS) semanticObject); 
 					return; 
 				}
@@ -211,6 +217,18 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 			case CompleteOCLCSTPackage.DEF_CS:
 				if(context == grammarAccess.getDefCSRule()) {
 					sequence_DefCS(context, (DefCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case CompleteOCLCSTPackage.DEF_OPERATION_CS:
+				if(context == grammarAccess.getDefOperationCSRule()) {
+					sequence_DefOperationCS(context, (DefOperationCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case CompleteOCLCSTPackage.DEF_PROPERTY_CS:
+				if(context == grammarAccess.getDefPropertyCSRule()) {
+					sequence_DefPropertyCS(context, (DefPropertyCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -671,17 +689,36 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         static?='static'? 
-	 *         stereotype='def' 
-	 *         name=UnrestrictedName? 
-	 *         constrainedName=UnrestrictedName 
-	 *         (operation?='(' (parameters+=ParameterCS parameters+=ParameterCS*)?)? 
-	 *         ownedType=TypeExpCS? 
-	 *         specification=SpecificationCS
-	 *     )
+	 *     (static?='static'? stereotype='def' name=UnrestrictedName? (feature=DefOperationCS | feature=DefPropertyCS) specification=SpecificationCS)
 	 */
 	protected void sequence_DefCS(EObject context, DefCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=UnrestrictedName (parameters+=DefParameterCS parameters+=DefParameterCS*)? ownedType=TypeExpCS?)
+	 */
+	protected void sequence_DefOperationCS(EObject context, DefOperationCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=UnrestrictedName ownedType=TypeExpCS)
+	 */
+	protected void sequence_DefParameterCS(EObject context, ParameterCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=UnrestrictedName ownedType=TypeExpCS)
+	 */
+	protected void sequence_DefPropertyCS(EObject context, DefPropertyCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -69,6 +69,18 @@ public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends Com
 		return delegate.visitDefCS(object);
 	}
 
+	public R visitDefFeatureCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS object) {
+		return delegate.visitDefFeatureCS(object);
+	}
+
+	public R visitDefOperationCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS object) {
+		return delegate.visitDefOperationCS(object);
+	}
+
+	public R visitDefPropertyCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS object) {
+		return delegate.visitDefPropertyCS(object);
+	}
+
 	public R visitDerCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS object) {
 		return delegate.visitDerCS(object);
 	}

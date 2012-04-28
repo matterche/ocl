@@ -26,12 +26,15 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
 import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedPath;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
@@ -94,7 +97,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 		s.append("def ");
 		appendOptionalString(s, ele.getName());
 		s.append(": ");
-		appendString(s, ele.getConstrainedName());
+/*		appendString(s, ele.getConstrainedName());
 		List<ParameterCS> parameters = ele.getParameters();
 		if (!parameters.isEmpty()) {
 			s.append("(");
@@ -108,6 +111,38 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 			}
 			s.append(")");
 		}
+		s.append(" : ");
+		appendType(s, ele.getOwnedType()); */
+		return s.toString();
+	}
+
+	protected String text(DefOperationCS ele) {
+		StringBuilder s = new StringBuilder();
+		appendString(s, ele.getName());
+		List<ParameterCS> parameters = ele.getParameters();
+		if (!parameters.isEmpty()) {
+			s.append("(");
+			String prefix = "";
+			for (ParameterCS csParameter : parameters) {
+				s.append(prefix);
+//				appendName(s, csVariable);
+//				s.append(" : ");
+				appendType(s, csParameter.getOwnedType());
+				prefix = ", ";
+			}
+			s.append(")");
+		}
+		s.append(" : ");
+		TypedRefCS ownedType = ele.getOwnedType();
+		if (ownedType != null) {
+			appendType(s, ownedType);
+		}
+		return s.toString();
+	}
+
+	protected String text(DefPropertyCS ele) {
+		StringBuilder s = new StringBuilder();
+		appendString(s, ele.getName());
 		s.append(" : ");
 		appendType(s, ele.getOwnedType());
 		return s.toString();

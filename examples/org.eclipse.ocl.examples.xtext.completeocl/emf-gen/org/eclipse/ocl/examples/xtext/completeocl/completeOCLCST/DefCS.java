@@ -16,9 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,10 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isStatic <em>Static</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName <em>Constrained Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation <em>Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,97 +62,31 @@ public interface DefCS extends ContextConstraintCS {
 	void setStatic(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Constrained Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS#getDef <em>Def</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constrained Name</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Feature</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constrained Name</em>' attribute.
-	 * @see #setConstrainedName(String)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_ConstrainedName()
-	 * @model
+	 * @return the value of the '<em>Feature</em>' containment reference.
+	 * @see #setFeature(DefFeatureCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_Feature()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS#getDef
+	 * @model opposite="def" containment="true" required="true"
 	 * @generated
 	 */
-	String getConstrainedName();
+	DefFeatureCS getFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName <em>Constrained Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getFeature <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constrained Name</em>' attribute.
-	 * @see #getConstrainedName()
+	 * @param value the new value of the '<em>Feature</em>' containment reference.
+	 * @see #getFeature()
 	 * @generated
 	 */
-	void setConstrainedName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Operation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operation</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operation</em>' attribute.
-	 * @see #setOperation(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_Operation()
-	 * @model
-	 * @generated
-	 */
-	boolean isOperation();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation <em>Operation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operation</em>' attribute.
-	 * @see #isOperation()
-	 * @generated
-	 */
-	void setOperation(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_Parameters()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ParameterCS> getParameters();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Type</em>' containment reference.
-	 * @see #setOwnedType(TypedRefCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_OwnedType()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TypedRefCS getOwnedType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getOwnedType <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
-	 * @see #getOwnedType()
-	 * @generated
-	 */
-	void setOwnedType(TypedRefCS value);
+	void setFeature(DefFeatureCS value);
 
 } // DefCS

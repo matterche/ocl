@@ -126,6 +126,24 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	DefCS createDefCS();
 
 	/**
+	 * Returns a new object of class '<em>Def Operation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Def Operation CS</em>'.
+	 * @generated
+	 */
+	DefOperationCS createDefOperationCS();
+
+	/**
+	 * Returns a new object of class '<em>Def Property CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Def Property CS</em>'.
+	 * @generated
+	 */
+	DefPropertyCS createDefPropertyCS();
+
+	/**
 	 * Returns a new object of class '<em>Operation Context Decl CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

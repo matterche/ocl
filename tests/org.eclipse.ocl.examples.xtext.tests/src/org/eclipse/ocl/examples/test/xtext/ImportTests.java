@@ -452,7 +452,7 @@ public class ImportTests extends XtextTestCase
 		String moreCompleteOCL =
 			"package ocl\n" +
 			"context _'Integer'\n" +
-			"def: isPositive(Integer) : Boolean = true\n" +
+			"def: isPositive(z : Integer) : Boolean = true\n" +
 			"endpackage\n";
 		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
 		String testFile =

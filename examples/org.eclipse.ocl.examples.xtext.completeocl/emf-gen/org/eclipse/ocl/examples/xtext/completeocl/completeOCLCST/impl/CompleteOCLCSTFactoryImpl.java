@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTFactory;
@@ -92,6 +93,8 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS: return createCompleteOCLDocumentCS();
 			case CompleteOCLCSTPackage.CONTEXT_SPECIFICATION_CS: return createContextSpecificationCS();
 			case CompleteOCLCSTPackage.DEF_CS: return createDefCS();
+			case CompleteOCLCSTPackage.DEF_OPERATION_CS: return createDefOperationCS();
+			case CompleteOCLCSTPackage.DEF_PROPERTY_CS: return createDefPropertyCS();
 			case CompleteOCLCSTPackage.DER_CS: return createDerCS();
 			case CompleteOCLCSTPackage.INCLUDE_CS: return createIncludeCS();
 			case CompleteOCLCSTPackage.INIT_CS: return createInitCS();
@@ -207,6 +210,28 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	public DefCS createDefCS() {
 		DefCSImpl defCS = new DefCSImpl();
 		return defCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DefOperationCS createDefOperationCS()
+	{
+		DefOperationCSImpl defOperationCS = new DefOperationCSImpl();
+		return defOperationCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DefPropertyCS createDefPropertyCS()
+	{
+		DefPropertyCSImpl defPropertyCS = new DefPropertyCSImpl();
+		return defPropertyCS;
 	}
 
 	/**

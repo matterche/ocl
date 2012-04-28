@@ -59,6 +59,18 @@ public class AbstractCompleteOCLPreOrderVisitor
 		return visitContextConstraintCS(object);
 	}
 
+	public Continuation<?> visitDefFeatureCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefFeatureCS object) {
+		return visitTypedElementCS(object);
+	}
+
+	public Continuation<?> visitDefOperationCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS object) {
+		return visitDefFeatureCS(object);
+	}
+
+	public Continuation<?> visitDefPropertyCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefPropertyCS object) {
+		return visitDefFeatureCS(object);
+	}
+
 	public Continuation<?> visitDerCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS object) {
 		return visitContextConstraintCS(object);
 	}
