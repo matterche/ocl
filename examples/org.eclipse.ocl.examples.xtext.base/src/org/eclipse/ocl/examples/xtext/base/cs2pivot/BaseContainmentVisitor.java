@@ -96,7 +96,7 @@ public class BaseContainmentVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		metaModelManager = context.getMetaModelManager();
 	}
 
-	protected void importPackages(RootPackageCS csElement) {
+	protected void importPackages(RootPackageCS csElement) { // FIXME: CS2Pivot.computeRootContainmentFeatures may make this redundant
 		for (LibraryCS csLibrary : csElement.getOwnedLibrary()) {
 			csLibrary.getPackage();						// Resolve the proxy to perform the import.
 		}
@@ -288,7 +288,7 @@ public class BaseContainmentVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	@Override
 	public Continuation<?> visitImportCS(ImportCS csElement) {
 //		csElement.getNamespace();					// Resolve the proxy to perform the import.
-		return null;
+		return null;								// FIXME: CS2Pivot.computeRootContainmentFeatures may allow the above now
 	}
 
 	@Override
@@ -299,7 +299,7 @@ public class BaseContainmentVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	@Override
 	public Continuation<?> visitLibraryCS(LibraryCS csElement) {
 //		csElement.getPackage();						// Resolve the proxy to perform the import.
-		return null;
+		return null;								// FIXME: CS2Pivot.computeRootContainmentFeatures may allow the above now
 	}
 
 	@Override

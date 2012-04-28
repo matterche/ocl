@@ -26,11 +26,15 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
@@ -39,11 +43,13 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -84,6 +90,30 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		}
 		
 		public abstract String getMessage(EObject context, String linkText);
+	}
+
+	/**
+	 * Return the containment features ordered so that library and import features are processed bedfore anything else.
+	 */
+	public static EList<EObject> computeRootContainmentFeatures(RootCS csRoot) {
+		BasicEList<EReference> containmentsList = new BasicEList<EReference>();
+		for (EStructuralFeature eStructuralFeature : csRoot.eClass().getEAllStructuralFeatures()) {
+			if (eStructuralFeature instanceof EReference) {
+				EReference eReference = (EReference) eStructuralFeature;
+				if (eReference.isContainment()) {
+					containmentsList.add(eReference);
+				}
+			}
+		}
+		int index = containmentsList.indexOf(BaseCSTPackage.Literals.ROOT_CS__OWNED_IMPORT);
+		if (index > 0) {
+			containmentsList.move(0, index);		// Process imports second
+		}
+		index = containmentsList.indexOf(BaseCSTPackage.Literals.ROOT_CS__OWNED_LIBRARY);
+		if (index > 0) {
+			containmentsList.move(0, index);		// Process libraries first
+		}
+		return new EContentsEList<EObject>(csRoot, containmentsList);
 	}
 	
 	private static Map<EReference, UnresolvedProxyMessageProvider> unresolvedProxyMessageProviderMap = new HashMap<EReference, UnresolvedProxyMessageProvider>();
@@ -307,6 +337,11 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	}
 	
 	protected abstract BaseCSVisitor<Continuation<?>> createContainmentVisitor(CS2PivotConversion cs2PivotConversion);
+
+	protected CS2PivotConversion createConversion(IDiagnosticConsumer diagnosticsConsumer, Collection<? extends Resource> csResources) {
+		return new CS2PivotConversion(this, diagnosticsConsumer, csResources);
+	}
+
 	protected abstract BaseCSVisitor<Element> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
 	protected abstract BaseCSVisitor<Continuation<?>> createPostOrderVisitor(CS2PivotConversion converter) ;
 	protected abstract BaseCSVisitor<Continuation<?>> createPreOrderVisitor(CS2PivotConversion converter);
@@ -468,7 +503,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 //		for (Resource csResource : csResources) {
 //			System.out.println("CS " + csResource.getClass().getName() + "@" + csResource.hashCode() + " " + csResource.getURI());
 //		}
-		CS2PivotConversion conversion = new CS2PivotConversion(this, diagnosticsConsumer, csResources);
+		CS2PivotConversion conversion = createConversion(diagnosticsConsumer, csResources);
 		conversion.update();
 //		System.out.println("---------------------------------------------------------------------------");
 //		Collection<? extends Resource> pivotResources = cs2pivotResourceMap.values();

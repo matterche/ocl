@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -29,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
@@ -256,5 +258,18 @@ public class RootPackageCSImpl extends PackageCSImpl implements RootPackageCS
 	@Override
 	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitRootPackageCS(this);
+	}
+
+	/**
+	 * Overridden to ensure that library and import declarations preceed other content.
+	 */
+	@Override
+	public EList<EObject> eContents() {
+		EList<EObject> result = eProperties().getEContents();
+		if (result == null) {
+			result = CS2Pivot.computeRootContainmentFeatures(this);
+			eBasicProperties().setEContents(result);
+		}
+		return result;
 	}
 } //RootPackageCSImpl
