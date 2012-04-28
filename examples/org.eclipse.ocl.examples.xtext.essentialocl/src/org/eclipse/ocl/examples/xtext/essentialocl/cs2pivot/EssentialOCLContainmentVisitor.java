@@ -17,7 +17,9 @@ package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
@@ -29,16 +31,22 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
@@ -76,6 +84,20 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class EssentialOCLContainmentVisitor extends AbstractEssentialOCLContainmentVisitor
 {
+	private static final class NotOperationFilter implements ScopeFilter
+	{
+		public static NotOperationFilter INSTANCE = new NotOperationFilter();
+		
+		public int compareMatches(EObject match1, Map<TemplateParameter, ParameterableElement> bindings1,
+				EObject match2, Map<TemplateParameter, ParameterableElement> bindings2) {
+			return 0;
+		}
+
+		public boolean matches(EnvironmentView environmentView,Type forType, EObject eObject) {
+			return !(eObject instanceof Operation);
+		}
+	}
+
 	public EssentialOCLContainmentVisitor(CS2PivotConversion context) {
 		super(context);
 	}
@@ -176,7 +198,7 @@ public class EssentialOCLContainmentVisitor extends AbstractEssentialOCLContainm
 
 	@Override
 	public Continuation<?> visitNameExpCS(NameExpCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.ELEMENT, csElement, null);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.ELEMENT, csElement, NotOperationFilter.INSTANCE);
 		return null;
 	}
 
