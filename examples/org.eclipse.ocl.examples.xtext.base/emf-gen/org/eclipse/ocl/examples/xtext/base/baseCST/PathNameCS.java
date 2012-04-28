@@ -68,7 +68,7 @@ public interface PathNameCS extends ElementCS, Pivotable
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathNameCS_Element()
-	 * @model resolveProxies="false" required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	Element getElement();

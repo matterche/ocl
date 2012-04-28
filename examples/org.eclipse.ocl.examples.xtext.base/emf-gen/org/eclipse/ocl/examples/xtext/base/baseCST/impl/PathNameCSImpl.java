@@ -163,7 +163,8 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				return getPath();
 			case BaseCSTPackage.PATH_NAME_CS__ELEMENT:
-				return getElement();
+				if (resolve) return getElement();
+				return basicGetElement();
 			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
 				return getContext();
 			case BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER:
@@ -233,7 +234,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				return path != null && !path.isEmpty();
 			case BaseCSTPackage.PATH_NAME_CS__ELEMENT:
-				return getElement() != null;
+				return basicGetElement() != null;
 			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
 				return isSetContext();
 			case BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER:
@@ -273,36 +274,6 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	@Override
 	public <R> R accept(BaseCSVisitor<R> visitor) {
 		return visitor.visitPathNameCS(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Element getElement()
-	{
-		if (path == null) {
-			return null;
-		}
-		int iMax = path.size();
-		if (iMax <= 0) {
-			return null;
-		}
-		for (int i = 0; i < iMax-1; i++) {
-			Element element = path.get(i).getElement();
-			if (element == null) {
-				return null;
-			}
-		}
-		Element element = path.get(iMax-1).getElement();
-		if (element == null) {
-			return null;
-		}
-		if (element.eIsProxy()) {
-			return null;
-		}
-		return element;
 	}
 
 	/**
@@ -376,6 +347,53 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 		scopeFilter = newScopeFilter;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER, oldScopeFilter, scopeFilter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Element basicGetElement()
+	{
+		if (path == null) {
+			return null;
+		}
+		int iMax = path.size();
+		if (iMax <= 0) {
+			return null;
+		}
+		return path.get(iMax-1).basicGetElement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Element getElement()
+	{
+		if (path == null) {
+			return null;
+		}
+		int iMax = path.size();
+		if (iMax <= 0) {
+			return null;
+		}
+		for (int i = 0; i < iMax-1; i++) {
+			Element element = path.get(i).getElement();
+			if (element == null) {
+				return null;
+			}
+		}
+		Element element = path.get(iMax-1).getElement();
+		if (element == null) {
+			return null;
+		}
+		if (element.eIsProxy()) {
+			return null;
+		}
+		return element;
 	}
 
 	public Element getPivot() {
