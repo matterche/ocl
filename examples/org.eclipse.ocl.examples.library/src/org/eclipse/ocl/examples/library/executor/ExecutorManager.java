@@ -56,7 +56,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 
 	public ValueFactory getValueFactory() {
 		if (isCanceled) {
-			throw new EvaluationHaltedException("Canceled");
+			throw new EvaluationHaltedException("Canceled"); //$NON-NLS-1$
 		}
 		return valueFactory;
 	}
