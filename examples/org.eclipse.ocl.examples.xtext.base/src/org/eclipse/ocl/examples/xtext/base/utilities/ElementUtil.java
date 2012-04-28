@@ -362,12 +362,9 @@ public class ElementUtil
 				if (!(eContainer instanceof NamedElement)) {
 					break;
 				}
-				if ((eContainer instanceof Model) && !(eContainer instanceof Library)) { // BUG 376596
-					break;				// Skip root non-package
+				if (eContainer instanceof Model) {
+					break;				// Skip root package
 				}
-//				if (eContainer.eContainer() == null) {
-//					break;				// Skip root package
-//				}
 				namedElement = (NamedElement) eContainer;
 			}
 		}
