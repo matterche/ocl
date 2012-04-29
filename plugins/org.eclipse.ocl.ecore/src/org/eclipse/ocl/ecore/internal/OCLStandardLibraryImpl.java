@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -95,8 +96,12 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 	public static EPackage stdlibPackage = init();
     
     /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    public static final EObject INVALID = stdlibPackage.getEFactoryInstance().create(
-        (EClass) stdlibPackage.getEClassifier("OclInvalid_Class")); //$NON-NLS-1$
+//    public static final EObject INVALID = stdlibPackage.getEFactoryInstance().create(
+//        (EClass) stdlibPackage.getEClassifier("OclInvalid_Class")); //$NON-NLS-1$
+    public static final EObject INVALID = new EObjectImpl()
+    {
+    	public String toString() { return "invalid"; } //$NON-NLS-1$
+    };
     
     // not instantiable by clients
 	private OCLStandardLibraryImpl() {
