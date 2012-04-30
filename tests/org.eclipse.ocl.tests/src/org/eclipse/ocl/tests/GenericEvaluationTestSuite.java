@@ -9,30 +9,16 @@
  *     Obeo - initial API and implementation
  *     Axel Uhl (SAP AG) - Bug 342644
  */
-package org.eclipse.ocl.ecore.tests;
+package org.eclipse.ocl.tests;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.ecore.CallOperationAction;
-import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -42,25 +28,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
  * @author Laurent Goubet (lgoubet)
  */
 @SuppressWarnings("nls")
-public abstract class AbstractEvaluationTest
-		extends AbstractTestSuite {
-
-	public static Test suite() {
-		TestSuite suite = new TestSuite("Evaluation visitor tests");
-
-		suite.addTest(new TestSuite(EvaluationBooleanOperationTest.class,
-			"Boolean operations Tests"));
-		suite.addTest(new TestSuite(EvaluationCollectionOperationTest.class,
-			"Collection operations Tests"));
-		suite.addTest(new TestSuite(EvaluationNumberOperationTest.class,
-			"Numeric operations Tests"));
-		suite.addTest(new TestSuite(EvaluationOclAnyOperationTest.class,
-			"OclAny operations Tests"));
-		suite.addTest(new TestSuite(EvaluationStringOperationTest.class,
-			"String operations Tests"));
-
-		return suite;
-	}
+public abstract class GenericEvaluationTestSuite<E extends EObject, PK extends E, T extends E, C extends T, CLS extends C, DT extends C, PT extends C, ET extends DT, O extends E, PM extends E, P extends E, PA extends P, PR extends P, EL, S, COA, SSA, CT>
+	extends GenericTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, PR, EL, S, COA, SSA, CT> {
 
 	/**
 	 * Instance of the invalid type. This is a shortcut for
@@ -72,7 +41,7 @@ public abstract class AbstractEvaluationTest
 	protected Object invalidObject;
 
 	/** This is the visitor that will be tested by the underlying tests. */
-	protected EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> visitor;
+	protected EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor;
 
 	/**
 	 * Creates a query given the expression that is to be evaluated, then
@@ -87,14 +56,19 @@ public abstract class AbstractEvaluationTest
 	 */
 	@SuppressWarnings("unchecked")
 	protected void assertResultContainsAll(Collection<Object> expectedResult, String expression) {
-		OCLExpression<EClassifier> query = createQuery(EcorePackage.eINSTANCE
-			.getEClass(), expression);
+		OCLExpression<C> query = createQuery(getContext(), expression);
 		Object result = visitor.visitExpression(query);
 
 		assertTrue(expectedResult.getClass().isInstance(result));
 		assertSame(expectedResult.size(), ((Collection<Object>) result).size());
 		assertTrue(((Collection<Object>) result).containsAll(expectedResult));
 	}
+
+	@SuppressWarnings("unchecked")
+	protected CLS getContext() {
+		return (CLS) getMetaclass(denormalize("%Package"));
+	}
+
 
 	/**
 	 * Creates a query given the expression that is to be evaluated, then
@@ -110,8 +84,8 @@ public abstract class AbstractEvaluationTest
 	 */
 	@SuppressWarnings("unchecked")
 	protected void assertResultContainsAll(String expectedResultExpression, String expression) {
-		OCLExpression<EClassifier> expectedResultQuery = createQuery(
-			EcorePackage.eINSTANCE.getEClass(), expectedResultExpression);
+		OCLExpression<C> expectedResultQuery = createQuery(
+			getContext(), expectedResultExpression);
 		Object result = visitor.visitExpression(expectedResultQuery);
 
 		assertTrue(result instanceof Collection<?>);
@@ -134,8 +108,7 @@ public abstract class AbstractEvaluationTest
 	 */
 	@SuppressWarnings("unchecked")
 	protected void assertResult(Object expectedResult, String expression) {
-		OCLExpression<EClassifier> query = createQuery(EcorePackage.eINSTANCE
-			.getEClass(), expression);
+		OCLExpression<C> query = createQuery(getContext(), expression);
 		Object result = visitor.visitExpression(query);
 		if (expectedResult instanceof Double && result instanceof Double) {
 			assertEquals(((Double) expectedResult).doubleValue(),
@@ -222,8 +195,8 @@ public abstract class AbstractEvaluationTest
 	 *            {@link EClass} as this expression's context.
 	 */
 	protected void assertExpressionResults(String expectedResultExpression, String expression) {
-		OCLExpression<EClassifier> expectedResultQuery = createQuery(
-			EcorePackage.eINSTANCE.getEClass(), expectedResultExpression);
+		OCLExpression<C> expectedResultQuery = createQuery(
+			getContext(), expectedResultExpression);
 		Object result = visitor.visitExpression(expectedResultQuery);
 
 		assertResult(result, expression);
@@ -237,9 +210,7 @@ public abstract class AbstractEvaluationTest
 	@Override
 	protected void setUp() {
 		super.setUp();
-		visitor = EcoreEnvironmentFactory.INSTANCE.createEvaluationVisitor(ocl
-			.getEnvironment(), ocl.getEvaluationEnvironment(), ocl
-			.getExtentMap());
+		visitor = ocl.getEnvironment().getFactory().createEvaluationVisitor(ocl.getEnvironment(), ocl.getEvaluationEnvironment(), ocl.getExtentMap());
 		invalidObject = ocl.getEnvironment().getOCLStandardLibrary()
 			.getInvalid();
 	}

@@ -152,6 +152,11 @@ public abstract class AbstractTestSuite
 	 */
 	public static void suite(CheckedTestSuite result) {
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
+		result.createTestSuite(EvaluationBooleanOperationTest.class, "Boolean operations Tests");
+		result.createTestSuite(EvaluationCollectionOperationTest.class, "Collection operations Tests");
+		result.createTestSuite(EvaluationNumberOperationTest.class, "Numeric operations Tests");
+		result.createTestSuite(EvaluationOclAnyOperationTest.class, "OclAny operations Tests");
+		result.createTestSuite(EvaluationStringOperationTest.class, "String operations Tests");
         result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests");
 		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
 		result.createTestSuite(CollectionsTest.class, "Collection Type Tests");
