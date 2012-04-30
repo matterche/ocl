@@ -1,270 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl" version="2">
-    <resource path="src/org/eclipse/ocl/utilities/PredefinedType.java" type="org.eclipse.ocl.utilities.PredefinedType">
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="CHARACTERS"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="CHARACTERS_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="ENDS_WITH"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="ENDS_WITH_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="EQUALS_IGNORE_CASE"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="EQUALS_IGNORE_CASE_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="LAST_INDEX_OF"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="LAST_INDEX_OF_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="MATCHES"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="MATCHES_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="OCL_AS_SET"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="OCL_AS_SET_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="REPLACE_ALL"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="REPLACE_ALL_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="REPLACE_FIRST"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="REPLACE_FIRST_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SELECT_BY_KIND"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SELECT_BY_KIND_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SELECT_BY_TYPE"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SELECT_BY_TYPE_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="STARTS_WITH"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="STARTS_WITH_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SUBSTITUTE_ALL"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SUBSTITUTE_ALL_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SUBSTITUTE_FIRST"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="SUBSTITUTE_FIRST_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TOKENIZE"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TOKENIZE_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_BOOLEAN"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_BOOLEAN_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_LOWER_CASE"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_LOWER_CASE_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_STRING"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_STRING_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_UPPER_CASE"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TO_UPPER_CASE_NAME"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TRIM"/>
-            </message_arguments>
-        </filter>
-        <filter comment="New library operation constants" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
-                <message_argument value="TRIM_NAME"/>
-=======
+    <resource path="src/org/eclipse/ocl/parser/OCLKWLexerprs.java">
+        <filter comment="Internal parsing constants" id="0"/>
+    </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLKWLexerprs.java" type="org.eclipse.ocl.parser.OCLKWLexerprs">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexerprs"/>
                 <message_argument value="ACCEPT_ACTION"/>
                 <message_argument value="204"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexerprs"/>
                 <message_argument value="ERROR_ACTION"/>
                 <message_argument value="205"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexerprs"/>
                 <message_argument value="LA_STATE_OFFSET"/>
                 <message_argument value="247"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexerprs"/>
                 <message_argument value="NUM_RULES"/>
                 <message_argument value="42"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexerprs"/>
                 <message_argument value="NUM_STATES"/>
                 <message_argument value="159"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexerprs"/>
                 <message_argument value="START_STATE"/>
@@ -273,14 +48,14 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLKWLexersym.java" type="org.eclipse.ocl.parser.OCLKWLexersym">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexersym"/>
                 <message_argument value="Char_d"/>
                 <message_argument value="8"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLKWLexersym"/>
                 <message_argument value="Char_r"/>
@@ -288,92 +63,95 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/ocl/parser/OCLParserprs.java">
+        <filter comment="Internal parsing constants" id="0"/>
+    </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLParserprs.java" type="org.eclipse.ocl.parser.OCLParserprs">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="ACCEPT_ACTION"/>
                 <message_argument value="4320"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="EOFT_SYMBOL"/>
                 <message_argument value="76"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="EOLT_SYMBOL"/>
                 <message_argument value="76"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="ERROR_ACTION"/>
                 <message_argument value="4321"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="ERROR_SYMBOL"/>
                 <message_argument value="79"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="IDENTIFIER_SYMBOL"/>
                 <message_argument value="7"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="LA_STATE_OFFSET"/>
                 <message_argument value="4624"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="NT_OFFSET"/>
                 <message_argument value="79"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="NUM_NONTERMINALS"/>
                 <message_argument value="120"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="NUM_RULES"/>
                 <message_argument value="303"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="NUM_STATES"/>
                 <message_argument value="243"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="NUM_SYMBOLS"/>
                 <message_argument value="199"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParserprs"/>
                 <message_argument value="START_STATE"/>
@@ -381,519 +159,522 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/ocl/parser/OCLParsersym.java">
+        <filter comment="Internal parsing constants" id="0"/>
+    </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLParsersym.java" type="org.eclipse.ocl.parser.OCLParsersym">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_ARROW"/>
                 <message_argument value="13"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_AT"/>
                 <message_argument value="38"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_BAR"/>
                 <message_argument value="39"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Bag"/>
                 <message_argument value="22"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Boolean"/>
                 <message_argument value="30"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_CARET"/>
                 <message_argument value="15"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_CARETCARET"/>
                 <message_argument value="16"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_COLON"/>
                 <message_argument value="3"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_COMMA"/>
                 <message_argument value="9"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Collection"/>
                 <message_argument value="24"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_DIVIDE"/>
                 <message_argument value="11"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_DOT"/>
                 <message_argument value="14"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_DOTDOT"/>
                 <message_argument value="70"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_EOF_TOKEN"/>
                 <message_argument value="76"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_EQUAL"/>
                 <message_argument value="8"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_ERROR_TOKEN"/>
                 <message_argument value="79"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_GREATER"/>
                 <message_argument value="17"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_GREATER_EQUAL"/>
                 <message_argument value="19"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_IDENTIFIER"/>
                 <message_argument value="7"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_INTEGER_LITERAL"/>
                 <message_argument value="42"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Integer"/>
                 <message_argument value="27"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_LBRACE"/>
                 <message_argument value="60"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_LBRACKET"/>
                 <message_argument value="56"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_LESS"/>
                 <message_argument value="18"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_LESS_EQUAL"/>
                 <message_argument value="20"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_MULTI_LINE_COMMENT"/>
                 <message_argument value="78"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_NOT_EQUAL"/>
                 <message_argument value="37"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_OclAny"/>
                 <message_argument value="32"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_OclInvalid"/>
                 <message_argument value="34"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_OclMessage"/>
                 <message_argument value="35"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_OclVoid"/>
                 <message_argument value="33"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_OrderedSet"/>
                 <message_argument value="25"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_PLUS"/>
                 <message_argument value="10"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_QUESTIONMARK"/>
                 <message_argument value="68"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_RBRACE"/>
                 <message_argument value="61"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_RBRACKET"/>
                 <message_argument value="66"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_REAL_LITERAL"/>
                 <message_argument value="43"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_RPAREN"/>
                 <message_argument value="2"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Real"/>
                 <message_argument value="29"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_SEMICOLON"/>
                 <message_argument value="67"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_SINGLE_LINE_COMMENT"/>
                 <message_argument value="77"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_STRING_LITERAL"/>
                 <message_argument value="36"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Sequence"/>
                 <message_argument value="23"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Set"/>
                 <message_argument value="21"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_String"/>
                 <message_argument value="26"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_Tuple"/>
                 <message_argument value="31"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_UnlimitedNatural"/>
                 <message_argument value="28"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_and"/>
                 <message_argument value="40"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_body"/>
                 <message_argument value="63"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_context"/>
                 <message_argument value="59"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_def"/>
                 <message_argument value="52"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_derive"/>
                 <message_argument value="64"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_else"/>
                 <message_argument value="72"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_endif"/>
                 <message_argument value="73"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_endpackage"/>
                 <message_argument value="75"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_false"/>
                 <message_argument value="49"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_if"/>
                 <message_argument value="45"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_implies"/>
                 <message_argument value="57"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_in"/>
                 <message_argument value="74"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_init"/>
                 <message_argument value="65"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_inv"/>
                 <message_argument value="54"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_invalid"/>
                 <message_argument value="51"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_let"/>
                 <message_argument value="47"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_not"/>
                 <message_argument value="41"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_null"/>
                 <message_argument value="50"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_or"/>
                 <message_argument value="46"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_package"/>
                 <message_argument value="69"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_post"/>
                 <message_argument value="62"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_pre"/>
                 <message_argument value="58"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_self"/>
                 <message_argument value="44"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_static"/>
                 <message_argument value="55"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_then"/>
                 <message_argument value="71"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_true"/>
                 <message_argument value="48"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
                 <message_argument value="TK_xor"/>
@@ -902,42 +683,42 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingKWLexerprs.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs"/>
                 <message_argument value="ACCEPT_ACTION"/>
                 <message_argument value="204"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs"/>
                 <message_argument value="ERROR_ACTION"/>
                 <message_argument value="205"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs"/>
                 <message_argument value="LA_STATE_OFFSET"/>
                 <message_argument value="247"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs"/>
                 <message_argument value="NUM_RULES"/>
                 <message_argument value="42"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs"/>
                 <message_argument value="NUM_STATES"/>
                 <message_argument value="159"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs"/>
                 <message_argument value="START_STATE"/>
@@ -946,14 +727,14 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingKWLexersym.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexersym">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexersym"/>
                 <message_argument value="Char_d"/>
                 <message_argument value="8"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexersym"/>
                 <message_argument value="Char_r"/>
@@ -962,84 +743,84 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingParserprs.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="ACCEPT_ACTION"/>
                 <message_argument value="4477"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="EOFT_SYMBOL"/>
                 <message_argument value="73"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="EOLT_SYMBOL"/>
                 <message_argument value="73"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="ERROR_ACTION"/>
                 <message_argument value="4478"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="IDENTIFIER_SYMBOL"/>
                 <message_argument value="6"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="LA_STATE_OFFSET"/>
                 <message_argument value="4814"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="NT_OFFSET"/>
                 <message_argument value="79"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="NUM_NONTERMINALS"/>
                 <message_argument value="123"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="NUM_RULES"/>
                 <message_argument value="336"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="NUM_STATES"/>
                 <message_argument value="256"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="NUM_SYMBOLS"/>
                 <message_argument value="202"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs"/>
                 <message_argument value="START_STATE"/>
@@ -1048,541 +829,771 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingParsersym.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym">
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_ARROW"/>
                 <message_argument value="40"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_AT"/>
                 <message_argument value="49"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_BAR"/>
                 <message_argument value="50"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Bag"/>
                 <message_argument value="10"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Boolean"/>
                 <message_argument value="18"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_CARET"/>
                 <message_argument value="42"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_CARETCARET"/>
                 <message_argument value="43"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_COLON"/>
                 <message_argument value="4"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_COMMA"/>
                 <message_argument value="26"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Collection"/>
                 <message_argument value="12"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_DIVIDE"/>
                 <message_argument value="38"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_DOT"/>
                 <message_argument value="41"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_DOTDOT"/>
                 <message_argument value="74"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_EOF_TOKEN"/>
                 <message_argument value="73"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_EQUAL"/>
                 <message_argument value="24"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_GREATER"/>
                 <message_argument value="44"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_GREATER_EQUAL"/>
                 <message_argument value="46"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_IDENTIFIER"/>
                 <message_argument value="6"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_INTEGER_LITERAL"/>
                 <message_argument value="28"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Integer"/>
                 <message_argument value="15"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_LBRACE"/>
                 <message_argument value="64"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_LBRACKET"/>
                 <message_argument value="61"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_LESS"/>
                 <message_argument value="45"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_LESS_EQUAL"/>
                 <message_argument value="47"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_LPAREN"/>
                 <message_argument value="2"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_MINUS"/>
                 <message_argument value="7"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_MULTIPLY"/>
                 <message_argument value="8"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_MULTI_LINE_COMMENT"/>
                 <message_argument value="79"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_NOT_EQUAL"/>
                 <message_argument value="48"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_OclAny"/>
                 <message_argument value="20"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_OclInvalid"/>
                 <message_argument value="22"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_OclMessage"/>
                 <message_argument value="23"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_OclVoid"/>
                 <message_argument value="21"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_OrderedSet"/>
                 <message_argument value="13"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_PLUS"/>
                 <message_argument value="37"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_QUESTIONMARK"/>
                 <message_argument value="65"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_QUOTED_IDENTIFIER"/>
                 <message_argument value="5"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_RBRACE"/>
                 <message_argument value="52"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_RBRACKET"/>
                 <message_argument value="69"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_REAL_LITERAL"/>
                 <message_argument value="29"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_RPAREN"/>
                 <message_argument value="3"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Real"/>
                 <message_argument value="17"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_SEMICOLON"/>
                 <message_argument value="70"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_SINGLE_LINE_COMMENT"/>
                 <message_argument value="78"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Sequence"/>
                 <message_argument value="11"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Set"/>
                 <message_argument value="9"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_String"/>
                 <message_argument value="14"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_Tuple"/>
                 <message_argument value="19"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_UnlimitedNatural"/>
                 <message_argument value="16"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_and"/>
                 <message_argument value="51"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_body"/>
                 <message_argument value="59"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_context"/>
                 <message_argument value="63"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_def"/>
                 <message_argument value="55"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_derive"/>
                 <message_argument value="67"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_else"/>
                 <message_argument value="76"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_endif"/>
                 <message_argument value="71"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_endpackage"/>
                 <message_argument value="66"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_false"/>
                 <message_argument value="34"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_if"/>
                 <message_argument value="31"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_implies"/>
                 <message_argument value="62"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_in"/>
                 <message_argument value="77"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_init"/>
                 <message_argument value="68"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_inv"/>
                 <message_argument value="57"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_invalid"/>
                 <message_argument value="36"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_let"/>
                 <message_argument value="32"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_not"/>
                 <message_argument value="27"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_null"/>
                 <message_argument value="35"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_or"/>
                 <message_argument value="53"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_package"/>
                 <message_argument value="72"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_post"/>
                 <message_argument value="58"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_pre"/>
                 <message_argument value="54"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_self"/>
                 <message_argument value="30"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_static"/>
                 <message_argument value="60"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_then"/>
                 <message_argument value="75"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_true"/>
                 <message_argument value="33"/>
             </message_arguments>
         </filter>
-        <filter id="388194388">
+        <filter comment="Internal parsing constants" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym"/>
                 <message_argument value="TK_xor"/>
                 <message_argument value="56"/>
             </message_arguments>
         </filter>
-        <filter id="1211105284">
+        <filter comment="Internal parsing constants" id="1211105284">
             <message_arguments>
                 <message_argument value="TK_import"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/utilities/PredefinedType.java" type="org.eclipse.ocl.utilities.PredefinedType">
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="CHARACTERS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="CHARACTERS_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="ENDS_WITH"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="ENDS_WITH_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="EQUALS_IGNORE_CASE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="EQUALS_IGNORE_CASE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="LAST_INDEX_OF"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="LAST_INDEX_OF_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="MATCHES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="MATCHES_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="OCL_AS_SET"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="OCL_AS_SET_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_ALL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_ALL_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_FIRST"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_FIRST_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_KIND"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_KIND_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_TYPE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_TYPE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="STARTS_WITH"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="STARTS_WITH_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_ALL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_ALL_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_FIRST"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_FIRST_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TOKENIZE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TOKENIZE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_BOOLEAN"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_BOOLEAN_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_LOWER_CASE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_LOWER_CASE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Internal parsing constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_STRING"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_STRING_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_UPPER_CASE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_UPPER_CASE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TRIM"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Neww library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TRIM_NAME"/>
             </message_arguments>
         </filter>
     </resource>
