@@ -67,6 +67,10 @@ $copyright_contributions
 	-- the following were introduced in the OCL 2.1 RTF 09-05-02. 
 	--
 	static
+	--
+	-- the following provide compatibility with the pivot-based Complete OCL 
+	--
+	import
 	
 	OclMessage
 %End
@@ -145,6 +149,12 @@ $copyright_contributions
 		| s t a t i c
 		/.$BeginAction
 			$setResult($_static);
+		  $EndAction
+		./
+
+		| i m p o r t
+		/.$BeginAction
+			$setResult($_import);
 		  $EndAction
 		./
 %End

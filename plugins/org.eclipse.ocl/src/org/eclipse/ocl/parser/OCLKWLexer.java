@@ -45,7 +45,7 @@ package org.eclipse.ocl.parser;
 public class OCLKWLexer extends OCLKWLexerprs
 {
     private char[] inputChars;
-    private final int keywordKind[] = new int[42 + 1];
+    private final int keywordKind[] = new int[43 + 1];
 
     public int[] getKeywordKinds() { return keywordKind; }
 
@@ -441,6 +441,13 @@ public class OCLKWLexer extends OCLKWLexerprs
         //
         
 		keywordKind[42] = (OCLParsersym.TK_static);
+	  
+	
+        //
+        // Rule 43:  KeyWord ::= i m p o r t
+        //
+        
+		keywordKind[43] = (OCLParsersym.TK_import);
 	  
 	
         for (int i = 0; i < keywordKind.length; i++)

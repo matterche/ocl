@@ -20,7 +20,7 @@
 *        - 300534: Removing the use of deprecated macros.
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.27 2010/02/09 21:04:08 ewillink Exp $
+* $Id: EssentialOCL.gi,v 1.8 2010/02/09 21:04:08 ewillink Exp $
 */
 /**
 * Complete OCL Grammar
@@ -1766,16 +1766,31 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 246:  unreservedSimpleNameCSopt ::= $Empty
+			// Rule 247:  unreservedSimpleNameCSopt ::= $Empty
 			//
-			case 246:
+			case 247:
                 setResult(null);
                 break;
 
 			//
-			// Rule 248:  primitiveTypeCS ::= OclMessage
+			// Rule 249:  simpleNameCS ::= import
 			//
-			case 248: {
+			case 249: {
+				
+                IToken iToken = getRhsIToken(1);
+                SimpleNameCS result = createSimpleNameCS(
+                        SimpleTypeEnum.IDENTIFIER_LITERAL,
+                        iToken
+                    );
+                setOffsets(result, iToken);
+                setResult(result);
+                      break;
+            }
+    
+			//
+			// Rule 250:  primitiveTypeCS ::= OclMessage
+			//
+			case 250: {
 				
 				PrimitiveTypeCS result = createPrimitiveTypeCS(
 						SimpleTypeEnum.OCL_MESSAGE_LITERAL,
@@ -1787,16 +1802,16 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 249:  typeCSopt ::= $Empty
+			// Rule 251:  typeCSopt ::= $Empty
 			//
-			case 249:
+			case 251:
                 setResult(null);
                 break;
 
 			//
-			// Rule 251:  OperationCallExpCS ::= primaryExpCS -> simpleNameCS isMarkedPreCS ( argumentsCSopt )
+			// Rule 253:  OperationCallExpCS ::= primaryExpCS -> simpleNameCS isMarkedPreCS ( argumentsCSopt )
 			//
-			case 251: {
+			case 253: {
 				
 				OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
 				OperationCallExpCS result = createArrowOperationCallExpCS(
@@ -1811,9 +1826,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 252:  AssociationClassCallExpCS ::= simpleNameCS isMarkedPreCS
+			// Rule 254:  AssociationClassCallExpCS ::= simpleNameCS isMarkedPreCS
 			//
-			case 252: {
+			case 254: {
 				
 				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(2);
@@ -1828,9 +1843,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 253:  isMarkedPreCS ::= @ pre
+			// Rule 255:  isMarkedPreCS ::= @ pre
 			//
-			case 253: {
+			case 255: {
 				
 				IsMarkedPreCS result = createIsMarkedPreCS();
 				setOffsets(result, getRhsIToken(1), getRhsIToken(2));
@@ -1839,15 +1854,15 @@ protected String getRhsTokenText(int i) {
             }
 	 
 			//
-			// Rule 255:  OclMessageExpCS ::= primaryExpCS ^^ simpleNameCS ( OclMessageArgumentsCSopt )
+			// Rule 257:  OclMessageExpCS ::= primaryExpCS ^^ simpleNameCS ( OclMessageArgumentsCSopt )
 			//
 			
-            case 255:
+            case 257:
 
 			//
-			// Rule 256:  OclMessageExpCS ::= primaryExpCS ^ simpleNameCS ( OclMessageArgumentsCSopt )
+			// Rule 258:  OclMessageExpCS ::= primaryExpCS ^ simpleNameCS ( OclMessageArgumentsCSopt )
 			//
-			case 256: {
+			case 258: {
 				
 				OCLExpressionCS target = (OCLExpressionCS)getRhsSym(1);
 				MessageExpCS result = createMessageExpCS(
@@ -1862,18 +1877,18 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 257:  OclMessageArgumentsCSopt ::= $Empty
+			// Rule 259:  OclMessageArgumentsCSopt ::= $Empty
 			//
-			case 257: {
+			case 259: {
 				
                 setResult(new BasicEList<OCLMessageArgCS>());
                       break;
             }
     
 			//
-			// Rule 259:  OclMessageArgumentsCS ::= OclMessageArgCS
+			// Rule 261:  OclMessageArgumentsCS ::= OclMessageArgCS
 			//
-			case 259: {
+			case 261: {
 				
 				EList<OCLMessageArgCS> result = new BasicEList<OCLMessageArgCS>();
 				result.add((OCLMessageArgCS)getRhsSym(1));
@@ -1882,9 +1897,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 260:  OclMessageArgumentsCS ::= OclMessageArgumentsCS , OclMessageArgCS
+			// Rule 262:  OclMessageArgumentsCS ::= OclMessageArgumentsCS , OclMessageArgCS
 			//
-			case 260: {
+			case 262: {
 				
 				EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>)getRhsSym(1);
 				result.add((OCLMessageArgCS)getRhsSym(3));
@@ -1893,9 +1908,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 261:  OclMessageArgCS ::= ?
+			// Rule 263:  OclMessageArgCS ::= ?
 			//
-			case 261: {
+			case 263: {
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
 						null,
@@ -1907,9 +1922,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 262:  OclMessageArgCS ::= ? : typeCS
+			// Rule 264:  OclMessageArgCS ::= ? : typeCS
 			//
-			case 262: {
+			case 264: {
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
 						(TypeCS)getRhsSym(3),
@@ -1921,9 +1936,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 263:  OclMessageArgCS ::= OclExpressionCS
+			// Rule 265:  OclMessageArgCS ::= OclExpressionCS
 			//
-			case 263: {
+			case 265: {
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
 						null,
@@ -1935,9 +1950,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 266:  packageDeclarationsCS ::= packageDeclarationsCS packageDeclarationCS_A
+			// Rule 268:  packageDeclarationsCS ::= packageDeclarationsCS packageDeclarationCS_A
 			//
-			case 266: {
+			case 268: {
 				
                 PackageDeclarationCS result = (PackageDeclarationCS)getRhsSym(2);
                 result.setPackageDeclarationCS((PackageDeclarationCS) getRhsSym(1));
@@ -1946,9 +1961,19 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 269:  packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt endpackage
+			// Rule 269:  packageDeclarationsCS ::= importCS packageDeclarationCS_A
 			//
 			case 269: {
+				
+                PackageDeclarationCS result = (PackageDeclarationCS)getRhsSym(2);
+                 setResult(result);
+                      break;
+            }
+    
+			//
+			// Rule 272:  packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt endpackage
+			//
+			case 272: {
 				
                 PackageDeclarationCS result = createPackageDeclarationCS(
                         (PathNameCS)getRhsSym(2),
@@ -1960,9 +1985,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 270:  packageDeclarationCS_B ::= contextDeclsCS
+			// Rule 273:  packageDeclarationCS_B ::= contextDeclsCS
 			//
-			case 270: {
+			case 273: {
 				
                 EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>)getRhsSym(1);
                 PackageDeclarationCS result = createPackageDeclarationCS(null, contextDecls);
@@ -1974,18 +1999,18 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 271:  contextDeclsCSopt ::= $Empty
+			// Rule 280:  contextDeclsCSopt ::= $Empty
 			//
-			case 271: {
+			case 280: {
 				
                 setResult(new BasicEList<ContextDeclCS>());
                       break;
             }
     
 			//
-			// Rule 273:  contextDeclsCS ::= contextDeclCS
+			// Rule 282:  contextDeclsCS ::= contextDeclCS
 			//
-			case 273: {
+			case 282: {
 				
                 EList<ContextDeclCS> result = new BasicEList<ContextDeclCS>();
                 result.add((ContextDeclCS)getRhsSym(1));
@@ -1994,9 +2019,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 274:  contextDeclsCS ::= contextDeclsCS contextDeclCS
+			// Rule 283:  contextDeclsCS ::= contextDeclsCS contextDeclCS
 			//
-			case 274: {
+			case 283: {
 				
                 EList<ContextDeclCS> result = (EList<ContextDeclCS>)getRhsSym(1);
                 result.add((ContextDeclCS)getRhsSym(2));
@@ -2005,9 +2030,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 278:  propertyContextDeclCS ::= context pathNameCS :: unreservedSimpleNameCS : typeCS initOrDerValuesCS
+			// Rule 287:  propertyContextDeclCS ::= context pathNameCS :: unreservedSimpleNameCS : typeCS initOrDerValuesCS
 			//
-			case 278: {
+			case 287: {
 				
                 PathNameCS pathNameCS = (PathNameCS)getRhsSym(2);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(4);
@@ -2024,9 +2049,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 279:  initOrDerValuesCS ::= initOrDerValueCS
+			// Rule 288:  initOrDerValuesCS ::= initOrDerValueCS
 			//
-			case 279: {
+			case 288: {
 				
                 EList<InitOrDerValueCS> result = new BasicEList<InitOrDerValueCS>();
                 result.add((InitOrDerValueCS)getRhsSym(1));
@@ -2035,9 +2060,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 280:  initOrDerValuesCS ::= initOrDerValuesCS initOrDerValueCS
+			// Rule 289:  initOrDerValuesCS ::= initOrDerValuesCS initOrDerValueCS
 			//
-			case 280: {
+			case 289: {
 				
                 EList<InitOrDerValueCS> result = (EList<InitOrDerValueCS>)getRhsSym(1);
                 result.add((InitOrDerValueCS)getRhsSym(2));
@@ -2046,9 +2071,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 281:  initOrDerValueCS ::= init : OclExpressionCS
+			// Rule 290:  initOrDerValueCS ::= init : OclExpressionCS
 			//
-			case 281: {
+			case 290: {
 				
                 InitValueCS result = createInitValueCS((OCLExpressionCS)getRhsSym(3));
                 setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
@@ -2057,9 +2082,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 282:  initOrDerValueCS ::= derive : OclExpressionCS
+			// Rule 291:  initOrDerValueCS ::= derive : OclExpressionCS
 			//
-			case 282: {
+			case 291: {
 				
                 DerValueCS result = createDerValueCS((OCLExpressionCS)getRhsSym(3));
                 setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
@@ -2068,9 +2093,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 283:  classifierContextDeclCS ::= context pathNameCS invOrDefsCS
+			// Rule 292:  classifierContextDeclCS ::= context pathNameCS invOrDefsCS
 			//
-			case 283: {
+			case 292: {
 				
 				EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(3);
 				ClassifierContextDeclCS result = createClassifierContextDeclCS(
@@ -2084,9 +2109,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 284:  classifierContextDeclCS ::= context simpleNameCS : pathNameCS invOrDefsCS
+			// Rule 293:  classifierContextDeclCS ::= context simpleNameCS : pathNameCS invOrDefsCS
 			//
-			case 284: {
+			case 293: {
 				
 				EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(5);
 				ClassifierContextDeclCS result = createClassifierContextDeclCS(
@@ -2100,9 +2125,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 285:  invOrDefsCS ::= invOrDefCS
+			// Rule 294:  invOrDefsCS ::= invOrDefCS
 			//
-			case 285: {
+			case 294: {
 				
                 EList<InvOrDefCS> result = new BasicEList<InvOrDefCS>();
                 result.add((InvOrDefCS)getRhsSym(1));
@@ -2111,9 +2136,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 286:  invOrDefsCS ::= invOrDefsCS invOrDefCS
+			// Rule 295:  invOrDefsCS ::= invOrDefsCS invOrDefCS
 			//
-			case 286: {
+			case 295: {
 				
                 EList<InvOrDefCS> result = (EList<InvOrDefCS>)getRhsSym(1);
                 result.add((InvOrDefCS)getRhsSym(2));
@@ -2122,9 +2147,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 287:  invOrDefCS ::= inv unreservedSimpleNameCSopt : OclExpressionCS
+			// Rule 296:  invOrDefCS ::= inv unreservedSimpleNameCSopt : OclExpressionCS
 			//
-			case 287: {
+			case 296: {
 				
 				InvCS result = createInvCS(
 						(SimpleNameCS)getRhsSym(2),
@@ -2136,9 +2161,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 288:  invOrDefCS ::= def unreservedSimpleNameCSopt : defExpressionCS
+			// Rule 297:  invOrDefCS ::= def unreservedSimpleNameCSopt : defExpressionCS
 			//
-			case 288: {
+			case 297: {
 				
                 DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(4);
                 DefCS result = createDefCS(
@@ -2152,9 +2177,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 289:  invOrDefCS ::= static def unreservedSimpleNameCSopt : defExpressionCS
+			// Rule 298:  invOrDefCS ::= static def unreservedSimpleNameCSopt : defExpressionCS
 			//
-			case 289: {
+			case 298: {
 				
                 DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(5);
                 DefCS result = createDefCS(
@@ -2168,9 +2193,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 290:  defExpressionCS ::= typedUninitializedVariableCS = OclExpressionCS
+			// Rule 299:  defExpressionCS ::= typedUninitializedVariableCS = OclExpressionCS
 			//
-			case 290: {
+			case 299: {
 				
 				VariableCS variableCS = (VariableCS)getRhsSym(1);
 				OCLExpressionCS expressionCS = (OCLExpressionCS)getRhsSym(3);
@@ -2185,9 +2210,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 291:  defExpressionCS ::= operationCS1 = OclExpressionCS
+			// Rule 300:  defExpressionCS ::= operationCS1 = OclExpressionCS
 			//
-			case 291: {
+			case 300: {
 				
 				DefExpressionCS result = createDefExpressionCS(
 						null,
@@ -2200,9 +2225,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 292:  operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclsCS
+			// Rule 301:  operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclsCS
 			//
-			case 292: {
+			case 301: {
 				
 				EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>)getRhsSym(3);
 				OperationContextDeclCS result = createOperationContextDeclCS(
@@ -2215,9 +2240,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 293:  prePostOrBodyDeclsCS ::= prePostOrBodyDeclCS
+			// Rule 302:  prePostOrBodyDeclsCS ::= prePostOrBodyDeclCS
 			//
-			case 293: {
+			case 302: {
 				
                 EList<PrePostOrBodyDeclCS> result = new BasicEList<PrePostOrBodyDeclCS>();
                 result.add((PrePostOrBodyDeclCS)getRhsSym(1));
@@ -2226,9 +2251,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 294:  prePostOrBodyDeclsCS ::= prePostOrBodyDeclsCS prePostOrBodyDeclCS
+			// Rule 303:  prePostOrBodyDeclsCS ::= prePostOrBodyDeclsCS prePostOrBodyDeclCS
 			//
-			case 294: {
+			case 303: {
 				
                 EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>)getRhsSym(1);
                 result.add((PrePostOrBodyDeclCS)getRhsSym(2));
@@ -2237,9 +2262,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 295:  prePostOrBodyDeclCS ::= pre unreservedSimpleNameCSopt : OclExpressionCS
+			// Rule 304:  prePostOrBodyDeclCS ::= pre unreservedSimpleNameCSopt : OclExpressionCS
 			//
-			case 295: {
+			case 304: {
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.PRE_LITERAL,
@@ -2252,9 +2277,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 296:  prePostOrBodyDeclCS ::= post unreservedSimpleNameCSopt : OclExpressionCS
+			// Rule 305:  prePostOrBodyDeclCS ::= post unreservedSimpleNameCSopt : OclExpressionCS
 			//
-			case 296: {
+			case 305: {
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.POST_LITERAL,
@@ -2267,9 +2292,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 297:  prePostOrBodyDeclCS ::= body unreservedSimpleNameCSopt : OclExpressionCS
+			// Rule 306:  prePostOrBodyDeclCS ::= body unreservedSimpleNameCSopt : OclExpressionCS
 			//
-			case 297: {
+			case 306: {
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.BODY_LITERAL,
@@ -2282,9 +2307,9 @@ protected String getRhsTokenText(int i) {
             }
     
 			//
-			// Rule 298:  operationCS1 ::= simpleNameCS ( parametersCSopt ) : typeCSopt
+			// Rule 307:  operationCS1 ::= simpleNameCS ( parametersCSopt ) : typeCSopt
 			//
-			case 298: {
+			case 307: {
 				
 				OperationCS result = createOperationCS(
 						getRhsIToken(1),
@@ -2301,9 +2326,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 299:  operationCS2 ::= pathNameCS :: unreservedSimpleNameCS ( parametersCSopt ) : typeCSopt
+			// Rule 308:  operationCS2 ::= pathNameCS :: unreservedSimpleNameCS ( parametersCSopt ) : typeCSopt
 			//
-			case 299: {
+			case 308: {
 				
 				PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
 				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -2324,18 +2349,18 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 300:  parametersCSopt ::= $Empty
+			// Rule 309:  parametersCSopt ::= $Empty
 			//
-			case 300: {
+			case 309: {
 				
                 setResult(new BasicEList<VariableCS>());
                       break;
             }
     
 			//
-			// Rule 302:  parametersCS ::= VariableDeclarationCS
+			// Rule 311:  parametersCS ::= VariableDeclarationCS
 			//
-			case 302: {
+			case 311: {
 				
 				EList<VariableCS> result = new BasicEList<VariableCS>();
 				result.add((VariableCS)getRhsSym(1));
@@ -2344,9 +2369,9 @@ protected String getRhsTokenText(int i) {
             }
 	
 			//
-			// Rule 303:  parametersCS ::= parametersCS , VariableDeclarationCS
+			// Rule 312:  parametersCS ::= parametersCS , VariableDeclarationCS
 			//
-			case 303: {
+			case 312: {
 				
 				EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
 				result.add((VariableCS)getRhsSym(3));

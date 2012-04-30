@@ -18,7 +18,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.20 2010/02/09 21:04:08 ewillink Exp $
+* $Id: EssentialOCLLexer.gi,v 1.4 2010/02/09 21:04:08 ewillink Exp $
 */
 /**
 * Complete OCL Lexer

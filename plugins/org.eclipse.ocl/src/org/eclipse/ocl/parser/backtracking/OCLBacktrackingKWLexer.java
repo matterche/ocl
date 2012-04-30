@@ -45,7 +45,7 @@ package org.eclipse.ocl.parser.backtracking;
 public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs
 {
     private char[] inputChars;
-    private final int keywordKind[] = new int[42 + 1];
+    private final int keywordKind[] = new int[43 + 1];
 
     public int[] getKeywordKinds() { return keywordKind; }
 
@@ -441,6 +441,13 @@ public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs
         //
         
 		keywordKind[42] = (OCLBacktrackingParsersym.TK_static);
+	  
+	
+        //
+        // Rule 43:  KeyWord ::= i m p o r t
+        //
+        
+		keywordKind[43] = (OCLBacktrackingParsersym.TK_import);
 	  
 	
         for (int i = 0; i < keywordKind.length; i++)

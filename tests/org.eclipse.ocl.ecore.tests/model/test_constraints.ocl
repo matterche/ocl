@@ -1,11 +1,13 @@
-package ocltest
+import dummy : 'OCLTest.ecore#/'
+
+package OclTest
 	context Fruit
 		inv not_black: self.color <> Color::black
 		inv not_foo: self.name <> 'Foo'
 		inv not_pink: color <> Color::pink
 endpackage
 
-package ocltest
+package OclTest
 	context Fruit
 		def property_helper:
 			otherFruits : Set(Fruit) = Fruit.allInstances()->excluding(self)
@@ -17,7 +19,7 @@ package ocltest
 	    inv third_classifier_context: self <> Color::black implies true
 endpackage
 
-package ocltest
+package OclTest
 	context Fruit
 		inv not_black1: self.color <> Color::black
 		inv not_foo1: self.name <> 'Foo'

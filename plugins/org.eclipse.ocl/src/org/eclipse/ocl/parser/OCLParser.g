@@ -92,7 +92,7 @@
 	body context def derive endpackage init inv package post pre static
 
 -- Restricted keywords
-	OclMessage
+	OclMessage import
 %End
 
 %Terminals
@@ -123,10 +123,23 @@
 	reservedKeyword -> post
 	reservedKeyword -> pre
 	reservedKeyword -> static
+	reservedKeyword -> import
 
 	unreservedSimpleNameCSopt ::= %empty
 		/.$NullAction./
 	unreservedSimpleNameCSopt -> unreservedSimpleNameCS	
+
+    simpleNameCS ::= import
+        /.$BeginCode
+                    IToken iToken = getRhsIToken(1);
+                    SimpleNameCS result = createSimpleNameCS(
+                            SimpleTypeEnum.IDENTIFIER_LITERAL,
+                            iToken
+                        );
+                    setOffsets(result, iToken);
+                    setResult(result);
+          $EndCode
+        ./
 
 -----------------------------------------------------------------------
 --  Types
@@ -273,6 +286,12 @@
                     setResult(result);
           $EndCode
         ./
+    packageDeclarationsCS ::= importCS packageDeclarationCS_A
+        /.$BeginCode
+                    PackageDeclarationCS result = (PackageDeclarationCS)getRhsSym(2);
+                     setResult(result);
+          $EndCode
+        ./
 
     packageDeclarationCS -> packageDeclarationCS_A
     packageDeclarationCS -> packageDeclarationCS_B
@@ -297,6 +316,14 @@
                     setResult(result);
           $EndCode
         ./
+
+--	'import' (name=Identifier ':')? namespace=[pivot::Namespace|URI] (all?='::' '*')?;
+	importCS_0 ::= import 
+	importCS_1 -> importCS_0 
+	importCS_1 ::= importCS_0 simpleNameCS ':'
+	importCS_2 -> importCS_1 STRING_LITERAL
+	importCS -> importCS_2 
+	importCS ::= importCS_2 '::' '*'
 
     contextDeclsCSopt ::= %empty
         /.$BeginCode
