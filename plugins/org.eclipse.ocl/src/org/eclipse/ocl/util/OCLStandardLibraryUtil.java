@@ -183,6 +183,7 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(TO_UPPER_CASE_NAME, TO_UPPER_CASE);
 		operationCodes.put(SELECT_BY_KIND_NAME, SELECT_BY_KIND);
 		operationCodes.put(SELECT_BY_TYPE_NAME, SELECT_BY_TYPE);
+		operationCodes.put(OCL_AS_SET_NAME, OCL_AS_SET);
 
 		oclAnyOperationCodes.put(EQUAL_NAME, EQUAL);
 		oclAnyOperationCodes.put(NOT_EQUAL_NAME, NOT_EQUAL);
@@ -198,6 +199,7 @@ public final class OCLStandardLibraryUtil {
 		oclAnyOperationCodes.put(OCL_IS_NEW_NAME, OCL_IS_NEW);
 		oclAnyOperationCodes.put(OCL_IS_IN_STATE_NAME, OCL_IS_IN_STATE);
 		oclAnyOperationCodes.put(TO_STRING_NAME, TO_STRING);
+		oclAnyOperationCodes.put(OCL_AS_SET_NAME, OCL_AS_SET);
 	}
 
 	// not instantiable by clients
@@ -449,6 +451,8 @@ public final class OCLStandardLibraryUtil {
 				return SELECT_BY_KIND_NAME;
 			case SELECT_BY_TYPE :
 				return SELECT_BY_TYPE_NAME;
+			case OCL_AS_SET :
+				return OCL_AS_SET_NAME;
 			default :
 				return ""; //$NON-NLS-1$
 		}
@@ -718,6 +722,8 @@ public final class OCLStandardLibraryUtil {
 			case OCL_IS_UNDEFINED :
 			case OCL_IS_INVALID :
 				return stdlib.getBoolean();
+			case OCL_AS_SET :
+				return getSetType(env, env.getOCLFactory(), sourceType);
 		}
 
 		// unknown operation (shouldn't get here)
@@ -1175,6 +1181,8 @@ public final class OCLStandardLibraryUtil {
 			case NOT_EMPTY :
 			case EQUAL :
 			case NOT_EQUAL :
+			case OCL_IS_UNDEFINED :
+			case OCL_IS_INVALID :
 				return stdlib.getBoolean();
 			case MAX : {
 				C type = collType.getElementType();
@@ -1241,21 +1249,11 @@ public final class OCLStandardLibraryUtil {
 				} else {
 					argType = arg.getType();
 				}
-
-/*				if (sourceType instanceof CollectionType<?, ?>) {
-					String message = OCLMessages.bind(
-						OCLMessages.Noncomforming_ERROR_, uml
-							.getName(sourceType), getOperationName(opcode));
-					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
-					return null;
-				}
-				// we can require neither a common supertype nor that type2
-				// and type1 have any conformance relationship whatsoever
-				// because the run-time 'type' may conform to 'arg'
-				// commonSuperType(argEType, type);
-				// type1AsType2(type, argEType);
-				return argType; */
 				return getCollectionType(env, env.getOCLFactory(), argType);
+			case OCL_AS_SET :
+				@SuppressWarnings("unchecked")
+				C collType2 = (C)collType;
+				return getSetType(env, env.getOCLFactory(), collType2);
 		}
 
 		String message = OCLMessages.bind(OCLMessages.CollectionType_ERROR_,
@@ -1372,6 +1370,8 @@ public final class OCLStandardLibraryUtil {
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
 			OCL_IS_IN_STATE_NAME, stdlib.getState(), "statespec")); //$NON-NLS-1$
 		result.add(createUnaryOperation(uml, stdlib.getString(), TO_STRING_NAME));
+		OCLFactory oclFactory = env.getOCLFactory();
+		result.add(createUnaryOperation(uml, getSetType(env, oclFactory, stdlib.getT()), OCL_AS_SET_NAME));
 
 		return result;
 	}
@@ -1763,6 +1763,11 @@ public final class OCLStandardLibraryUtil {
 			stdlib.getOclType(), "typespec")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, getCollectionType(env, oclFactory, stdlib.getT2()), SELECT_BY_TYPE_NAME,
 			stdlib.getOclType(), "typespec")); //$NON-NLS-1$
+		result.add(createUnaryOperation(uml, getSetType(env, oclFactory, stdlib.getT()), OCL_AS_SET_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getBoolean(),
+			OCL_IS_UNDEFINED_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getBoolean(),
+			OCL_IS_INVALID_NAME));
 
 		return result;
 	}

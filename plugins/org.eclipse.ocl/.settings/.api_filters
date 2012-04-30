@@ -64,6 +64,18 @@
         <filter comment="New library operation constants" id="403767336">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="OCL_AS_SET"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="OCL_AS_SET_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
                 <message_argument value="REPLACE_ALL"/>
             </message_arguments>
         </filter>

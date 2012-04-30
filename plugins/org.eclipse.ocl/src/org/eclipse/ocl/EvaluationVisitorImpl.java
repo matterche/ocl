@@ -344,6 +344,18 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 		}
 
+		// AnyType::oclAsSet()
+		else if (opCode == PredefinedType.OCL_AS_SET) {
+			if (sourceVal == getInvalid()) {
+				return sourceVal;
+			}
+			Set<Object> resultSet = CollectionUtil.createNewSet();
+			if (sourceVal != null) {
+				resultSet.add(sourceVal);
+			}
+			return resultSet;
+		}
+
 		if (sourceType instanceof PrimitiveType<?>
 			|| sourceType instanceof CollectionType<?, ?>
 			|| getUMLReflection().isEnumeration(sourceType)

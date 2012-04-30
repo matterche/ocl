@@ -40,6 +40,7 @@
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
       <eOperations name="toString" eType="#/0/String"/>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:VoidType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclVoid_Class">
@@ -78,6 +79,7 @@
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
       <eOperations name="toString" eType="#/0/String"/>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:InvalidType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclInvalid_Class">
@@ -116,6 +118,7 @@
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
       <eOperations name="toString" eType="#/0/String"/>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Boolean" instanceClassName="java.lang.Boolean"/>
     <eClassifiers xsi:type="ecore:EClass" name="Boolean_Class">
@@ -155,6 +158,7 @@
       <eOperations name="xor" eType="#/0/Boolean">
         <eParameters name="b" eType="#/0/Boolean"/>
       </eOperations>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Integer" instanceClassName="java.lang.Integer"/>
     <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
@@ -233,6 +237,7 @@
         <eParameters name="i" eType="#/0/Integer"/>
       </eOperations>
       <eOperations name="toString" eType="#/0/String"/>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="UnlimitedNatural" instanceClassName="java.lang.Integer"/>
     <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNatural_Class">
@@ -311,6 +316,7 @@
         <eParameters name="n" eType="#/0/UnlimitedNatural"/>
       </eOperations>
       <eOperations name="toString" eType="#/0/String"/>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Real" instanceClassName="java.lang.Double"/>
     <eClassifiers xsi:type="ecore:EClass" name="Real_Class">
@@ -371,6 +377,7 @@
       <eOperations name="floor" eType="#/0/Integer"/>
       <eOperations name="round" eType="#/0/Integer"/>
       <eOperations name="toString" eType="#/0/String"/>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="String" instanceClassName="java.lang.String"/>
     <eClassifiers xsi:type="ecore:EClass" name="String_Class">
@@ -474,6 +481,7 @@
         <eParameters name="returnDelimiters" eType="#/0/Boolean"/>
       </eOperations>
       <eOperations name="trim" eType="#/0/String"/>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:TypeType" name="OclType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclType_Class">
@@ -612,6 +620,9 @@
       <eOperations name="selectByType" eType="#/2/Collection(T2)">
         <eParameters name="typespec" eType="#/0/OclType"/>
       </eOperations>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
+      <eOperations name="oclIsUndefined" eType="#/0/Boolean"/>
+      <eOperations name="oclIsInvalid" eType="#/0/Boolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" instanceClassName="java.util.Set"
         elementType="#/0/T"/>
@@ -748,6 +759,9 @@
       <eOperations name="selectByType" eType="#/2/Set(T2)">
         <eParameters name="typespec" eType="#/0/OclType"/>
       </eOperations>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
+      <eOperations name="oclIsUndefined" eType="#/0/Boolean"/>
+      <eOperations name="oclIsInvalid" eType="#/0/Boolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(T)" instanceClassName="java.util.LinkedHashSet"
         elementType="#/0/T"/>
@@ -912,6 +926,9 @@
       <eOperations name="selectByType" eType="#/2/OrderedSet(T2)">
         <eParameters name="typespec" eType="#/0/OclType"/>
       </eOperations>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
+      <eOperations name="oclIsUndefined" eType="#/0/Boolean"/>
+      <eOperations name="oclIsInvalid" eType="#/0/Boolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T)" instanceClassName="org.eclipse.ocl.util.Bag"
         elementType="#/0/T"/>
@@ -1042,6 +1059,9 @@
       <eOperations name="selectByType" eType="#/2/Bag(T2)">
         <eParameters name="typespec" eType="#/0/OclType"/>
       </eOperations>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
+      <eOperations name="oclIsUndefined" eType="#/0/Boolean"/>
+      <eOperations name="oclIsInvalid" eType="#/0/Boolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T)" instanceClassName="java.util.List"
         elementType="#/0/T"/>
@@ -1185,6 +1205,9 @@
       <eOperations name="selectByType" eType="#/2/Sequence(T2)">
         <eParameters name="typespec" eType="#/0/OclType"/>
       </eOperations>
+      <eOperations name="oclAsSet" eType="#/0/Set(T)"/>
+      <eOperations name="oclIsUndefined" eType="#/0/Boolean"/>
+      <eOperations name="oclIsInvalid" eType="#/0/Boolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:AnyType" name="T"/>
     <eClassifiers xsi:type="ecore:EClass" name="T_Class">

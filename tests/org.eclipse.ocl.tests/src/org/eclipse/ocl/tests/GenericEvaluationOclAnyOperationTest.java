@@ -22,6 +22,38 @@ import org.eclipse.emf.ecore.EObject;
 @SuppressWarnings("nls")
 public abstract class GenericEvaluationOclAnyOperationTest<E extends EObject, PK extends E, T extends E, C extends T, CLS extends C, DT extends C, PT extends C, ET extends DT, O extends E, PM extends E, P extends E, PA extends P, PR extends P, EL, S, COA, SSA, CT>
 extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, PR, EL, S, COA, SSA, CT> {
+	
+    /**
+     * Tests the explicit oclAsSet() operator.
+     */
+	public void test_oclAsSet_explicit() {
+		assertExpressionResults("Set{true}", "true.oclAsSet()");
+		assertExpressionResults("Set{}", "null.oclAsSet()");
+		assertQueryInvalid(null, "invalid.oclAsSet()");
+		assertExpressionResults("Set{Set{1..4}}", "Set{1..4}->oclAsSet()");
+	}
+	
+    /**
+     * Tests the implicit oclAsSet() operator.
+     */
+	public void test_oclAsSet_implicit() {
+		assertExpressionResults("Set{true}", "true->select(true)");
+		assertExpressionResults("Set{true}", "Set{true}->select(true)");
+		assertExpressionResults("Set{}", "null->select(true)");
+		assertExpressionResults("Set{}", "Set{}->select(true)");
+		assertExpressionResults("Set{null}", "Set{null}->select(true)");
+		assertQueryInvalid(null, "invalid->select(true)");
+		//
+		assertExpressionResults("false", "true.oclIsUndefined()");
+		assertExpressionResults("false", "true->oclIsUndefined()");	// Set{true}
+		assertExpressionResults("true", "null.oclIsUndefined()");
+		assertExpressionResults("false", "null->oclIsUndefined()");	// Set{}
+		assertExpressionResults("true", "invalid.oclIsUndefined()");
+		assertExpressionResults("true", "invalid->oclIsUndefined()");	// invalid
+		//
+		assertResult(4, "'1234'.size()");
+		assertResult(1, "'1234'->size()");
+	}
 
 	public void testEqualInvalid() {
 		/*

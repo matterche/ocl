@@ -68,6 +68,9 @@
       <ownedOperation xmi:id="_lgMRUJKoEeG_Jv4N2Kneig" name="toString" isQuery="true">
         <ownedParameter xmi:id="_lgMRUZKoEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_ZcnQQJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_ZcnQQZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:VoidType" xmi:id="_akVE1KjQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_ak5scKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -122,6 +125,9 @@
       <ownedOperation xmi:id="_k1MMgJKoEeG_Jv4N2Kneig" name="toString" isQuery="true">
         <ownedParameter xmi:id="_k1MMgZKoEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_f6PbAJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_f6PbAZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:InvalidType" xmi:id="_ak5slKjQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_ak_zEKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -175,6 +181,9 @@
       </ownedOperation>
       <ownedOperation xmi:id="_mLClIJKoEeG_Jv4N2Kneig" name="toString" isQuery="true">
         <ownedParameter xmi:id="_mLClIZKoEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_gRmLEJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_gRmLEZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_ak_zNKjQEdu4LJng8Rasow" name="Boolean">
@@ -232,6 +241,9 @@
       <ownedOperation xmi:id="_alYNs6jQEdu4LJng8Rasow" name="xor" isQuery="true">
         <ownedParameter xmi:id="_alYNtKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_alYNtajQEdu4LJng8Rasow" name="b" type="_ak_zNKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_guosYJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_guosYZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_alYNtqjQEdu4LJng8Rasow" name="Integer">
@@ -347,6 +359,9 @@
       <ownedOperation xmi:id="_jY4Y0JKjEeG_Jv4N2Kneig" name="toString" isQuery="true">
         <ownedParameter xmi:id="_jY4Y0ZKjEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_hC3P8JLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_hC3P8ZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_amDjO6jQEdu4LJng8Rasow" name="UnlimitedNatural">
       <ownedOperation xmi:id="_arljQKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -461,6 +476,9 @@
       <ownedOperation xmi:id="_isZtUJKjEeG_Jv4N2Kneig" name="toString" isQuery="true">
         <ownedParameter xmi:id="_isZtUZKjEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_hUa6AJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_hUa6AZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_arrqHajQEdu4LJng8Rasow" name="Real">
       <ownedOperation xmi:id="_ar99wKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -550,6 +568,9 @@
       </ownedOperation>
       <ownedOperation xmi:id="_h5Xt4JKjEeG_Jv4N2Kneig" name="toString" isQuery="true">
         <ownedParameter xmi:id="_h5Xt4ZKjEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_hndx0JLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_hndx0ZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_asEEj6jQEdu4LJng8Rasow" name="String">
@@ -707,6 +728,9 @@
       </ownedOperation>
       <ownedOperation xmi:id="_eyC7YJIFEeGcFPoZ3znoDw" name="trim" isQuery="true">
         <ownedParameter xmi:id="_eyC7YZIFEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_h-0h4JLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_h--S4JLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:TypeType" xmi:id="_asdGHajQEdu4LJng8Rasow">
@@ -905,6 +929,15 @@
         <ownedParameter xmi:id="_5lANMJLZEeG_Jv4N2Kneig" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_tigrtZLZEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_cqStMJLgEeG_Jv4N2Kneig" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_cqStMZLgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_cqStMpLgEeG_Jv4N2Kneig" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_cqStM5LgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_cqStNJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_cqStNZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_auE2s6jQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_aujXsKjQEdu4LJng8Rasow" name="count" isQuery="true">
@@ -1082,6 +1115,15 @@
       <ownedOperation xmi:id="_AWFfc5LaEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
         <ownedParameter xmi:id="_AWFfdJLaEeG_Jv4N2Kneig" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_AWFfdZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_dOx6UJLgEeG_Jv4N2Kneig" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_dOx6UZLgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_dOx6UpLgEeG_Jv4N2Kneig" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_dOx6U5LgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_dOx6VJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_dOx6VZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:OrderedSetType" xmi:id="_avUMsKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
@@ -1301,6 +1343,15 @@
         <ownedParameter xmi:id="_BJaZ1JLaEeG_Jv4N2Kneig" type="_NRrooJLZEeG_Jv4N2Kneig" direction="return"/>
         <ownedParameter xmi:id="_BJaZ1ZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_dyqDcJLgEeG_Jv4N2Kneig" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_dyqDcZLgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_dyqDcpLgEeG_Jv4N2Kneig" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_dyqDc5LgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_dyqDdJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_dyqDdZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:BagType" xmi:id="_avUNSKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_awFBsKjQEdu4LJng8Rasow" name="count" isQuery="true">
@@ -1470,6 +1521,15 @@
       <ownedOperation xmi:id="_BwirQ5LaEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
         <ownedParameter xmi:id="_BwirRJLaEeG_Jv4N2Kneig" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_BwirRZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_eRmpQJLgEeG_Jv4N2Kneig" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_eRmpQZLgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_eRmpQpLgEeG_Jv4N2Kneig" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_eRmpQ5LgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_eRmpRJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_eRmpRZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_awXVuKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
@@ -1660,6 +1720,15 @@
       <ownedOperation xmi:id="_CWep45LaEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
         <ownedParameter xmi:id="_CWep5JLaEeG_Jv4N2Kneig" type="_awXVuajQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_CWep5ZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_esiRwJLgEeG_Jv4N2Kneig" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_esiRwZLgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_esiRwpLgEeG_Jv4N2Kneig" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_esiRw5LgEeG_Jv4N2Kneig" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_esiRxJLgEeG_Jv4N2Kneig" name="oclAsSet" isQuery="true">
+        <ownedParameter xmi:id="_esiRxZLgEeG_Jv4N2Kneig" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:AnyType" xmi:id="_awji1ajQEdu4LJng8Rasow" name="T"/>

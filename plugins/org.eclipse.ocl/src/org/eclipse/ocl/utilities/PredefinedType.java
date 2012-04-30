@@ -552,6 +552,16 @@ public interface PredefinedType<O>
 	String SELECT_BY_TYPE_NAME = "selectByType"; //$NON-NLS-1$
 
 	/**
+	 * @since 3.2
+	 */
+	int OCL_AS_SET = 230;
+
+	/**
+	 * @since 3.2
+	 */
+	String OCL_AS_SET_NAME = "oclAsSet"; //$NON-NLS-1$
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
