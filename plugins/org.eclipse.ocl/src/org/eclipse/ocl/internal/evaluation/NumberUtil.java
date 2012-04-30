@@ -115,6 +115,52 @@ public class NumberUtil {
     
     /**
      * <p>
+     * Coerces the given number to a common or greater precision than referenceNumber,
+     * <tt>BigDecimal</TT> is greater than <tt>Double</tt> or
+     * <tt>BigInteger</tt> which is greater than <tt>Long</tt> precision.
+     * </p>
+     * 
+     * @param number a number to coerce toa common precision
+     * @param referenceNumber another number to share the common precision
+     * @return the coerced number, or the original number, in case of overflow
+     */
+	public static Number commonPrecisionNumber(Number number, Number referenceNumber) {
+		if ((number instanceof BigDecimal) || (referenceNumber instanceof BigDecimal)) {
+			if (number instanceof BigDecimal) {
+				return number;
+			} else if (number instanceof BigInteger) {
+				return new BigDecimal((BigInteger)number);
+			} else {
+				return BigDecimal.valueOf(number.doubleValue());
+			}
+		} else if ((number instanceof BigInteger) && (referenceNumber instanceof Double)) {
+			return new BigDecimal((BigInteger)number);
+		} else if ((number instanceof Double) && (referenceNumber instanceof BigInteger)) {
+			return BigDecimal.valueOf(number.doubleValue());
+		} else if ((number instanceof Double) || (referenceNumber instanceof Double)
+			|| (number instanceof Float) || (referenceNumber instanceof Float)) {
+			if (number instanceof Double) {
+				return number;
+			} else {
+				return Double.valueOf(number.doubleValue());
+			}
+		} else if ((number instanceof BigInteger) || (referenceNumber instanceof BigInteger)) {
+			if (number instanceof BigInteger) {
+				return number;
+			} else {
+				return BigInteger.valueOf(number.longValue());
+			}
+		} else {
+			if (number instanceof Long) {
+				return number;
+			} else {
+				return Long.valueOf(number.longValue());
+			}
+		}
+	}
+    
+    /**
+     * <p>
      * Coerces the given number to <tt>Double</tt> or <tt>Long</tt> precision,
      * if possible.  Note that this is only impossible for <tt>BigDecimal</tt>
      * or <tt>BigInteger</tt> values, respectively, that are out of range of

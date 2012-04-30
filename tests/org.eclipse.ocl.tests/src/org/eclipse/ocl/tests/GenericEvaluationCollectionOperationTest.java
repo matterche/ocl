@@ -11,7 +11,10 @@
  */
 package org.eclipse.ocl.tests;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.CollectionUtil;
 
 // FIXME we're missing oclIsNew and oclIsInState
@@ -1078,6 +1081,39 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResult(null, "OrderedSet{null}->last()");
 	}
 
+	public void testCollectionMax() {
+		assertResult(2, "Sequence{1, 2}->max()");
+		assertResult(5.0, "Set{5, 4.0, 3.0, 2, 1}->max()");
+		assertResult(1, "Bag{1}->max()");
+		assertResult(1, "Bag{1}->max()");
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{'hi', 'lo'}->max()",
+        	OCLMessages.MaxOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"Set{}->max()",
+        	OCLMessages.MaxOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{true, 1, 'bad'}->max()",
+        	OCLMessages.MaxOperator_ERROR_);		
+		// FIXME Bug 301351 Subtest-not-implemented user-defined max
+	}
+
+	public void testCollectionMin() {
+		assertResult(1, "Sequence{1, 2}->min()");
+		assertResult(1.0, "Set{5, 4.0, 3.0, 2, 1}->min()");
+		assertResult(1, "Bag{1}->min()");
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{'hi', 'lo'}->min()",
+        	OCLMessages.MinOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"Set{}->min()",
+        	OCLMessages.MinOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{true, 1, 'bad'}->min()",
+        	OCLMessages.MinOperator_ERROR_);		
+		// FIXME Bug 301351 Subtest-not-implemented user-defined min
+	}
+
 	public void testCollectionMinus() {
 		assertExpressionResults("Set{'b'}", "Set{'a', 'b', 'c'} - Set{'c', 'a'}");
 		/*
@@ -1443,7 +1479,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 
 		assertResult(Double.valueOf(13d), "Sequence{4.0, 4.0, 5.0}->sum()");
 		assertResult(Integer.valueOf(13), "Bag{4, 4, 5}->sum()");
-		assertResult(Integer.valueOf(9), "Set{4, 4, 5}->sum()");
+		assertResult(Double.valueOf(9), "Set{4, 4, 5.0}->sum()");
 		assertResult(Double.valueOf(9d), "OrderedSet{4.0, 4.0, 5.0}->sum()");
 
 		assertResult(Integer.valueOf(4), "4->sum()");

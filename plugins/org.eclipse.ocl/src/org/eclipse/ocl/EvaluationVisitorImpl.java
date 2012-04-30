@@ -568,6 +568,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						}
 						return CollectionUtil.last((Collection<?>) sourceVal);
 
+					case PredefinedType.MAX:
+						// Collection::sum()
+						return CollectionUtil.max((Collection<?>) sourceVal);
+
+					case PredefinedType.MIN:
+						// Collection::sum()
+						return CollectionUtil.min((Collection<?>) sourceVal);
+
 				} // end of unary operation switch
 
 			} else if (numArgs == 1) {

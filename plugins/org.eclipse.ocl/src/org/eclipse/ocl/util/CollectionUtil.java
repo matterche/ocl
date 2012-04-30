@@ -18,6 +18,8 @@
  */
 package org.eclipse.ocl.util;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +35,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.OCLPlugin;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.CollectionType;
 
@@ -146,6 +149,82 @@ public class CollectionUtil {
 
     /**
      * Implementation of the OCL
+     * <tt>Collection::max() : T</tt>
+     * operation.
+     * 
+     * @param self the source collection
+     * @return the largest of the collection's elements
+     * @since 3.2
+     */
+    @SuppressWarnings("unchecked")
+	public static Object max(Collection<?> self) {
+        if (self.isEmpty()) {
+            return null; // undefined
+        }        
+        Iterator<?> it = self.iterator();
+        Number maxVal = null;
+        for (it = self.iterator(); it.hasNext();) {
+        	Object object = it.next();
+            if (!(object instanceof Number)) {
+                IllegalArgumentException error = new IllegalArgumentException(OCLMessages.MaxOperator_ERROR_);
+                OCLPlugin.throwing(CollectionUtil.class, "max", error);//$NON-NLS-1$
+                throw error;
+            }
+            Number number = (Number)object;
+			if (maxVal == null) {
+            	maxVal = number;
+            }
+            else {
+            	maxVal = NumberUtil.commonPrecisionNumber(maxVal, number);
+                number = NumberUtil.commonPrecisionNumber(number, maxVal);
+                if (((Comparable<Number>)number).compareTo(maxVal) > 0) {
+                	maxVal = number;
+                }
+            }
+        }
+        return NumberUtil.coerceNumber(maxVal);
+    }
+
+    /**
+     * Implementation of the OCL
+     * <tt>Collection::min() : T</tt>
+     * operation.
+     * 
+     * @param self the source collection
+     * @return the smallest of the collection's elements
+     * @since 3.2
+     */
+    @SuppressWarnings("unchecked")
+    public static Object min(Collection<?> self) {
+        if (self.isEmpty()) {
+            return null; // undefined
+        }        
+        Iterator<?> it = self.iterator();
+        Number maxVal = null;
+        for (it = self.iterator(); it.hasNext();) {
+        	Object object = it.next();
+            if (!(object instanceof Number)) {
+                IllegalArgumentException error = new IllegalArgumentException(OCLMessages.MinOperator_ERROR_);
+                OCLPlugin.throwing(CollectionUtil.class, "min", error);//$NON-NLS-1$
+                throw error;
+            }
+            Number number = (Number)object;
+			if (maxVal == null) {
+            	maxVal = number;
+            }
+            else {
+            	maxVal = NumberUtil.commonPrecisionNumber(maxVal, number);
+                number = NumberUtil.commonPrecisionNumber(number, maxVal);
+                if (((Comparable<Number>)number).compareTo(maxVal) < 0) {
+                	maxVal = number;
+                }
+            }
+        }
+        return NumberUtil.coerceNumber(maxVal);
+    }
+
+    /**
+     * Implementation of the OCL
      * <tt>Collection::notEmpty() : Boolean</tt>
      * operation.
      * 
@@ -164,36 +243,41 @@ public class CollectionUtil {
      * @param self the source collection
      * @return the sum of the collection's elements
      */
-    // Assumes the elements of the collection are all Integer or
-    // all Double.
     public static Object sum(Collection<?> self) {
-
         if (self.isEmpty()) {
             return null; // undefined
-        }
-        
+        }        
         Iterator<?> it = self.iterator();
-        Object object = it.next();
-
-        // two cases: Integer and Double
-        if (object instanceof Integer) {
-            int currVal = 0;
-            for (it = self.iterator(); it.hasNext();) {
-                currVal += ((Integer) it.next()).intValue();
+        Number sumVal = null;
+        for (it = self.iterator(); it.hasNext();) {
+        	Object object = it.next();
+            if (!(object instanceof Number)) {
+                IllegalArgumentException error = new IllegalArgumentException(OCLMessages.SumOperator_ERROR_);
+                OCLPlugin.throwing(CollectionUtil.class, "sum", error);//$NON-NLS-1$
+                throw error;
             }
-            return new Integer(currVal);
-        } else if (object instanceof Double) {
-            double currVal = 0.0;
-            for (it = self.iterator(); it.hasNext();) {
-                currVal += ((Double) it.next()).doubleValue();
+            Number number = (Number)object;
+			if (sumVal == null) {
+				sumVal = number;
             }
-            return new Double(currVal);
-        } else {
-            IllegalArgumentException error = new IllegalArgumentException(
-            		OCLMessages.SumOperator_ERROR_);
-            OCLPlugin.throwing(CollectionUtil.class, "sum", error);//$NON-NLS-1$
-            throw error;
+            else {
+            	sumVal = NumberUtil.commonPrecisionNumber(sumVal, number);
+                number = NumberUtil.commonPrecisionNumber(number, sumVal);
+                if (sumVal instanceof BigDecimal) {
+                	sumVal = ((BigDecimal)sumVal).add((BigDecimal)number);
+                }
+                else if (sumVal instanceof BigInteger) {
+                	sumVal = ((BigInteger)sumVal).add((BigInteger)number);
+                }
+                else if (sumVal instanceof Double) {
+                	sumVal = (Double)sumVal + (Double)number;
+                }
+                else {
+                	sumVal = (Long)sumVal + (Long)number;
+                }
+            }
         }
+        return NumberUtil.coerceNumber(sumVal);
     }
 
     /**

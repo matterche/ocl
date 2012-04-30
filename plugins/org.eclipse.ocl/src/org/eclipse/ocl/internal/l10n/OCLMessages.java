@@ -163,6 +163,8 @@ public class OCLMessages {
 	public static String TypeMismatch_ERROR_;
 	public static String CastTypeMismatch_ERROR_;
 	public static String CollectionType_ERROR_;
+	public static String MaxOperator_ERROR_;
+	public static String MinOperator_ERROR_;
 	public static String SumOperator_ERROR_;
 	public static String TupleTypeMismatch_ERROR_;
 	public static String TupleFieldNotFound_ERROR_;

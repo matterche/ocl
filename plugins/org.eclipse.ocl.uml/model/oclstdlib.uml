@@ -891,6 +891,12 @@
         <ownedParameter xmi:id="_auE2sajQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_auE2sqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_RJnc8JKsEeG_Jv4N2Kneig" name="max" isQuery="true">
+        <ownedParameter xmi:id="_RJnc8ZKsEeG_Jv4N2Kneig" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_RUU4IJKsEeG_Jv4N2Kneig" name="min" isQuery="true">
+        <ownedParameter xmi:id="_RUU4IZKsEeG_Jv4N2Kneig" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_auE2s6jQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_aujXsKjQEdu4LJng8Rasow" name="count" isQuery="true">

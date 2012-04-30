@@ -1169,7 +1169,27 @@ public final class OCLStandardLibraryUtil {
 			case EQUAL :
 			case NOT_EQUAL :
 				return stdlib.getBoolean();
-			case SUM :
+			case MAX : {
+				C type = collType.getElementType();
+				if (type != stdlib.getReal() && type != stdlib.getInteger()) {
+					String message = OCLMessages.MaxOperator_ERROR_;
+					error(env, message,
+						"collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
+				}
+				return type;
+			}
+			case MIN : {
+				C type = collType.getElementType();
+				if (type != stdlib.getReal() && type != stdlib.getInteger()) {
+					String message = OCLMessages.MinOperator_ERROR_;
+					error(env, message,
+						"collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
+				}
+				return type;
+			}
+			case SUM : {
 				C type = collType.getElementType();
 				if (type != stdlib.getReal() && type != stdlib.getInteger()) {
 					String message = OCLMessages.SumOperator_ERROR_;
@@ -1178,6 +1198,7 @@ public final class OCLStandardLibraryUtil {
 					return null;
 				}
 				return type;
+			}
 			case PRODUCT :
 				/*
 				 * The result type is: Set(Tuple(first:T, second:T2) where T is
@@ -1705,6 +1726,8 @@ public final class OCLStandardLibraryUtil {
 			getCollectionType(env, oclFactory, stdlib.getT2()), "c2"));//$NON-NLS-1$
 		result.add(createUnaryOperation(uml, stdlib.getReal(), SUM_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getInteger(), SIZE_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getReal(), MAX_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getReal(), MIN_NAME));
 
 		return result;
 	}
