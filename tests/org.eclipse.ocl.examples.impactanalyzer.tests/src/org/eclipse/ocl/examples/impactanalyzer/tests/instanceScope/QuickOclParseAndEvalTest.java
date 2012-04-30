@@ -15,12 +15,10 @@ import java.util.Collection;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.LoopExp;
@@ -51,6 +49,10 @@ public class QuickOclParseAndEvalTest extends TestCase
   private MethodSignature signature;
   private OCL ocl;
   private Helper oclHelper;
+
+  private void assertInvalid(Object object) {
+	  assertEquals(ocl.getEnvironment().getOCLStandardLibrary().getInvalid(), object);
+  }
 
   @Before
   public void setUp()
@@ -118,11 +120,11 @@ public class QuickOclParseAndEvalTest extends TestCase
       oclHelper.setContext(CompanyPackage.eINSTANCE.getDepartment());
       OCLExpression expression4 = oclHelper.createQuery("Sequence{1..2}->at(3)");
       Object result4 = ocl.evaluate(CompanyFactory.eINSTANCE.createDepartment(), expression4);
-      assertTrue(result4 instanceof DynamicEObjectImpl);
-      assertEquals("OclInvalid_Class", ((DynamicEObjectImpl) result4).eClass().getName());
+      assertInvalid(result4);
   }
 
-  /**
+
+/**
    * Check what happens when last value of a range is invalid instead of an Integer. Interestingly, this aborts the whole
    * evaluation and even "bypasses" a trailing oclIsInvalid().
    */
@@ -131,8 +133,7 @@ public class QuickOclParseAndEvalTest extends TestCase
       oclHelper.setContext(CompanyPackage.eINSTANCE.getDepartment());
       OCLExpression expression4 = oclHelper.createQuery("(Sequence{1..(self.parentDepartment.subDepartment->size())}->select(i | i>0)).oclIsInvalid()");
       Object result4 = ocl.evaluate(CompanyFactory.eINSTANCE.createDepartment(), expression4);
-      assertTrue(result4 instanceof DynamicEObjectImpl);
-      assertEquals("OclInvalid_Class", ((DynamicEObjectImpl) result4).eClass().getName());
+      assertInvalid(result4);
   }
 
   /**
@@ -315,7 +316,7 @@ public class QuickOclParseAndEvalTest extends TestCase
   {
     OCLExpression expression5 = oclHelper.createQuery("Set{self, invalid}->collect(i | i)");
     Object result5 = ocl.evaluate(param, expression5);
-    assertTrue(((EObject) result5).eClass().getName().equals("OclInvalid_Class"));
+    assertInvalid(result5);
   }
 
   /**
@@ -326,7 +327,7 @@ public class QuickOclParseAndEvalTest extends TestCase
   {
     OCLExpression expression5 = oclHelper.createQuery("Set{self, invalid}->select(i | i.name = 'p')");
     Object result5 = ocl.evaluate(param, expression5);
-    assertTrue(((EObject) result5).eClass().getName().equals("OclInvalid_Class"));
+    assertInvalid(result5);
   }
 
   @Test
