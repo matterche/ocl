@@ -1,3 +1,197 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl" version="2">
+    <resource path="src/org/eclipse/ocl/utilities/PredefinedType.java" type="org.eclipse.ocl.utilities.PredefinedType">
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="CHARACTERS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="CHARACTERS_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="ENDS_WITH"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="ENDS_WITH_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="EQUALS_IGNORE_CASE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="EQUALS_IGNORE_CASE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="LAST_INDEX_OF"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="LAST_INDEX_OF_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="MATCHES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="MATCHES_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_ALL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_ALL_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_FIRST"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="REPLACE_FIRST_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="STARTS_WITH"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="STARTS_WITH_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_ALL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_ALL_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_FIRST"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SUBSTITUTE_FIRST_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TOKENIZE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TOKENIZE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_BOOLEAN"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_BOOLEAN_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_LOWER_CASE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_LOWER_CASE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_STRING"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_STRING_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_UPPER_CASE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TO_UPPER_CASE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TRIM"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="TRIM_NAME"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

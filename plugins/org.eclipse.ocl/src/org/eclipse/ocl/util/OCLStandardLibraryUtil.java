@@ -165,6 +165,22 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(SELECT_NAME, SELECT);
 		operationCodes.put(REJECT_NAME, REJECT);
 		operationCodes.put(SORTED_BY_NAME, SORTED_BY);
+		operationCodes.put(TO_BOOLEAN_NAME, TO_BOOLEAN);
+		operationCodes.put(TO_STRING_NAME, TO_STRING);
+		operationCodes.put(CHARACTERS_NAME, CHARACTERS);
+		operationCodes.put(ENDS_WITH_NAME, ENDS_WITH);
+		operationCodes.put(EQUALS_IGNORE_CASE_NAME, EQUALS_IGNORE_CASE);
+		operationCodes.put(LAST_INDEX_OF_NAME, LAST_INDEX_OF);
+		operationCodes.put(MATCHES_NAME, MATCHES);
+		operationCodes.put(REPLACE_ALL_NAME, REPLACE_ALL);
+		operationCodes.put(REPLACE_FIRST_NAME, REPLACE_FIRST);
+		operationCodes.put(STARTS_WITH_NAME, STARTS_WITH);
+		operationCodes.put(SUBSTITUTE_ALL_NAME, SUBSTITUTE_ALL);
+		operationCodes.put(SUBSTITUTE_FIRST_NAME, SUBSTITUTE_FIRST);
+		operationCodes.put(TOKENIZE_NAME, TOKENIZE);
+		operationCodes.put(TRIM_NAME, TRIM);
+		operationCodes.put(TO_LOWER_CASE_NAME, TO_LOWER_CASE);
+		operationCodes.put(TO_UPPER_CASE_NAME, TO_UPPER_CASE);
 
 		oclAnyOperationCodes.put(EQUAL_NAME, EQUAL);
 		oclAnyOperationCodes.put(NOT_EQUAL_NAME, NOT_EQUAL);
@@ -394,6 +410,38 @@ public final class OCLStandardLibraryUtil {
 				return REJECT_NAME;
 			case SORTED_BY :
 				return SORTED_BY_NAME;
+			case TO_BOOLEAN :
+				return TO_BOOLEAN_NAME;
+			case TO_STRING :
+				return TO_STRING_NAME;
+			case CHARACTERS :
+				return CHARACTERS_NAME;
+			case ENDS_WITH :
+				return ENDS_WITH_NAME;
+			case EQUALS_IGNORE_CASE :
+				return EQUALS_IGNORE_CASE_NAME;
+			case LAST_INDEX_OF :
+				return LAST_INDEX_OF_NAME;
+			case MATCHES :
+				return MATCHES_NAME;
+			case REPLACE_ALL :
+				return REPLACE_ALL_NAME;
+			case REPLACE_FIRST :
+				return REPLACE_FIRST_NAME;
+			case STARTS_WITH :
+				return STARTS_WITH_NAME;
+			case SUBSTITUTE_ALL :
+				return SUBSTITUTE_ALL_NAME;
+			case SUBSTITUTE_FIRST :
+				return SUBSTITUTE_FIRST_NAME;
+			case TOKENIZE :
+				return TOKENIZE_NAME;
+			case TRIM :
+				return TRIM_NAME;
+			case TO_LOWER_CASE :
+				return TO_LOWER_CASE_NAME;
+			case TO_UPPER_CASE :
+				return TO_UPPER_CASE_NAME;
 			default :
 				return ""; //$NON-NLS-1$
 		}
@@ -715,6 +763,11 @@ public final class OCLStandardLibraryUtil {
 			case NOT :
 			case AND :
 			case OR :
+			case ENDS_WITH :
+			case EQUALS_IGNORE_CASE :
+			case MATCHES :
+			case STARTS_WITH :
+			case TO_BOOLEAN :
 				return stdlib.getBoolean();
 			case MIN :
 			case MAX :
@@ -728,12 +781,26 @@ public final class OCLStandardLibraryUtil {
 			case TO_INTEGER :
 			case SIZE :
 			case ROUND :
+			case INDEX_OF :
+			case LAST_INDEX_OF :
 				return stdlib.getInteger();
 			case TO_REAL :
 				return stdlib.getReal();
+			case AT :
+			case REPLACE_ALL :
+			case REPLACE_FIRST :
+			case SUBSTITUTE_ALL :
+			case SUBSTITUTE_FIRST :
 			case TO_LOWER :
+			case TO_LOWER_CASE :
+			case TO_STRING :
 			case TO_UPPER :
+			case TO_UPPER_CASE :
+			case TRIM :
 				return stdlib.getString();
+			case CHARACTERS :
+			case TOKENIZE :
+				return getSequenceType(env, env.getOCLFactory(), stdlib.getString());
 		}
 
 		// must be an operation defined for all types, then
@@ -1388,6 +1455,48 @@ public final class OCLStandardLibraryUtil {
 			.add(createUnaryOperation(uml, stdlib.getString(), TO_LOWER_NAME));
 		result
 			.add(createUnaryOperation(uml, stdlib.getString(), TO_UPPER_NAME));
+		result.add(createBinaryOperation(uml, stdlib.getString(), PLUS_NAME,
+			stdlib.getString(), "s"));//$NON-NLS-1$
+		result
+			.add(createUnaryOperation(uml, stdlib.getString(), TO_LOWER_CASE_NAME));
+		result
+			.add(createUnaryOperation(uml, stdlib.getString(), TO_UPPER_CASE_NAME));
+		result.add(createBinaryOperation(uml, stdlib.getString(),
+			AT_NAME, stdlib.getInteger(), "index"));//$NON-NLS-1$
+		result
+			.add(createUnaryOperation(uml, stdlib.getSequence(), CHARACTERS_NAME));
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			ENDS_WITH_NAME, stdlib.getString(), "s"));//$NON-NLS-1$
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			EQUALS_IGNORE_CASE_NAME, stdlib.getString(), "s"));//$NON-NLS-1$
+		result.add(createBinaryOperation(uml, stdlib.getInteger(),
+			INDEX_OF_NAME, stdlib.getString(), "s"));//$NON-NLS-1$
+		result.add(createBinaryOperation(uml, stdlib.getInteger(),
+			LAST_INDEX_OF_NAME, stdlib.getString(), "s"));//$NON-NLS-1$
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			MATCHES_NAME, stdlib.getString(), "s"));//$NON-NLS-1$
+		result.add(createTernaryOperation(uml, stdlib.getString(),
+			REPLACE_ALL_NAME, stdlib.getString(), "regex", stdlib.getString(), "replacement"));//$NON-NLS-1$ //$NON-NLS-2$
+		result.add(createTernaryOperation(uml, stdlib.getString(),
+			REPLACE_FIRST_NAME, stdlib.getString(), "regex", stdlib.getString(), "replacement"));//$NON-NLS-1$ //$NON-NLS-2$
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			STARTS_WITH_NAME, stdlib.getString(), "s"));//$NON-NLS-1$
+		result.add(createTernaryOperation(uml, stdlib.getString(),
+			SUBSTITUTE_ALL_NAME, stdlib.getString(), "regex", stdlib.getString(), "replacement"));//$NON-NLS-1$ //$NON-NLS-2$
+		result.add(createTernaryOperation(uml, stdlib.getString(),
+			SUBSTITUTE_FIRST_NAME, stdlib.getString(), "regex", stdlib.getString(), "replacement"));//$NON-NLS-1$ //$NON-NLS-2$
+		result
+			.add(createUnaryOperation(uml, stdlib.getBoolean(), TO_BOOLEAN_NAME));
+		result
+			.add(createUnaryOperation(uml, stdlib.getString(), TO_STRING_NAME));
+		result
+			.add(createUnaryOperation(uml, stdlib.getSequence(), TOKENIZE_NAME));
+		result.add(createBinaryOperation(uml, stdlib.getSequence(),
+			TOKENIZE_NAME, stdlib.getString(), "delimiters"));//$NON-NLS-1$
+		result.add(createTernaryOperation(uml, stdlib.getSequence(),
+			TOKENIZE_NAME, stdlib.getString(), "delimiters", stdlib.getBoolean(), "returnDelimiters"));//$NON-NLS-1$ //$NON-NLS-2$
+		result
+			.add(createUnaryOperation(uml, stdlib.getString(), TRIM_NAME));
 
 		return result;
 	}

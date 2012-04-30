@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.uml="http://www.eclipse.org/ocl/1.1.0/UML" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.uml="http://www.eclipse.org/ocl/1.1.0/UML" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Package xmi:id="_ajR70KjQEdu4LJng8Rasow" name="oclstdlib">
     <eAnnotations xmi:id="_awji16jQEdu4LJng8Rasow" source="http://www.eclipse.org/ocl/1.1.0/OCL">
       <contents xmi:type="ecore:EPackage" xmi:id="_awji2KjQEdu4LJng8Rasow" name="oclstdlib" nsURI="http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml" nsPrefix="oclstdlib">
@@ -581,29 +581,111 @@
         <ownedParameter xmi:id="_asdGCqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asdGC6jQEdu4LJng8Rasow" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_asdGDKjQEdu4LJng8Rasow" name="size" isQuery="true">
-        <ownedParameter xmi:id="_asdGDajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      <ownedOperation xmi:id="_MSgv4JIDEeGcFPoZ3znoDw" name="+" isQuery="true">
+        <ownedParameter xmi:id="_MSgv4ZIDEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_MSgv4pIDEeGcFPoZ3znoDw" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_RRxfMJIDEeGcFPoZ3znoDw" name="at" isQuery="true">
+        <ownedParameter xmi:id="_RRxfMZIDEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_RRxfMpIDEeGcFPoZ3znoDw" name="index" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_sDDJUJIDEeGcFPoZ3znoDw" name="characters" isQuery="true">
+        <ownedParameter xmi:id="_1VsZYJIDEeGcFPoZ3znoDw" type="_bkGDkJIDEeGcFPoZ3znoDw" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:id="_asdGDqjQEdu4LJng8Rasow" name="concat" isQuery="true">
         <ownedParameter xmi:id="_asdGD6jQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asdGEKjQEdu4LJng8Rasow" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_GEkKcJIEEeGcFPoZ3znoDw" name="endsWith" isQuery="true">
+        <ownedParameter xmi:id="_GEkKcZIEEeGcFPoZ3znoDw" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_GEkKcpIEEeGcFPoZ3znoDw" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_LmC2AJIEEeGcFPoZ3znoDw" name="equalsIgnoreCase" isQuery="true">
+        <ownedParameter xmi:id="_LmC2AZIEEeGcFPoZ3znoDw" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_LmC2ApIEEeGcFPoZ3znoDw" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_PyJDAJIEEeGcFPoZ3znoDw" name="indexOf" isQuery="true">
+        <ownedParameter xmi:id="_PyJDAZIEEeGcFPoZ3znoDw" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_SuL9YJIEEeGcFPoZ3znoDw" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_TpZocJIEEeGcFPoZ3znoDw" name="lastIndexOf" isQuery="true">
+        <ownedParameter xmi:id="_TpZocZIEEeGcFPoZ3znoDw" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_TpZocpIEEeGcFPoZ3znoDw" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_W8zS4JIEEeGcFPoZ3znoDw" name="matches" isQuery="true">
+        <ownedParameter xmi:id="_W8zS4ZIEEeGcFPoZ3znoDw" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_W8zS4pIEEeGcFPoZ3znoDw" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_azU4gJIEEeGcFPoZ3znoDw" name="replaceAll" isQuery="true">
+        <ownedParameter xmi:id="_azU4gZIEEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_qyu7gJIEEeGcFPoZ3znoDw" name="regex" type="_asEEj6jQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_rSINQJIEEeGcFPoZ3znoDw" name="replacement" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_vknWIJIEEeGcFPoZ3znoDw" name="replaceFirst" isQuery="true">
+        <ownedParameter xmi:id="_vknWIZIEEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_vknWIpIEEeGcFPoZ3znoDw" name="regex" type="_asEEj6jQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_vknWI5IEEeGcFPoZ3znoDw" name="replacement" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGDKjQEdu4LJng8Rasow" name="size" isQuery="true">
+        <ownedParameter xmi:id="_asdGDajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_I1TzwJIEEeGcFPoZ3znoDw" name="startsWith" isQuery="true">
+        <ownedParameter xmi:id="_I1TzwZIEEeGcFPoZ3znoDw" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_I1TzwpIEEeGcFPoZ3znoDw" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_87AvgJIEEeGcFPoZ3znoDw" name="substituteAll" isQuery="true">
+        <ownedParameter xmi:id="_87AvgZIEEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_87AvgpIEEeGcFPoZ3znoDw" name="oldSubstring" type="_asEEj6jQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_87Avg5IEEeGcFPoZ3znoDw" name="newSubstring" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_87AvhJIEEeGcFPoZ3znoDw" name="substituteFirst" isQuery="true">
+        <ownedParameter xmi:id="_87AvhZIEEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_87AvhpIEEeGcFPoZ3znoDw" name="oldSubstring" type="_asEEj6jQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_87Avh5IEEeGcFPoZ3znoDw" name="newSubstring" type="_asEEj6jQEdu4LJng8Rasow"/>
       </ownedOperation>
       <ownedOperation xmi:id="_asdGEajQEdu4LJng8Rasow" name="substring" isQuery="true">
         <ownedParameter xmi:id="_asdGEqjQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asdGE6jQEdu4LJng8Rasow" name="lower" type="_alYNtqjQEdu4LJng8Rasow"/>
         <ownedParameter xmi:id="_asdGFKjQEdu4LJng8Rasow" name="upper" type="_alYNtqjQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_UrG0gJHtEeGcFPoZ3znoDw" name="toBoolean" isQuery="true">
+        <ownedParameter xmi:id="_UrG0gZHtEeGcFPoZ3znoDw" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
       <ownedOperation xmi:id="_asdGFajQEdu4LJng8Rasow" name="toInteger" isQuery="true">
         <ownedParameter xmi:id="_asdGFqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_asdGF6jQEdu4LJng8Rasow" name="toReal" isQuery="true">
-        <ownedParameter xmi:id="_asdGGKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:id="_asdGGajQEdu4LJng8Rasow" name="toLower" isQuery="true">
         <ownedParameter xmi:id="_asdGGqjQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_Rg6wcJHtEeGcFPoZ3znoDw" name="toLowerCase" isQuery="true">
+        <ownedParameter xmi:id="_Rg6wcZHtEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGF6jQEdu4LJng8Rasow" name="toReal" isQuery="true">
+        <ownedParameter xmi:id="_asdGGKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_MmfJ4JIFEeGcFPoZ3znoDw" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_MmfJ4ZIFEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
       <ownedOperation xmi:id="_asdGG6jQEdu4LJng8Rasow" name="toUpper" isQuery="true">
         <ownedParameter xmi:id="_asdGHKjQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_TcGqwJHtEeGcFPoZ3znoDw" name="toUpperCase" isQuery="true">
+        <ownedParameter xmi:id="_TcGqwZHtEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_QHcIIJIFEeGcFPoZ3znoDw" name="tokenize" isQuery="true">
+        <ownedParameter xmi:id="_QHcIIZIFEeGcFPoZ3znoDw" type="_bkGDkJIDEeGcFPoZ3znoDw" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_Sn9kIJIFEeGcFPoZ3znoDw" name="tokenize" isQuery="true">
+        <ownedParameter xmi:id="_Sn9kIZIFEeGcFPoZ3znoDw" type="_bkGDkJIDEeGcFPoZ3znoDw" direction="return"/>
+        <ownedParameter xmi:id="_Yj7MQJIFEeGcFPoZ3znoDw" name="delimiters" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_SvjZ4JIFEeGcFPoZ3znoDw" name="tokenize" isQuery="true">
+        <ownedParameter xmi:id="_SvjZ4ZIFEeGcFPoZ3znoDw" type="_bkGDkJIDEeGcFPoZ3znoDw" direction="return"/>
+        <ownedParameter xmi:id="_aG2-oJIFEeGcFPoZ3znoDw" name="delimiters" type="_asEEj6jQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_aqkIoJIFEeGcFPoZ3znoDw" name="returnDelimiters" type="_ak_zNKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_eyC7YJIFEeGcFPoZ3znoDw" name="trim" isQuery="true">
+        <ownedParameter xmi:id="_eyC7YZIFEeGcFPoZ3znoDw" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:TypeType" xmi:id="_asdGHajQEdu4LJng8Rasow">
@@ -1528,5 +1610,6 @@
     <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_at-v8KjQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
     <packagedElement xmi:type="ocl.uml:BagType" xmi:id="_aujX8qjQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
     <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_awXVuajQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
+    <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_bkGDkJIDEeGcFPoZ3znoDw" name="Sequence(String)" elementType="_asEEj6jQEdu4LJng8Rasow"/>
   </uml:Package>
 </xmi:XMI>

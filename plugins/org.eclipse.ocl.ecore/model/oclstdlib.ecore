@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
   <ecore:EPackage name="oclstdlib" nsURI="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"
       nsPrefix="oclstdlib">
@@ -402,18 +401,72 @@
       <eOperations name=">=" eType="#/0/Boolean">
         <eParameters name="s" eType="#/0/String"/>
       </eOperations>
-      <eOperations name="size" eType="#/0/Integer"/>
+      <eOperations name="+" eType="#/0/String">
+        <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="at" eType="#/0/String">
+        <eParameters name="index" eType="#/0/Integer"/>
+      </eOperations>
+      <eOperations name="characters" eType="#/0/Sequence(String)"/>
       <eOperations name="concat" eType="#/0/String">
         <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="endsWith" eType="#/0/Boolean">
+        <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="equalsIgnoreCase" eType="#/0/Boolean">
+        <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="indexOf" eType="#/0/Integer">
+        <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="lastIndexOf" eType="#/0/Integer">
+        <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="matches" eType="#/0/Boolean">
+        <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="replaceAll" eType="#/0/String">
+        <eParameters name="regex" eType="#/0/String"/>
+        <eParameters name="replacement" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="replaceFirst" eType="#/0/String">
+        <eParameters name="regex" eType="#/0/String"/>
+        <eParameters name="replacement" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="size" eType="#/0/Integer"/>
+      <eOperations name="startsWith" eType="#/0/Boolean">
+        <eParameters name="s" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="substituteAll" eType="#/0/String">
+        <eParameters name="oldSubstring" eType="#/0/String"/>
+        <eParameters name="newSubstring" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="substituteFirst" eType="#/0/String">
+        <eParameters name="oldSubstring" eType="#/0/String"/>
+        <eParameters name="newSubstring" eType="#/0/String"/>
       </eOperations>
       <eOperations name="substring" eType="#/0/String">
         <eParameters name="lower" eType="#/0/Integer"/>
         <eParameters name="upper" eType="#/0/Integer"/>
       </eOperations>
+      <eOperations name="toBoolean" eType="#/0/Boolean"/>
       <eOperations name="toInteger" eType="#/0/Integer"/>
-      <eOperations name="toReal" eType="#/0/Real"/>
       <eOperations name="toLower" eType="#/0/String"/>
+      <eOperations name="toLowerCase" eType="#/0/String"/>
+      <eOperations name="toReal" eType="#/0/Real"/>
+      <eOperations name="toString" eType="#/0/String"/>
       <eOperations name="toUpper" eType="#/0/String"/>
+      <eOperations name="toUpperCase" eType="#/0/String"/>
+      <eOperations name="tokenize" eType="#/0/Sequence(String)"/>
+      <eOperations name="tokenize" eType="#/0/Sequence(String)">
+        <eParameters name="delimiters" eType="#/0/String"/>
+      </eOperations>
+      <eOperations name="tokenize" eType="#/0/Sequence(String)">
+        <eParameters name="delimiters" eType="#/0/String"/>
+        <eParameters name="returnDelimiters" eType="#/0/Boolean"/>
+      </eOperations>
+      <eOperations name="trim" eType="#/0/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:TypeType" name="OclType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclType_Class">
@@ -1094,6 +1147,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="T2_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/T2"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(String)" instanceClassName="java.util.List"
+        elementType="#/0/String"/>
   </ecore:EPackage>
   <ecore:EPackage name="tuples">
     <eClassifiers xsi:type="ocl.ecore:TupleType" name="Tuple(first : T, second : T2)"

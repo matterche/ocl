@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -112,6 +113,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	private static final Integer UNLIMITED = Integer.valueOf(UnlimitedNaturalLiteralExp.UNLIMITED);
 
 	private static int tempCounter = 0;
+
+	private static final String DELIMS = " \t\n\r\f"; //$NON-NLS-1$
+
+	private static List<String> tokenize(String sourceString, String delims, boolean returnDelims) {
+		StringTokenizer tokenizer = new StringTokenizer(sourceString, delims, returnDelims);
+		List<String> results = new ArrayList<String>();
+		while (tokenizer.hasMoreTokens()) {
+			results.add(tokenizer.nextToken());
+		}
+		return results;
+	}
 
 	private EvaluationEnvironment.Enumerations<EL> enumerations;
 	
@@ -384,6 +396,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// Real::abs()
 						return Math.abs((Double) sourceVal);
 
+					case PredefinedType.CHARACTERS:
+						String sourceString = (String)sourceVal;
+						List<String> results = new ArrayList<String>(sourceString.length());
+						for (int i = 0; i < sourceString.length(); i++) {
+							results.add(sourceString.substring(i, i+1));
+						}
+						return results;
+
 					case PredefinedType.FLOOR:
 						if (sourceVal instanceof Double) {
 							// Real::floor()
@@ -441,6 +461,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						} else if (sourceType instanceof CollectionType<?, ?>) {
 							return new Integer(((Collection<?>) sourceVal).size());
 						}
+
+					case PredefinedType.TO_BOOLEAN:
+						// String::toInteger()
+						return "true".equals(sourceVal); //$NON-NLS-1$
+
 					case PredefinedType.TO_INTEGER:
 						// String::toInteger()
 						return Integer.valueOf((String) sourceVal);
@@ -450,12 +475,24 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						return Double.valueOf((String) sourceVal);
 
 					case PredefinedType.TO_LOWER:
+					case PredefinedType.TO_LOWER_CASE:
 						// String::toLower()
 						return UnicodeSupport.toLowerCase((String) sourceVal);
 
+					case PredefinedType.TO_STRING:
+						// String::toInteger()
+						return sourceVal;
+
 					case PredefinedType.TO_UPPER:
+					case PredefinedType.TO_UPPER_CASE:
 						// String::toUpper()
 						return UnicodeSupport.toUpperCase((String) sourceVal);
+
+					case PredefinedType.TOKENIZE:
+						return tokenize((String) sourceVal, DELIMS, false);
+
+					case PredefinedType.TRIM:
+						return ((String) sourceVal).trim();
 
 					case PredefinedType.IS_EMPTY:
 						// Collection::isEmpty()
@@ -1085,6 +1122,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					switch (opCode) {
 						// String::concat(String)
 						case PredefinedType.CONCAT:
+						case PredefinedType.PLUS:
 							return ((String) sourceVal).concat((String) argVal);
 
 						// Handle < (lessThan)
@@ -1102,6 +1140,33 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// Handle > (greaterThanEqual)
 						case PredefinedType.GREATER_THAN_EQUAL:
 							return Boolean.valueOf(((String) sourceVal).compareTo((String) argVal) >= 0);
+
+						case PredefinedType.AT:
+							if (!(argVal instanceof Integer)) {
+								return getInvalid();
+							}
+							return String.valueOf(((String) sourceVal).substring((Integer) argVal-1, (Integer) argVal));
+
+						case PredefinedType.ENDS_WITH:
+							return Boolean.valueOf(((String) sourceVal).endsWith((String) argVal));
+
+						case PredefinedType.EQUALS_IGNORE_CASE:
+							return Boolean.valueOf(((String) sourceVal).equalsIgnoreCase((String) argVal));
+
+						case PredefinedType.INDEX_OF:
+							return Integer.valueOf(1 + ((String) sourceVal).indexOf((String) argVal));
+
+						case PredefinedType.LAST_INDEX_OF:
+							return Integer.valueOf(1 + ((String) sourceVal).lastIndexOf((String) argVal));
+
+						case PredefinedType.MATCHES:
+							return Boolean.valueOf(((String) sourceVal).matches((String) argVal));
+
+						case PredefinedType.STARTS_WITH:
+							return Boolean.valueOf(((String) sourceVal).startsWith((String) argVal));
+
+						case PredefinedType.TOKENIZE:
+							return tokenize((String) sourceVal, (String) argVal, false);
 
 						default: {
 							String message = OCLMessages.bind(
@@ -1286,14 +1351,40 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (isUndefined(arg1) || isUndefined(arg2)) {
 						return getInvalid();
 					}
-					int lower = ((Integer) arg1).intValue();
-					int upper = ((Integer) arg2).intValue();
-					if (!(1 <= lower &&
-							  lower <= upper &&
-							  upper <= ((String) sourceVal).length())) {
-						return getInvalid();
+					String sourceString = (String) sourceVal;
+					switch (opCode) {
+						case PredefinedType.REPLACE_ALL:
+							return sourceString.replaceAll((String) arg1, (String) arg2);
+							
+						case PredefinedType.REPLACE_FIRST:
+							return sourceString.replaceFirst((String) arg1, (String) arg2);
+							
+						case PredefinedType.SUBSTITUTE_ALL:
+							return sourceString.replace((String) arg1, (String) arg2);
+							
+						case PredefinedType.SUBSTITUTE_FIRST:
+							String oldSubstring = (String) arg1;
+							int index = sourceString.indexOf((String) arg1);
+							if (index >= 0) {
+								return sourceString.substring(0, index) + (String) arg2 + sourceString.substring(index + oldSubstring.length(), sourceString.length());
+							}
+							else {
+								return getInvalid();
+							}
+
+						case PredefinedType.SUBSTRING:
+							int lower = ((Integer) arg1).intValue();
+							int upper = ((Integer) arg2).intValue();
+							if (!(1 <= lower &&
+									  lower <= upper &&
+									  upper <= ((String) sourceVal).length())) {
+								return getInvalid();
+							}
+							return sourceString.substring(lower-1, upper);
+
+						case PredefinedType.TOKENIZE:
+							return tokenize(sourceString, (String) arg1, (Boolean) arg2);
 					}
-					return ((String) sourceVal).substring(lower-1, upper);
 				} else if (sourceVal instanceof Collection<?>) {
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;

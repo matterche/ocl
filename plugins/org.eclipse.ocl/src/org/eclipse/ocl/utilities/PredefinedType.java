@@ -372,6 +372,166 @@ public interface PredefinedType<O>
 	String SORTED_BY_NAME = "sortedBy"; //$NON-NLS-1$
 
 	/**
+	 * @since 3.2
+	 */
+	int TO_BOOLEAN = 212;
+
+	/**
+	 * @since 3.2
+	 */
+	String TO_BOOLEAN_NAME = "toBoolean"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int TO_STRING = 213;
+
+	/**
+	 * @since 3.2
+	 */
+	String TO_STRING_NAME = "toString"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int CHARACTERS = 214;
+
+	/**
+	 * @since 3.2
+	 */
+	String CHARACTERS_NAME = "characters"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int ENDS_WITH = 215;
+
+	/**
+	 * @since 3.2
+	 */
+	String ENDS_WITH_NAME = "endsWith"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int EQUALS_IGNORE_CASE = 216;
+
+	/**
+	 * @since 3.2
+	 */
+	String EQUALS_IGNORE_CASE_NAME = "equalsIgnoreCase"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int LAST_INDEX_OF = 217;
+
+	/**
+	 * @since 3.2
+	 */
+	String LAST_INDEX_OF_NAME = "lastIndexOf"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int MATCHES = 218;
+
+	/**
+	 * @since 3.2
+	 */
+	String MATCHES_NAME = "matches"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int REPLACE_ALL = 219;
+
+	/**
+	 * @since 3.2
+	 */
+	String REPLACE_ALL_NAME = "replaceAll"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int REPLACE_FIRST = 220;
+
+	/**
+	 * @since 3.2
+	 */
+	String REPLACE_FIRST_NAME = "replaceFirst"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int STARTS_WITH = 221;
+
+	/**
+	 * @since 3.2
+	 */
+	String STARTS_WITH_NAME = "startsWith"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int SUBSTITUTE_ALL = 222;
+
+	/**
+	 * @since 3.2
+	 */
+	String SUBSTITUTE_ALL_NAME = "substituteAll"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int SUBSTITUTE_FIRST = 223;
+
+	/**
+	 * @since 3.2
+	 */
+	String SUBSTITUTE_FIRST_NAME = "substituteFirst"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int TOKENIZE = 224;
+
+	/**
+	 * @since 3.2
+	 */
+	String TOKENIZE_NAME = "tokenize"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int TRIM = 225;
+
+	/**
+	 * @since 3.2
+	 */
+	String TRIM_NAME = "trim"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int TO_LOWER_CASE = 226;
+
+	/**
+	 * @since 3.2
+	 */
+	String TO_LOWER_CASE_NAME = "toLowerCase"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int TO_UPPER_CASE = 227;
+
+	/**
+	 * @since 3.2
+	 */
+	String TO_UPPER_CASE_NAME = "toUpperCase"; //$NON-NLS-1$
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
