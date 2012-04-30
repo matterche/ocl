@@ -839,7 +839,7 @@ public class DelegatesTest extends AbstractTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			OCLMessages.OperationNotFound_ERROR_, "oclIsInvalid()", "Set(BadClass)");
+			OCLMessages.OperationNotFound_ERROR_, "oclIsInvalid(Integer)", "Set(BadClass)");
 	}
 
 	public void test_operationParsingToSyntacticError() {
