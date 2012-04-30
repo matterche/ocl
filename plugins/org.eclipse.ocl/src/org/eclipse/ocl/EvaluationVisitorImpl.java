@@ -329,6 +329,21 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return Boolean.valueOf(!ObjectUtil.equal(sourceVal, argVal));
 		}
 
+		else if (opCode == PredefinedType.TO_STRING) {
+			if (sourceVal == null) {
+				return "null"; //$NON-NLS-1$
+			}
+			else if (sourceVal == getInvalid()) {
+				return "invalid"; //$NON-NLS-1$
+			}
+			else if (sourceType == getUnlimitedNatural()) {
+				return "*"; //$NON-NLS-1$
+			}
+			else {
+				return sourceVal.toString();
+			}
+		}
+
 		if (sourceType instanceof PrimitiveType<?>
 			|| sourceType instanceof CollectionType<?, ?>
 			|| getUMLReflection().isEnumeration(sourceType)
@@ -478,10 +493,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					case PredefinedType.TO_LOWER_CASE:
 						// String::toLower()
 						return UnicodeSupport.toLowerCase((String) sourceVal);
-
-					case PredefinedType.TO_STRING:
-						// String::toInteger()
-						return sourceVal;
 
 					case PredefinedType.TO_UPPER:
 					case PredefinedType.TO_UPPER_CASE:

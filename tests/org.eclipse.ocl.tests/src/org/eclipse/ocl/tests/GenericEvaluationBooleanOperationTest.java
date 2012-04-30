@@ -168,6 +168,12 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResultInvalid("let a : Boolean = null, b : Boolean = null in a or b");
 	}
 
+	public void testBooleanToString() {
+		assertResult("false", "false.toString()");
+		assertResult("true", "true.toString()");
+		assertResult("true", "(not false).toString()");
+	}
+
 	public void testBooleanXor() {
 		assertResultFalse("false xor false");
 		assertResultTrue("false xor true");

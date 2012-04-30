@@ -39,6 +39,7 @@
       <eOperations name=">=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
+      <eOperations name="toString" eType="#/0/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:VoidType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclVoid_Class">
@@ -76,6 +77,7 @@
       <eOperations name=">=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
+      <eOperations name="toString" eType="#/0/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:InvalidType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclInvalid_Class">
@@ -113,6 +115,7 @@
       <eOperations name=">=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
+      <eOperations name="toString" eType="#/0/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Boolean" instanceClassName="java.lang.Boolean"/>
     <eClassifiers xsi:type="ecore:EClass" name="Boolean_Class">
@@ -148,6 +151,7 @@
       <eOperations name="implies" eType="#/0/Boolean">
         <eParameters name="b" eType="#/0/Boolean"/>
       </eOperations>
+      <eOperations name="toString" eType="#/0/String"/>
       <eOperations name="xor" eType="#/0/Boolean">
         <eParameters name="b" eType="#/0/Boolean"/>
       </eOperations>
@@ -228,6 +232,7 @@
       <eOperations name="mod" eType="#/0/Integer">
         <eParameters name="i" eType="#/0/Integer"/>
       </eOperations>
+      <eOperations name="toString" eType="#/0/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="UnlimitedNatural" instanceClassName="java.lang.Integer"/>
     <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNatural_Class">
@@ -305,6 +310,7 @@
       <eOperations name="mod" eType="#/0/Integer">
         <eParameters name="n" eType="#/0/UnlimitedNatural"/>
       </eOperations>
+      <eOperations name="toString" eType="#/0/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Real" instanceClassName="java.lang.Double"/>
     <eClassifiers xsi:type="ecore:EClass" name="Real_Class">
@@ -364,6 +370,7 @@
       <eOperations name="abs" eType="#/0/Real"/>
       <eOperations name="floor" eType="#/0/Integer"/>
       <eOperations name="round" eType="#/0/Integer"/>
+      <eOperations name="toString" eType="#/0/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="String" instanceClassName="java.lang.String"/>
     <eClassifiers xsi:type="ecore:EClass" name="String_Class">

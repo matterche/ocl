@@ -646,6 +646,15 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResultInvalid("let r1 : Real = null, r2 : Real = null in r1 * r2");
 	}
 
+	public void testNumberToString() {
+		assertResult("1", "1.toString()");
+		assertResult("3.0", "3.0.toString()");
+		assertResult("4.0", "(1.0+3.0).toString()");
+		assertResult("null", "null.toString()");
+		assertResult("invalid", "invalid.toString()");
+		assertResult("*", "*.toString()");
+	}
+
 	public void testNumberUnaryMinus() {
 		assertResult(Integer.valueOf(-1), "-1");
 		assertResult(Double.valueOf(-1d), "-1.0");

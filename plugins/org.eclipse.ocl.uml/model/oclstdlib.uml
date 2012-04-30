@@ -65,6 +65,9 @@
         <ownedParameter xmi:id="_akVE0qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVE06jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_lgMRUJKoEeG_Jv4N2Kneig" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_lgMRUZKoEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:VoidType" xmi:id="_akVE1KjQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_ak5scKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -115,6 +118,9 @@
       <ownedOperation xmi:id="_ak5skajQEdu4LJng8Rasow" name=">=" isQuery="true">
         <ownedParameter xmi:id="_ak5skqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5sk6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_k1MMgJKoEeG_Jv4N2Kneig" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_k1MMgZKoEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:InvalidType" xmi:id="_ak5slKjQEdu4LJng8Rasow">
@@ -167,6 +173,9 @@
         <ownedParameter xmi:id="_ak_zMqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zM6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_mLClIJKoEeG_Jv4N2Kneig" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_mLClIZKoEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_ak_zNKjQEdu4LJng8Rasow" name="Boolean">
       <ownedOperation xmi:id="_alYNkKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -216,6 +225,9 @@
       <ownedOperation xmi:id="_alYNsKjQEdu4LJng8Rasow" name="implies" isQuery="true">
         <ownedParameter xmi:id="_alYNsajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_alYNsqjQEdu4LJng8Rasow" name="b" type="_ak_zNKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_kPoaoJKjEeG_Jv4N2Kneig" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_kPoaoZKjEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
       <ownedOperation xmi:id="_alYNs6jQEdu4LJng8Rasow" name="xor" isQuery="true">
         <ownedParameter xmi:id="_alYNtKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
@@ -332,6 +344,9 @@
         <ownedParameter xmi:id="_amDjOajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_amDjOqjQEdu4LJng8Rasow" name="i" type="_alYNtqjQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_jY4Y0JKjEeG_Jv4N2Kneig" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_jY4Y0ZKjEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_amDjO6jQEdu4LJng8Rasow" name="UnlimitedNatural">
       <ownedOperation xmi:id="_arljQKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -443,6 +458,9 @@
         <ownedParameter xmi:id="_arrqG6jQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_arrqHKjQEdu4LJng8Rasow" name="n" type="_amDjO6jQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_isZtUJKjEeG_Jv4N2Kneig" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_isZtUZKjEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_arrqHajQEdu4LJng8Rasow" name="Real">
       <ownedOperation xmi:id="_ar99wKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -529,6 +547,9 @@
       </ownedOperation>
       <ownedOperation xmi:id="_asEEjajQEdu4LJng8Rasow" name="round" isQuery="true">
         <ownedParameter xmi:id="_asEEjqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_h5Xt4JKjEeG_Jv4N2Kneig" name="toString" isQuery="true">
+        <ownedParameter xmi:id="_h5Xt4ZKjEeG_Jv4N2Kneig" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_asEEj6jQEdu4LJng8Rasow" name="String">

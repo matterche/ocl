@@ -1319,6 +1319,7 @@ public final class OCLStandardLibraryUtil {
 			OCL_IS_NEW_NAME));
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
 			OCL_IS_IN_STATE_NAME, stdlib.getState(), "statespec")); //$NON-NLS-1$
+		result.add(createUnaryOperation(uml, stdlib.getString(), TO_STRING_NAME));
 
 		return result;
 	}
@@ -1487,8 +1488,6 @@ public final class OCLStandardLibraryUtil {
 			SUBSTITUTE_FIRST_NAME, stdlib.getString(), "regex", stdlib.getString(), "replacement"));//$NON-NLS-1$ //$NON-NLS-2$
 		result
 			.add(createUnaryOperation(uml, stdlib.getBoolean(), TO_BOOLEAN_NAME));
-		result
-			.add(createUnaryOperation(uml, stdlib.getString(), TO_STRING_NAME));
 		result
 			.add(createUnaryOperation(uml, stdlib.getSequence(), TOKENIZE_NAME));
 		result.add(createBinaryOperation(uml, stdlib.getSequence(),
