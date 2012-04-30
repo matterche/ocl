@@ -897,6 +897,14 @@
       <ownedOperation xmi:id="_RUU4IJKsEeG_Jv4N2Kneig" name="min" isQuery="true">
         <ownedParameter xmi:id="_RUU4IZKsEeG_Jv4N2Kneig" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_tigrsJLZEeG_Jv4N2Kneig" name="selectByKind" isQuery="true">
+        <ownedParameter xmi:id="_5VrXwJLZEeG_Jv4N2Kneig" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_tigrspLZEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_tigrs5LZEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
+        <ownedParameter xmi:id="_5lANMJLZEeG_Jv4N2Kneig" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_tigrtZLZEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_auE2s6jQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_aujXsKjQEdu4LJng8Rasow" name="count" isQuery="true">
@@ -1066,6 +1074,14 @@
         </eAnnotations>
         <ownedParameter xmi:id="_avOGRajQEdu4LJng8Rasow" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_avOGRqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_AWFfcJLaEeG_Jv4N2Kneig" name="selectByKind" isQuery="true">
+        <ownedParameter xmi:id="_AWFfcZLaEeG_Jv4N2Kneig" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_AWFfcpLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_AWFfc5LaEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
+        <ownedParameter xmi:id="_AWFfdJLaEeG_Jv4N2Kneig" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_AWFfdZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:OrderedSetType" xmi:id="_avUMsKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
@@ -1277,6 +1293,14 @@
         <ownedParameter xmi:id="_avUNRqjQEdu4LJng8Rasow" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_avUNR6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_BJaZ0JLaEeG_Jv4N2Kneig" name="selectByKind" isQuery="true">
+        <ownedParameter xmi:id="_BJaZ0ZLaEeG_Jv4N2Kneig" type="_NRrooJLZEeG_Jv4N2Kneig" direction="return"/>
+        <ownedParameter xmi:id="_BJaZ0pLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_BJaZ05LaEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
+        <ownedParameter xmi:id="_BJaZ1JLaEeG_Jv4N2Kneig" type="_NRrooJLZEeG_Jv4N2Kneig" direction="return"/>
+        <ownedParameter xmi:id="_BJaZ1ZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:BagType" xmi:id="_avUNSKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_awFBsKjQEdu4LJng8Rasow" name="count" isQuery="true">
@@ -1438,6 +1462,14 @@
         </eAnnotations>
         <ownedParameter xmi:id="_awXVtqjQEdu4LJng8Rasow" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_awXVt6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_BwirQJLaEeG_Jv4N2Kneig" name="selectByKind" isQuery="true">
+        <ownedParameter xmi:id="_BwirQZLaEeG_Jv4N2Kneig" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_BwirQpLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_BwirQ5LaEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
+        <ownedParameter xmi:id="_BwirRJLaEeG_Jv4N2Kneig" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_BwirRZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_awXVuKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
@@ -1621,6 +1653,14 @@
         <ownedParameter xmi:id="_awji06jQEdu4LJng8Rasow" type="_awXVuajQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_awji1KjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_CWep4JLaEeG_Jv4N2Kneig" name="selectByKind" isQuery="true">
+        <ownedParameter xmi:id="_CWep4ZLaEeG_Jv4N2Kneig" type="_awXVuajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_CWep4pLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_CWep45LaEeG_Jv4N2Kneig" name="selectByType" isQuery="true">
+        <ownedParameter xmi:id="_CWep5JLaEeG_Jv4N2Kneig" type="_awXVuajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_CWep5ZLaEeG_Jv4N2Kneig" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:AnyType" xmi:id="_awji1ajQEdu4LJng8Rasow" name="T"/>
     <packagedElement xmi:type="ocl.uml:AnyType" xmi:id="_awji1qjQEdu4LJng8Rasow" name="T2"/>
@@ -1638,5 +1678,6 @@
     <packagedElement xmi:type="ocl.uml:BagType" xmi:id="_aujX8qjQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
     <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_awXVuajQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
     <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_bkGDkJIDEeGcFPoZ3znoDw" name="Sequence(String)" elementType="_asEEj6jQEdu4LJng8Rasow"/>
+    <packagedElement xmi:type="ocl.uml:OrderedSetType" xmi:id="_NRrooJLZEeG_Jv4N2Kneig" name="OrderedSet(T2)" elementType="_awji1qjQEdu4LJng8Rasow"/>
   </uml:Package>
 </xmi:XMI>

@@ -161,9 +161,8 @@ public class CollectionUtil {
         if (self.isEmpty()) {
             return null; // undefined
         }        
-        Iterator<?> it = self.iterator();
-        Number maxVal = null;
-        for (it = self.iterator(); it.hasNext();) {
+         Number maxVal = null;
+        for (Iterator<?> it = self.iterator(); it.hasNext();) {
         	Object object = it.next();
             if (!(object instanceof Number)) {
                 IllegalArgumentException error = new IllegalArgumentException(OCLMessages.MaxOperator_ERROR_);
@@ -199,9 +198,8 @@ public class CollectionUtil {
         if (self.isEmpty()) {
             return null; // undefined
         }        
-        Iterator<?> it = self.iterator();
         Number maxVal = null;
-        for (it = self.iterator(); it.hasNext();) {
+        for (Iterator<?> it = self.iterator(); it.hasNext();) {
         	Object object = it.next();
             if (!(object instanceof Number)) {
                 IllegalArgumentException error = new IllegalArgumentException(OCLMessages.MinOperator_ERROR_);
@@ -247,9 +245,8 @@ public class CollectionUtil {
         if (self.isEmpty()) {
             return null; // undefined
         }        
-        Iterator<?> it = self.iterator();
         Number sumVal = null;
-        for (it = self.iterator(); it.hasNext();) {
+        for (Iterator<?> it = self.iterator(); it.hasNext();) {
         	Object object = it.next();
             if (!(object instanceof Number)) {
                 IllegalArgumentException error = new IllegalArgumentException(OCLMessages.SumOperator_ERROR_);

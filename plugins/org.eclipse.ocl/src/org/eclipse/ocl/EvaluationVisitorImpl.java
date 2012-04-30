@@ -1306,6 +1306,30 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 								indexOf = getInvalid();
 							}
 							return indexOf;
+
+						case PredefinedType.SELECT_BY_KIND: {
+							// Collection::selectByKind(OclType)
+							Collection<Object> newElements = CollectionUtil.createNewCollectionOfSameKind(sourceColl);
+					        for (Iterator<?> it = sourceColl.iterator(); it.hasNext();) {
+					        	Object object = it.next();
+								if ((object != null) && oclIsKindOf(object, argVal)) {
+						        	newElements.add(object);
+								}
+					        }
+					        return newElements;
+						}
+
+						case PredefinedType.SELECT_BY_TYPE: {
+							// Collection::selectByType(OclType)
+							Collection<Object> newElements = CollectionUtil.createNewCollectionOfSameKind(sourceColl);
+					        for (Iterator<?> it = sourceColl.iterator(); it.hasNext();) {
+					        	Object object = it.next();
+								if (oclIsTypeOf(object, argVal)) {
+						        	newElements.add(object);
+								}
+					        }
+					        return newElements;
+						}
 					} // end of collection type switch
 				} else if (sourceVal instanceof Comparable<?>) {
 

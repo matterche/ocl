@@ -606,6 +606,12 @@
       </eOperations>
       <eOperations name="max" eType="#/0/Real"/>
       <eOperations name="min" eType="#/0/Real"/>
+      <eOperations name="selectByKind" eType="#/2/Collection(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
+      <eOperations name="selectByType" eType="#/2/Collection(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" instanceClassName="java.util.Set"
         elementType="#/0/T"/>
@@ -736,6 +742,12 @@
       </eOperations>
       <eOperations name="max" eType="#/0/Real"/>
       <eOperations name="min" eType="#/0/Real"/>
+      <eOperations name="selectByKind" eType="#/2/Set(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
+      <eOperations name="selectByType" eType="#/2/Set(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(T)" instanceClassName="java.util.LinkedHashSet"
         elementType="#/0/T"/>
@@ -894,6 +906,12 @@
       </eOperations>
       <eOperations name="max" eType="#/0/Real"/>
       <eOperations name="min" eType="#/0/Real"/>
+      <eOperations name="selectByKind" eType="#/2/OrderedSet(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
+      <eOperations name="selectByType" eType="#/2/OrderedSet(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T)" instanceClassName="org.eclipse.ocl.util.Bag"
         elementType="#/0/T"/>
@@ -1018,6 +1036,12 @@
       </eOperations>
       <eOperations name="max" eType="#/0/Real"/>
       <eOperations name="min" eType="#/0/Real"/>
+      <eOperations name="selectByKind" eType="#/2/Bag(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
+      <eOperations name="selectByType" eType="#/2/Bag(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T)" instanceClassName="java.util.List"
         elementType="#/0/T"/>
@@ -1155,6 +1179,12 @@
       </eOperations>
       <eOperations name="max" eType="#/0/Real"/>
       <eOperations name="min" eType="#/0/Real"/>
+      <eOperations name="selectByKind" eType="#/2/Sequence(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
+      <eOperations name="selectByType" eType="#/2/Sequence(T2)">
+        <eParameters name="typespec" eType="#/0/OclType"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:AnyType" name="T"/>
     <eClassifiers xsi:type="ecore:EClass" name="T_Class">
@@ -1183,6 +1213,8 @@
     <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T2)" instanceClassName="org.eclipse.ocl.util.Bag"
         elementType="#/0/T2"/>
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T2)" instanceClassName="java.util.List"
+        elementType="#/0/T2"/>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(T2)" instanceClassName="java.util.List"
         elementType="#/0/T2"/>
   </ecore:EPackage>
 </xmi:XMI>

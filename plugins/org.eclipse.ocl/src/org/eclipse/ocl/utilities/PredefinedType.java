@@ -532,6 +532,26 @@ public interface PredefinedType<O>
 	String TO_UPPER_CASE_NAME = "toUpperCase"; //$NON-NLS-1$
 
 	/**
+	 * @since 3.2
+	 */
+	int SELECT_BY_KIND = 228;
+
+	/**
+	 * @since 3.2
+	 */
+	String SELECT_BY_KIND_NAME = "selectByKind"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.2
+	 */
+	int SELECT_BY_TYPE = 229;
+
+	/**
+	 * @since 3.2
+	 */
+	String SELECT_BY_TYPE_NAME = "selectByType"; //$NON-NLS-1$
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,

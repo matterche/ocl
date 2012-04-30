@@ -55,4 +55,80 @@ EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAc
 		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
 		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
 	}
+
+	public void testCollectionSelectByKind() {										// BUG 378036 this doesn't work for UML
+		assertExpressionResults("Bag{4,4}", "Bag{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		assertExpressionResults("OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		assertExpressionResults("Sequence{4,4}", "Sequence{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		assertExpressionResults("Set{4}", "Set{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		//
+		assertExpressionResults("Bag{}", "Bag{}->selectByKind(Integer)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{}->selectByKind(Integer)");
+		assertExpressionResults("Sequence{}", "Sequence{}->selectByKind(Integer)");
+		assertExpressionResults("Set{}", "Set{}->selectByKind(Integer)");
+		//
+		assertExpressionResults("Bag{}", "Bag{null}->selectByKind(Integer)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{null}->selectByKind(Integer)");
+		assertExpressionResults("Sequence{}", "Sequence{null}->selectByKind(Integer)");
+		assertExpressionResults("Set{}", "Set{null}->selectByKind(Integer)");
+		//
+		assertExpressionResults("Bag{}", "Bag{null}->selectByKind(OclVoid)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{null}->selectByKind(OclVoid)");
+		assertExpressionResults("Sequence{}", "Sequence{null}->selectByKind(OclVoid)");
+		assertExpressionResults("Set{}", "Set{null}->selectByKind(OclVoid)");
+		//
+		assertExpressionResults("Bag{}", "Bag{null}->selectByKind(OclInvalid)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{null}->selectByKind(OclInvalid)");
+		assertExpressionResults("Sequence{}", "Sequence{null}->selectByKind(OclInvalid)");
+		assertExpressionResults("Set{}", "Set{null}->selectByKind(OclInvalid)");
+		//
+		assertExpressionResults("Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertExpressionResults("OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertExpressionResults("Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertExpressionResults("Set{4}", "Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		//
+		assertExpressionResults("Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(String).toUpperCase()");
+		assertResult(9.0, "Set{4, 4, 5.0, 'test'}->selectByKind(Real)->sum()");
+		assertResult(4, "Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)->sum()");
+	}
+
+	public void testCollectionSelectByType() {										// BUG 378036 this doesn't work for UML
+//		assertExpressionResults("Bag{}", "Bag{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertExpressionResults("Bag{}", "Bag{4, 4, 5.0, 'test', null}->selectByType(Boolean)");
+//		assertExpressionResults("OrderedSet{}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByType(Boolean)");
+//		assertExpressionResults("Sequence{}", "Sequence{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertExpressionResults("Sequence{}", "Sequence{4, 4, 5.0, 'test', null}->selectByType(Boolean)");
+//		assertExpressionResults("Set{}", "Set{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertExpressionResults("Set{}", "Set{4, 4, 5.0, 'test', null}->selectByType(Boolean)");
+		//
+		assertExpressionResults("Bag{}", "Bag{}->selectByType(Integer)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{}->selectByType(Integer)");
+		assertExpressionResults("Sequence{}", "Sequence{}->selectByType(Integer)");
+		assertExpressionResults("Set{}", "Set{}->selectByType(Integer)");
+		//
+		assertExpressionResults("Bag{}", "Bag{null}->selectByType(Integer)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{null}->selectByType(Integer)");
+		assertExpressionResults("Sequence{}", "Sequence{null}->selectByType(Integer)");
+		assertExpressionResults("Set{}", "Set{null}->selectByType(Integer)");
+		//
+		assertExpressionResults("Bag{null}", "Bag{null}->selectByType(OclVoid)");
+		assertExpressionResults("OrderedSet{null}", "OrderedSet{null}->selectByType(OclVoid)");
+		assertExpressionResults("Sequence{null}", "Sequence{null}->selectByType(OclVoid)");
+		assertExpressionResults("Set{null}", "Set{null}->selectByType(OclVoid)");
+		//
+		assertExpressionResults("Bag{}", "Bag{null}->selectByType(OclInvalid)");
+		assertExpressionResults("OrderedSet{}", "OrderedSet{null}->selectByType(OclInvalid)");
+		assertExpressionResults("Sequence{}", "Sequence{null}->selectByType(OclInvalid)");
+		assertExpressionResults("Set{}", "Set{null}->selectByType(OclInvalid)");
+		//
+		assertExpressionResults("Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertExpressionResults("OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertExpressionResults("Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertExpressionResults("Set{4}", "Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		//
+		assertExpressionResults("Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByType(String).toUpperCase()");
+		assertResult(5.0, "Set{4, 4, 5.0, 'test'}->selectByType(Real)->sum()");
+		assertResult(4, "Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)->sum()");
+	}
 }

@@ -181,6 +181,8 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(TRIM_NAME, TRIM);
 		operationCodes.put(TO_LOWER_CASE_NAME, TO_LOWER_CASE);
 		operationCodes.put(TO_UPPER_CASE_NAME, TO_UPPER_CASE);
+		operationCodes.put(SELECT_BY_KIND_NAME, SELECT_BY_KIND);
+		operationCodes.put(SELECT_BY_TYPE_NAME, SELECT_BY_TYPE);
 
 		oclAnyOperationCodes.put(EQUAL_NAME, EQUAL);
 		oclAnyOperationCodes.put(NOT_EQUAL_NAME, NOT_EQUAL);
@@ -195,6 +197,7 @@ public final class OCLStandardLibraryUtil {
 		oclAnyOperationCodes.put(GREATER_THAN_EQUAL_NAME, GREATER_THAN_EQUAL);
 		oclAnyOperationCodes.put(OCL_IS_NEW_NAME, OCL_IS_NEW);
 		oclAnyOperationCodes.put(OCL_IS_IN_STATE_NAME, OCL_IS_IN_STATE);
+		oclAnyOperationCodes.put(TO_STRING_NAME, TO_STRING);
 	}
 
 	// not instantiable by clients
@@ -442,6 +445,10 @@ public final class OCLStandardLibraryUtil {
 				return TO_LOWER_CASE_NAME;
 			case TO_UPPER_CASE :
 				return TO_UPPER_CASE_NAME;
+			case SELECT_BY_KIND :
+				return SELECT_BY_KIND_NAME;
+			case SELECT_BY_TYPE :
+				return SELECT_BY_TYPE_NAME;
 			default :
 				return ""; //$NON-NLS-1$
 		}
@@ -1191,7 +1198,7 @@ public final class OCLStandardLibraryUtil {
 			}
 			case SUM : {
 				C type = collType.getElementType();
-				if (type != stdlib.getReal() && type != stdlib.getInteger()) {
+				if (type != stdlib.getReal() && type != stdlib.getInteger() && type != stdlib.getUnlimitedNatural()) {
 					String message = OCLMessages.SumOperator_ERROR_;
 					error(env, message,
 						"collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
@@ -1225,6 +1232,30 @@ public final class OCLStandardLibraryUtil {
 					.getT2());
 			case CLOSURE :
 				return getSetType(env, env.getOCLFactory(), stdlib.getT2());
+			case SELECT_BY_KIND :
+			case SELECT_BY_TYPE :
+				TypedElement<C> arg = args.get(0);
+				if (arg instanceof TypeExp<?>) {
+					TypeExp<C> typeExp = (TypeExp<C>) arg;
+					argType = typeExp.getReferredType();
+				} else {
+					argType = arg.getType();
+				}
+
+/*				if (sourceType instanceof CollectionType<?, ?>) {
+					String message = OCLMessages.bind(
+						OCLMessages.Noncomforming_ERROR_, uml
+							.getName(sourceType), getOperationName(opcode));
+					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
+				}
+				// we can require neither a common supertype nor that type2
+				// and type1 have any conformance relationship whatsoever
+				// because the run-time 'type' may conform to 'arg'
+				// commonSuperType(argEType, type);
+				// type1AsType2(type, argEType);
+				return argType; */
+				return getCollectionType(env, env.getOCLFactory(), argType);
 		}
 
 		String message = OCLMessages.bind(OCLMessages.CollectionType_ERROR_,
@@ -1728,6 +1759,10 @@ public final class OCLStandardLibraryUtil {
 		result.add(createUnaryOperation(uml, stdlib.getInteger(), SIZE_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getReal(), MAX_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getReal(), MIN_NAME));
+		result.add(createBinaryOperation(uml, getCollectionType(env, oclFactory, stdlib.getT2()), SELECT_BY_KIND_NAME,
+			stdlib.getOclType(), "typespec")); //$NON-NLS-1$
+		result.add(createBinaryOperation(uml, getCollectionType(env, oclFactory, stdlib.getT2()), SELECT_BY_TYPE_NAME,
+			stdlib.getOclType(), "typespec")); //$NON-NLS-1$
 
 		return result;
 	}

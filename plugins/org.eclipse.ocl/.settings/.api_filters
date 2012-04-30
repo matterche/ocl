@@ -88,6 +88,30 @@
         <filter comment="New library operation constants" id="403767336">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_KIND"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_KIND_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_TYPE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
+                <message_argument value="SELECT_BY_TYPE_NAME"/>
+            </message_arguments>
+        </filter>
+        <filter comment="New library operation constants" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.PredefinedType"/>
                 <message_argument value="STARTS_WITH"/>
             </message_arguments>
         </filter>
