@@ -70,16 +70,6 @@ public class TypeResolverImpl
         return factory.createResource(URI.createURI("ocl:///oclenv.ecore")); //$NON-NLS-1$
 	}
     
-    // Documentation copied from the inherited implementation
-    @Override
-    protected EPackage createTuplePackage() {
-        EPackage result = super.createTuplePackage();
-        
-        result.setEFactoryInstance(new TupleFactory());
-        
-        return result;
-    }
-    
     // Documentation copied from the inherited specification
     @Override
     protected EPackage createPackage(String name) {

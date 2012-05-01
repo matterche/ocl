@@ -20,6 +20,7 @@ package org.eclipse.ocl;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.preferences.IScopeContext;
@@ -31,11 +32,15 @@ import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.Option;
+import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.Adaptable;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
@@ -369,4 +374,119 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
         
         return result;
     }
+    
+
+    /**
+     * UML implementation of a tuple value.
+     * 
+     * @author Christian W. Damus (cdamus)
+     * @since 3.2
+     */
+    protected static abstract class AbstractTuple<O, P>
+        implements Tuple<O, P> {
+
+        private final TupleType<O, P> type;
+        private final Map<String, Object> parts = new java.util.HashMap<String, Object>();
+        private Integer hashCode = null;
+
+        /**
+         * Initializes me with a map of part values.
+         * 
+         * @param type
+         *            my type
+         * @param values
+         *            my parts
+         */
+        protected AbstractTuple(TupleType<O, P> type,
+                Map<P, Object> values) {
+            this.type = type;
+
+            for (Map.Entry<P, Object> entry : values.entrySet()) {
+                parts.put(getName(entry.getKey()), entry.getValue());
+            }
+        }
+
+        protected abstract String getName(P part);
+        
+        // implements the inherited specification
+        public TupleType<O, P> getTupleType() {
+            return type;
+        }
+
+        // implements the inherited specification
+        public Object getValue(String partName) {
+            Object partValue = parts.get(partName);
+			if (partValue instanceof Number) {
+				partValue = NumberUtil.coerceNumber((Number)partValue);
+			}
+			return partValue;
+        }
+
+        // implements the inherited specification
+        public Object getValue(P part) {
+            return getValue(getName(part));
+        }
+
+        // overrides the inherited implementation
+        @Override
+        public boolean equals(Object o) {
+            boolean result = o instanceof AbstractTuple<?,?>;
+
+            if (result) {
+            	AbstractTuple<?,?> other = (AbstractTuple<?,?>) o;
+
+                result &= other.type.equals(type);
+                result &= other.parts.equals(parts);
+            }
+
+            return result;
+        }
+
+        // overrides the inherited implementation
+        @Override
+        public int hashCode() {
+        	if (hashCode == null) {
+                int typeHashCode = type.hashCode();
+        		int partsHashCode = parts.hashCode();
+        		hashCode = 37 * typeHashCode + 17 * partsHashCode;
+        	}
+    		return hashCode;
+         }
+        
+        @Override
+        public String toString() {
+            StringBuilder result = new StringBuilder();
+            result.append("Tuple{"); //$NON-NLS-1$
+            
+            for (Iterator<P> iter =  getTupleType().oclProperties().iterator();
+                    iter.hasNext();) {
+                
+            	P p = iter.next();
+                
+                result.append(getName(p));
+                result.append(" = "); //$NON-NLS-1$
+                result.append(toString(getValue(p)));
+                
+                if (iter.hasNext()) {
+                    result.append(", "); //$NON-NLS-1$
+                }
+            }
+            
+            result.append("}"); //$NON-NLS-1$
+            return result.toString();
+        }
+        
+        private String toString(Object o) {
+            if (o instanceof String) {
+                return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
+            } else if (o instanceof Collection<?>) {
+                return CollectionUtil.toString((Collection<?>) o);
+            } else if (o == null) {
+                return "null"; //$NON-NLS-1$
+            } else {
+                return o.toString();
+            }
+        }
+    }
+
 }

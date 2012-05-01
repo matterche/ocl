@@ -56,6 +56,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.ObjectUtil;
@@ -253,7 +254,14 @@ public class EcoreEvaluationEnvironment
 				}
 				return coerceValue(property, etarget.eGet(property), true);
 			}
-		}
+    	} else if (target instanceof Tuple<?, ?>) {
+    		@SuppressWarnings("unchecked")
+    		Tuple<EOperation, EStructuralFeature> tuple = (Tuple<EOperation, EStructuralFeature>) target;
+    		
+    		if (tuple.getTupleType().oclProperties().contains(property)) {
+    			return tuple.getValue(property);
+    		}
+    	}
 
 		throw new IllegalArgumentException();
 	}
@@ -381,53 +389,21 @@ public class EcoreEvaluationEnvironment
 		return result;
 	}
 
-	// implements the inherited specification
-	public Tuple<EOperation, EStructuralFeature> createTuple(EClassifier type,
-			Map<EStructuralFeature, Object> values) {
+    // implements the inherited specification
+    public Tuple<EOperation, EStructuralFeature> createTuple(EClassifier type,
+            Map<EStructuralFeature, Object> values) {
 
-		EClass tupleType = (EClass) type;
+        @SuppressWarnings("unchecked")
+        TupleType<EOperation, EStructuralFeature> tupleType = (TupleType<EOperation, EStructuralFeature>) type;
 
-		EObject tuple = tupleType.getEPackage().getEFactoryInstance()
-			.create(tupleType);
-
-		for (Map.Entry<EStructuralFeature, Object> entry : values.entrySet()) {
-			EStructuralFeature property = entry.getKey();
-			Object value = entry.getValue();
-
-			if (property.isMany() && (value instanceof Collection<?>)) {
-				@SuppressWarnings("unchecked")
-				Collection<Object> coll = (Collection<Object>) tuple
-					.eGet(property);
-				coll.addAll((Collection<?>) value);
-			} else if ((property.getEType() instanceof CollectionType<?, ?>)
-				&& (value instanceof Collection<?>)) {
-				// always copy the collection to the correct type
-				@SuppressWarnings("unchecked")
-				CollectionType<EClassifier, EOperation> collType = (CollectionType<EClassifier, EOperation>) property
-					.getEType();
-				tuple.eSet(property, CollectionUtil.createNewCollection(
-					collType.getKind(), (Collection<?>) value));
-			} else {
-				// do numeric coercion if necessary:
-				if (value instanceof Number && property.getEType().getInstanceClass() != null &&
-						!(value instanceof Double) &&
-						Double.class.isAssignableFrom(property.getEType().getInstanceClass())) {
-					value = ((Number) value).doubleValue();
-				}
-				if (value != null || !(property.getEType() instanceof VoidType)) {
-					// don't try to set null on a VoidType property; it's already null; trying to
-					// set it will cause an exception in the EMF setting delegate infrastructure
-					// because VoidType is neither an EClass nor an EDataType.
-					tuple.eSet(property, value);
-				}
+        return new AbstractTuple<EOperation, EStructuralFeature>(tupleType, values)
+        {
+			@Override
+			protected String getName(EStructuralFeature part) {
+				return part.getName();
 			}
-		}
-
-		@SuppressWarnings("unchecked")
-		Tuple<EOperation, EStructuralFeature> result = (Tuple<EOperation, EStructuralFeature>) tuple;
-
-		return result;
-	}
+		};
+    }
 
 	// implements the inherited specification
 	public Map<EClass, Set<EObject>> createExtentMap(Object object) {

@@ -37,25 +37,6 @@ EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAc
 		return EcoreTestReflection.INSTANCE;
 	}
 
-	public void testCollectionProduct_bug284129() {										// BUG 378036 this doesn't work for UML
-		// FIXME Due to number equality inconsistency between Java and OCL, the following doesn't work:
-		// assertExpressionResults("Set{Tuple{first = 3, second = 3.0}, Tuple{first = 3, second = 4}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
-		// But if we relax a little and compare the result to all Double/Real values, it works:
-		assertExpressionResults("Set{Tuple{first = 3.0, second = 3.0}, Tuple{first = 3.0, second = 4.0}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4.0}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
-	}
-
-	public void testCollectionProductNullValue() {										// BUG 378036 this doesn't work for UML
-		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Sequence{3, 4}->product(OrderedSet{null})");
-		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Bag{3, 4}->product(let s:Set(OclVoid)=Set{} in s->including(null))");
-		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Set{3, 4}->product(Bag{null})");
-		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "OrderedSet{3, 4}->product(Sequence{null})");
-
-		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
-		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Set{3})");
-		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
-		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
-	}
-
 	public void testCollectionSelectByKind() {										// BUG 378036 this doesn't work for UML
 		assertExpressionResults("Bag{4,4}", "Bag{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
 		assertExpressionResults("OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByKind(Integer)");

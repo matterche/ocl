@@ -22,7 +22,6 @@ package org.eclipse.ocl.uml;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,7 +41,6 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.expressions.CollectionKind;
-import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.options.EvaluationMode;
@@ -923,7 +921,13 @@ public class UMLEvaluationEnvironment
         @SuppressWarnings("unchecked")
         TupleType<Operation, Property> tupleType = (TupleType<Operation, Property>) type;
 
-        return new TupleImpl(tupleType, values);
+        return new AbstractTuple<Operation, Property>(tupleType, values)
+        {
+			@Override
+			protected String getName(Property part) {
+				return part.getName();
+			}
+		};
     }
 
     // implements the inherited specification
@@ -1172,111 +1176,6 @@ public class UMLEvaluationEnvironment
         }
 
         return enumerationLiteral;
-    }
-
-    /**
-     * UML implementation of a tuple value.
-     * 
-     * @author Christian W. Damus (cdamus)
-     */
-    static class TupleImpl
-        implements Tuple<Operation, Property> {
-
-        private final TupleType<Operation, Property> type;
-
-        private final Map<String, Object> parts = new java.util.HashMap<String, Object>();
-
-        /**
-         * Initializes me with a map of part values.
-         * 
-         * @param type
-         *            my type
-         * @param values
-         *            my parts
-         */
-        TupleImpl(TupleType<Operation, Property> type,
-                Map<Property, Object> values) {
-            this.type = type;
-
-            for (Map.Entry<Property, Object> entry : values.entrySet()) {
-                parts.put(entry.getKey().getName(), entry.getValue());
-            }
-        }
-
-        // implements the inherited specification
-        public TupleType<Operation, Property> getTupleType() {
-            return type;
-        }
-
-        // implements the inherited specification
-        public Object getValue(String partName) {
-            Object partValue = parts.get(partName);
-			if (partValue instanceof Number) {
-				partValue = NumberUtil.coerceNumber((Number)partValue);
-			}
-			return partValue;
-        }
-
-        // implements the inherited specification
-        public Object getValue(Property part) {
-            return getValue(part.getName());
-        }
-
-        // overrides the inherited implementation
-        @Override
-        public boolean equals(Object o) {
-            boolean result = o instanceof TupleImpl;
-
-            if (result) {
-                TupleImpl other = (TupleImpl) o;
-
-                result &= other.type.equals(type);
-                result &= other.parts.equals(parts);
-            }
-
-            return result;
-        }
-
-        // overrides the inherited implementation
-        @Override
-        public int hashCode() {
-            return 37 * type.hashCode() + 17 * parts.hashCode();
-        }
-        
-        @Override
-        public String toString() {
-            StringBuilder result = new StringBuilder();
-            result.append("Tuple{"); //$NON-NLS-1$
-            
-            for (Iterator<Property> iter =  getTupleType().oclProperties().iterator();
-                    iter.hasNext();) {
-                
-                Property p = iter.next();
-                
-                result.append(p.getName());
-                result.append(" = "); //$NON-NLS-1$
-                result.append(toString(getValue(p)));
-                
-                if (iter.hasNext()) {
-                    result.append(", "); //$NON-NLS-1$
-                }
-            }
-            
-            result.append("}"); //$NON-NLS-1$
-            return result.toString();
-        }
-        
-        private String toString(Object o) {
-            if (o instanceof String) {
-                return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (o instanceof Collection<?>) {
-                return CollectionUtil.toString((Collection<?>) o);
-            } else if (o == null) {
-                return "null"; //$NON-NLS-1$
-            } else {
-                return o.toString();
-            }
-        }
     }
 
     /**
