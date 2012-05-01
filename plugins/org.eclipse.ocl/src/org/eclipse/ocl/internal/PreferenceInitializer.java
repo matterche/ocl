@@ -45,6 +45,7 @@ public class PreferenceInitializer extends AnnotatedPreferenceInitializer
 
 		putPreference((PreferenceableOption<?>) ParsingOptions.DEFINITION_CONSTRAINS_FEATURE);
 		putPreference((PreferenceableOption<?>) ParsingOptions.USE_COMPARE_TO_OPERATION);
+		putPreference((PreferenceableOption<?>) ParsingOptions.USE_LONG_INTEGERS);
 		putPreference((PreferenceableOption<?>) ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE);
 		putPreference((PreferenceableOption<?>) ParsingOptions.IMPLICIT_ROOT_CLASS);
 		putPreference((PreferenceableOption<?>) ParsingOptions.PACKAGE_LOOKUP_STRATEGY);

@@ -72,6 +72,8 @@ public class EcoreAndUmlProjectPreferencePage extends AbstractProjectPreferenceP
 			CommonMessages.LPG_DefinitionConstrainsFeature, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.USE_COMPARE_TO_OPERATION,
 			CommonMessages.LPG_UseCompareToOperation, BOOLEANS, fieldEditorParent));
+		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.USE_LONG_INTEGERS,
+			CommonMessages.LPG_UseLongIntegers, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE,
 			CommonMessages.LPG_WarnOfXorOrAndPrecedenceChange, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.PACKAGE_LOOKUP_STRATEGY,

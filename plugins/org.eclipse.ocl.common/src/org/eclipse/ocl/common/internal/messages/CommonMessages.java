@@ -42,5 +42,6 @@ public class CommonMessages
 	public static String LPG_SupportStaticFeatures;
 	public static String LPG_UseBackslashEscapeProcessing;
 	public static String LPG_UseCompareToOperation;
+	public static String LPG_UseLongIntegers;
 	public static String LPG_WarnOfXorOrAndPrecedenceChange;
 }

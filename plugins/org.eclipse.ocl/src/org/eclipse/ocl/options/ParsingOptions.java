@@ -70,6 +70,18 @@ public class ParsingOptions {
 
     /**
      * <p>
+     * Parsing option indicating whether to allow integer literals to exceed 32-bit limits..
+     * </p><p>
+     * The default value of this option preserves compatibility and is <tt>false</tt>. For 
+     * enhanced functionality set this value to true.
+     * </p>
+     * @since 3.2
+     */
+    public static final Option<Boolean> USE_LONG_INTEGERS =
+    		new BooleanOption(OCLUtil.PLUGIN_ID, "use.long.integers", false); //$NON-NLS-1$
+
+    /**
+     * <p>
      * Parsing option indicating whether to generate a warning when the
      * OCL 2.1 parsing of distinct xor, or, and precedences leads to a different
      * parse to the OCL 2.0 specification of all levels equal.
