@@ -310,6 +310,10 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 		throw new UnsupportedOperationException(getClass().getName() + ".getOCLExpressionTypes");
 	}
 
+	public EClassifier getOwnedType(EPackage aPackage, String name) {
+		return aPackage.getEClassifier(name);
+	}
+
 	public EClassifier getOwner(EOperation context) {
 		return context.getEContainingClass();
 	}

@@ -18,14 +18,24 @@
 
 package org.eclipse.ocl.ecore.tests;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.OCLInput;
-import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.tests.GenericTuplesTest;
 
 /**
  * Tests for tuple expressions.
@@ -34,190 +44,18 @@ import org.eclipse.ocl.expressions.OCLExpression;
  */
 @SuppressWarnings("nls")
 public class TuplesTest
-	extends AbstractTestSuite {
-	
-	/**
-	 * Tests the parsing of tuple literals with part types.
-	 */
-	public void test_tupleLiteral_withTypes() {
-		// one part
-		parse("package ocltest context Fruit " +
-				"inv: Tuple{a : Integer = 1} " +
-				"endpackage");
-		
-		// multiple parts
-		parse("package ocltest context Fruit " +
-				"inv: Tuple{a : Integer = 1, b : String = 'foo', c : Color = Color::red} " +
-				"endpackage");
+	extends GenericTuplesTest<EObject, EPackage, EClassifier, EClassifier, EClass, EDataType, EClassifier, EEnum, EOperation, EParameter, EStructuralFeature,
+	EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
+{
+	@Override
+	public EcoreTestReflection getStaticReflection() {
+		return EcoreTestReflection.INSTANCE;
 	}
 	
-	/**
-	 * Tests the parsing of tuple literals without part types.
-	 */
-	public void test_tupleLiteral_noTypes() {
-		// one part
-		parse("package ocltest context Fruit " +
-				"inv: Tuple{a = 1} " +
-				"endpackage");
-		
-		// multiple parts
-		parse("package ocltest context Fruit " +
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
-				"endpackage");
-	}
-	
-	/**
-	 * Tests that OclVoid and other tuple components with null values work as
-	 * expected
-	 */
-	public void test_tupleLiteral_nullValues() {
-		// one part
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a = null}.a " +
-			"endpackage")));
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a:OclVoid = null}.a " +
-			"endpackage")));
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a:String = null}.a " +
-			"endpackage")));
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a:Fruit = null}.a " +
-			"endpackage")));
-		
-		// multiple parts
-		assertEquals(1, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a = null, b=1}.b " +
-			"endpackage")));
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a = null, b=1}.a " +
-			"endpackage")));
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a:String = null, b='abc'}.a " +
-			"endpackage")));
-		assertEquals("abc", evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a:String = null, b='abc'}.b " +
-			"endpackage")));
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a:Fruit = null, b:String='abc'}.a " +
-			"endpackage")));
-		assertEquals(null, evaluate(parse(
-			"package ocltest context Fruit " +
-			"inv: Tuple{a:Fruit = null, b:OclVoid=null}.b " +
-			"endpackage")));
-	}
-	
-	/**
-	 * Tests the parsing of tuple literals with a mixture of explicit and
-	 * implicit part types.
-	 */
-	public void test_tupleLiteral_mixedTypes() {
-		parse("package ocltest context Fruit " +
-				"inv: Tuple{a : Integer = 1, b = 'foo', c : Color = Color::red} " +
-				"endpackage");
-		
-		parse("package ocltest context Fruit " +
-				"inv: Tuple{a = 1, b : String = 'foo', c = Color::red} " +
-				"endpackage");
-	}
-	
-	/**
-	 * Tests the parsing of initialization of variables of tuple type.
-	 */
-	public void test_tupleAssignment() {
-		parse("package ocltest context Fruit " +
-				"inv: let t : Tuple(a : Integer, b : String, c : Color) " +
-					" = Tuple{a = 1, b = 'foo', c = Color::red} " +
-					" in t " +
-				"endpackage");
-	}
-	
-	/**
-	 * Tests the parsing of collections of tuple types.
-	 */
-	public void test_tupleCollections() {
-		parse("package ocltest context Fruit " +
-				"inv: let ts : Set(Tuple(a : Integer, b : String, c : Color)) " +
-					" = Set{}->including(Tuple{a = 1, b = 'foo', c = Color::red}) " +
-					" in ts " +
-				"endpackage");
-	}
-	
-	/**
-	 * Tests the equivalence of tuples, including irrelevance of ordering of
-	 * the parts
-	 */
-	public void test_tupleEquivalence() {
-		// different value in one part
-		assertEquals(Boolean.FALSE, evaluate(parse(
-				"package ocltest context Fruit " +
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
-					" = Tuple{b = 'foo', c = Color::black, a = 1} " +
-				"endpackage")));
-		
-		// test the inequality operator
-		assertEquals(Boolean.TRUE, evaluate(parse(
-				"package ocltest context Fruit " +
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
-					" <> Tuple{b = 'foo', c = Color::black, a = 1} " +
-				"endpackage")));
-		
-		// all parts have same value
-		assertEquals(Boolean.TRUE, evaluate(parse(
-				"package ocltest context Fruit " +
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
-					" = Tuple{b = 'foo', c = Color::red, a = 1} " +
-				"endpackage")));
-		
-		// equality of collections of tuples
-		assertEquals(Boolean.TRUE, evaluate(parse(
-				"package ocltest context Fruit " +
-				"inv: Set{Tuple{a = 1, b = 'foo'}, Tuple{a = 5, b = 'bar'}} " +
-					" = Set{Tuple{b = 'bar', a = 5}, Tuple{b = 'foo', a = 1}} " +
-				"endpackage")));
-	}
-	
-	/**
-	 * Tests that the parser distinguishes <code>TupleType</code>s by the names
-	 * and types of their parts, not by the names alone.
-	 */
-	public void test_tupleTypeDistinction_192832() {
-	    OCLInput doc = new OCLInput(
-	        "package ocltest context Fruit " +
-            "def: foo : Tuple(a : String) = Tuple{a = 'foo'} " +
-            "def: bar : Tuple(a : Integer) = Tuple{a = 100} " +
-            "endpackage");
-	    
-	    try {
-    	    ocl.parse(doc);
-    	    
-    	    helper.setContext(fruit);
-    	    OCLExpression<EClassifier> expr1 = helper.createQuery("self.foo");
-    	    OCLExpression<EClassifier> expr2 = helper.createQuery("self.bar");
-            
-    	    assertNotSame(expr1.getType(), expr2.getType());
-    	    
-    	    TupleType type = (TupleType) expr1.getType();
-    	    EStructuralFeature a = type.getEStructuralFeature("a");
-    	    assertNotNull(a);
-    	    assertEquals(getOCLStandardLibrary().getString(), a.getEType());
-            
-            type = (TupleType) expr2.getType();
-            a = type.getEStructuralFeature("a");
-            assertNotNull(a);
-            assertEquals(getOCLStandardLibrary().getInteger(), a.getEType());
-	    } catch (Exception e) {
-	        fail("Failed to parse: " + e.getLocalizedMessage());
-	    }
+	@Override
+	protected void initFruitPackage() {
+		super.initFruitPackage();
+		resourceSet.getPackageRegistry().put(fruitPackage.getNsURI(), fruitPackage);
 	}
 
 	/**
@@ -236,48 +74,4 @@ public class TuplesTest
                 expr.getType().eClass()));
         assertTrue(expr.getType() instanceof EDataType);
 	}
-	
-	/**
-	 * Tests access to tuple parts by name when all parts have the same type.
-	 */
-	public void test_tuplePartAccess_238049() {
-        OCLExpression<EClassifier> expr = parse(
-            "package ocltest context Fruit " +
-            "inv: Tuple{first : String = 'Roger', last : String = 'Bacon'}.first " +
-            "endpackage");
-    
-		assertEquals("Roger", evaluate(expr));
-	}
-	
-/*	public void test_tupleWithLongLiteral_349117() {
-        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
-		OCLExpression<EClassifier> expr = parse("package ocltest context Fruit "
-			+ "inv: Tuple{first : Integer = 5000000000}.first " + "endpackage");
-		assertEquals(5000000000l, evaluate(expr));
-        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
-	}
-
-	public void test_tupleWithLongIntegerProperty_349117() throws ParserException {
-        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
-		// tuples work fine with int / java.lang.Integer
-		helper.setContext(ecore.getEClassifier("EInt"));
-		OCLExpression<EClassifier> expr2 = helper.createQuery("Tuple{first : Integer = self}.first");
-		assertEquals(5000000, evaluate(expr2, Integer.valueOf(5000000)));
-
-		// we can compute with Long values
-		helper.setContext(ecore.getEClassifier("ELong"));
-		OCLExpression<EClassifier> expr3 = helper.createQuery("2*self");
-		assertEquals(10000000000l, evaluate(expr3, Long.valueOf(5000000000l)));
-
-		// we should be able to create the tuple based on a value exceeding int, represented as long
-		helper.setContext(ecore.getEClassifier("EClass"));
-		OCLExpression<EClassifier> expr4 = helper.createQuery("Tuple{first : Integer = 1000*5000000}.first");
-		assertEquals(5000000000l, evaluate(expr4, ecore.getEPackage()));
-
-		// we should be able to create the tuple based on a java.lang.Long as an OCL Integer
-		helper.setContext(ecore.getEClassifier("ELong"));
-		OCLExpression<EClassifier> expr5 = helper.createQuery("Tuple{first : Integer = self}.first");
-		assertEquals(5000000000l, evaluate(expr5, Long.valueOf(5000000000l)));
-        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
-	} */
 }

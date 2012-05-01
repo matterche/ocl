@@ -346,6 +346,10 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		throw new UnsupportedOperationException(getClass().getName() + ".getNsURI");
 	}
 
+	public Type getOwnedType(Package aPackage, String name) {
+		return aPackage.getOwnedType(name);
+	}
+
 	public Classifier getOwner(Operation context) {
 		return (Classifier) context.getOwner();
 	}

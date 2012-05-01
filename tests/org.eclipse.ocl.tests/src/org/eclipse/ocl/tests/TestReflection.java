@@ -121,12 +121,14 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 	PK getEcorePrimitiveTypes();
 
 	String getFruitModelPath();
-    
+   
 	C getMetaclass(String name);
 
 	C getMetametaclass(String name);
 	
 	String getNsURI(PK aPackage);
+
+	T getOwnedType(PK aPackage, String name);
 
 	C getOwner(O context);
 	
