@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
-    nsURI="http://www.eclipse.org/ocl/1.1.0/OCLCST" nsPrefix="ocl">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl" nsURI="http://www.eclipse.org/ocl/1.1.0/OCLCST" nsPrefix="ocl">
   <eSubpackages name="cst" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/CST" nsPrefix="ocl.cst">
     <eClassifiers xsi:type="ecore:EClass" name="CSTNode" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -241,9 +239,19 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExpCS" eSuperTypes="#//cst/PrimitiveLiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedIntegerSymbol"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
+          changeable="false" defaultValueLiteral="0"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="longSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
+          volatile="true" transient="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExpCS" eSuperTypes="#//cst/PrimitiveLiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedIntegerSymbol"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
+          changeable="false" defaultValueLiteral="0"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="longSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
+          volatile="true" transient="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RealLiteralExpCS" eSuperTypes="#//cst/PrimitiveLiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>

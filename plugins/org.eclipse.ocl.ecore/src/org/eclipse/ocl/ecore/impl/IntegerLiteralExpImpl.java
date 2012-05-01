@@ -159,7 +159,7 @@ public class IntegerLiteralExpImpl
 	 * <!-- begin-user-doc -->
 	 * @since 3.2
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Long getExtendedIntegerSymbol() {
 		return extendedIntegerSymbol;

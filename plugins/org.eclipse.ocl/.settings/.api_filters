@@ -1,5 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl" version="2">
+    <resource path="src/org/eclipse/ocl/cst/CSTPackage.java" type="org.eclipse.ocl.cst.CSTPackage">
+        <filter comment="Additional Extended Integer support" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="INTEGER_LITERAL_EXP_CS_FEATURE_COUNT"/>
+                <message_argument value="7"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="UNLIMITED_NATURAL_LITERAL_EXP_CS_FEATURE_COUNT"/>
+                <message_argument value="7"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="INTEGER_LITERAL_EXP_CS__EXTENDED_INTEGER_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="INTEGER_LITERAL_EXP_CS__LONG_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="UNLIMITED_NATURAL_LITERAL_EXP_CS__EXTENDED_INTEGER_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="UNLIMITED_NATURAL_LITERAL_EXP_CS__LONG_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="getIntegerLiteralExpCS_ExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="getIntegerLiteralExpCS_LongSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="getUnlimitedNaturalLiteralExpCS_ExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.CSTPackage"/>
+                <message_argument value="getUnlimitedNaturalLiteralExpCS_LongSymbol()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/cst/IntegerLiteralExpCS.java" type="org.eclipse.ocl.cst.IntegerLiteralExpCS">
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.IntegerLiteralExpCS"/>
+                <message_argument value="getExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.IntegerLiteralExpCS"/>
+                <message_argument value="getLongSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.IntegerLiteralExpCS"/>
+                <message_argument value="setLongSymbol(Long)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/cst/UnlimitedNaturalLiteralExpCS.java" type="org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS">
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS"/>
+                <message_argument value="getExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS"/>
+                <message_argument value="getLongSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS"/>
+                <message_argument value="setLongSymbol(Long)"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src/org/eclipse/ocl/expressions/ExpressionsPackage.java" type="org.eclipse.ocl.expressions.ExpressionsPackage">
         <filter comment="Additional Extended Integer support" id="388194388">
             <message_arguments>
