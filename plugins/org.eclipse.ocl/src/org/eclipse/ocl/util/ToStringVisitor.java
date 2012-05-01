@@ -357,7 +357,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 */
 	@Override
     public String visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
-		return (il.getIntegerSymbol() == null)? NULL_PLACEHOLDER
+		return (il.getLongSymbol() == null)? NULL_PLACEHOLDER
 				: il.getLongSymbol().toString();
 	}
     

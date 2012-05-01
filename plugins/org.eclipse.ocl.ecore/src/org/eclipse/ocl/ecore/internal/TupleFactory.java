@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.ocl.ecore.VoidType;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.ObjectUtil;
@@ -132,9 +133,13 @@ public class TupleFactory extends EFactoryImpl {
 		public Object getValue(EStructuralFeature part) {
 			if (part.getEType() instanceof VoidType) {
 				return null;
-			} else {
-				return eGet(part);
 			}
+			Object partValue = eGet(part);
+			if (partValue instanceof Number) {
+				partValue = NumberUtil.coerceNumber((Number)partValue);
+			}
+			return partValue;
+			
 		}
         
         @Override

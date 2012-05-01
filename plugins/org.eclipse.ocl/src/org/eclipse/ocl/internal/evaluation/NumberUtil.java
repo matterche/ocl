@@ -59,12 +59,13 @@ public class NumberUtil {
             if (canConform((Long) number)) {
                 result = number.intValue();
             } else {
-                // do nothing, NFE will occur
                 result = number;
             }
         } else if (number instanceof BigInteger) {
-            if (isInteger((BigInteger) number)) {
+        	if (isInteger((BigInteger) number)) {
                 result = number.intValue();
+            } else if (isLong((BigInteger) number)) {
+                result = number.longValue();
             } else {
                 // do nothing, NFE will occur
                 result = number;

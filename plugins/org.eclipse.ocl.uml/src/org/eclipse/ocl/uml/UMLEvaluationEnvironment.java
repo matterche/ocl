@@ -42,6 +42,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.options.EvaluationMode;
@@ -1209,7 +1210,11 @@ public class UMLEvaluationEnvironment
 
         // implements the inherited specification
         public Object getValue(String partName) {
-            return parts.get(partName);
+            Object partValue = parts.get(partName);
+			if (partValue instanceof Number) {
+				partValue = NumberUtil.coerceNumber((Number)partValue);
+			}
+			return partValue;
         }
 
         // implements the inherited specification
