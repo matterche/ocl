@@ -1253,18 +1253,27 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						case PredefinedType.INCLUDES_ALL:
 							// Collection::includesAll(T)
+							if (argVal == null) {
+								return getInvalid();
+							}
 							return CollectionUtil.includesAll(sourceColl,
 								(Collection<?>) argVal) ? Boolean.TRUE
 								: Boolean.FALSE;
 
 						case PredefinedType.EXCLUDES_ALL:
 							// Collection::excludesAll(T)
+							if (argVal == null) {
+								return getInvalid();
+							}
 							return CollectionUtil.excludesAll(sourceColl,
 								(Collection<?>) argVal) ? Boolean.TRUE
 								: Boolean.FALSE;
 
 						case PredefinedType.PRODUCT: {
 							// Collection::product(Collection(T2))
+							if (argVal == null) {
+								return getInvalid();
+							}
 							@SuppressWarnings("unchecked")
 							CollectionType<C, O> collType = (CollectionType<C, O>) oc.getType();
 							
@@ -1277,12 +1286,18 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						}
 						case PredefinedType.UNION: {
 							// Set, Bag::union(Set, Bag)
+							if (argVal == null) {
+								return getInvalid();
+							}
 							Collection<?> argColl = (Collection<?>) argVal;
 							return CollectionUtil.union(sourceColl, argColl);
 						}
 
 						case PredefinedType.INTERSECTION: {
 							// Set, Bag::intersection(Set, Bag)
+							if (argVal == null) {
+								return getInvalid();
+							}
 							Collection<?> argColl = (Collection<?>) argVal;
 							return CollectionUtil.intersection(sourceColl,
 								argColl);
@@ -1290,6 +1305,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						case PredefinedType.MINUS:
 							// Set::minus(Set)
+							if (argVal == null) {
+								return getInvalid();
+							}
 							return CollectionUtil.minus((Set<?>) sourceColl,
 								(Set<?>) argVal);
 
@@ -1305,6 +1323,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						case PredefinedType.SYMMETRIC_DIFFERENCE:
 							// Set::symmetricDifference(Set)
+							if (argVal == null) {
+								return getInvalid();
+							}
 							return CollectionUtil.symmetricDifference(
 								(Set<?>) sourceColl, (Set<?>) argVal);
 
