@@ -572,7 +572,8 @@ public class UMLReflectionImpl
 			} else if (instanceClass == Integer.class
 				|| instanceClass == int.class || instanceClass == Long.class
 				|| instanceClass == long.class || instanceClass == Short.class
-				|| instanceClass == short.class
+				|| instanceClass == short.class || instanceClass == Byte.class
+				|| instanceClass == byte.class
 				|| instanceClass == BigInteger.class) {
 				return OCLStandardLibraryImpl.INSTANCE.getInteger();
 	        } else if (List.class.isAssignableFrom(instanceClass)) {
@@ -585,7 +586,7 @@ public class UMLReflectionImpl
 	            return OCLStandardLibraryImpl.INSTANCE.getOclAny();
 	        }
         }
-        
+
         // All other data types map to themselves
         return dataType;
     }

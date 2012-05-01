@@ -143,6 +143,11 @@ public class TypeConformanceTests
 		helper.getOCL().evaluate(eo, query);
 	}
 
+	public void testEcoreAccess_358712() throws Exception {
+		helper.setContext(cl);
+		helper.createQuery("let a : ecore::EByte = 1 in a + 1");
+	}
+	
 	private void defineVariable(String name, EClassifier type, Object value) {
 		Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE
 			.createVariable();
