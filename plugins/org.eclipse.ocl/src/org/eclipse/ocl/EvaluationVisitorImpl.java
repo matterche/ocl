@@ -385,9 +385,21 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							return getInvalid();
 						}
 						if (sourceVal instanceof Integer) {
-                            return - (Integer) sourceVal;
+							int intVal = (Integer)sourceVal;
+                            if (intVal == Integer.MIN_VALUE) {
+                            	return Long.valueOf(-(long)intVal);
+                            }
+                            else {
+                            	return Integer.valueOf(-intVal);
+                            }
                         } else if (sourceVal instanceof Long) {
-                            return - (Long) sourceVal;
+							long longVal = (Long)sourceVal;
+                            if (longVal == -(long)Integer.MIN_VALUE) {
+                            	return Integer.valueOf(Integer.MIN_VALUE);
+                            }
+                            else {
+                            	return Long.valueOf(-longVal);
+                            }
                         }
 
 						// Double::minus()
@@ -405,7 +417,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             }
                             
 							// Integer::abs()
-							return Math.abs(sourceInt);
+                            if (sourceInt == Integer.MIN_VALUE) {
+                            	return Long.valueOf(-(long)Integer.MIN_VALUE);
+                            }
+                            else {
+                            	return Math.abs(sourceInt);
+                            }
                         } else if (sourceVal instanceof Long) {
                             long sourceInt = (Long) sourceVal;
                             
@@ -2345,7 +2362,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	@Override
     public Object visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
-		return il.getIntegerSymbol();
+		return coerceNumber(il.getLongSymbol());
 	}
     
     /**

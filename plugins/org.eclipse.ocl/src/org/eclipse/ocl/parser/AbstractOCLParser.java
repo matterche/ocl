@@ -26,6 +26,7 @@ import java.util.Set;
 import lpg.runtime.IToken;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTFactory;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
@@ -81,6 +82,7 @@ import org.eclipse.ocl.lpg.AbstractLexer;
 import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
 
 public abstract class AbstractOCLParser
@@ -475,7 +477,13 @@ public abstract class AbstractOCLParser
 		IntegerLiteralExpCS result = CSTFactory.eINSTANCE
 			.createIntegerLiteralExpCS();
 		result.setSymbol(string);
-		result.setIntegerSymbol(Integer.valueOf(string));
+		BasicEnvironment environment = getEnvironment();
+		if (!(environment instanceof Environment<?,?,?,?,?,?,?,?,?,?,?,?>) || !ParsingOptions.getValue((Environment<?,?,?,?,?,?,?,?,?,?,?,?>)environment, ParsingOptions.USE_LONG_INTEGERS)) {
+			result.setIntegerSymbol(Integer.valueOf(string));
+		}
+		else {
+			result.setLongSymbol(Long.valueOf(string));
+		}
 		return result;
 	}
 

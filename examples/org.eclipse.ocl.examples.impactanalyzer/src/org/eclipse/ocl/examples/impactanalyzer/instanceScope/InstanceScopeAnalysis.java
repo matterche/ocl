@@ -63,6 +63,7 @@ import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.Traceback
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 
@@ -461,7 +462,7 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
             } else if (otherArgument instanceof BooleanLiteralExp) {
                 value = ((BooleanLiteralExp) otherArgument).getBooleanSymbol();
             } else if (otherArgument instanceof IntegerLiteralExp) {
-                value = ((IntegerLiteralExp) otherArgument).getIntegerSymbol();
+                value = NumberUtil.coerceNumber(((IntegerLiteralExp) otherArgument).getLongSymbol());
             } else if (otherArgument instanceof RealLiteralExp) {
                 value = ((RealLiteralExp) otherArgument).getRealSymbol();
             } else {

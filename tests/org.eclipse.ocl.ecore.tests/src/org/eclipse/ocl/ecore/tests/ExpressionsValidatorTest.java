@@ -271,7 +271,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	
 	public void test_IntegerLiteralExp_checkIntegerType() {
 		IntegerLiteralExp il = factory.createIntegerLiteralExp();
-		il.setIntegerSymbol(42);
+		il.setLongSymbol(42L);
 		il.setType(apple);
 		
 		assertProblem(il, ExpressionsValidator.INTEGER_LITERAL_EXP__INTEGER_TYPE);

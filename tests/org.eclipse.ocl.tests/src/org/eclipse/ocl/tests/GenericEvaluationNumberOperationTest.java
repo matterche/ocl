@@ -11,8 +11,11 @@
  */
 package org.eclipse.ocl.tests;
 
+import java.math.BigInteger;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.options.ParsingOptions;
 
 //FIXME we're missing oclIsNew and oclIsInState
 /**
@@ -31,10 +34,18 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResult(Integer.valueOf(3), "3.abs()");
 		assertResult(Integer.valueOf(3), "(-3).abs()");
 
+		assertResult(2147483647, "2147483647.abs()");
+		assertParserError("2147483648.abs()", "For input string: \"{0}\"", "2147483648");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
+        assertResult(2147483648L, "2147483648.abs()");
+		assertResult(2147483649L, "(-2147483649).abs()");
+		assertResult(2147483648L, "(-2147483648).abs()");
+
 		// Real::abs()
 		assertResult(Double.valueOf(3d), "(3.0).abs()");
 		assertResult(Double.valueOf(3d), "(-3.0).abs()");
 		assertResult(Double.valueOf(3.1758d), "(3.1758).abs()");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberAbsInvalid() {
@@ -173,11 +184,22 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberGreaterThan() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::greaterThan(Integer)
 		assertResultTrue("3 > 2");
 		assertResultFalse("-3 > 2");
 		assertResultTrue("3 > -2");
 		assertResultFalse("-3 > -2");
+
+		assertQueryTrue(null, "2147483648 > 2147483647");
+		assertQueryFalse(null, "2147483647 > 2147483648");
+		assertQueryFalse(null, "-2147483649 > -2147483648");
+		assertQueryTrue(null, "-2147483648 > -2147483649");
+
+		assertQueryTrue(null, "2147483648 >= 2147483647");
+		assertQueryFalse(null, "2147483647 >= 2147483648");
+		assertQueryFalse(null, "-2147483649 >= -2147483648");
+		assertQueryTrue(null, "-2147483648 >= -2147483649");
 
 		// Real::greaterThan(Real)
 		assertResultTrue("3.0 > 2.0");
@@ -196,6 +218,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResultFalse("-3 > 3.0");
 		assertResultTrue("3 > -3.0");
 		assertResultFalse("-3 > -3.0");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberGreaterThanInvalid() {
@@ -219,11 +242,17 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberGreaterThanOrEqual() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::greaterThanOrEqual(Integer)
 		assertResultTrue("3 >= 2");
 		assertResultFalse("-3 >= 2");
 		assertResultTrue("3 >= -2");
 		assertResultFalse("-3 >= -2");
+
+		assertQueryTrue(null, "2147483648 >= 2147483647");
+		assertQueryFalse(null, "2147483647 >= 2147483648");
+		assertQueryFalse(null, "-2147483649 >= -2147483648");
+		assertQueryTrue(null, "-2147483648 >= -2147483649");
 
 		// Real::greaterThanOrEqual(Real)
 		assertResultTrue("3.0 >= 2.0");
@@ -242,6 +271,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResultFalse("-3 >= 3.0");
 		assertResultTrue("3 >= -3.0");
 		assertResultTrue("-3 >= -3.0");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 	}
 
 	public void testNumberGreaterThanOrEqualInvalid() {
@@ -265,11 +295,17 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberLessThan() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::lessThan(Integer)
 		assertResultFalse("3 < 2");
 		assertResultTrue("-3 < 2");
 		assertResultFalse("3 < -2");
 		assertResultTrue("-3 < -2");
+
+		assertQueryFalse(null, "2147483648 < 2147483647");
+		assertQueryTrue(null, "2147483647 < 2147483648");
+		assertQueryTrue(null, "-2147483649 < -2147483648");
+		assertQueryFalse(null, "-2147483648 < -2147483649");
 
 		// Real::lessThan(Real)
 		assertResultFalse("3.0 < 2.0");
@@ -288,6 +324,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResultTrue("-3 < 3.0");
 		assertResultFalse("3 < -3.0");
 		assertResultFalse("-3 < -3.0");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberLessThanInvalid() {
@@ -311,11 +348,17 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberLessThanOrEqual() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::lessThanOrEqual(Integer)
 		assertResultFalse("3 <= 2");
 		assertResultTrue("-3 <= 2");
 		assertResultFalse("3 <= -2");
 		assertResultTrue("-3 <= -2");
+
+		assertQueryFalse(null, "2147483648 <= 2147483647");
+		assertQueryTrue(null, "2147483647 <= 2147483648");
+		assertQueryTrue(null, "-2147483649 <= -2147483648");
+		assertQueryFalse(null, "-2147483648 <= -2147483649");
 
 		// Real::lessThanOrEqual(Real)
 		assertResultFalse("3.0 <= 2.0");
@@ -334,6 +377,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResultTrue("-3 <= 3.0");
 		assertResultFalse("3 <= -3.0");
 		assertResultTrue("-3 <= -3.0");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberLessThanOrEqualInvalid() {
@@ -357,11 +401,17 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberMax() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::max(Integer)
 		assertResult(Integer.valueOf(3), "3.max(2)");
 		assertResult(Integer.valueOf(2), "(-3).max(2)");
 		assertResult(Integer.valueOf(3), "3.max(-2)");
 		assertResult(Integer.valueOf(-2), "(-3).max(-2)");
+
+		assertResult(2147483648L, "2147483648.max(2147483647)");
+		assertResult(2147483648L, "2147483647.max(2147483648)");
+		assertResult(-2147483648, "(-2147483649).max(-2147483648)");
+		assertResult(-2147483648, "(-2147483648).max(-2147483649)");
 
 		// Integer::max(Real)
 		assertResult(Double.valueOf(3d), "3.max(2.0)");
@@ -380,6 +430,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResult(Double.valueOf(2d), "(-3.0).max(2.0)");
 		assertResult(Double.valueOf(3d), "(3.0).max(-2.0)");
 		assertResult(Double.valueOf(-2d), "(-3.0).max(-2.0)");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberMaxInvalid() {
@@ -403,11 +454,17 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberMin() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::min(Integer)
 		assertResult(Integer.valueOf(2), "3.min(2)");
 		assertResult(Integer.valueOf(-3), "(-3).min(2)");
 		assertResult(Integer.valueOf(-2), "3.min(-2)");
 		assertResult(Integer.valueOf(-3), "(-3).min(-2)");
+
+		assertResult(2147483647, "2147483648.min(2147483647)");
+		assertResult(2147483647, "2147483647.min(2147483648)");
+		assertResult(-2147483649L, "(-2147483649).min(-2147483648)");
+		assertResult(-2147483649L, "(-2147483648).min(-2147483649)");
 
 		// Integer::min(Real)
 		assertResult(Double.valueOf(2d), "3.min(2.0)");
@@ -426,6 +483,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResult(Double.valueOf(-3d), "(-3.0).min(2.0)");
 		assertResult(Double.valueOf(-2d), "(3.0).min(-2.0)");
 		assertResult(Double.valueOf(-3d), "(-3.0).min(-2.0)");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberMinInvalid() {
@@ -449,9 +507,19 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberMinus() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::-(Integer)
 		assertResult(Integer.valueOf(0), "1 - 1");
 		assertResult(Integer.valueOf(5), "1 - -4");
+
+		assertResult(BigInteger.ONE.shiftLeft(31).subtract(BigInteger.ONE).intValue(), "2147483646 - -1");
+		assertResult(BigInteger.ONE.shiftLeft(31).longValue(), "2147483647 - -1");
+		assertResult(BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE).longValue(), "9223372036854775806 - -1");
+		assertResult(BigInteger.ONE.shiftLeft(63).longValue(), "9223372036854775807 - -1");
+
+		assertResult(BigInteger.ONE.negate().shiftLeft(31).intValue(), "-2147483647 - 1");
+		assertResult(BigInteger.ONE.negate().shiftLeft(31).subtract(BigInteger.ONE).longValue(), "-2147483648 - 1");
+		assertResult(BigInteger.ONE.shiftLeft(63).negate().longValue(), "-9223372036854775807 - 1");
 
 		// Integer::-(Real)
 		assertResult(Double.valueOf(0d), "1 - 1.0");
@@ -464,6 +532,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		// Real::-(Real)
 		assertResult(Double.valueOf(0d), "1.0 - 1.0");
 		assertResult(Double.valueOf(-0.01d), "1.11 - 1.12");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberMinusInvalid() {
@@ -505,6 +574,24 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		assertResultInvalid("let i : Integer = null in i.mod(1)");
 
 		assertResultInvalid("let i1 : Integer = null, i2 : Integer = null in i1.mod(i2)");
+	}
+
+	public void testNumberNegate() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
+		assertResult(-1, "-1");
+//		assertResult(-1.0, "-1.0", 0.0);
+
+		assertResult(-2147483647, "-2147483647");
+		assertResult(-2147483648, "-2147483648");
+		assertResult(2147483648L, "-(-2147483648)");
+		assertResult(-2147483649L, "-2147483649");
+		// invalid
+		assertResultInvalid("let i : Integer = invalid in -i");
+		assertResultInvalid("let r : Real = invalid in -r");
+		// null
+		assertResultInvalid("let i : Integer = null in -i");
+		assertResultInvalid("let r : Real = null in -r");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberNotEqual() {
@@ -550,9 +637,19 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	}
 
 	public void testNumberPlus() {
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		// Integer::+(Integer)
 		assertResult(Integer.valueOf(2), "1 + 1");
 		assertResult(Integer.valueOf(-3), "1 + -4");
+
+		assertResult(BigInteger.ONE.shiftLeft(31).subtract(BigInteger.ONE).intValue(), "2147483646 + 1");
+		assertResult(BigInteger.ONE.shiftLeft(31).longValue(), "2147483647 + 1");
+		assertResult(BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE).longValue(), "9223372036854775806 + 1");
+		assertResult(BigInteger.ONE.shiftLeft(63).longValue(), "9223372036854775807 + 1");
+
+		assertResult(BigInteger.ONE.negate().shiftLeft(31).intValue(), "-2147483647 + -1");
+		assertResult(BigInteger.ONE.negate().shiftLeft(31).subtract(BigInteger.ONE).longValue(), "-2147483648 + -1");
+		assertResult(BigInteger.ONE.negate().shiftLeft(63).longValue(), "-9223372036854775807 + -1");
 
 		// Integer::+(Real)
 		assertResult(Double.valueOf(2d), "1 + 1.0");
@@ -565,6 +662,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 		// Real::+(Real)
 		assertResult(Double.valueOf(2d), "1.0 + 1.0");
 		assertResult(Double.valueOf(2.23d), "1.11 + 1.12");
+        ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, false);
 	}
 
 	public void testNumberPlusInvalid() {

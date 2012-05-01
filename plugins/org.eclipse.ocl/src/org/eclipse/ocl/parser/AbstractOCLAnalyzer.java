@@ -2940,7 +2940,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		IntegerLiteralExp<C> astNode = oclFactory.createIntegerLiteralExp();
 		initASTMapping(env, astNode, integerLiteralExpCS);
-		astNode.setIntegerSymbol(integerLiteralExpCS.getIntegerSymbol());
+		astNode.setLongSymbol(integerLiteralExpCS.getLongSymbol());
 		astNode.setType(env.getOCLStandardLibrary().getInteger());
 
 		TRACE(
