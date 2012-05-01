@@ -555,67 +555,6 @@ public class ExpressionInOCLItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEAttribute()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEAnnotation()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEClass()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEDataType()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEEnum()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEEnumLiteral()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEFactory()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEObject()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEPackage()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEReference()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE
-				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createEGenericType()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			EcoreFactory.eINSTANCE.createETypeParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 			TypesFactory.eINSTANCE.createAnyType()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -804,6 +743,10 @@ public class ExpressionInOCLItemProvider
 				org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 					.createStringExpression()));
 
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
+
 		newChildDescriptors
 			.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -824,10 +767,6 @@ public class ExpressionInOCLItemProvider
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createTemplateParameterSubstitution()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -894,19 +833,12 @@ public class ExpressionInOCLItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
+				.createInterfaceRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -956,12 +888,28 @@ public class ExpressionInOCLItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createProtocolConformance()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -1014,10 +962,6 @@ public class ExpressionInOCLItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createGeneralization()));
 
 		newChildDescriptors
@@ -1049,10 +993,6 @@ public class ExpressionInOCLItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
-
-		newChildDescriptors.add(createChildParameter(
-			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createSubstitution()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -1062,8 +1002,7 @@ public class ExpressionInOCLItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
-				.createInterfaceRealization()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
 
 		newChildDescriptors.add(createChildParameter(
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -1651,6 +1590,67 @@ public class ExpressionInOCLItemProvider
 			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createValueSpecificationAction()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEAttribute()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEClass()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEDataType()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEEnum()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEEnumLiteral()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEObject()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEReference()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE
+				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createEGenericType()));
+
+		newChildDescriptors.add(createChildParameter(
+			UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+			EcoreFactory.eINSTANCE.createETypeParameter()));
 	}
 
 	/**

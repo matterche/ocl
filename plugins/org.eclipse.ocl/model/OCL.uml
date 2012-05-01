@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Model xmi:id="_unvTINppEdu-d8Dv4wLx9Q" name="ocl">
-    <packagedElement xmi:type="uml:Package" xmi:id="_unvTIdppEdu-d8Dv4wLx9Q" name="types">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_unvTINppEdu-d8Dv4wLx9Q" name="ocl" URI="http://www.eclipse.org/ocl/1.1.0/OCL">
+    <packagedElement xmi:type="uml:Package" xmi:id="_unvTIdppEdu-d8Dv4wLx9Q" name="types" URI="http://www.eclipse.org/ocl/1.1.0/OCL/Types">
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTItppEdu-d8Dv4wLx9Q" name="AnyType">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTI9ppEdu-d8Dv4wLx9Q" parameter="_unvTJNppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTJNppEdu-d8Dv4wLx9Q" parameteredElement="_unvTJdppEdu-d8Dv4wLx9Q">
@@ -342,7 +342,7 @@ s.concat (
         <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
       </profileApplication>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_unvU_9ppEdu-d8Dv4wLx9Q" name="expressions">
+    <packagedElement xmi:type="uml:Package" xmi:id="_unvU_9ppEdu-d8Dv4wLx9Q" name="expressions" URI="http://www.eclipse.org/ocl/1.1.0/OCL/Expressions">
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVANppEdu-d8Dv4wLx9Q" name="AssociationClassCallExp">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVAdppEdu-d8Dv4wLx9Q" parameter="_unvVAtppEdu-d8Dv4wLx9Q _unvVBNppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVAtppEdu-d8Dv4wLx9Q" parameteredElement="_unvVA9ppEdu-d8Dv4wLx9Q">
@@ -732,6 +732,15 @@ s.concat (
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvVytppEdu-d8Dv4wLx9Q"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="__Xe6AJNZEeGIv5gP20E_FQ" name="extendedIntegerSymbol" visibility="public" isOrdered="true" isReadOnly="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELongObject"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__Xe6AZNZEeGIv5gP20E_FQ"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_BkOeYJNaEeGIv5gP20E_FQ" value="0"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_UEAzcJNaEeGIv5gP20E_FQ" name="longSymbol" visibility="public" isOrdered="true" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELongObject"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UEAzcZNaEeGIv5gP20E_FQ"/>
+        </ownedAttribute>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_unvVy9ppEdu-d8Dv4wLx9Q" name="NumericLiteralExp_C">
           <templateBinding xmi:id="_unvVzNppEdu-d8Dv4wLx9Q" signature="_unvVz9ppEdu-d8Dv4wLx9Q">
             <parameterSubstitution xmi:id="_unvVzdppEdu-d8Dv4wLx9Q" actual="_unvVx9ppEdu-d8Dv4wLx9Q" formal="_unvV0NppEdu-d8Dv4wLx9Q"/>
@@ -770,6 +779,15 @@ s.concat (
         </ownedAttribute>
         <ownedAttribute xmi:id="_unvV3dppEdu-d8Dv4wLx9Q" name="unlimited" visibility="public" isOrdered="true" isReadOnly="true" isDerived="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_zGudkJNaEeGIv5gP20E_FQ" name="extendedIntegerSymbol" visibility="public" isOrdered="true" isReadOnly="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELongObject"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zGudkZNaEeGIv5gP20E_FQ"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_zGudkpNaEeGIv5gP20E_FQ" value="0"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_0KkgMJNaEeGIv5gP20E_FQ" name="longSymbol" visibility="public" isOrdered="true" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELongObject"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0KkgMZNaEeGIv5gP20E_FQ"/>
         </ownedAttribute>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_unvV3tppEdu-d8Dv4wLx9Q" name="NumericLiteralExp_C">
           <templateBinding xmi:id="_unvV39ppEdu-d8Dv4wLx9Q" signature="_unvVz9ppEdu-d8Dv4wLx9Q">
@@ -1423,7 +1441,7 @@ part->size() = type.oclAsType (TupleType).allProperties()->size()</body>
         <ownedEnd xmi:id="_un1aztppEdu-d8Dv4wLx9Q" type="_un1avdppEdu-d8Dv4wLx9Q" association="_un1azdppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_unvTttppEdu-d8Dv4wLx9Q" name="utilities">
+    <packagedElement xmi:type="uml:Package" xmi:id="_unvTttppEdu-d8Dv4wLx9Q" name="utilities" URI="http://www.eclipse.org/ocl/1.1.0/OCL/Utilities">
       <packagedElement xmi:type="uml:Interface" xmi:id="_unvTt9ppEdu-d8Dv4wLx9Q" name="ASTNode">
         <ownedAttribute xmi:id="_unvTuNppEdu-d8Dv4wLx9Q" name="startPosition" visibility="public" isOrdered="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
@@ -2340,4 +2358,8 @@ part->size() = type.oclAsType (TupleType).allProperties()->size()</body>
   <Ecore:EReference xmi:id="_82aXYNXZEd6ci-srLwOkAQ" base_Property="_ykFGANLmEd6hmvYFRJXZTA"/>
   <Ecore_1:EAttribute xmi:id="_TnP_sOaXEeC9lsdnxAr52A" base_Property="_HXbOkNLmEd6hmvYFRJXZTA"/>
   <Ecore:EParameter xmi:id="_qz7hsOaXEeC9lsdnxAr52A" base_Parameter="_unvU09ppEdu-d8Dv4wLx9Q"/>
+  <Ecore:EAttribute xmi:id="_D6oVEJNaEeGIv5gP20E_FQ" base_Property="__Xe6AJNZEeGIv5gP20E_FQ"/>
+  <Ecore:EAttribute xmi:id="_X_cHMJNaEeGIv5gP20E_FQ" isTransient="true" isVolatile="true" base_Property="_UEAzcJNaEeGIv5gP20E_FQ"/>
+  <Ecore:EAttribute xmi:id="_17C_UJNaEeGIv5gP20E_FQ" base_Property="_zGudkJNaEeGIv5gP20E_FQ"/>
+  <Ecore:EAttribute xmi:id="_3OXBUJNaEeGIv5gP20E_FQ" isTransient="true" isVolatile="true" base_Property="_0KkgMJNaEeGIv5gP20E_FQ"/>
 </xmi:XMI>

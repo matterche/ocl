@@ -35,6 +35,8 @@ import org.eclipse.ocl.utilities.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl#getIntegerSymbol <em>Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +65,39 @@ public class IntegerLiteralExpImpl<C>
 	 * @ordered
 	 */
 	protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExtendedIntegerSymbol() <em>Extended Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Long EXTENDED_INTEGER_SYMBOL_EDEFAULT = new Long(0L);
+
+	/**
+	 * The cached value of the '{@link #getExtendedIntegerSymbol() <em>Extended Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected Long extendedIntegerSymbol = EXTENDED_INTEGER_SYMBOL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLongSymbol() <em>Long Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @see #getLongSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Long LONG_SYMBOL_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,6 +143,40 @@ public class IntegerLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Long getExtendedIntegerSymbol() {
+		return extendedIntegerSymbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Long getLongSymbol() {
+		// TODO: implement this method to return the 'Long Symbol' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLongSymbol(Long newLongSymbol) {
+		// TODO: implement this method to set the 'Long Symbol' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -127,6 +196,10 @@ public class IntegerLiteralExpImpl<C>
 		switch (featureID) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
 				return getIntegerSymbol();
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+				return getExtendedIntegerSymbol();
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__LONG_SYMBOL :
+				return getLongSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,6 +215,9 @@ public class IntegerLiteralExpImpl<C>
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol((Integer) newValue);
 				return;
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__LONG_SYMBOL :
+				setLongSymbol((Long) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -156,6 +232,9 @@ public class IntegerLiteralExpImpl<C>
 		switch (featureID) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+				return;
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__LONG_SYMBOL :
+				setLongSymbol(LONG_SYMBOL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -173,6 +252,15 @@ public class IntegerLiteralExpImpl<C>
 				return INTEGER_SYMBOL_EDEFAULT == null
 					? integerSymbol != null
 					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+				return EXTENDED_INTEGER_SYMBOL_EDEFAULT == null
+					? extendedIntegerSymbol != null
+					: !EXTENDED_INTEGER_SYMBOL_EDEFAULT
+						.equals(extendedIntegerSymbol);
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__LONG_SYMBOL :
+				return LONG_SYMBOL_EDEFAULT == null
+					? getLongSymbol() != null
+					: !LONG_SYMBOL_EDEFAULT.equals(getLongSymbol());
 		}
 		return super.eIsSet(featureID);
 	}

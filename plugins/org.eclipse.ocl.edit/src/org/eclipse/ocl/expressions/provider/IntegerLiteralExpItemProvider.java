@@ -68,6 +68,8 @@ public class IntegerLiteralExpItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIntegerSymbolPropertyDescriptor(object);
+			addExtendedIntegerSymbolPropertyDescriptor(object);
+			addLongSymbolPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -88,6 +90,48 @@ public class IntegerLiteralExpItemProvider
 				getString(
 					"_UI_PropertyDescriptor_description", "_UI_IntegerLiteralExp_integerSymbol_feature", "_UI_IntegerLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				ExpressionsPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Extended Integer Symbol feature.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExtendedIntegerSymbolPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_IntegerLiteralExp_extendedIntegerSymbol_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_IntegerLiteralExp_extendedIntegerSymbol_feature", "_UI_IntegerLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Long Symbol feature.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLongSymbolPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_IntegerLiteralExp_longSymbol_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_IntegerLiteralExp_longSymbol_feature", "_UI_IntegerLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.INTEGER_LITERAL_EXP__LONG_SYMBOL,
 				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				null, null));
 	}
@@ -139,6 +183,8 @@ public class IntegerLiteralExpItemProvider
 
 		switch (notification.getFeatureID(IntegerLiteralExp.class)) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__LONG_SYMBOL :
 				fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 				return;

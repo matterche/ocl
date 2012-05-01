@@ -624,67 +624,6 @@ public class TupleLiteralPartItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEAttribute()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEAnnotation()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEClass()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEDataType()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEEnum()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEEnumLiteral()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEFactory()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEObject()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEPackage()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEReference()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE
-				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createEGenericType()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			EcoreFactory.eINSTANCE.createETypeParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 			TypesFactory.eINSTANCE.createAnyType()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -873,6 +812,10 @@ public class TupleLiteralPartItemProvider
 				org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 					.createStringExpression()));
 
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
+
 		newChildDescriptors
 			.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -893,10 +836,6 @@ public class TupleLiteralPartItemProvider
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createTemplateParameterSubstitution()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -963,19 +902,12 @@ public class TupleLiteralPartItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
+				.createInterfaceRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -1025,12 +957,28 @@ public class TupleLiteralPartItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createProtocolConformance()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -1083,10 +1031,6 @@ public class TupleLiteralPartItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createGeneralization()));
 
 		newChildDescriptors
@@ -1118,10 +1062,6 @@ public class TupleLiteralPartItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createSubstitution()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -1131,8 +1071,7 @@ public class TupleLiteralPartItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
-				.createInterfaceRealization()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -1720,6 +1659,67 @@ public class TupleLiteralPartItemProvider
 			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createValueSpecificationAction()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEAttribute()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEClass()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEDataType()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEEnum()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEEnumLiteral()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEObject()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEReference()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE
+				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createEGenericType()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+			EcoreFactory.eINSTANCE.createETypeParameter()));
 	}
 
 	/**

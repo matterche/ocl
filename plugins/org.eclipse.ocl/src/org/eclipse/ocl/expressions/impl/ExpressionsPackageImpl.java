@@ -698,6 +698,28 @@ public class ExpressionsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntegerLiteralExp_ExtendedIntegerSymbol() {
+		return (EAttribute) integerLiteralExpEClass.getEStructuralFeatures()
+			.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntegerLiteralExp_LongSymbol() {
+		return (EAttribute) integerLiteralExpEClass.getEStructuralFeatures()
+			.get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -723,6 +745,28 @@ public class ExpressionsPackageImpl
 	public EAttribute getUnlimitedNaturalLiteralExp_Unlimited() {
 		return (EAttribute) unlimitedNaturalLiteralExpEClass
 			.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUnlimitedNaturalLiteralExp_ExtendedIntegerSymbol() {
+		return (EAttribute) unlimitedNaturalLiteralExpEClass
+			.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUnlimitedNaturalLiteralExp_LongSymbol() {
+		return (EAttribute) unlimitedNaturalLiteralExpEClass
+			.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1261,6 +1305,10 @@ public class ExpressionsPackageImpl
 		integerLiteralExpEClass = createEClass(INTEGER_LITERAL_EXP);
 		createEAttribute(integerLiteralExpEClass,
 			INTEGER_LITERAL_EXP__INTEGER_SYMBOL);
+		createEAttribute(integerLiteralExpEClass,
+			INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL);
+		createEAttribute(integerLiteralExpEClass,
+			INTEGER_LITERAL_EXP__LONG_SYMBOL);
 
 		numericLiteralExpEClass = createEClass(NUMERIC_LITERAL_EXP);
 
@@ -1269,6 +1317,10 @@ public class ExpressionsPackageImpl
 			UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL);
 		createEAttribute(unlimitedNaturalLiteralExpEClass,
 			UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED);
+		createEAttribute(unlimitedNaturalLiteralExpEClass,
+			UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL);
+		createEAttribute(unlimitedNaturalLiteralExpEClass,
+			UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL);
 
 		invalidLiteralExpEClass = createEClass(INVALID_LITERAL_EXP);
 
@@ -1958,6 +2010,14 @@ public class ExpressionsPackageImpl
 			getIntegerLiteralExp_IntegerSymbol(),
 			ecorePackage.getEIntegerObject(),
 			"integerSymbol", null, 0, 1, IntegerLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(
+			getIntegerLiteralExp_ExtendedIntegerSymbol(),
+			ecorePackage.getELongObject(),
+			"extendedIntegerSymbol", "0", 0, 1, IntegerLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(
+			getIntegerLiteralExp_LongSymbol(),
+			ecorePackage.getELongObject(),
+			"longSymbol", null, 0, 1, IntegerLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(integerLiteralExpEClass, ecorePackage.getEBoolean(),
 			"checkIntegerType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1987,6 +2047,14 @@ public class ExpressionsPackageImpl
 			getUnlimitedNaturalLiteralExp_Unlimited(),
 			ecorePackage.getEBoolean(),
 			"unlimited", null, 1, 1, UnlimitedNaturalLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(
+			getUnlimitedNaturalLiteralExp_ExtendedIntegerSymbol(),
+			ecorePackage.getELongObject(),
+			"extendedIntegerSymbol", "0", 0, 1, UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(
+			getUnlimitedNaturalLiteralExp_LongSymbol(),
+			ecorePackage.getELongObject(),
+			"longSymbol", null, 0, 1, UnlimitedNaturalLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(unlimitedNaturalLiteralExpEClass,
 			ecorePackage.getEBoolean(),

@@ -9581,6 +9581,26 @@ public interface UMLPackage
 	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 4.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 4.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Integer Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -9589,7 +9609,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -9769,6 +9789,26 @@ public interface UMLPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 4.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 4.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -9777,7 +9817,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.

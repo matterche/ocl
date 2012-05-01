@@ -30,6 +30,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#isUnlimited <em>Unlimited</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +85,51 @@ public interface UnlimitedNaturalLiteralExp<C>
 	 * @generated
 	 */
 	boolean isUnlimited();
+
+	/**
+	 * Returns the value of the '<em><b>Extended Integer Symbol</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extended Integer Symbol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extended Integer Symbol</em>' attribute.
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getUnlimitedNaturalLiteralExp_ExtendedIntegerSymbol()
+	 * @model default="0" changeable="false"
+	 * @generated
+	 */
+	Long getExtendedIntegerSymbol();
+
+	/**
+	 * Returns the value of the '<em><b>Long Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Long Symbol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Long Symbol</em>' attribute.
+	 * @see #setLongSymbol(Long)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getUnlimitedNaturalLiteralExp_LongSymbol()
+	 * @model transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	Long getLongSymbol();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getLongSymbol <em>Long Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Long Symbol</em>' attribute.
+	 * @see #getLongSymbol()
+	 * @generated
+	 */
+	void setLongSymbol(Long value);
 
 	/**
 	 * <!-- begin-user-doc -->

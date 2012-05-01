@@ -757,67 +757,6 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEAttribute()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEAnnotation()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEClass()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEDataType()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEEnum()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEEnumLiteral()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEFactory()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEObject()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEPackage()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEReference()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE
-				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createEGenericType()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			EcoreFactory.eINSTANCE.createETypeParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 			TypesFactory.eINSTANCE.createAnyType()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -1006,6 +945,10 @@ public class MessageExpItemProvider
 				org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 					.createStringExpression()));
 
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
+
 		newChildDescriptors
 			.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -1026,10 +969,6 @@ public class MessageExpItemProvider
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createTemplateParameterSubstitution()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -1096,19 +1035,12 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
+				.createInterfaceRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -1158,12 +1090,28 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createProtocolConformance()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -1216,10 +1164,6 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createGeneralization()));
 
 		newChildDescriptors
@@ -1251,10 +1195,6 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createSubstitution()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -1264,8 +1204,7 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
-				.createInterfaceRealization()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -1853,6 +1792,67 @@ public class MessageExpItemProvider
 			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createValueSpecificationAction()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEAttribute()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEClass()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEDataType()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEEnum()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEEnumLiteral()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEObject()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEReference()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE
+				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createEGenericType()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			EcoreFactory.eINSTANCE.createETypeParameter()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -2020,67 +2020,6 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEAttribute()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEAnnotation()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEClass()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEDataType()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEEnum()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEEnumLiteral()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEFactory()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEObject()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEPackage()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEReference()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE
-				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createEGenericType()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			EcoreFactory.eINSTANCE.createETypeParameter()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 			TypesFactory.eINSTANCE.createAnyType()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -2269,6 +2208,10 @@ public class MessageExpItemProvider
 				org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 					.createStringExpression()));
 
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
+
 		newChildDescriptors
 			.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -2289,10 +2232,6 @@ public class MessageExpItemProvider
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createTemplateParameterSubstitution()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPackage()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -2359,19 +2298,12 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
+				.createInterfaceRealization()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -2421,12 +2353,28 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createProtocolConformance()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createParameterSet()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createDataType()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -2479,10 +2427,6 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createGeneralization()));
 
 		newChildDescriptors
@@ -2514,10 +2458,6 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createRealization()));
-
-		newChildDescriptors.add(createChildParameter(
-			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createSubstitution()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -2527,8 +2467,7 @@ public class MessageExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
-				.createInterfaceRealization()));
+			org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createConnector()));
 
 		newChildDescriptors.add(createChildParameter(
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -3116,6 +3055,67 @@ public class MessageExpItemProvider
 			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 			org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 				.createValueSpecificationAction()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEAttribute()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEClass()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEDataType()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEEnum()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEEnumLiteral()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEObject()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEReference()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE
+				.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createEGenericType()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			EcoreFactory.eINSTANCE.createETypeParameter()));
 	}
 
 	/**

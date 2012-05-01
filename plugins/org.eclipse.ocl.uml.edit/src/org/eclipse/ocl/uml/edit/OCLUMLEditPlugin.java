@@ -58,8 +58,8 @@ public final class OCLUMLEditPlugin
 	 * @generated
 	 */
 	public OCLUMLEditPlugin() {
-		super(new ResourceLocator[]{EcoreEditPlugin.INSTANCE,
-			OCLEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE,});
+		super(new ResourceLocator[]{OCLEditPlugin.INSTANCE,
+			UMLEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE,});
 	}
 
 	/**

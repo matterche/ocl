@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
-    creationIcons="false" editDirectory="/org.eclipse.ocl.edit/src" editorDirectory="/org.eclipse.ocl.editor/src"
-    modelPluginID="org.eclipse.ocl" templateDirectory="/org.eclipse.ocl/templates"
-    dynamicTemplates="true" redirection="" modelName="OCL" modelPluginClass="org.eclipse.ocl.internal.OCLPlugin"
-    editPluginClass="org.eclipse.ocl.edit.OCLEditPlugin" editorPluginClass="org.eclipse.ocl.editor.OCLEditorPlugin"
-    nonNLSMarkers="true" rootImplementsInterface="" featureMapWrapperInterface=""
-    featureMapWrapperInternalInterface="" featureMapWrapperClass="" codeFormatting="true"
-    testSuiteClass="org.eclipse.ocl.tests.AllTests" booleanFlagsField="eFlags" booleanFlagsReservedBits="8"
-    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0" copyrightFields="false"
-    invariantPrefix="check">
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    modelDirectory="/org.eclipse.ocl/src" creationIcons="false" editDirectory="/org.eclipse.ocl.edit/src"
+    editorDirectory="/org.eclipse.ocl.editor/src" modelPluginID="org.eclipse.ocl"
+    templateDirectory="/org.eclipse.ocl/templates" dynamicTemplates="true" redirection=""
+    modelName="OCL" modelPluginClass="org.eclipse.ocl.internal.OCLPlugin" editPluginClass="org.eclipse.ocl.edit.OCLEditPlugin"
+    editorPluginClass="org.eclipse.ocl.editor.OCLEditorPlugin" nonNLSMarkers="true"
+    rootImplementsInterface="" featureMapWrapperInterface="" featureMapWrapperInternalInterface=""
+    featureMapWrapperClass="" codeFormatting="true" testSuiteClass="org.eclipse.ocl.tests.AllTests"
+    booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
+    complianceLevel="5.0" copyrightFields="false" invariantPrefix="check">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
     <details key="DUPLICATE_OPERATIONS" value="PROCESS"/>
@@ -410,6 +409,8 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IntegerLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IntegerLiteralExp/C"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/IntegerLiteralExp/integerSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/IntegerLiteralExp/extendedIntegerSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/IntegerLiteralExp/longSymbol"/>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IntegerLiteralExp/integer_type">
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IntegerLiteralExp/integer_type/diagnostics"/>
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IntegerLiteralExp/integer_type/context"/>
@@ -423,6 +424,8 @@
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/integerSymbol"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
             ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/unlimited"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/extendedIntegerSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/longSymbol"/>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/natural_type">
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/natural_type/diagnostics"/>
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/natural_type/context"/>

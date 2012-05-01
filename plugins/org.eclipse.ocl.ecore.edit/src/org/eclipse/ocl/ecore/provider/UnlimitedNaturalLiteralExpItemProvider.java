@@ -71,6 +71,8 @@ public class UnlimitedNaturalLiteralExpItemProvider
 
 			addIntegerSymbolPropertyDescriptor(object);
 			addUnlimitedPropertyDescriptor(object);
+			addExtendedIntegerSymbolPropertyDescriptor(object);
+			addLongSymbolPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -113,6 +115,48 @@ public class UnlimitedNaturalLiteralExpItemProvider
 				ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED,
 				false, false, false,
 				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Extended Integer Symbol feature.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExtendedIntegerSymbolPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnlimitedNaturalLiteralExp_extendedIntegerSymbol_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_extendedIntegerSymbol_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Long Symbol feature.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLongSymbolPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnlimitedNaturalLiteralExp_longSymbol_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_longSymbol_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -167,6 +211,8 @@ public class UnlimitedNaturalLiteralExpItemProvider
 		switch (notification.getFeatureID(UnlimitedNaturalLiteralExp.class)) {
 			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL :
 				fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 				return;

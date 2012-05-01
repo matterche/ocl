@@ -1,7 +1,108 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl" version="2">
-    <resource path="src/org/eclipse/ocl/parser/OCLKWLexerprs.java">
-        <filter comment="Internal parsing constants" id="0"/>
+    <resource path="src/org/eclipse/ocl/expressions/ExpressionsPackage.java" type="org.eclipse.ocl.expressions.ExpressionsPackage">
+        <filter comment="Additional Extended Integer support" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="INTEGER_LITERAL_EXP_FEATURE_COUNT"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="INTEGER_LITERAL_EXP__LONG_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="getIntegerLiteralExp_ExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="getIntegerLiteralExp_LongSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="getUnlimitedNaturalLiteralExp_ExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="getUnlimitedNaturalLiteralExp_LongSymbol()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/expressions/IntegerLiteralExp.java" type="org.eclipse.ocl.expressions.IntegerLiteralExp">
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.IntegerLiteralExp"/>
+                <message_argument value="getExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.IntegerLiteralExp"/>
+                <message_argument value="getLongSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.IntegerLiteralExp"/>
+                <message_argument value="setLongSymbol(Long)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/expressions/UnlimitedNaturalLiteralExp.java" type="org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp">
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp"/>
+                <message_argument value="getExtendedIntegerSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp"/>
+                <message_argument value="getLongSymbol()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Additional Extended Integer support" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp"/>
+                <message_argument value="setLongSymbol(Long)"/>
+            </message_arguments>
+        </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLKWLexerprs.java" type="org.eclipse.ocl.parser.OCLKWLexerprs">
         <filter comment="Internal parsing constants" id="388194388">
@@ -62,9 +163,6 @@
                 <message_argument value="9"/>
             </message_arguments>
         </filter>
-    </resource>
-    <resource path="src/org/eclipse/ocl/parser/OCLParserprs.java">
-        <filter comment="Internal parsing constants" id="0"/>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLParserprs.java" type="org.eclipse.ocl.parser.OCLParserprs">
         <filter comment="Internal parsing constants" id="388194388">
@@ -158,9 +256,6 @@
                 <message_argument value="3925"/>
             </message_arguments>
         </filter>
-    </resource>
-    <resource path="src/org/eclipse/ocl/parser/OCLParsersym.java">
-        <filter comment="Internal parsing constants" id="0"/>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLParsersym.java" type="org.eclipse.ocl.parser.OCLParsersym">
         <filter comment="Internal parsing constants" id="388194388">

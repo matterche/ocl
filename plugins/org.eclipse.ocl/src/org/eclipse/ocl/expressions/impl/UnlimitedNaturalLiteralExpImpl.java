@@ -39,6 +39,8 @@ import org.eclipse.ocl.utilities.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getIntegerSymbol <em>Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#isUnlimited <em>Unlimited</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,6 +79,39 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * @ordered
 	 */
 	protected static final boolean UNLIMITED_EDEFAULT = false;
+
+	/**
+	 * The default value of the '{@link #getExtendedIntegerSymbol() <em>Extended Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Long EXTENDED_INTEGER_SYMBOL_EDEFAULT = new Long(0L);
+
+	/**
+	 * The cached value of the '{@link #getExtendedIntegerSymbol() <em>Extended Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected Long extendedIntegerSymbol = EXTENDED_INTEGER_SYMBOL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLongSymbol() <em>Long Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @see #getLongSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Long LONG_SYMBOL_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +168,40 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Long getExtendedIntegerSymbol() {
+		return extendedIntegerSymbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Long getLongSymbol() {
+		// TODO: implement this method to return the 'Long Symbol' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLongSymbol(Long newLongSymbol) {
+		// TODO: implement this method to set the 'Long Symbol' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -154,6 +223,10 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 				return getIntegerSymbol();
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
 				return isUnlimited();
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+				return getExtendedIntegerSymbol();
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL :
+				return getLongSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,6 +242,9 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol((Integer) newValue);
 				return;
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL :
+				setLongSymbol((Long) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -183,6 +259,9 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 		switch (featureID) {
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+				return;
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL :
+				setLongSymbol(LONG_SYMBOL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -202,6 +281,15 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
 				return isUnlimited() != UNLIMITED_EDEFAULT;
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+				return EXTENDED_INTEGER_SYMBOL_EDEFAULT == null
+					? extendedIntegerSymbol != null
+					: !EXTENDED_INTEGER_SYMBOL_EDEFAULT
+						.equals(extendedIntegerSymbol);
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL :
+				return LONG_SYMBOL_EDEFAULT == null
+					? getLongSymbol() != null
+					: !LONG_SYMBOL_EDEFAULT.equals(getLongSymbol());
 		}
 		return super.eIsSet(featureID);
 	}
