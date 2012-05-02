@@ -18,9 +18,8 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import java.util.Collections;
-import java.util.Locale;
-import java.util.TimeZone;
 
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -720,11 +719,9 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     }
     
     public void testToString() {
-    	TimeZone savedTimeZone = TimeZone.getDefault();
-        TimeZone.setDefault(TimeZone.getTimeZone("GMT+10"));
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
-        assertQueryEquals(null, "Mon Jan 24 10:00:00 GMT+10:00 2000", "ecore::EDate{'2000-01-24'}.toString()");
-        TimeZone.setDefault(savedTimeZone);
+    	String emfString = EcoreFactory.eINSTANCE.createFromString(EcorePackage.Literals.EDATE, "2000-01-24").toString();
+        assertQueryEquals(null, emfString, "ecore::EDate{'2000-01-24'}.toString()");
     }
 
 	public Type getCollectionType(String collectionName, Type type) {
