@@ -118,8 +118,8 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 		c.setNoSpace().before(a.getRightSquareBracketKeyword_0_6_3());
 		c.setNoSpace().after(a.getAtPreCommercialAtKeyword_0_7_0_0());
 		c.setNoSpace().around(a.getLeftCurlyBracketKeyword_1_2());
-		c.setNoSpace().after(a.getCommaKeyword_1_4_0());
-		c.setNoSpace().around(a.getRightCurlyBracketKeyword_1_5());
+		c.setNoSpace().after(a.getCommaKeyword_1_3_0_1_0());
+		c.setNoSpace().around(a.getRightCurlyBracketKeyword_1_4());
 		c.setNoSpace().after(a.getAtPreCommercialAtKeyword_2_2_0_0());
 		c.setNoSpace().around(a.getLeftParenthesisKeyword_2_3());
 		c.setNoSpace().before(a.getRightParenthesisKeyword_2_5());

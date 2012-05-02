@@ -16,10 +16,12 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
@@ -39,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstructorExpImpl#getPart <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstructorExpImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +58,24 @@ public class ConstructorExpImpl extends OclExpressionImpl implements Constructor
 	 * @ordered
 	 */
 	protected EList<ConstructorPart> part;
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALUE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String value = VALUE_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,6 +128,29 @@ public class ConstructorExpImpl extends OclExpressionImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getValue()
+	{
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(String newValue)
+	{
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRUCTOR_EXP__VALUE, oldValue, value));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -149,6 +193,8 @@ public class ConstructorExpImpl extends OclExpressionImpl implements Constructor
 				return basicGetType();
 			case PivotPackage.CONSTRUCTOR_EXP__PART:
 				return getPart();
+			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+				return getValue();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -189,6 +235,9 @@ public class ConstructorExpImpl extends OclExpressionImpl implements Constructor
 				getPart().clear();
 				getPart().addAll((Collection<? extends ConstructorPart>)newValue);
 				return;
+			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+				setValue((String)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -224,6 +273,9 @@ public class ConstructorExpImpl extends OclExpressionImpl implements Constructor
 			case PivotPackage.CONSTRUCTOR_EXP__PART:
 				getPart().clear();
 				return;
+			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -252,8 +304,27 @@ public class ConstructorExpImpl extends OclExpressionImpl implements Constructor
 				return type != null;
 			case PivotPackage.CONSTRUCTOR_EXP__PART:
 				return part != null && !part.isEmpty();
+			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: "); //$NON-NLS-1$
+		result.append(value);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override

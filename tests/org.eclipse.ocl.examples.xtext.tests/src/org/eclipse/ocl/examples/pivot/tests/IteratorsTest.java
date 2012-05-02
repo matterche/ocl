@@ -27,7 +27,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -40,14 +39,11 @@ import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.SetValue;
 import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 
 /**
@@ -731,9 +727,4 @@ public class IteratorsTest extends PivotTestSuite
         // EInt defines OclComparable::compareTo by having a behavioral mapping to the Integer type
         assertQueryResults(context, "Sequence{1,7,9}", "let values : Sequence(ecore::EInt) = Sequence{1,9,7} in values->sortedBy(e | e)");
     }
-	
-	public void loadEPackage(String alias, EPackage ePackage) {		
-		Element ecoreElement = Ecore2Pivot.importFromEcore(metaModelManager, alias, ePackage);
-		metaModelManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
-	}
 }

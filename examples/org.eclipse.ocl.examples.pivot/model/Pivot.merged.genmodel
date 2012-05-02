@@ -646,6 +646,9 @@
           createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorExp/part"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//ConstructorExp/value"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//ConstructorPart"/>

@@ -540,9 +540,23 @@ public class OCLstdlibTables
 			Types._OclAny, 9, org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation.INSTANCE);
 		public static final ExecutorOperation _OclAny__oclType = new ExecutorOperation("oclType",
 			Types._OclAny, 10, org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation.INSTANCE);
+		public static final ExecutorOperation _OclAny__toString = new ExecutorOperation("toString",
+			Types._OclAny, 11, org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 	
+		public static final ExecutorOperation _OclComparable___lt_ = new ExecutorOperation("<",
+			Types._OclComparable, 0, org.eclipse.ocl.examples.library.oclany.OclComparableLessThanOperation.INSTANCE,
+				OCLstdlibTables.Types._OclSelf);
+		public static final ExecutorOperation _OclComparable___lt__eq_ = new ExecutorOperation("<=",
+			Types._OclComparable, 1, org.eclipse.ocl.examples.library.oclany.OclComparableLessThanEqualOperation.INSTANCE,
+				OCLstdlibTables.Types._OclSelf);
+		public static final ExecutorOperation _OclComparable___gt_ = new ExecutorOperation(">",
+			Types._OclComparable, 2, org.eclipse.ocl.examples.library.oclany.OclComparableGreaterThanOperation.INSTANCE,
+				OCLstdlibTables.Types._OclSelf);
+		public static final ExecutorOperation _OclComparable___gt__eq_ = new ExecutorOperation(">=",
+			Types._OclComparable, 3, org.eclipse.ocl.examples.library.oclany.OclComparableGreaterThanEqualOperation.INSTANCE,
+				OCLstdlibTables.Types._OclSelf);
 		public static final ExecutorOperation _OclComparable__compareTo = new ExecutorOperation("compareTo",
-			Types._OclComparable, 0, null,
+			Types._OclComparable, 4, null,
 				OCLstdlibTables.Types._OclSelf);
 	
 		public static final ExecutorOperation _OclElement__allInstances = new ExecutorOperation("allInstances",
@@ -1289,7 +1303,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Class__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _AnyClassifier__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
@@ -1369,7 +1384,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _Boolean__Boolean = {
@@ -1394,7 +1410,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._Boolean__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _Class__Class = {
@@ -1411,7 +1428,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Class__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _ClassClassifier__ClassClassifier = {};
@@ -1430,7 +1448,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Class__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _ClassClassifier__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
@@ -1491,7 +1510,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _CollectionClassifier__CollectionClassifier = {};
@@ -1510,7 +1530,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Class__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _CollectionClassifier__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
@@ -1536,7 +1557,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Enumeration__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Enumeration__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _EnumerationClassifier__EnumerationClassifier = {};
@@ -1555,7 +1577,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Class__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _EnumerationClassifier__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
@@ -1578,7 +1601,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _Integer__Integer = {
@@ -1606,9 +1630,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._Integer__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _Integer__OclComparable = {
+		    OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
 		    OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */
 		};
 		private static final ExecutorOperation[] _Integer__OclSummable = {
@@ -1647,10 +1676,15 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclComparable__OclComparable = {
+		    OCLstdlibTables.Operations._OclComparable___lt_ /* _'<'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclComparable___lt__eq_ /* _'<='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclComparable___gt_ /* _'>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclComparable___gt__eq_ /* _'>='(OclSelf) */,
 		    OCLstdlibTables.Operations._OclComparable__compareTo /* compareTo(OclSelf) */
 		};
 		private static final ExecutorOperation[] _OclComparable__OclAny = {
@@ -1664,7 +1698,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclElement__OclElement = {
@@ -1683,7 +1718,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclInvalid__OclInvalid = {
@@ -1704,7 +1740,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclInvalid__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _OclInvalid__OclVoid = {
 		    OCLstdlibTables.Operations._OclInvalid___lt__gt_ /* _'<>'(OclSelf) */,
@@ -1728,7 +1765,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclMessage__OclMessage = {
@@ -1748,7 +1786,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclSelf__OclSelf = {};
@@ -1763,7 +1802,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclState__OclState = {};
@@ -1778,7 +1818,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclSummable__OclSummable = {
@@ -1796,7 +1837,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclTuple__OclTuple = {
@@ -1814,7 +1856,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OclType__OclType = {
@@ -1831,7 +1874,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _OclType__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
@@ -1859,7 +1903,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclVoid__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _OrderedSet__OrderedSet = {
@@ -1932,7 +1977,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _OrderedSet__Sequence = {
 		    OCLstdlibTables.Operations._OrderedSet___lt__gt_ /* _'<>'(OclSelf) */,
@@ -1999,9 +2045,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._Real__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _Real__OclComparable = {
+		    OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
 		    OCLstdlibTables.Operations._Real__compareTo /* compareTo(OclSelf) */
 		};
 		private static final ExecutorOperation[] _Real__OclSummable = {
@@ -2086,7 +2137,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _Set__Set = {
@@ -2173,7 +2225,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _Set__UniqueCollection = {
 		    OCLstdlibTables.Operations._Set___sub_ /* _'-'(UniqueCollection(OclAny)) */,
@@ -2230,9 +2283,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._String__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _String__OclComparable = {
+		    OCLstdlibTables.Operations._String___lt_ /* _'<'(OclSelf) */,
+		    OCLstdlibTables.Operations._String___lt__eq_ /* _'<='(OclSelf) */,
+		    OCLstdlibTables.Operations._String___gt_ /* _'>'(OclSelf) */,
+		    OCLstdlibTables.Operations._String___gt__eq_ /* _'>='(OclSelf) */,
 		    OCLstdlibTables.Operations._String__compareTo /* compareTo(OclSelf) */
 		};
 		private static final ExecutorOperation[] _String__OclSummable = {
@@ -2252,7 +2310,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _Type__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
@@ -2319,7 +2378,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */
+		    OCLstdlibTables.Operations._Collection__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 	
 		private static final ExecutorOperation[] _UnlimitedNatural__UnlimitedNatural = {
@@ -2350,9 +2410,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(AnyClassifier(T)) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+		    OCLstdlibTables.Operations._Integer__toString /* toString() */
 		};
 		private static final ExecutorOperation[] _UnlimitedNatural__OclComparable = {
+		    OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
+		    OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
 		    OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */
 		};
 		private static final ExecutorOperation[] _UnlimitedNatural__OclSummable = {

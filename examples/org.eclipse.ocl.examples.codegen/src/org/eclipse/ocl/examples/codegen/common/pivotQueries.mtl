@@ -94,10 +94,10 @@ if elem.unspecializedElement->notEmpty() then elem.unspecializedElement.oclAsTyp
 invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'isBinarySelf(org.eclipse.ocl.examples.pivot.OperationCallExp)', Sequence{callExp}) /]
 
 [query public prettyPrint(expr : OclExpression) : String = 
-invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'prettyPrint(org.eclipse.ocl.examples.pivot.util.Visitable)', Sequence{expr}) /]
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'prettyPrint(org.eclipse.ocl.examples.pivot.Element)', Sequence{expr}) /]
 
 [query public prettyPrint(expInOcl : ValueSpecification) : String = 
-invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'prettyPrint(org.eclipse.ocl.examples.pivot.util.Visitable)', Sequence{expInOcl}) /]
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'prettyPrint(org.eclipse.ocl.examples.pivot.Element)', Sequence{expInOcl}) /]
 
 [query public prettyPrintName(namedElement : NamedElement) : String = 
-invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'prettyPrintName(org.eclipse.ocl.examples.pivot.util.Visitable)', Sequence{namedElement}) /]
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'prettyPrintName(org.eclipse.ocl.examples.pivot.Element)', Sequence{namedElement}) /]

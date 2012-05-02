@@ -1163,7 +1163,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)
+	 *     (pathName=PathNameCS ((ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*) | value=StringLiteral))
 	 */
 	protected void sequence_PrimaryExpCS(EObject context, ConstructorExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);

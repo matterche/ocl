@@ -513,6 +513,16 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConstructorExpCS_Value()
+	{
+		return (EAttribute)constructorExpCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConstructorPartCS()
 	{
 		return constructorPartCSEClass;
@@ -1276,6 +1286,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		constructorExpCSEClass = createEClass(CONSTRUCTOR_EXP_CS);
 		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__OWNED_PARTS);
+		createEAttribute(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__VALUE);
 
 		constructorPartCSEClass = createEClass(CONSTRUCTOR_PART_CS);
 		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__PROPERTY);
@@ -1479,6 +1490,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		initEClass(constructorExpCSEClass, ConstructorExpCS.class, "ConstructorExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getConstructorExpCS_OwnedParts(), this.getConstructorPartCS(), null, "ownedParts", null, 0, -1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getConstructorExpCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constructorPartCSEClass, ConstructorPartCS.class, "ConstructorPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getConstructorPartCS_Property(), thePivotPackage.getProperty(), null, "property", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

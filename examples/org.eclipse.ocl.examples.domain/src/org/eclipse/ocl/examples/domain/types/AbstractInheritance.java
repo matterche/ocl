@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public abstract class AbstractInheritance implements DomainInheritance
@@ -119,6 +120,10 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	public ObjectValue createInstance(ValueFactory valueFactory) {
+		throw new UnsupportedOperationException();
+	}
+
+	public Value createInstance(ValueFactory valueFactory, String value) {
 		throw new UnsupportedOperationException();
 	}
 

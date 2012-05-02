@@ -1217,13 +1217,22 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int CONSTRUCTOR_EXP_CS__OWNED_PARTS = NAME_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__VALUE = NAME_EXP_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Constructor Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_EXP_CS_FEATURE_COUNT = NAME_EXP_CS_FEATURE_COUNT + 1;
+	int CONSTRUCTOR_EXP_CS_FEATURE_COUNT = NAME_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ConstructorPartCSImpl <em>Constructor Part CS</em>}' class.
@@ -3414,6 +3423,17 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EReference getConstructorExpCS_OwnedParts();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS#getValue()
+	 * @see #getConstructorExpCS()
+	 * @generated
+	 */
+	EAttribute getConstructorExpCS_Value();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS <em>Constructor Part CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4313,6 +4333,14 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRUCTOR_EXP_CS__OWNED_PARTS = eINSTANCE.getConstructorExpCS_OwnedParts();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRUCTOR_EXP_CS__VALUE = eINSTANCE.getConstructorExpCS_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ConstructorPartCSImpl <em>Constructor Part CS</em>}' class.

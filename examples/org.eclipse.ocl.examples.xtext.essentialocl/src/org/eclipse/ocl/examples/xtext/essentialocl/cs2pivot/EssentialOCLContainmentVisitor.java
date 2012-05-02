@@ -134,7 +134,8 @@ public class EssentialOCLContainmentVisitor extends AbstractEssentialOCLContainm
 
 	@Override
 	public Continuation<?> visitConstructorExpCS(ConstructorExpCS csElement) {
-		ConstructorExp pivotElement = context.refreshModelElement(ConstructorExp.class, PivotPackage.Literals.CONSTRUCTOR_EXP, csElement);	
+		ConstructorExp pivotElement = context.refreshModelElement(ConstructorExp.class, PivotPackage.Literals.CONSTRUCTOR_EXP, csElement);
+		pivotElement.setValue(csElement.getValue());
 		context.refreshPivotList(ConstructorPart.class, pivotElement.getPart(), csElement.getOwnedParts());
 		return null;
 	}

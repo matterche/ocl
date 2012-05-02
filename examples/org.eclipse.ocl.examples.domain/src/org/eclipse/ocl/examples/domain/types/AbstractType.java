@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public abstract class AbstractType implements DomainType	// FIXME rename as perhaps DerivativeType
@@ -37,6 +38,10 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	}
 
 	public ObjectValue createInstance(ValueFactory valueFactory) {
+		throw new UnsupportedOperationException();
+	}
+
+	public Value createInstance(ValueFactory valueFactory, String value) {
 		throw new UnsupportedOperationException();
 	}
 

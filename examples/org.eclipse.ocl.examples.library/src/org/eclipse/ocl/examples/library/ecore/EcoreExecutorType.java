@@ -16,8 +16,10 @@ package org.eclipse.ocl.examples.library.ecore;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.executor.ExecutorFragment;
 import org.eclipse.ocl.examples.library.executor.ExecutorPackage;
@@ -51,6 +53,16 @@ public class EcoreExecutorType extends ExecutorType
 			EClass eClass = (EClass)eClassifier;
 			EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
 			return valueFactory.createObjectValue(element);
+		}
+		return super.createInstance(valueFactory);
+	}
+
+	@Override
+	public Value createInstance(ValueFactory valueFactory, String value) {
+		if (eClassifier instanceof EDataType) {
+			EDataType eDataType = (EDataType) eClassifier;
+			Object element = eDataType.getEPackage().getEFactoryInstance().createFromString(eDataType, value);
+			return valueFactory.valueOf(element);
 		}
 		return super.createInstance(valueFactory);
 	}

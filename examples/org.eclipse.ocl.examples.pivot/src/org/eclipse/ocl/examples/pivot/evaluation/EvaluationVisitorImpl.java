@@ -322,16 +322,22 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     @Override
 	public Value visitConstructorExp(ConstructorExp ce) {
 		DomainType type = ce.getType();
-		ObjectValue objectValue = type.createInstance(valueFactory);
-		for (ConstructorPart part : ce.getPart()) {
-			Value propertyValue = part.getInitExpression().accept(getUndecoratedVisitor());
-			try {
-				part.getReferredProperty().setValue(objectValue, propertyValue);
-			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation(e);
+		String value = ce.getValue();
+		if (value == null) {
+			ObjectValue objectValue = type.createInstance(valueFactory);
+			for (ConstructorPart part : ce.getPart()) {
+				Value propertyValue = part.getInitExpression().accept(getUndecoratedVisitor());
+				try {
+					part.getReferredProperty().setValue(objectValue, propertyValue);
+				} catch (InvalidValueException e) {
+					return evaluationEnvironment.throwInvalidEvaluation(e);
+				}
 			}
+			return objectValue;
 		}
-		return objectValue;
+		else {
+			return type.createInstance(valueFactory, value);
+		}
     }
 
 	/**

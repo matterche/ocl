@@ -354,6 +354,12 @@ public class GenerateStandardLibraryAsTextile extends AbstractAcceleoGenerator {
         if (!isInWorkspace(org.eclipse.emf.ecore.EcorePackage.class)) {
             resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
         }
+        if (!isInWorkspace(org.eclipse.ocl.examples.pivot.PivotPackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE.getNsURI(), org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
+        }
+        if (!isInWorkspace(org.eclipse.ocl.examples.xtext.markup.MarkupPackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.ocl.examples.xtext.markup.MarkupPackage.eINSTANCE.getNsURI(), org.eclipse.ocl.examples.xtext.markup.MarkupPackage.eINSTANCE);
+        }
         
         /*
          * If you want to change the content of this method, do NOT forget to change the "@generated"

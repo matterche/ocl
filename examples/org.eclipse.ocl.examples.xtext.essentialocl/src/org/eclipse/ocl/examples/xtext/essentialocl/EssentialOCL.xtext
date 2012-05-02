@@ -282,7 +282,7 @@ PrimaryExpCS returns ExpCS:	// These rules are ordered most rejectable first
 	({IndexExpCS} pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
 		('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')? (atPre?='@' 'pre')?)
 |	({ConstructorExpCS} pathName=PathNameCS
-		'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}')
+		'{' ((ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)*) | (value=StringLiteral)) '}')
 | 	({InvocationExpCS} pathName=PathNameCS (atPre?='@' 'pre')?
 		'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
 		(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?

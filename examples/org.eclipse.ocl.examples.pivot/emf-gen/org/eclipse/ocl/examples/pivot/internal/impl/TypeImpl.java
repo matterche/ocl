@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -1100,6 +1101,16 @@ public class TypeImpl
 			EClass eClass = (EClass) eTarget;
 			EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
 			return valueFactory.createObjectValue(element);
+		}
+		throw new UnsupportedOperationException();
+	}
+
+	public Value createInstance(ValueFactory valueFactory, String value) {
+		EObject eTarget = getETarget();
+		if (eTarget instanceof EDataType) {
+			EDataType eDataType = (EDataType) eTarget;
+			Object element = eDataType.getEPackage().getEFactoryInstance().createFromString(eDataType, value);
+			return valueFactory.valueOf(element);
 		}
 		throw new UnsupportedOperationException();
 	}

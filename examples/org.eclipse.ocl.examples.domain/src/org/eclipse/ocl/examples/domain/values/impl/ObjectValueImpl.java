@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
@@ -28,8 +29,14 @@ public class ObjectValueImpl extends AbstractObjectValue<Object>
 	}
 
 	public DomainType getType() {
-		if (type == null) {
-			type = valueFactory.getStandardLibrary().getAnyClassifierType();	// WIP A better type
+		if (type == null) {										// WIP A better type
+			DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			if (object instanceof Comparable) {
+				type = standardLibrary.getOclComparableType();
+			}
+			else {
+				type = standardLibrary.getAnyClassifierType();
+			}
 		}
 		return type;
 	}

@@ -703,7 +703,7 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)
+	 *     (pathName=PathNameCS ((ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*) | value=StringLiteral))
 	 */
 	protected void sequence_PrimaryExpCS(EObject context, ConstructorExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

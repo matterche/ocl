@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.pivot.tests;
 
 import java.util.Collections;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -42,7 +43,26 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
         helper.setContext(getMetaclass("OclAny"));
     }
 
-    public void testEqualInvalid() {
+    public void testEqual() {
+		assertQueryTrue(null, "Boolean = Boolean");
+		assertQueryFalse(null, "Boolean = Integer");
+		assertQueryTrue(null, "OclVoid = OclVoid");
+		assertQueryTrue(null, "OclInvalid = OclInvalid");
+		assertQueryFalse(null, "OclInvalid = OclVoid");
+		assertQueryTrue(null, "Set(String) = Set(String)");
+		assertQueryFalse(null, "Set(String) = Set(Integer)");
+		assertQueryFalse(null, "Set(String) = Sequence(String)");
+		//
+		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Collection'");
+		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Set'");
+    	//
+		loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} = ecore::EDate{'2000-01-24'}");
+        assertQueryTrue(null, "ecore::EDate{'2000-01-24'} = ecore::EDate{'2000-01-24'}");
+        assertQueryFalse(null, "ecore::EDate{'2000-01-23'} = ecore::EDate{'2000-01-24'}");
+        //
+	    // invalid
+        //
 		assertQueryInvalid(null, "invalid = 3");
 		assertQueryInvalid(null, "3 = invalid");
 		assertQueryInvalid(null, "invalid = 3.0");
@@ -56,9 +76,9 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(null, "Sequence{} = invalid");
 
 		assertQueryInvalid(null, "invalid = invalid");
-	}
-
-	public void testEqualNull() {
+		//
+		// null
+		//
 		assertQueryFalse(null, "null = 3");
 		assertQueryFalse(null, "3 = null");
 		assertQueryFalse(null, "null = 3.0");
@@ -73,82 +93,92 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 		assertQueryTrue(null, "null = null");
 	}
-
-	public void testEqualType() {
-		assertQueryTrue(null, "Boolean = Boolean");
-		assertQueryFalse(null, "Boolean = Integer");
-		assertQueryTrue(null, "OclVoid = OclVoid");
-		assertQueryTrue(null, "OclInvalid = OclInvalid");
-		assertQueryFalse(null, "OclInvalid = OclVoid");
-		assertQueryTrue(null, "Set(String) = Set(String)");
-		assertQueryFalse(null, "Set(String) = Set(Integer)");
-		assertQueryFalse(null, "Set(String) = Sequence(String)");
-	}
-
-	public void testEqualEnumeration() {
-		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Collection'");
-		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Set'");
-	}
-	
-	public void testGreaterThanInvalid() {
+    
+    public void testGreaterThan() {
+    	loadEPackage("ecore", EcorePackage.eINSTANCE);
+        assertQueryTrue(null, "ecore::EDate{'2000-01-25'} > ecore::EDate{'2000-01-24'}");
+        assertQueryFalse(null, "ecore::EDate{'2000-01-24'} > ecore::EDate{'2000-01-24'}");
+        assertQueryFalse(null, "ecore::EDate{'2000-01-23'} > ecore::EDate{'2000-01-24'}");
+        //
+	    // invalid
+        //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid > 0");
 //		assertSemanticErrorQuery("0 > invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > invalid");
 		assertSemanticErrorQuery("invalid > invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OPERATOR, metaModelManager.getOclInvalidType(), metaModelManager.getOclInvalidType());
-	}
-//    protected void assertBadQuery(Class<?> exception, int severity,
-//   		 String expression, String messageTemplate, String... bindings) {
-
-	public void testGreaterThanNull() {
+		//
+		// null
+		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null > 0");
 //		assertSemanticErrorQuery("0 > null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > null");
 		assertSemanticErrorQuery("null > null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OPERATOR, metaModelManager.getOclVoidType(), metaModelManager.getOclVoidType());
 	}
-
-	public void testGreaterThanOrEqualInvalid() {
+    
+    public void testGreaterThanOrEqual() {
+    	loadEPackage("ecore", EcorePackage.eINSTANCE);
+        assertQueryTrue(null, "ecore::EDate{'2000-01-25'} >= ecore::EDate{'2000-01-24'}");
+        assertQueryTrue(null, "ecore::EDate{'2000-01-24'} >= ecore::EDate{'2000-01-24'}");
+        assertQueryFalse(null, "ecore::EDate{'2000-01-23'} >= ecore::EDate{'2000-01-24'}");
+        //
+	    // invalid
+        //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid >= 0");
 //		assertSemanticErrorQuery("0 >= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= invalid");
 		assertSemanticErrorQuery("invalid >= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclInvalidType(), metaModelManager.getOclInvalidType());
-	}
-
-	public void testGreaterThanOrEqualNull() {
+		//
+		// null
+		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null >= 0");
 //		assertSemanticErrorQuery("0 >= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= null");
 		assertSemanticErrorQuery("null >= null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclVoidType(), metaModelManager.getOclVoidType());
 	}
-
-	public void testLessThanInvalid() {
+    
+    public void testLessThan() {
+    	loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} < ecore::EDate{'2000-01-24'}");
+    	assertQueryFalse(null, "ecore::EDate{'2000-01-24'} < ecore::EDate{'2000-01-24'}");
+        assertQueryTrue(null, "ecore::EDate{'2000-01-23'} < ecore::EDate{'2000-01-24'}");
+        //
+	    // invalid
+        //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid < 0");
 //		assertSemanticErrorQuery("0 < invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < invalid");
 		assertSemanticErrorQuery("invalid < invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OPERATOR, metaModelManager.getOclInvalidType(), metaModelManager.getOclInvalidType());
-	}
-
-	public void testLessThanNull() {
+		//
+		// null
+		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null < 0");
 //		assertSemanticErrorQuery("0 < null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < null");
 		assertSemanticErrorQuery("null < null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OPERATOR, metaModelManager.getOclVoidType(), metaModelManager.getOclVoidType());
 	}
-
-	public void testLessThanOrEqualInvalid() {
+    
+    public void testLessThanOrEqual() {
+    	loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} <= ecore::EDate{'2000-01-24'}");
+        assertQueryTrue(null, "ecore::EDate{'2000-01-24'} <= ecore::EDate{'2000-01-24'}");
+        assertQueryTrue(null, "ecore::EDate{'2000-01-23'} <= ecore::EDate{'2000-01-24'}");
+        //
+	    // invalid
+        //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid <= 0");
 //		assertSemanticErrorQuery("0 <= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= invalid");
 		assertSemanticErrorQuery("invalid <= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclInvalidType(), metaModelManager.getOclInvalidType());
-	}
-
-	public void testLessThanOrEqualNull() {
+		//
+		// null
+		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null <= 0");
 //		assertSemanticErrorQuery("0 <= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
@@ -156,8 +186,27 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertSemanticErrorQuery("null <= null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclVoidType(), metaModelManager.getOclVoidType());
 	}
 
-	public void testNotEqualInvalid() {
-		assertQueryInvalid(null, "invalid <> 3");
+	public void testNotEqual() {
+		assertQueryFalse(null, "Boolean <> Boolean");
+		assertQueryTrue(null, "Boolean <> Integer");
+		assertQueryFalse(null, "OclVoid <> OclVoid");
+		assertQueryFalse(null, "OclInvalid <> OclInvalid");
+		assertQueryTrue(null, "OclInvalid <> OclVoid");
+		assertQueryFalse(null, "Set(String) <> Set(String)");
+		assertQueryTrue(null, "Set(String) <> Set(Integer)");
+		assertQueryTrue(null, "Set(String) <> Sequence(String)");
+		//
+		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Collection'");
+		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Set'");
+		//
+		loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	assertQueryTrue(null, "ecore::EDate{'2000-01-25'} <> ecore::EDate{'2000-01-24'}");
+    	assertQueryFalse(null, "ecore::EDate{'2000-01-24'} <> ecore::EDate{'2000-01-24'}");
+    	assertQueryTrue(null, "ecore::EDate{'2000-01-23'} <> ecore::EDate{'2000-01-24'}");
+        //
+	    // invalid
+        //
+        assertQueryInvalid(null, "invalid <> 3");
 		assertQueryInvalid(null, "3 <> invalid");
 		assertQueryInvalid(null, "invalid <> 3.0");
 		assertQueryInvalid(null, "3.0 <> invalid");
@@ -170,9 +219,9 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(null, "Sequence{} <> invalid");
 
 		assertQueryInvalid(null, "invalid <> invalid");
-	}
-
-	public void testNotEqualNull() {
+		//
+		// null
+		//
 		assertQueryTrue(null, "null <> 3");
 		assertQueryTrue(null, "3 <> null");
 		assertQueryTrue(null, "null <> 3.0");
@@ -186,11 +235,6 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryTrue(null, "Sequence{} <> null");
 
 		assertQueryFalse(null, "null <> null");
-	}
-
-	public void testNotEqualEnumeration() {
-		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Collection'");
-		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Set'");
 	}
 	
     /**
@@ -672,11 +716,15 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertQueryEquals(null, "ClassClassifier", "Boolean.oclType().name");
     	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural", "ClassClassifier(OclAny)");
     }
+    
+    public void testToString() {
+    	loadEPackage("ecore", EcorePackage.eINSTANCE);
+        assertQueryEquals(null, "Mon Jan 24 00:00:00 GMT 2000", "ecore::EDate{'2000-01-24'}.toString()");
+    }
 
 	public Type getCollectionType(String collectionName, Type type) {
 		Type collectionType = metaModelManager.getCollectionType(collectionName, type);
 		metaModelManager.addLockedElement(collectionType);
 		return collectionType;
 	}
-
 }

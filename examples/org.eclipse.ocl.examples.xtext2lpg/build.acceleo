@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.ocl;"
+            dependencies="${target.folder}/../../org.eclipse.ocl;${target.folder}/../../org.eclipse.ocl.common;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

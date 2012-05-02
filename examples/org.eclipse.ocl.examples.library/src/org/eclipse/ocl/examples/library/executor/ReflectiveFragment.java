@@ -126,7 +126,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 				}
 			}
 		}
-		assert libraryFeature != null;
+//		assert libraryFeature != null; -- can be null for OclComparable::compareTo
 		operationMap.put(baseOperation, libraryFeature);
 		return libraryFeature;
 	}

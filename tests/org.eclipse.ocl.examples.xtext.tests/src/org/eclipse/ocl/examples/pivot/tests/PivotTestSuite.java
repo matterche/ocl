@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -63,11 +64,13 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -1108,6 +1111,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected void initializeResourceSet() {
 	    resourceSet = createResourceSet();
 		standardResources = new ArrayList<Resource>(resourceSet.getResources());
+	}
+	
+	public void loadEPackage(String alias, EPackage ePackage) {		
+		Element ecoreElement = Ecore2Pivot.importFromEcore(metaModelManager, alias, ePackage);
+		metaModelManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
 	}
 	
 	/**

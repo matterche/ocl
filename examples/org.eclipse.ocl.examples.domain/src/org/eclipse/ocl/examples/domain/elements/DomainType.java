@@ -32,8 +32,15 @@ public interface DomainType extends DomainElement
 	 * Return a new instance of this type from valueFactory. Properties may be initialised using
 	 * {@link DomainProperty#setValue(ObjectValue, Value) } provided no side-effect free
 	 * OCL functionality is permitted to use the ObjectValue until initialisation has completed.
+	 * @param value 
 	 */
 	ObjectValue createInstance(ValueFactory valueFactory);
+
+	/**
+	 * Return a new instance of this data type from valueFactory.
+	 * @param value string initial value
+	 */
+	Value createInstance(ValueFactory valueFactory, String value);
 	
 	/**
 	 * Return the most derived type com mon to this type and thatType within standardLibrary.

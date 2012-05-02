@@ -189,6 +189,9 @@
       <ownedMember xmi:type="cmof:Class" xmi:id="_1X7sEAbkEeC3-uphdlDm-Q" name="IteratorExp" superClass="_IPg0QogHEd-aGOJuUCcZBA"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_epNj8DorEeGv_K3BAai1xw" name="ConstructorExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_jvCOQDorEeGv_K3BAai1xw" name="part" type="_NTJZkDo3EeGv_K3BAai1xw" isOrdered="true" lower="0" upper="*" isComposite="true"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_sH-HYJQ5EeGTBf_EE_FSug" name="value" lower="0">
+          <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
+        </ownedAttribute>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_NTJZkDo3EeGv_K3BAai1xw" name="ConstructorPart">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_i9GkkDo3EeGv_K3BAai1xw" name="referredProperty">

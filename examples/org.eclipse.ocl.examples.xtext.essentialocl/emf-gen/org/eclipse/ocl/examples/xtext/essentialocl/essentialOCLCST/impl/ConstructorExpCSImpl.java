@@ -16,10 +16,12 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -36,6 +38,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ConstructorExpCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ConstructorExpCSImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,6 +55,25 @@ public class ConstructorExpCSImpl extends NameExpCSImpl implements ConstructorEx
 	 * @ordered
 	 */
 	protected EList<ConstructorPartCS> ownedParts;
+
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALUE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -93,6 +115,29 @@ public class ConstructorExpCSImpl extends NameExpCSImpl implements ConstructorEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getValue()
+	{
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(String newValue)
+	{
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__VALUE, oldValue, value));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -116,6 +161,8 @@ public class ConstructorExpCSImpl extends NameExpCSImpl implements ConstructorEx
 		{
 			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				return getOwnedParts();
+			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -135,6 +182,9 @@ public class ConstructorExpCSImpl extends NameExpCSImpl implements ConstructorEx
 				getOwnedParts().clear();
 				getOwnedParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
 				return;
+			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__VALUE:
+				setValue((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -152,6 +202,9 @@ public class ConstructorExpCSImpl extends NameExpCSImpl implements ConstructorEx
 			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				return;
+			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -168,8 +221,27 @@ public class ConstructorExpCSImpl extends NameExpCSImpl implements ConstructorEx
 		{
 			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
+			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: "); //$NON-NLS-1$
+		result.append(value);
+		result.append(')');
+		return result.toString();
 	}
 
 	@SuppressWarnings("unchecked")
