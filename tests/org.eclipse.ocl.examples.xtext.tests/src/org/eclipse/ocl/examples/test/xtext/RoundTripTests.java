@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
-import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.MessageBinder;
@@ -107,7 +106,7 @@ public class RoundTripTests extends XtextTestCase
 		ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
 		ProjectMap.initializeURIResourceMap(resourceSet2);
 		ProjectMap.initializeURIResourceMap(null);
-		UMLUtils.initializeContents(resourceSet2);
+//		UMLUtils.initializeContents(resourceSet2);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(xtextURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		return xtextResource;
@@ -130,7 +129,8 @@ public class RoundTripTests extends XtextTestCase
 		ProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 		try {
 			projectMap.initializeResourceSet(null);			
-			UMLUtils.initializeContentHandlers(resourceSet);
+//			UMLUtils.initializeContentHandlers(resourceSet);
+//			UMLUtils.initializeContents(resourceSet);
 //			String inputName = stem + ".ocl";
 //			String outputName = stem + ".regenerated.ocl";
 			URI outputURI = inputURI.trimFileExtension().appendFileExtension("regenerated.ocl");

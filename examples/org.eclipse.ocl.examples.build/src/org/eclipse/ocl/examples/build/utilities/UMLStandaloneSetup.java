@@ -17,9 +17,8 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
-import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
+import org.eclipse.uml2.uml.resources.util.ResourcesUtil;
 
 /**
  * Initializes UML support.
@@ -30,14 +29,6 @@ public class UMLStandaloneSetup extends StandaloneSetup
 
 	public UMLStandaloneSetup() {
 		log.info("Registering UML Resources");
-		UMLUtils.initializeContents(null);
-	}
-
-	@Override
-	public void setResourceSet(ResourceSet resourceSet) {
-		super.setResourceSet(resourceSet);
-		if (resourceSet != null) {
-			UMLUtils.initializeContents(resourceSet);
-		}
+		ResourcesUtil.init(null);
 	}
 }

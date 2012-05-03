@@ -23,8 +23,8 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -32,8 +32,8 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
-import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
+import org.eclipse.uml2.uml.resources.util.ResourcesUtil;
 
 /**
  * Reads a specified <tt>uri</tt> into a designated <tt>modelSlot</tt>.
@@ -104,8 +104,7 @@ public class XMI2UMLResourceReader extends WorkflowComponentWithModelSlot
 	
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
-		UMLUtils.initializeContents(resourceSet);
-		UMLUtils.initializeContents(null);
+		ResourcesUtil.init(null);
 	}
 
 	public void setNsURI(String uri) {
