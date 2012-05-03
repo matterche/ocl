@@ -87,11 +87,9 @@ public class AllXtextTests
 		result.addTestSuite(MarkupTests.class);
 		result.addTestSuite(ValidateTests.class);
 		result.addTestSuite(DocumentationExamples.class);
+		result.addTestSuite(UsageTests.class);
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 			result.addTestSuite(EditorTests.class);
-		}
-		else {	// Bug 370824 Bug 371394 causes this to fail on Hudson
-			result.addTestSuite(UsageTests.class);
 		}
 		return result;
 	}
