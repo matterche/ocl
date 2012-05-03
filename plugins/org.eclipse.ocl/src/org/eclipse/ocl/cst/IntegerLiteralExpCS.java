@@ -26,13 +26,13 @@ package org.eclipse.ocl.cst;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.IntegerLiteralExpCS#getIntegerSymbol <em>Integer Symbol</em>}</li>
- *   <li>{@link org.eclipse.ocl.cst.IntegerLiteralExpCS#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.IntegerLiteralExpCS#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.cst.CSTPackage#getIntegerLiteralExpCS()
- * @model
+ * @model features="extendedIntegerSymbol" 
+ *        extendedIntegerSymbolDefault="0" extendedIntegerSymbolDataType="org.eclipse.emf.ecore.ELongObject" extendedIntegerSymbolChangeable="false" extendedIntegerSymbolSuppressedGetVisibility="true"
  * @generated
  */
 public interface IntegerLiteralExpCS
@@ -63,23 +63,6 @@ public interface IntegerLiteralExpCS
 	 * @generated
 	 */
 	void setIntegerSymbol(Integer value);
-
-	/**
-	 * Returns the value of the '<em><b>Extended Integer Symbol</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extended Integer Symbol</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * @since 3.2
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extended Integer Symbol</em>' attribute.
-	 * @see org.eclipse.ocl.cst.CSTPackage#getIntegerLiteralExpCS_ExtendedIntegerSymbol()
-	 * @model default="0" changeable="false"
-	 * @generated
-	 */
-	Long getExtendedIntegerSymbol();
 
 	/**
 	 * Returns the value of the '<em><b>Long Symbol</b></em>' attribute.

@@ -172,7 +172,10 @@ public class IntegerLiteralExpImpl
 	 * @generated NOT
 	 */
 	public Long getLongSymbol() {
-		return extendedIntegerSymbol * (1L << Integer.SIZE) + (integerSymbol != null ? integerSymbol : 0);
+		return extendedIntegerSymbol * (1L << Integer.SIZE)
+			+ (integerSymbol != null
+				? integerSymbol
+				: 0);
 	}
 
 	/**
@@ -185,14 +188,17 @@ public class IntegerLiteralExpImpl
 		Integer oldIntegerSymbol = integerSymbol;
 		Long oldExtendedIntegerSymbol = extendedIntegerSymbol;
 		integerSymbol = (int) (newLongSymbol & ((1L << Integer.SIZE) - 1));
-		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE) + ((integerSymbol < 0) ? 1 : 0);
+		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE)
+			+ ((integerSymbol < 0)
+				? 1
+				: 0);
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 				EcorePackage.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
 				oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol,
-				integerSymbol));
+				EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 		}
 	}
 

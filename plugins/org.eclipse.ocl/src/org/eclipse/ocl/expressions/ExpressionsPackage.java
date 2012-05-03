@@ -2891,12 +2891,12 @@ public interface ExpressionsPackage
 	EAttribute getIntegerLiteralExp_IntegerSymbol();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.IntegerLiteralExp#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.IntegerLiteralExp <em>Extended Integer Symbol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * @since 3.2
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Extended Integer Symbol</em>'.
-	 * @see org.eclipse.ocl.expressions.IntegerLiteralExp#getExtendedIntegerSymbol()
+	 * @see org.eclipse.ocl.expressions.IntegerLiteralExp
 	 * @see #getIntegerLiteralExp()
 	 * @generated
 	 */
@@ -2947,12 +2947,12 @@ public interface ExpressionsPackage
 	EAttribute getUnlimitedNaturalLiteralExp_Unlimited();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp <em>Extended Integer Symbol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * @since 3.2
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Extended Integer Symbol</em>'.
-	 * @see org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getExtendedIntegerSymbol()
+	 * @see org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp
 	 * @see #getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */

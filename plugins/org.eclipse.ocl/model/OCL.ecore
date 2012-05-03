@@ -1120,7 +1120,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedIntegerSymbol"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
-          changeable="false" defaultValueLiteral="0"/>
+          changeable="false" defaultValueLiteral="0">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="suppressedGetVisibility" value="true"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="longSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
           volatile="true" transient="true" derived="true"/>
       <eGenericSuperTypes eClassifier="#//expressions/NumericLiteralExp">
@@ -1160,7 +1164,11 @@
           changeable="false" volatile="true" transient="true" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedIntegerSymbol"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
-          changeable="false" defaultValueLiteral="0"/>
+          changeable="false" defaultValueLiteral="0">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="suppressedGetVisibility" value="true"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="longSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
           volatile="true" transient="true" derived="true"/>
       <eGenericSuperTypes eClassifier="#//expressions/NumericLiteralExp">

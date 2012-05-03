@@ -68,12 +68,6 @@
         <filter comment="Additional Extended Integer support" id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.cst.IntegerLiteralExpCS"/>
-                <message_argument value="getExtendedIntegerSymbol()"/>
-            </message_arguments>
-        </filter>
-        <filter comment="Additional Extended Integer support" id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.cst.IntegerLiteralExpCS"/>
                 <message_argument value="getLongSymbol()"/>
             </message_arguments>
         </filter>
@@ -85,12 +79,6 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/cst/UnlimitedNaturalLiteralExpCS.java" type="org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS">
-        <filter comment="Additional Extended Integer support" id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS"/>
-                <message_argument value="getExtendedIntegerSymbol()"/>
-            </message_arguments>
-        </filter>
         <filter comment="Additional Extended Integer support" id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS"/>
@@ -172,12 +160,6 @@
         <filter comment="Additional Extended Integer support" id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.expressions.IntegerLiteralExp"/>
-                <message_argument value="getExtendedIntegerSymbol()"/>
-            </message_arguments>
-        </filter>
-        <filter comment="Additional Extended Integer support" id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.expressions.IntegerLiteralExp"/>
                 <message_argument value="getLongSymbol()"/>
             </message_arguments>
         </filter>
@@ -189,12 +171,6 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/expressions/UnlimitedNaturalLiteralExp.java" type="org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp">
-        <filter comment="Additional Extended Integer support" id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp"/>
-                <message_argument value="getExtendedIntegerSymbol()"/>
-            </message_arguments>
-        </filter>
         <filter comment="Additional Extended Integer support" id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp"/>

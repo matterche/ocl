@@ -139,13 +139,15 @@ public class UnlimitedNaturalLiteralExpCSImpl
 		extendedIntegerSymbol = 0L;
 		if (eNotificationRequired())
 			if (oldExtendedIntegerSymbol != 0) {
-				eNotify(new ENotificationImpl(this, Notification.SET,
+				eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
 					CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__EXTENDED_INTEGER_SYMBOL,
 					oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			}
 		eNotify(new ENotificationImpl(this, Notification.SET,
-			CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL, oldIntegerSymbol,
-			integerSymbol));
+			CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL,
+			oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -165,7 +167,10 @@ public class UnlimitedNaturalLiteralExpCSImpl
 	 * @generated NOT
 	 */
 	public Long getLongSymbol() {
-		return extendedIntegerSymbol * (1L << Integer.SIZE) + (integerSymbol != null ? integerSymbol : 0);
+		return extendedIntegerSymbol * (1L << Integer.SIZE)
+			+ (integerSymbol != null
+				? integerSymbol
+				: 0);
 	}
 
 	/**
@@ -178,14 +183,19 @@ public class UnlimitedNaturalLiteralExpCSImpl
 		Integer oldIntegerSymbol = integerSymbol;
 		Long oldExtendedIntegerSymbol = extendedIntegerSymbol;
 		integerSymbol = (int) (newLongSymbol & ((1L << Integer.SIZE) - 1));
-		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE) + ((integerSymbol < 0) ? 1 : 0);
+		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE)
+			+ ((integerSymbol < 0)
+				? 1
+				: 0);
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET,
+			eNotify(new ENotificationImpl(
+				this,
+				Notification.SET,
 				CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__EXTENDED_INTEGER_SYMBOL,
 				oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL, oldIntegerSymbol,
-				integerSymbol));
+				CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 		}
 	}
 

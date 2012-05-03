@@ -144,8 +144,8 @@ public class IntegerLiteralExpCSImpl
 					oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			}
 		eNotify(new ENotificationImpl(this, Notification.SET,
-			CSTPackage.INTEGER_LITERAL_EXP_CS__INTEGER_SYMBOL, oldIntegerSymbol,
-			integerSymbol));
+			CSTPackage.INTEGER_LITERAL_EXP_CS__INTEGER_SYMBOL,
+			oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -165,7 +165,10 @@ public class IntegerLiteralExpCSImpl
 	 * @generated NOT
 	 */
 	public Long getLongSymbol() {
-		return extendedIntegerSymbol * (1L << Integer.SIZE) + (integerSymbol != null ? integerSymbol : 0);
+		return extendedIntegerSymbol * (1L << Integer.SIZE)
+			+ (integerSymbol != null
+				? integerSymbol
+				: 0);
 	}
 
 	/**
@@ -178,14 +181,17 @@ public class IntegerLiteralExpCSImpl
 		Integer oldIntegerSymbol = integerSymbol;
 		Long oldExtendedIntegerSymbol = extendedIntegerSymbol;
 		integerSymbol = (int) (newLongSymbol & ((1L << Integer.SIZE) - 1));
-		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE) + ((integerSymbol < 0) ? 1 : 0);
+		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE)
+			+ ((integerSymbol < 0)
+				? 1
+				: 0);
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 				CSTPackage.INTEGER_LITERAL_EXP_CS__EXTENDED_INTEGER_SYMBOL,
 				oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				CSTPackage.INTEGER_LITERAL_EXP_CS__INTEGER_SYMBOL, oldIntegerSymbol,
-				integerSymbol));
+				CSTPackage.INTEGER_LITERAL_EXP_CS__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 		}
 	}
 

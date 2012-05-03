@@ -6275,12 +6275,12 @@ public interface CSTPackage
 	EAttribute getIntegerLiteralExpCS_IntegerSymbol();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.IntegerLiteralExpCS#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.IntegerLiteralExpCS <em>Extended Integer Symbol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * @since 3.2
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Extended Integer Symbol</em>'.
-	 * @see org.eclipse.ocl.cst.IntegerLiteralExpCS#getExtendedIntegerSymbol()
+	 * @see org.eclipse.ocl.cst.IntegerLiteralExpCS
 	 * @see #getIntegerLiteralExpCS()
 	 * @generated
 	 */
@@ -6320,12 +6320,12 @@ public interface CSTPackage
 	EAttribute getUnlimitedNaturalLiteralExpCS_IntegerSymbol();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS <em>Extended Integer Symbol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * @since 3.2
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Extended Integer Symbol</em>'.
-	 * @see org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getExtendedIntegerSymbol()
+	 * @see org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS
 	 * @see #getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
