@@ -55,7 +55,7 @@ Workflow {
     component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${projectName}/model/Pivot.merged.uml"
-		contentTypeIdentifier = "org.omg.uml_2_4_1" // XMI2UMLResource.UML_CONTENT_TYPE_IDENTIFIER
+		contentTypeIdentifier = "org.eclipse.uml2.uml_4_0_0" // UMLResource.UML_CONTENT_TYPE_IDENTIFIER
     }
     component = GenmodelReloader { resourceSet = resourceSet skipOnErrors = true
     	projectName = "${projectName}"

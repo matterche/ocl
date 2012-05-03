@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.pivot.prettyprint.EssentialOCLPrettyPrintVisitor
 import org.eclipse.ocl.examples.pivot.scoping.PivotScoping;
 import org.eclipse.ocl.examples.pivot.utilities.PivotSaver;
 import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
-import org.eclipse.uml2.uml.resources.util.ResourcesUtil;
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -45,7 +45,7 @@ public class PivotStandaloneSetup //implements ISetup
 
 	public static void init() {
 		EcorePackage.eINSTANCE.getClass();
-		ResourcesUtil.init(null);
+		UMLResourcesUtil.init(null);
 		PivotScoping.init();
 		EssentialOCLPrettyPrintVisitor.FACTORY.getClass();
 		PivotSaver.FACTORY.getClass();
