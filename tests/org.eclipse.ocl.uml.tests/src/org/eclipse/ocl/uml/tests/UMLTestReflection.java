@@ -76,6 +76,11 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	{
 		public static final Static INSTANCE = new Static();
 		
+		public Static() {
+			org.eclipse.uml2.uml.UMLPackage.eINSTANCE.getClass();
+			org.eclipse.ocl.uml.UMLPackage.eINSTANCE.getClass();
+		}
+
 		public OCL createOCL(ResourceSet resourceSet) {
 			return OCL.newInstance(resourceSet);
 		}
@@ -107,7 +112,8 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 					
 			// Make sure that the UML metamodel and primitive types
 			//   libraries are loaded
-			umlModelMetamodel = (Package) resourceSet.getResource(testUMLmodelURI, true).getContents().get(0);
+			EObject eObject = resourceSet.getResource(testUMLmodelURI, true).getContents().get(0);
+			umlModelMetamodel = (Package) eObject;
 			umlMetamodel = (Package) resourceSet.getResource(
 				URI.createURI(UMLResource.UML_METAMODEL_URI),
 				true).getContents().get(0);
