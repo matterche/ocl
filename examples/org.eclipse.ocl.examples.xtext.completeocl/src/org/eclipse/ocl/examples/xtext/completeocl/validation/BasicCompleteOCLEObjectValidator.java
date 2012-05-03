@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.validation;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -76,9 +77,10 @@ public class BasicCompleteOCLEObjectValidator extends EObjectValidator
 			return null;
 		}
 
-		public final MetaModelManager metaModelManager;
-		public EnvironmentFactory environmentFactory = null;
-		public Environment rootEnvironment = null;
+		private final Map<EClassifier, Boolean> complementedClassifiers = new WeakHashMap<EClassifier, Boolean>();
+		protected final MetaModelManager metaModelManager;
+		private EnvironmentFactory environmentFactory = null;
+		private Environment rootEnvironment = null;
 		
 		public ValidationAdapter(MetaModelManager metaModelManager) {
 			this.metaModelManager = metaModelManager;
@@ -89,11 +91,37 @@ public class BasicCompleteOCLEObjectValidator extends EObjectValidator
 		}
 
 		public boolean validate(EClassifier eClassifier, Object object, DiagnosticChain diagnostics, Map<Object, Object> context) {
-			boolean allOk = true;
-			if (rootEnvironment == null) {
-				environmentFactory = new PivotEnvironmentFactory(null, metaModelManager);
-				rootEnvironment = environmentFactory.createEnvironment();
+			//
+			//	The BasicCompleteOCLEObjectValidator has to be installed in the global registry so
+			//	we need to check to see whether the ResourceSet is one for which Complete OCL is installed.
+			//
+			synchronized(complementedClassifiers) {
+				Boolean complementedClassifier = complementedClassifiers.get(eClassifier);
+				if (complementedClassifier == null) {
+					complementedClassifier = Boolean.FALSE;
+					Resource eResource = eClassifier.eResource();
+					if (eResource != null) {
+						ResourceSet resourceSet = eResource.getResourceSet();
+						if (resourceSet != null) {
+							for (Adapter adapter : resourceSet.eAdapters()) {
+								if (adapter == this) {
+									complementedClassifier = Boolean.TRUE;
+									break;
+								}
+							}
+						}
+					}
+					complementedClassifiers.put(eClassifier, complementedClassifier);
+				}
+				if (!complementedClassifier) {
+					return true;
+				}
+				if (rootEnvironment == null) {
+					environmentFactory = new PivotEnvironmentFactory(null, metaModelManager);
+					rootEnvironment = environmentFactory.createEnvironment();
+				}
 			}
+			boolean allOk = true;
 			Type type = metaModelManager.getPivotOfEcore(Type.class, eClassifier);
 			for (Constraint constraint : metaModelManager.getAllConstraints(type)) {
 				if (UMLReflection.INVARIANT.equals(constraint.getStereotype())) {

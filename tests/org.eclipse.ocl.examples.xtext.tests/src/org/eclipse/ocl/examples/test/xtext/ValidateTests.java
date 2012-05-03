@@ -74,7 +74,7 @@ public class ValidateTests extends XtextTestCase
 		String ecoreName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(ecoreName);
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
+		BaseCSResource xtextResource = (BaseCSResource) metaModelManager.getExternalResourceSet().createResource(inputURI);
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(null);
 		assertNoResourceErrors("Load failed", xtextResource);
@@ -133,57 +133,82 @@ public class ValidateTests extends XtextTestCase
 		//
 		//	Create model
 		//
+		MetaModelManager metaModelManager0 = new MetaModelManager();
 		MetaModelManager metaModelManager1 = new MetaModelManager();
 		MetaModelManager metaModelManager2 = new MetaModelManager();
-		Resource ecoreResource = doLoadOCLinEcore(metaModelManager1, "Validate");
-		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
+		Resource ecoreResource1 = doLoadOCLinEcore(metaModelManager1, "Validate");
+		Resource ecoreResource2 = doLoadOCLinEcore(metaModelManager2, "Validate");
+		EPackage validatePackage1 = (EPackage) ecoreResource1.getContents().get(0);
+		EPackage validatePackage2 = (EPackage) ecoreResource2.getContents().get(0);
 		URI oclURI = getProjectFileURI("Validate.ocl");
-		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage, oclURI, metaModelManager2);
-		EValidator.Registry.INSTANCE.put(validatePackage, completeOCLEObjectValidator);
+		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage1, oclURI, metaModelManager0);
+		EValidator.Registry.INSTANCE.put(validatePackage1, completeOCLEObjectValidator);
 		try {
-			EObject testInstance = eCreate(validatePackage, "Level3");
+			EObject testInstance1 = eCreate(validatePackage1, "Level3");
+			EObject testInstance2 = eCreate(validatePackage2, "Level3");
 			String template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			String objectLabel;
 			//
 			//	No errors
 			//
-			eSet(testInstance, "ref", "xx");
-			eSet(testInstance, "l1", "xx");
-			eSet(testInstance, "l2a", "xx");
-			eSet(testInstance, "l2b", "xx");
-			eSet(testInstance, "l3", "xx");
-			checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
+			eSet(testInstance1, "ref", "xx");
+			eSet(testInstance1, "l1", "xx");
+			eSet(testInstance1, "l2a", "xx");
+			eSet(testInstance1, "l2b", "xx");
+			eSet(testInstance1, "l3", "xx");
+			eSet(testInstance2, "ref", "yy");
+			eSet(testInstance2, "l1", "yy");
+			eSet(testInstance2, "l2a", "yy");
+			eSet(testInstance2, "l2b", "yy");
+			eSet(testInstance2, "l3", "yy");
+			checkValidationDiagnostics(testInstance1, Diagnostic.WARNING);
+			checkValidationDiagnostics(testInstance2, Diagnostic.WARNING);
 			//
 			//	CompleteOCL errors all round
 			//
-			eSet(testInstance, "ref", "xxx");
-			eSet(testInstance, "l1", "xxx");
-			eSet(testInstance, "l2a", "xxx");
-			eSet(testInstance, "l2b", "xxx");
-			eSet(testInstance, "l3", "xxx");
-			objectLabel = DomainUtil.getLabel(testInstance);
-			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
+			eSet(testInstance1, "ref", "xxx");
+			eSet(testInstance1, "l1", "xxx");
+			eSet(testInstance1, "l2a", "xxx");
+			eSet(testInstance1, "l2b", "xxx");
+			eSet(testInstance1, "l3", "xxx");
+			eSet(testInstance2, "ref", "yyy");
+			eSet(testInstance2, "l1", "yyy");
+			eSet(testInstance2, "l2a", "yyy");
+			eSet(testInstance2, "l2b", "yyy");
+			eSet(testInstance2, "l3", "yyy");
+			objectLabel = DomainUtil.getLabel(testInstance1);
+			checkValidationDiagnostics(testInstance1, Diagnostic.WARNING,
 				DomainUtil.bind(template,  "Level1", "V1", objectLabel),
 				DomainUtil.bind(template,  "Level2a", "V2a", objectLabel),
 				DomainUtil.bind(template,  "Level2b", "V2b", objectLabel),
 				DomainUtil.bind(template,  "Level3", "V3", objectLabel));
+			checkValidationDiagnostics(testInstance2, Diagnostic.WARNING);
 			//
 			//	One CompleteOCl and one OCLinEcore
 			//
-			eSet(testInstance, "ref", "ok");
-			eSet(testInstance, "l1", "ok");
-			eSet(testInstance, "l2a", "bad");
-			eSet(testInstance, "l2b", "ok");
-			eSet(testInstance, "l3", "ok");
-			objectLabel = DomainUtil.getLabel(testInstance);
-			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
+			eSet(testInstance1, "ref", "ok");
+			eSet(testInstance1, "l1", "ok");
+			eSet(testInstance1, "l2a", "bad");
+			eSet(testInstance1, "l2b", "ok");
+			eSet(testInstance1, "l3", "ok");
+			eSet(testInstance2, "ref", "ok");
+			eSet(testInstance2, "l1", "ok");
+			eSet(testInstance2, "l2a", "bad");
+			eSet(testInstance2, "l2b", "ok");
+			eSet(testInstance2, "l3", "ok");
+			objectLabel = DomainUtil.getLabel(testInstance1);
+			checkValidationDiagnostics(testInstance1, Diagnostic.WARNING,
 				DomainUtil.bind(template,  "Level2a", "L2a", objectLabel),
 				DomainUtil.bind(template,  "Level2a", "V2a", objectLabel));
+			objectLabel = DomainUtil.getLabel(testInstance2);
+			checkValidationDiagnostics(testInstance2, Diagnostic.ERROR,
+				DomainUtil.bind("The ''{0}'' constraint is violated on ''{1}''", "L2a", "Level3 ok", objectLabel));
 		}
 		finally {
+			metaModelManager0.dispose();
 			metaModelManager1.dispose();
 			metaModelManager2.dispose();
-			EValidator.Registry.INSTANCE.remove(validatePackage);			
+			EValidator.Registry.INSTANCE.remove(validatePackage1);			
 		}
 	}
 

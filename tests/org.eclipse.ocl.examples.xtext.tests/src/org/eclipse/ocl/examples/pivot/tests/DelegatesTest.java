@@ -228,6 +228,7 @@ public class DelegatesTest extends PivotTestSuite
 		if (testResource != null) {
 			testResource.unload();
 		}
+		EValidator.Registry.INSTANCE.remove(null);
 		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
 		super.tearDown();
 	}
