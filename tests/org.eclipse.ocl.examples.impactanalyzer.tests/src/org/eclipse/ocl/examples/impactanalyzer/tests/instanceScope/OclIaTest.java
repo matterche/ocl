@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithO
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.Test;
 
+import behavioral.actions.ActionsFactory;
 import data.classes.Association;
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
@@ -43,6 +44,7 @@ import data.classes.ClassesPackage;
 import data.classes.MethodSignature;
 import data.classes.Parameter;
 import data.classes.SapClass;
+import data.classes.SignatureImplementation;
 import data.classes.TypeAdapter;
 import dataaccess.expressions.ExpressionsFactory;
 import dataaccess.expressions.ExpressionsPackage;
@@ -105,7 +107,66 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         this.rs = null;
         this.cp = null;
     }
-    
+
+    @Test
+    public void testSelectByType() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testSelectByType:\n" +
+                "self.ownedSignatures.implementation->selectByType(data::classes::LinkSetting).implements_.output"+
+                ".oclAsType(data::classes::ClassTypeDefinition).clazz.name",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
+        c1.setName("c1");
+        MethodSignature ms1 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms1.setName("ms1");
+        c1.getOwnedSignatures().add(ms1);
+        SapClass c2 = ClassesFactory.eINSTANCE.createSapClass();
+        c2.setName("c2");
+        MethodSignature ms2 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms2.setName("ms2");
+        c2.getOwnedSignatures().add(ms2);
+        SignatureImplementation ms1Impl = ActionsFactory.eINSTANCE.createBlock();
+        ms1.setImplementation(ms1Impl);
+        SignatureImplementation ms2Impl = ClassesFactory.eINSTANCE.createLinkSetting();
+        ms2.setImplementation(ms2Impl);
+        SapClass output = ClassesFactory.eINSTANCE.createSapClass();
+        output.setName("Output");
+        ClassTypeDefinition outputCtdForMs1 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ClassTypeDefinition outputCtdForMs2 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        outputCtdForMs1.setClazz(output);
+        outputCtdForMs2.setClazz(output);
+        ms1.setOutput(outputCtdForMs1);
+        ms2.setOutput(outputCtdForMs2);
+        
+        Collection<?> resultOnC1 = (Collection<?>) OCL.newInstance().evaluate(c1, expression);
+        assertTrue(resultOnC1.isEmpty());
+        Collection<?> resultOnC2 = (Collection<?>) OCL.newInstance().evaluate(c2, expression);
+        assertEquals(1, resultOnC2.size());
+        assertTrue(resultOnC2.contains("Output"));
+
+        final Notification[] noti = new Notification[1];
+        Adapter adapter = new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                noti[0] = msg;
+            }
+        };
+        output.eAdapters().add(adapter);
+        
+        output.setName("NewOutput");
+        Collection<?> newResultOnC1 = (Collection<?>) OCL.newInstance().evaluate(c1, expression);
+        assertTrue(newResultOnC1.isEmpty());
+        Collection<?> newResultOnC2 = (Collection<?>) OCL.newInstance().evaluate(c2, expression);
+        assertEquals(1, newResultOnC2.size());
+        assertTrue(newResultOnC2.contains("NewOutput"));
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
+        Collection<EObject> impact = ia.getContextObjects(noti[0]);
+        assertEquals(1, impact.size()); // expecting only c2 to be impacted because c1's ms1 implementation has the wrong type
+        assertFalse(impact.contains(c1));
+        assertTrue(impact.contains(c2));
+    }
 
     @Test
     public void testSimpleClosure() {
