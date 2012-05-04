@@ -41,8 +41,10 @@ public class PreferenceInitializer extends AnnotatedPreferenceInitializer
 		//	The following options cannot be declared to implement PreferenceableOption<?>
 		//	without an API change. Not worth double definitions for initialization only usage.
 		//
+		putPreference((PreferenceableOption<?>) EvaluationOptions.DYNAMIC_DISPATCH);
 		putPreference((PreferenceableOption<?>) EvaluationOptions.LAX_NULL_HANDLING);
 
+		putPreference((PreferenceableOption<?>) ParsingOptions.ALL_OVERLOADS);
 		putPreference((PreferenceableOption<?>) ParsingOptions.DEFINITION_CONSTRAINS_FEATURE);
 		putPreference((PreferenceableOption<?>) ParsingOptions.USE_COMPARE_TO_OPERATION);
 		putPreference((PreferenceableOption<?>) ParsingOptions.USE_LONG_INTEGERS);

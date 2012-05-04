@@ -241,6 +241,23 @@ public class ParsingOptions {
     		new BooleanOption(OCLUtil.PLUGIN_ID, "support.static.features", true); //$NON-NLS-1$
 
     /**
+     * <p>
+     * Parsing option indicating whether the parser should consider inherited operations when
+     * resolving overloads.
+     * </p><p>
+     * For backward compatibility, the default value of this option is <tt>false</tt>. 
+     * For Object Oriented behaviour use <tt>true</tt>.
+     * </p><p>
+     * Prior to OCL 2.5, when Object Oriented behaviour may be specified explicitly, it is
+     * debateable as to which behaviour is specification compliant.
+     * </p>
+     * 
+     * @since 3.2
+     */
+    public static final Option<Boolean> ALL_OVERLOADS = new BooleanOption(
+    		OCLUtil.PLUGIN_ID, "all.overloads", false); //$NON-NLS-1$
+
+    /**
      * Not instantiable by clients.
      */
     private ParsingOptions() {

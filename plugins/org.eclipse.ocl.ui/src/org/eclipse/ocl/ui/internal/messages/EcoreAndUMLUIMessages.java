@@ -38,4 +38,23 @@ public class EcoreAndUMLUIMessages
 	public static String Preference_Severity_Info;
 	public static String Preference_Severity_Ok;
 	public static String Preference_Severity_Warning;	
+	
+	public static String LPG_AllOverloads;
+	public static String LPG_AmbiguousAssociationEnds;
+	public static String LPG_ClosureIterator;
+	public static String LPG_DynamicDispatch;
+	public static String LPG_ConceptualOperationName;
+	public static String LPG_DefinitionConstrainsFeature;
+	public static String LPG_ElementNameQuoteEscape;
+	public static String LPG_ImplicitRootClass;
+	public static String LPG_InheritedFeatureContext;
+	public static String LPG_LaxNullHandling;
+	public static String LPG_PackageLookupStrategy;
+	public static String LPG_StringCaseConversion;
+	public static String LPG_StringSingleQuoteEscape;
+	public static String LPG_SupportStaticFeatures;
+	public static String LPG_UseBackslashEscapeProcessing;
+	public static String LPG_UseCompareToOperation;
+	public static String LPG_UseLongIntegers;
+	public static String LPG_WarnOfXorOrAndPrecedenceChange;
 }

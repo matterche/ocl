@@ -54,6 +54,23 @@ public class EvaluationOptions {
     		OCLUtil.PLUGIN_ID, "lax.null.handling", true); //$NON-NLS-1$
 
     /**
+     * <p>
+     * Evaluation option indicating whether to perform dynamic source-type dependent
+     * dispatch of operation calls.
+     * </p><p>
+     * For backward compatibility, the default value of this option is <tt>false</tt>. 
+     * For Object Oriented behaviour use <tt>true</tt>.
+     * </p><p>
+     * Prior to OCL 2.5, when Object Oriented behaviour may be specified explicitly, it is
+     * debateable as to which behaviour is specification compliant.
+     * </p>
+     * 
+     * @since 3.2
+     */
+    public static final Option<Boolean> DYNAMIC_DISPATCH = new BooleanOption(
+    		OCLUtil.PLUGIN_ID, "dynamic.dispatch", false); //$NON-NLS-1$
+
+    /**
      * Not instantiable by clients.
      */
     private EvaluationOptions() {

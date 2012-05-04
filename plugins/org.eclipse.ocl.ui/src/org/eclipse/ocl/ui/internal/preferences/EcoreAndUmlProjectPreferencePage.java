@@ -17,7 +17,6 @@ package org.eclipse.ocl.ui.internal.preferences;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.common.internal.messages.CommonMessages;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.common.ui.internal.preferences.AbstractProjectPreferencePage;
 import org.eclipse.ocl.lpg.ProblemHandler;
@@ -69,46 +68,50 @@ public class EcoreAndUmlProjectPreferencePage extends AbstractProjectPreferenceP
 		horizontalLine.setLayoutData(new GridData(GridData.FILL, GridData.FILL, false, false, 2, 1));
 		horizontalLine.setFont(fieldEditorParent.getFont());
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.DEFINITION_CONSTRAINS_FEATURE,
-			CommonMessages.LPG_DefinitionConstrainsFeature, BOOLEANS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_DefinitionConstrainsFeature, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.USE_COMPARE_TO_OPERATION,
-			CommonMessages.LPG_UseCompareToOperation, BOOLEANS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_UseCompareToOperation, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.USE_LONG_INTEGERS,
-			CommonMessages.LPG_UseLongIntegers, BOOLEANS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_UseLongIntegers, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE,
-			CommonMessages.LPG_WarnOfXorOrAndPrecedenceChange, BOOLEANS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_WarnOfXorOrAndPrecedenceChange, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.PACKAGE_LOOKUP_STRATEGY,
-			CommonMessages.LPG_PackageLookupStrategy, LOOKUP_STRATEGIES, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_PackageLookupStrategy, LOOKUP_STRATEGIES, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING,
-			CommonMessages.LPG_UseBackslashEscapeProcessing, BOOLEANS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_UseBackslashEscapeProcessing, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.SUPPORT_STATIC_FEATURES,
-			CommonMessages.LPG_SupportStaticFeatures, BOOLEANS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_SupportStaticFeatures, BOOLEANS, fieldEditorParent));
+		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.ALL_OVERLOADS,
+			EcoreAndUMLUIMessages.LPG_AllOverloads, BOOLEANS, fieldEditorParent));
 		horizontalLine = new Label(fieldEditorParent, SWT.SEPARATOR | SWT.HORIZONTAL);
 		horizontalLine.setLayoutData(new GridData(GridData.FILL, GridData.FILL, false, false, 2, 1));
 		horizontalLine.setFont(fieldEditorParent.getFont());
 		fields.add(new MyComboFieldEditor(ProblemOption.CLOSURE_ITERATOR,
-			CommonMessages.LPG_ClosureIterator, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_ClosureIterator, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor(ProblemOption.STRING_CASE_CONVERSION,
-			CommonMessages.LPG_StringCaseConversion, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_StringCaseConversion, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor(ProblemOption.STRING_SINGLE_QUOTE_ESCAPE,
-			CommonMessages.LPG_StringSingleQuoteEscape, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_StringSingleQuoteEscape, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor(ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE,
-			CommonMessages.LPG_ElementNameQuoteEscape, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_ElementNameQuoteEscape, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS,
-			CommonMessages.LPG_AmbiguousAssociationEnds, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_AmbiguousAssociationEnds, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor(ProblemOption.INHERITED_FEATURE_CONTEXT,
-			CommonMessages.LPG_InheritedFeatureContext, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_InheritedFeatureContext, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor(ProblemOption.CONCEPTUAL_OPERATION_NAME,
-			CommonMessages.LPG_ConceptualOperationName, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_ConceptualOperationName, SEVERITY_NAMES_AND_IDS, fieldEditorParent));
 		horizontalLine = new Label(fieldEditorParent, SWT.SEPARATOR | SWT.HORIZONTAL);
 		horizontalLine.setLayoutData(new GridData(GridData.FILL, GridData.FILL, false, false, 2, 1));
 		horizontalLine.setFont(fieldEditorParent.getFont());
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) EvaluationOptions.LAX_NULL_HANDLING,
-			CommonMessages.LPG_LaxNullHandling, BOOLEANS, fieldEditorParent));
+			EcoreAndUMLUIMessages.LPG_LaxNullHandling, BOOLEANS, fieldEditorParent));
 		String[][] Objects = new String[][] {
 			{ Object.class.getSimpleName(), Object.class.getName() },
 			{ EObject.class.getSimpleName(), EObject.class.getName() }
 		};
+		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) EvaluationOptions.DYNAMIC_DISPATCH,
+			EcoreAndUMLUIMessages.LPG_DynamicDispatch, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.IMPLICIT_ROOT_CLASS,
-				CommonMessages.LPG_ImplicitRootClass, Objects, fieldEditorParent));
+				EcoreAndUMLUIMessages.LPG_ImplicitRootClass, Objects, fieldEditorParent));
 	}
 }
