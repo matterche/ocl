@@ -996,7 +996,8 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
         	disposeResourceSet();
         }
 		if (!initialized) {
-			noDebug = System.getProperty(staticReflection.getTestPlugInId() + ".nodebug") != null;
+			String property = System.getProperty(staticReflection.getTestPlugInId() + ".nodebug");
+			noDebug = !"false".equals(property);
 			if (!eclipseIsRunning()) {
 				initializeStandalone();
 			}
