@@ -81,7 +81,9 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateOne;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
+import org.eclipse.ocl.internal.evaluation.OperationCache;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
@@ -98,6 +100,7 @@ import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -126,6 +129,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 
 	private EvaluationEnvironment.Enumerations<EL> enumerations;
+
+	/**
+	 * Ccahe supporting dynamic opration lookup. 
+	 */
+	private final OperationCache<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> operationCache;
 	
 	/**
 	 * Constructor
@@ -143,6 +151,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		super(env, evalEnv, extentMap);
 		
 		enumerations = OCLUtil.getAdapter(evalEnv, EvaluationEnvironment.Enumerations.class);
+		boolean dynamicDispatch = EvaluationOptions.getValue(evalEnv, EvaluationOptions.DYNAMIC_DISPATCH);
+		if (dynamicDispatch) {
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
+			UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = environment.getUMLReflection();
+			TypeChecker<C, O, P> typeChecker = OCLUtil.getAdapter(environment, TypeChecker.class);
+			operationCache = new OperationCache<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(uml, typeChecker);
+		}
+		else {
+			operationCache = null;
+		}
 	}
 
 	private boolean isBooleanOperation(int opCode) {
@@ -187,7 +205,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// evaluate source
 		Object sourceVal = safeVisitExpression(source);
-		
+		if (operationCache != null) {
+			oper = operationCache.getDynamicOperation(sourceType, oper);
+			if (oper == null) {			// Ambiguous overload
+				return getInvalid();
+			}
+		}
 		OCLExpression<C> body = getOperationBody(oper);
 		if ((body != null) || opCode <= 0 /* not a pre-defined operation */
 				|| getEvaluationEnvironment().overrides(oper, opCode)) {
@@ -213,7 +236,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					
 					result = call(oper, body, sourceVal, evalArgs);
 				} else {
-				    // handle <, <=, >, and >= operators
+				    // handle <, <=, >, and >= operators (only needed for UML)
 				    if (opCode <= 0) {
 				        opCode = inferOperationCode(oper, opCode);
 				    }
