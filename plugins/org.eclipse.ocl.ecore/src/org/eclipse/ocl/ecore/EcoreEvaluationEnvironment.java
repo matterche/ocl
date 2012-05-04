@@ -38,23 +38,18 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
-import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.CollectionUtil;
@@ -126,13 +121,13 @@ public class EcoreEvaluationEnvironment
 			throws IllegalArgumentException {
 
 		// FIXME: Pull up so that UML environment can benefit.
-		if (InvocationBehavior.INSTANCE.appliesTo(operation)) {
+		try {
 			EList<Object> arguments = (args.length == 0)
 				? ECollections.emptyEList()
 				: new BasicEList.UnmodifiableEList<Object>(args.length, args);
+			Object result;
+/*			if (InvocationBehavior.INSTANCE.appliesTo(operation)) {
 
-			try {
-				Object result;
 				// Fix for Bug 322159
 				Exception checkFailure;
 				if (mustCheckOperationReflectionConsistency
@@ -153,17 +148,61 @@ public class EcoreEvaluationEnvironment
 				} else {
 					result = ((EObject) source).eInvoke(operation, arguments);
 				}
-				return coerceValue(operation, result, true);
-			} catch (InvocationTargetException e) {
-				throw new IllegalArgumentException(e);
-			}
+			} else { */
+				System.out.println("Default-callOperation " + operation.getName());
+				result = eInvokeForEObject((EObject) source, operation, arguments);
+//			}
+			return coerceValue(operation, result, true);
+		} catch (InvocationTargetException e) {
+			throw new IllegalArgumentException(e);
 		}
-
 		// TODO: WBN to pull up createValue to the superclass as a pass-thru
 		// so that subclasses don't have to override callOperation
-		return coerceValue(operation,
-			super.callOperation(operation, opcode, source, args), true);
+		// return coerceValue(operation,
+		// super.callOperation(operation, opcode, source, args), true);
 	}
+
+	  private static Object eInvokeForEObject(EObject eObject, EOperation eOperation, EList<?> arguments) throws InvocationTargetException
+	  {
+	    if (eOperation.getEContainingClass() == EcorePackage.Literals.EOBJECT) {		// Do EObject first since EObject.eInvoke may not be reachable
+	    	switch (eOperation.getOperationID())
+		    {
+				case EcorePackage.EOBJECT___ECLASS :
+					return eObject.eClass();
+				case EcorePackage.EOBJECT___EIS_PROXY :
+					return eObject.eIsProxy();
+				case EcorePackage.EOBJECT___ERESOURCE :
+					return eObject.eResource();
+				case EcorePackage.EOBJECT___ECONTAINER :
+					return eObject.eContainer();
+				case EcorePackage.EOBJECT___ECONTAINING_FEATURE :
+					return eObject.eContainingFeature();
+				case EcorePackage.EOBJECT___ECONTAINMENT_FEATURE :
+					return eObject.eContainmentFeature();
+				case EcorePackage.EOBJECT___ECONTENTS :
+					return eObject.eContents();
+				case EcorePackage.EOBJECT___EALL_CONTENTS :
+					return eObject.eAllContents();
+				case EcorePackage.EOBJECT___ECROSS_REFERENCES :
+					return eObject.eCrossReferences();
+				case EcorePackage.EOBJECT___EGET__ESTRUCTURALFEATURE :
+					return eObject.eGet((EStructuralFeature) arguments.get(0));
+				case EcorePackage.EOBJECT___EGET__ESTRUCTURALFEATURE_BOOLEAN :
+					return eObject.eGet((EStructuralFeature) arguments.get(0), (Boolean) arguments.get(1));
+				case EcorePackage.EOBJECT___ESET__ESTRUCTURALFEATURE_OBJECT :
+					eObject.eSet((EStructuralFeature) arguments.get(0), arguments.get(1));
+					return null;
+				case EcorePackage.EOBJECT___EIS_SET__ESTRUCTURALFEATURE :
+					return eObject.eIsSet((EStructuralFeature) arguments.get(0));
+				case EcorePackage.EOBJECT___EUNSET__ESTRUCTURALFEATURE :
+					eObject.eUnset((EStructuralFeature) arguments.get(0));
+					return null;
+				case EcorePackage.EOBJECT___EINVOKE__EOPERATION_ELIST :
+					return eObject.eInvoke((EOperation) arguments.get(0), (EList<?>) arguments.get(1));
+		    }
+	    }
+	    return eObject.eInvoke(eOperation, arguments);
+	  }
 
 	// implements the inherited specification
 	@Override

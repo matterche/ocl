@@ -19,6 +19,7 @@
 
 package org.eclipse.ocl.ecore.tests;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.LinkedHashSet;
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.EOperationImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
@@ -57,17 +59,6 @@ import org.eclipse.ocl.types.CollectionType;
 public class ComparisonTest
 	extends AbstractTestSuite {
 
-	EPackage pkg;
-	EClass thingType;
-	EAttribute values;
-	EAttribute bdValue;
-	EAttribute biValue;
-	EDataType valueType;
-	EClass numeroType;
-	EReference numeros;	
-	EClass comparable;
-    EDataType myDataType;	
-	EObject thing;
 	
 	/**
 	 * Tests the &lt; operator.
@@ -742,154 +733,10 @@ public class ComparisonTest
 	@Override
     protected void setUp() {
 		super.setUp();
+		if (pkg == null) {
+			init();
+		}
 		
-		pkg = EcoreFactory.eINSTANCE.createEPackage();
-		pkg.setName("pkg");
-		
-		EFactory factory = EcoreFactory.eINSTANCE.createEFactory();
-		pkg.setEFactoryInstance(factory);
-		
-		valueType = EcoreFactory.eINSTANCE.createEDataType();
-		valueType.setName("Value");
-		valueType.setInstanceClass(Value.class);
-		pkg.getEClassifiers().add(valueType);
-		
-		thingType = EcoreFactory.eINSTANCE.createEClass();
-		thingType.setName("Thing");
-		pkg.getEClassifiers().add(thingType);
-
-		bdValue = EcoreFactory.eINSTANCE.createEAttribute();
-		bdValue.setName("bdValue");
-		bdValue.setEType(EcorePackage.Literals.EBIG_DECIMAL);
-		bdValue.setUpperBound(1);
-		thingType.getEStructuralFeatures().add(bdValue);
-
-		biValue = EcoreFactory.eINSTANCE.createEAttribute();
-		biValue.setName("biValue");
-		biValue.setEType(EcorePackage.Literals.EBIG_INTEGER);
-		biValue.setUpperBound(1);
-		thingType.getEStructuralFeatures().add(biValue);
-
-		values = EcoreFactory.eINSTANCE.createEAttribute();
-		values.setName("values");
-		values.setEType(valueType);
-		values.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
-		thingType.getEStructuralFeatures().add(values);
-		
-		numeroType = EcoreFactory.eINSTANCE.createEClass();
-		numeroType.setName("Numero");
-		numeroType.setInstanceClass(Numero.class);
-        pkg.getEClassifiers().add(numeroType);
-		
-		EOperation oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName("+");
-		EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(numeroType);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName("-");
-		parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(numeroType);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName("*");
-		parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(numeroType);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName("/");
-		parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(numeroType);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName("-");
-		oper.setEType(numeroType);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName("<");
-		parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(EcorePackage.Literals.EBOOLEAN);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName("<=");
-		parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(EcorePackage.Literals.EBOOLEAN);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName(">");
-		parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(EcorePackage.Literals.EBOOLEAN);
-		numeroType.getEOperations().add(oper);
-		
-		oper = EcoreFactory.eINSTANCE.createEOperation();
-		oper.setName(">=");
-		parm = EcoreFactory.eINSTANCE.createEParameter();
-		parm.setName("n");
-		parm.setEType(numeroType);
-		oper.getEParameters().add(parm);
-		oper.setEType(EcorePackage.Literals.EBOOLEAN);
-		numeroType.getEOperations().add(oper);
-        
-        oper = EcoreFactory.eINSTANCE.createEOperation();
-        oper.setName("asLong");
-        oper.setEType(EcorePackage.Literals.ELONG);
-        numeroType.getEOperations().add(oper);
-		
-		numeros = EcoreFactory.eINSTANCE.createEReference();
-		numeros.setName("numeros");
-		numeros.setEType(numeroType);
-		numeros.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
-		numeros.setOrdered(true);
-		thingType.getEStructuralFeatures().add(numeros);
-		
-		thing = factory.create(thingType);
-
-        comparable = EcoreFactory.eINSTANCE.createEClass();
-        comparable.setName("Comparable");
-        comparable.setAbstract(true);
-        pkg.getEClassifiers().add(comparable);
-        
-        oper = EcoreFactory.eINSTANCE.createEOperation();
-        oper.setName("compareTo");
-        parm = EcoreFactory.eINSTANCE.createEParameter();
-        parm.setName("c");
-        parm.setEType(comparable);
-        oper.getEParameters().add(parm);
-        oper.setEType(EcorePackage.Literals.EINT);
-        comparable.getEOperations().add(oper);
-		
-        myDataType = EcoreFactory.eINSTANCE.createEDataType();
-        myDataType.setName("MyDataType");
-        myDataType.setInstanceClass(Thread.State.class); // enums are comparable
-        pkg.getEClassifiers().add(myDataType);
         
 		@SuppressWarnings("unchecked")
 		EList<Numero> list = (EList<Numero>) thing.eGet(numeros);
@@ -939,7 +786,191 @@ public class ComparisonTest
 		}
 	}
 	
-	public static class Numero extends EObjectImpl {
+	public EPackage pkg;
+	public EAttribute values;
+	public EAttribute bdValue;
+	public EAttribute biValue;
+	public EDataType valueType;
+	public EClass numeroType;
+	public EReference numeros;	
+	public EClass comparable;
+	public EDataType myDataType;	
+	public EClass thingType;
+	public EObject thing;
+	
+	public void init() {
+		pkg = EcoreFactory.eINSTANCE.createEPackage();
+		pkg.setName("pkg");
+		
+		EFactory factory = EcoreFactory.eINSTANCE.createEFactory();
+		pkg.setEFactoryInstance(factory);
+		
+		valueType = EcoreFactory.eINSTANCE.createEDataType();
+		valueType.setName("Value");
+		valueType.setInstanceClass(Value.class);
+		pkg.getEClassifiers().add(valueType);
+		
+		thingType = EcoreFactory.eINSTANCE.createEClass();
+		thingType.setName("Thing");
+		pkg.getEClassifiers().add(thingType);
+
+		bdValue = EcoreFactory.eINSTANCE.createEAttribute();
+		bdValue.setName("bdValue");
+		bdValue.setEType(EcorePackage.Literals.EBIG_DECIMAL);
+		bdValue.setUpperBound(1);
+		thingType.getEStructuralFeatures().add(bdValue);
+
+		biValue = EcoreFactory.eINSTANCE.createEAttribute();
+		biValue.setName("biValue");
+		biValue.setEType(EcorePackage.Literals.EBIG_INTEGER);
+		biValue.setUpperBound(1);
+		thingType.getEStructuralFeatures().add(biValue);
+
+		values = EcoreFactory.eINSTANCE.createEAttribute();
+		values.setName("values");
+		values.setEType(valueType);
+		values.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		thingType.getEStructuralFeatures().add(values);
+		
+		numeroType = EcoreFactory.eINSTANCE.createEClass();
+		numeroType.setName("Numero");
+		numeroType.setInstanceClass(Numero.class);
+        pkg.getEClassifiers().add(numeroType);
+        numeroType.getESuperTypes().add(EcorePackage.Literals.EOBJECT);
+		
+		EOperation oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("+");
+		EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_PLUS);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("-");
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_MINUS_1);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("*");
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_TIMES);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("/");
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_DIVIDE);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("-");
+		oper.setEType(numeroType);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_MINUS_0);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("<");
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_LESS_THAN);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("<=");
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_LESS_THAN_EQUAL);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName(">");
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_GREATER_THAN);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName(">=");
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n");
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_GREATER_THAN_EQUAL);
+		numeroType.getEOperations().add(oper);
+        
+        oper = EcoreFactory.eINSTANCE.createEOperation();
+        oper.setName("asLong");
+        oper.setEType(EcorePackage.Literals.ELONG);
+		((EOperationImpl) oper).setOperationID(Numero.NUMERO_AS_LONG);
+        numeroType.getEOperations().add(oper);
+		
+		numeros = EcoreFactory.eINSTANCE.createEReference();
+		numeros.setName("numeros");
+		numeros.setEType(numeroType);
+		numeros.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		numeros.setOrdered(true);
+		thingType.getEStructuralFeatures().add(numeros);
+		
+		thing = factory.create(thingType);
+
+        comparable = EcoreFactory.eINSTANCE.createEClass();
+        comparable.setName("Comparable");
+        comparable.setAbstract(true);
+        pkg.getEClassifiers().add(comparable);
+        
+        oper = EcoreFactory.eINSTANCE.createEOperation();
+        oper.setName("compareTo");
+        parm = EcoreFactory.eINSTANCE.createEParameter();
+        parm.setName("c");
+        parm.setEType(comparable);
+        oper.getEParameters().add(parm);
+        oper.setEType(EcorePackage.Literals.EINT);
+        comparable.getEOperations().add(oper);
+		
+        myDataType = EcoreFactory.eINSTANCE.createEDataType();
+        myDataType.setName("MyDataType");
+        myDataType.setInstanceClass(Thread.State.class); // enums are comparable
+        pkg.getEClassifiers().add(myDataType);
+	}
+	
+	public class Numero extends EObjectImpl {
+		public static final int NUMERO_PLUS = EcorePackage.EOBJECT_OPERATION_COUNT + 0;
+		public static final int NUMERO_MINUS_1 = EcorePackage.EOBJECT_OPERATION_COUNT + 1;
+		public static final int NUMERO_TIMES = EcorePackage.EOBJECT_OPERATION_COUNT + 2;
+		public static final int NUMERO_DIVIDE = EcorePackage.EOBJECT_OPERATION_COUNT + 3;
+		public static final int NUMERO_MINUS_0 = EcorePackage.EOBJECT_OPERATION_COUNT + 4;
+		public static final int NUMERO_LESS_THAN = EcorePackage.EOBJECT_OPERATION_COUNT + 5;
+		public static final int NUMERO_LESS_THAN_EQUAL = EcorePackage.EOBJECT_OPERATION_COUNT + 6;
+		public static final int NUMERO_GREATER_THAN = EcorePackage.EOBJECT_OPERATION_COUNT + 7;
+		public static final int NUMERO_GREATER_THAN_EQUAL = EcorePackage.EOBJECT_OPERATION_COUNT + 8;
+		public static final int NUMERO_AS_LONG = EcorePackage.EOBJECT_OPERATION_COUNT + 9;
+		
 		private long value;
 		
 		Numero() {
@@ -1019,6 +1050,39 @@ public class ComparisonTest
 		@Override
         public String toString() {
 			return "Numero(" + value + ")";
+		}
+
+		@Override
+		public Object eInvoke(int operationID, EList<?> arguments)
+				throws InvocationTargetException {
+			switch (operationID) {
+				case NUMERO_PLUS :
+					return plus((Numero) arguments.get(0));
+				case NUMERO_MINUS_1 :
+					return minus((Numero) arguments.get(0));
+				case NUMERO_TIMES :
+					return times((Numero) arguments.get(0));
+				case NUMERO_DIVIDE :
+					return divide((Numero) arguments.get(0));
+				case NUMERO_MINUS_0 :
+					return minus();
+				case NUMERO_LESS_THAN :
+					return lessThan((Numero) arguments.get(0));
+				case NUMERO_LESS_THAN_EQUAL :
+					return lessThanEqual((Numero) arguments.get(0));
+				case NUMERO_GREATER_THAN :
+					return greaterThan((Numero) arguments.get(0));
+				case NUMERO_GREATER_THAN_EQUAL :
+					return greaterThanEqual((Numero) arguments.get(0));
+				case NUMERO_AS_LONG :
+					return asLong();
+			}
+			return super.eInvoke(operationID, arguments);
+		}
+
+		@Override
+		protected EClass eStaticClass() {
+			return numeroType;
 		}
 	}
 }
