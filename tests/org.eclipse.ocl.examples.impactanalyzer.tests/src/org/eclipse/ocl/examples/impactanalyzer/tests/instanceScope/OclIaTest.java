@@ -169,6 +169,65 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
     }
 
     @Test
+    public void testSelectByTypeForSubclass() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testSelectByType:\n" +
+                "self.ownedSignatures.implementation->selectByType(data::classes::SignatureImplementation).implements_.output"+
+                ".oclAsType(data::classes::ClassTypeDefinition).clazz.name",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
+        c1.setName("c1");
+        MethodSignature ms1 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms1.setName("ms1");
+        c1.getOwnedSignatures().add(ms1);
+        SapClass c2 = ClassesFactory.eINSTANCE.createSapClass();
+        c2.setName("c2");
+        MethodSignature ms2 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms2.setName("ms2");
+        c2.getOwnedSignatures().add(ms2);
+        SignatureImplementation ms1Impl = ActionsFactory.eINSTANCE.createBlock();
+        ms1.setImplementation(ms1Impl);
+        SignatureImplementation ms2Impl = ClassesFactory.eINSTANCE.createLinkSetting();
+        ms2.setImplementation(ms2Impl);
+        SapClass output = ClassesFactory.eINSTANCE.createSapClass();
+        output.setName("Output");
+        ClassTypeDefinition outputCtdForMs1 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ClassTypeDefinition outputCtdForMs2 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        outputCtdForMs1.setClazz(output);
+        outputCtdForMs2.setClazz(output);
+        ms1.setOutput(outputCtdForMs1);
+        ms2.setOutput(outputCtdForMs2);
+        
+        Collection<?> resultOnC1 = (Collection<?>) OCL.newInstance().evaluate(c1, expression);
+        assertTrue(resultOnC1.isEmpty());
+        Collection<?> resultOnC2 = (Collection<?>) OCL.newInstance().evaluate(c2, expression);
+        assertTrue(resultOnC2.isEmpty());
+
+        final Notification[] noti = new Notification[1];
+        Adapter adapter = new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                noti[0] = msg;
+            }
+        };
+        output.eAdapters().add(adapter);
+        
+        output.setName("NewOutput");
+        Collection<?> newResultOnC1 = (Collection<?>) OCL.newInstance().evaluate(c1, expression);
+        assertTrue(newResultOnC1.isEmpty());
+        Collection<?> newResultOnC2 = (Collection<?>) OCL.newInstance().evaluate(c2, expression);
+        assertTrue(newResultOnC2.isEmpty());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
+        Collection<EObject> impact = ia.getContextObjects(noti[0]);
+        assertTrue(impact.isEmpty()); // expecting neither c1 nor c2 to be in
+                                      // the result because neither Block nor
+                                      // LinkSetting has exactly type
+                                      // SignatureImplementation
+    }
+
+    @Test
     public void testSimpleClosure() {
         OCLExpression expression = (OCLExpression) parse(
                 "context data::classes::SapClass inv testSimpleClosure:\n" +
