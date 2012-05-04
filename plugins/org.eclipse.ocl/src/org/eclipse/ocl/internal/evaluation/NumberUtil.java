@@ -115,12 +115,12 @@ public class NumberUtil {
     
     /**
      * <p>
-     * Coerces the given number to a common or greater precision than referenceNumber,
-     * <tt>BigDecimal</TT> is greater than <tt>Double</tt> or
+     * Coerces the given number to a common or greater precision than <tt>referenceNumber</tt>,
+     * <tt>BigDecimal</tt> is greater than <tt>Double</tt> or
      * <tt>BigInteger</tt> which is greater than <tt>Long</tt> precision.
      * </p>
      * 
-     * @param number a number to coerce toa common precision
+     * @param number a number to coerce to a common precision
      * @param referenceNumber another number to share the common precision
      * @return the coerced number, or the original number, in case of overflow
      */
@@ -130,6 +130,8 @@ public class NumberUtil {
 				return number;
 			} else if (number instanceof BigInteger) {
 				return new BigDecimal((BigInteger)number);
+			} else if (number instanceof Integer || number instanceof Long) {
+				return new BigDecimal(number.longValue());
 			} else {
 				return BigDecimal.valueOf(number.doubleValue());
 			}
