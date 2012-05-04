@@ -130,7 +130,7 @@ public class NumberUtil {
 				return number;
 			} else if (number instanceof BigInteger) {
 				return new BigDecimal((BigInteger)number);
-			} else if (number instanceof Integer || number instanceof Long) {
+			} else if (number instanceof Integer || number instanceof Long || number instanceof Short || number instanceof Byte) {
 				return new BigDecimal(number.longValue());
 			} else {
 				return BigDecimal.valueOf(number.doubleValue());
