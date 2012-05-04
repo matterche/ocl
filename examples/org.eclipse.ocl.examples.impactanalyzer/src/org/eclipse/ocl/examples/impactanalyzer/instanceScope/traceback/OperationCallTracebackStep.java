@@ -33,8 +33,6 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-
-
 public class OperationCallTracebackStep extends BranchingTracebackStep<OperationCallExp> {
     private static final Set<String> sourcePassThroughStdLibOpNames;
     private static final Set<String> argumentPassThroughStdLibOpNames;
@@ -56,6 +54,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
         sourcePassThroughStdLibOpNames.add(PredefinedType.INTERSECTION_NAME);
         sourcePassThroughStdLibOpNames.add(PredefinedType.OCL_AS_TYPE_NAME);
         sourcePassThroughStdLibOpNames.add(PredefinedType.UNION_NAME);
+        sourcePassThroughStdLibOpNames.add(PredefinedType.SELECT_BY_KIND_NAME);
 
         argumentPassThroughStdLibOpNames = new HashSet<String>();
         argumentPassThroughStdLibOpNames.add(PredefinedType.INCLUDING_NAME);
@@ -71,6 +70,16 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
      */
     private final EClass allInstancesClass;
     private final OppositeEndFinder oppositeEndFinder;
+    
+    /**
+     * In case of a <code>selectByType</code> operation on a collection, the
+     * type in {@link AbstractTracebackStep#requiredType} must be matched
+     * exactly. In this case, this attribute is set to <code>true</code> by the
+     * constructor, and an exact type check is performed by
+     * {@link #performSubsequentTraceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}
+     * .
+     */
+    private final boolean requireTypeExactly;
 
     /**
      * Set to <code>true</code> for operations whose body is specified again in OCL. For such operations, this step will trace
@@ -101,6 +110,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
         if (body != null) {
             allInstancesClass = null;
             filterResultsByCall = true;
+            requireTypeExactly = false;
             // an OCL-specified operation; trace back using the body expression
             getSteps().add(
                     createTracebackStepAndScopeChange(sourceExpression, body, context, operationBodyToCallMapper,
@@ -110,10 +120,17 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
             String opName = sourceExpression.getReferredOperation().getName();
             if (opName.equals(PredefinedType.OCL_AS_TYPE_NAME)) {
                 allInstancesClass = null;
+                requireTypeExactly = false;
                 handleOclAsType(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor,
                         tracebackStepCache);
+            } else if (opName.equals(PredefinedType.SELECT_BY_TYPE_NAME)) {
+                allInstancesClass = null;
+                requireTypeExactly = true;
+                handleSourcePassThroughOperation(sourceExpression, context, operationBodyToCallMapper,
+                        tupleLiteralNamesToLookFor, tracebackStepCache, opName);
             } else if (sourcePassThroughStdLibOpNames.contains(opName)) {
                 allInstancesClass = null;
+                requireTypeExactly = false;
                 handleSourcePassThroughOperation(sourceExpression, context, operationBodyToCallMapper,
                         tupleLiteralNamesToLookFor, tracebackStepCache, opName);
             } else if (opName.equals(PredefinedType.ALL_INSTANCES_NAME)) {
@@ -123,8 +140,10 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
                 // defined on a superclass of the one on which allInstances() was invoked. Therefore,
                 // ensure that the typing of the AllInstancesNavigationStep is correct.
                 allInstancesClass = context;
+                requireTypeExactly = false;
             } else {
                 allInstancesClass = null;
+                requireTypeExactly = false;
             }
             // hope, we didn't forget stdlib operations that pass on
             // source or argument values into their result
@@ -195,12 +214,15 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
             }
             result = preResult;
         } else {
-            OperationCallExpKeyedSet preResult = (OperationCallExpKeyedSet) super
-                    .performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+            OperationCallExpKeyedSet preResult;
+            if (requireTypeExactly && source.eClass() != requiredType) {
+                preResult = FlatSet.emptySet();
+            } else {
+                preResult = (OperationCallExpKeyedSet) super
+                        .performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+            }
             if (filterResultsByCall && tracebackCache.getConfiguration().isOperationCallSelectionActive()) {
                 result = new IterableAsOperationCallExpKeyedSet(preResult.getCombinedResultsFor(getExpression()));
-//                result = new FlatSet(preResult.getCombinedResultsFor(getExpression()));
-//                result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(preResult.getCombinedResultsFor(getExpression()));
             } else {
                 result = preResult;
             }

@@ -261,7 +261,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
                 result.add(stepForCall);
             }
         } 
-        else if (derivedPropertyCalls != null){
+        else if (derivedPropertyCalls != null) {
             result = new HashSet<TracebackStepAndScopeChange>();
             for (PropertyCallExp call : derivedPropertyCalls) {
                 OCLExpression callSource = (OCLExpression) call.getSource();
