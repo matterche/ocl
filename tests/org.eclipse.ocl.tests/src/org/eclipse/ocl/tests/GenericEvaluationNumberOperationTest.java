@@ -579,7 +579,7 @@ extends GenericEvaluationTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, P
 	public void testNumberNegate() {
         ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.USE_LONG_INTEGERS, true);
 		assertResult(-1, "-1");
-//		assertResult(-1.0, "-1.0", 0.0);
+		assertResult(-1.0, "-1.0");
 
 		assertResult(-2147483647, "-2147483647");
 		assertResult(-2147483648, "-2147483648");
