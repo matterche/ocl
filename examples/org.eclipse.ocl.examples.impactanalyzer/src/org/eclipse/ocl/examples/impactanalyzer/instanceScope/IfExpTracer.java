@@ -29,7 +29,7 @@ public class IfExpTracer extends AbstractTracer<IfExp> {
 		NavigationStep thenPath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getThenExpression(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
 		NavigationStep elsePath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getElseExpression(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
 		NavigationStep result = pathCache.navigationStepForBranch(getInnermostElementType(getExpression().getType()), context, getExpression(),
-		        getTupleLiteralPartNamesToLookFor(), thenPath, elsePath);
+		        getTupleLiteralPartNamesToLookFor(), /* requireExactMatchForSourceType */ false, thenPath, elsePath);
 		applyScopesOnNavigationStep(result, operationBodyToCallMapper);
 		return result;
 	}

@@ -38,14 +38,19 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     private final List<NavigationStep> stepsAlwaysEmptyInThisStepsContext;
 
     private final SemanticIdentity semanticIdentity;
+    
+    private final boolean requireExactMatchForSourceType;
 
-    public BranchingNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, NavigationStep... parallelSteps) {
+    public BranchingNavigationStep(EClass sourceType, EClass targetType,
+            OCLExpression debugInfo, boolean requireExactMatchForSourceType,
+            NavigationStep... parallelSteps) {
         // TODO be smart about allInstances steps that subsume other steps with same or specialized targetType
         // TODO be smart and recognize alwaysEmpty in case of a single GOTO that goes immediately to this
         // TODO be smart and combine steps where one is just an indirection for another
         // TODO if parallelSteps contains a BranchingNavigationStep, pull its branches up into this step
         super(sourceType, targetType, debugInfo, parallelSteps);
         semanticIdentity = new BranchingNavigationStepIdentity();
+        this.requireExactMatchForSourceType = requireExactMatchForSourceType;
 
         stepsAlwaysEmptyInThisStepsContext = new ArrayList<NavigationStep>();
         if (areAllStepsAlwaysEmpty()) {
@@ -100,6 +105,19 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
             }
         }
     }
+    
+    @Override
+    protected boolean doesSourceTypeMatch(AnnotatedEObject fromObject) {
+        boolean result;
+        if (requireExactMatchForSourceType) {
+            result = getSourceType() == fromObject.eClass();
+        } else {
+            result = super.doesSourceTypeMatch(fromObject);
+        }
+        return result;
+    }
+
+
 
     private class BranchingNavigationStepIdentity extends SemanticIdentity {
 	public BranchingNavigationStep getNavigationStep() {

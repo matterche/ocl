@@ -131,16 +131,24 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
     }
 
     /**
-     * A non-caching, no-cache-lookup factory operation for a branching step for <code>steps</code>. If <code>steps</code>
-     * contains only one step, that step is returned without constructing a {@link BranchingNavigationStep} around it.
+     * A non-caching, no-cache-lookup factory operation for a branching step for
+     * <code>steps</code>. If <code>steps</code> contains only one step, that
+     * step is returned without constructing a {@link BranchingNavigationStep}
+     * around it.
+     * 
+     * @param requireExactMatchForSourceType
+     *            should the source object's type match <code>sourceType</code>
+     *            exactly?
      */
     protected NavigationStep navigationStepForBranch(EClass sourceType, EClass targetType, OCLExpression expression,
-            Stack<String> tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
+            Stack<String> tupleLiteralPartNamesToLookFor, boolean requireExactMatchForSourceType, NavigationStep... steps) {
         NavigationStep result;
-        if (steps.length == 1) {
+        // exact source type matching is only implemented in BranchingNavigationStep, so even if we only have one
+        // step, but exact source type matching is required, we still need the BranchingNavigationStep wrapper
+        if (steps.length == 1 && !requireExactMatchForSourceType) {
             result = steps[0];
         } else {
-            result = new BranchingNavigationStep(sourceType, targetType, expression, steps);
+            result = new BranchingNavigationStep(sourceType, targetType, expression, requireExactMatchForSourceType, steps);
         }
         return result;
     }

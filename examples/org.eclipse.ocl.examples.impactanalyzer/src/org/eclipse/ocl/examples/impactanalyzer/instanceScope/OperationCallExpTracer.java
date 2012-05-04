@@ -49,6 +49,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         sourcePassThroughStdLibOpNames.add(PredefinedType.OCL_AS_TYPE_NAME);
         sourcePassThroughStdLibOpNames.add(PredefinedType.UNION_NAME);
         sourcePassThroughStdLibOpNames.add(PredefinedType.SELECT_BY_KIND_NAME);
+        sourcePassThroughStdLibOpNames.add(PredefinedType.SELECT_BY_TYPE_NAME);
 
         argumentPassThroughStdLibOpNames = new HashSet<String>();
         argumentPassThroughStdLibOpNames.add(PredefinedType.INCLUDING_NAME);
@@ -108,10 +109,16 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                             context,
                             getExpression(),
                             getTupleLiteralPartNamesToLookFor(),
-                            sourcePath,
-                            argumentPath);
+                            /* requireExactMatchForSourceType */ opName.equals(PredefinedType.SELECT_BY_TYPE_NAME),
+                            sourcePath, argumentPath);
                 } else {
-                    result = sourcePath;
+                    result = pathCache.navigationStepForBranch(
+                            getInnermostElementType(getExpression().getType()),
+                            context,
+                            getExpression(),
+                            getTupleLiteralPartNamesToLookFor(),
+                            /* requireExactMatchForSourceType */ opName.equals(PredefinedType.SELECT_BY_TYPE_NAME),
+                            sourcePath);
                 }
             } else if (opName.equals(PredefinedType.ALL_INSTANCES_NAME)) {
                 // the object from where to trace back later in the navigate method may not

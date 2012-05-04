@@ -340,7 +340,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         if (!isAlwaysEmpty()) { // don't do anything for empty steps
             for (AnnotatedEObject fromObject : from) {
                 // for absolute steps, don't do the source type check and invoke just once, passing null for "from"
-                if (isAbsolute() || AbstractTracer.doesTypeMatch(getSourceType(), fromObject)) {
+                if (isAbsolute() || doesSourceTypeMatch(fromObject)) {
                     // use a copy of the TracebackCache if there are several objects in "from"
                     // because for each fromObject, different variable scopes and values may result
                     for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject, cache, changeEvent)) {
@@ -353,6 +353,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         }
         resultObjectsCounter += result.size();
         return result;
+    }
+    
+    protected boolean doesSourceTypeMatch(AnnotatedEObject fromObject) {
+        return AbstractTracer.doesTypeMatch(getSourceType(), fromObject);
     }
 
     private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {

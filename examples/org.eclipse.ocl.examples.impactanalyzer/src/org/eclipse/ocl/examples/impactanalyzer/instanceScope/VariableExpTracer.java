@@ -159,7 +159,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             stepsPerCall.add(stepForCall);
         }
         indirectingStep.setActualStep(pathCache.navigationStepForBranch(getInnermostElementType(getExpression().getType()),
-                context, getExpression(), getTupleLiteralPartNamesToLookFor(), stepsPerCall.toArray(new NavigationStep[0])));
+                context, getExpression(), getTupleLiteralPartNamesToLookFor(), /* requireExactMatchForSourceType */ false, stepsPerCall.toArray(new NavigationStep[0])));
         return indirectingStep;
     }
 
@@ -206,7 +206,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
                 getTupleLiteralPartNamesToLookFor(), oclFactory);
         NavigationStep actualStepForIterateResultVariableExp = pathCache.navigationStepForBranch(
                 getInnermostElementType(getExpression().getType()), context, getExpression(),
-                getTupleLiteralPartNamesToLookFor(), stepForInitExpression, stepForBodyExpression);
+                getTupleLiteralPartNamesToLookFor(), /* requireExactMatchForSourceType */ false, stepForInitExpression, stepForBodyExpression);
         indirectingStep.setActualStep(actualStepForIterateResultVariableExp);
         return indirectingStep;
     }
@@ -230,7 +230,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
                     getTupleLiteralPartNamesToLookFor(), oclFactory);
             NavigationStep actualStepForIterateResultVariableExp = pathCache.navigationStepForBranch(
                     getInnermostElementType(getExpression().getType()), context, getExpression(),
-                    getTupleLiteralPartNamesToLookFor(), stepForSource, stepForBodyExpression);
+                    getTupleLiteralPartNamesToLookFor(), /* requireExactMatchForSourceType */ false, stepForSource, stepForBodyExpression);
             indirectingStep.setActualStep(actualStepForIterateResultVariableExp);
         	result = indirectingStep;
         } else {
@@ -265,7 +265,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             // associated expression is the same as the one used for the IndirectingStep created and cached
             // above.
             indirectingStep.setActualStep(pathCache.navigationStepForBranch(getInnermostElementType(getExpression().getType()),
-                    context, getExpression(), getTupleLiteralPartNamesToLookFor(), stepsForCalls.toArray(new NavigationStep[0])));
+                    context, getExpression(), getTupleLiteralPartNamesToLookFor(), /* requireExactMatchForSourceType */ false, stepsForCalls.toArray(new NavigationStep[0])));
             result = indirectingStep;
         } else {
             // self occurred outside of an operation; it evaluates to s for s being the context
