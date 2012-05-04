@@ -156,6 +156,7 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(ExpressionsValidatorTest.class, "Expression Validation Tests");
 		result.createTestSuite(SerializationTest.class, "Serialization Tests");
 		result.createTestSuite(EvaluationHaltedTest.class, "EvaluationHalted Tests");
+		result.createTestSuite(NamesTest.class, "Name Overload/Override Tests");
 		result.createTestSuite(DocumentationExamples.class, "Documentation Examples");
 	}
 	

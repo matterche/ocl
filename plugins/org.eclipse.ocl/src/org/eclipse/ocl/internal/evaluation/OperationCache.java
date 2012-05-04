@@ -74,7 +74,7 @@ public class OperationCache<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     	        	List<PM> candidateParameters = uml.getParameters(candidateOperation);
     		    	int iMax = candidateParameters.size();
     		    	int j = overloads.size();
-                   	while (--j > 0) {								// Reverse count to allow remove()
+                   	while (--j >= 0) {								// Reverse count to allow remove()
                    		O oldOperation = overloads.get(j);
         	        	List<PM> oldParameters = uml.getParameters(oldOperation);
         	        	if (iMax == oldParameters.size()) {

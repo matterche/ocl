@@ -206,7 +206,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// evaluate source
 		Object sourceVal = safeVisitExpression(source);
 		if (operationCache != null) {
-			oper = operationCache.getDynamicOperation(sourceType, oper);
+			C dynamicSourceType = getEvaluationEnvironment().getType(sourceVal);
+			oper = operationCache.getDynamicOperation(dynamicSourceType, oper);
 			if (oper == null) {			// Ambiguous overload
 				return getInvalid();
 			}
