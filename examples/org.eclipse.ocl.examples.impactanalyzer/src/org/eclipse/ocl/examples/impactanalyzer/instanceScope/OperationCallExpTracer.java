@@ -48,6 +48,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         sourcePassThroughStdLibOpNames.add(PredefinedType.INTERSECTION_NAME);
         sourcePassThroughStdLibOpNames.add(PredefinedType.OCL_AS_TYPE_NAME);
         sourcePassThroughStdLibOpNames.add(PredefinedType.UNION_NAME);
+        sourcePassThroughStdLibOpNames.add(PredefinedType.SELECT_BY_KIND_NAME);
 
         argumentPassThroughStdLibOpNames = new HashSet<String>();
         argumentPassThroughStdLibOpNames.add(PredefinedType.INCLUDING_NAME);
