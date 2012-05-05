@@ -105,6 +105,8 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 	private final OCLStandardLibrary<C> stdlib;
 
+	private final C implicitRootClass;
+	
 	/**
 	 * Initializes me with my environment.
 	 * 
@@ -118,6 +120,14 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		uml = env.getUMLReflection();
 		oclFactory = env.getOCLFactory();
 		stdlib = env.getOCLStandardLibrary();
+		C optionValue = ParsingOptions.getValue(env, ParsingOptions.implicitRootClass(env));
+		// check that, if there is a value for this option, it is a class
+		if ((optionValue != null) && !env.getUMLReflection().isClass(optionValue)) {
+			implicitRootClass = null;
+		}
+		else {
+			implicitRootClass = optionValue;
+		}
 	}
 
 	/**
@@ -326,12 +336,11 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		if (result == UNRELATED_TYPE) {
 			// try the implicit root class
-			C implictBaseClassifier = getImplicitRootClass();
-			if ((implictBaseClassifier != null) && uml.isClass(type1)
+			if ((implicitRootClass != null) && uml.isClass(type1)
 				&& uml.isClass(type2)) {
-				if (type1 == implictBaseClassifier) {
+				if (type1 == implicitRootClass) {
 					result = STRICT_SUPERTYPE;
-				} else if (type2 == implictBaseClassifier) {
+				} else if (type2 == implicitRootClass) {
 					result = STRICT_SUBTYPE;
 				}
 			}
@@ -592,10 +601,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		C result = uml.getCommonSuperType(type1, type2);
 
 		if (result == null) {
-			C implictBaseClassifier = getImplicitRootClass();
-			if ((implictBaseClassifier != null) && uml.isClass(type1)
+			if ((implicitRootClass != null) && uml.isClass(type1)
 				&& uml.isClass(type2)) {
-				result = implictBaseClassifier;
+				result = implicitRootClass;
 			}
 		}
 
@@ -733,10 +741,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 					result.addAll(uml.getOperations(owner));
 
-					C implictBaseClassifier = getImplicitRootClass();
-					if ((implictBaseClassifier != null)
-						&& (implictBaseClassifier != owner)) {
-						result.addAll(uml.getOperations(implictBaseClassifier));
+					if ((implicitRootClass != null)
+						&& (implicitRootClass != owner)) {
+						result.addAll(uml.getOperations(implicitRootClass));
 					}
 
 					result.addAll(getOperations(oclAny));
@@ -834,10 +841,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 					result.addAll(uml.getAttributes(owner));
 
-					C implictBaseClassifier = getImplicitRootClass();
-					if ((implictBaseClassifier != null)
-						&& (implictBaseClassifier != owner)) {
-						result.addAll(uml.getAttributes(implictBaseClassifier));
+					if ((implicitRootClass != null)
+						&& (implicitRootClass != owner)) {
+						result.addAll(uml.getAttributes(implicitRootClass));
 					}
 
 					result.addAll(getAttributes(oclAny));
@@ -1212,26 +1218,6 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 				// we can find this operation
 				result = findOperationMatching(argType, name, args);
 			}
-		}
-
-		return result;
-	}
-
-	/**
-	 * Obtains the implicit root class specified as an option in the
-	 * environment, if it is specified and it is a class.
-	 * 
-	 * @param env
-	 *            the current environment
-	 * @return the implicit root class, if any
-	 */
-	private C getImplicitRootClass() {
-		C result = ParsingOptions.getValue(env, ParsingOptions
-			.implicitRootClass(env));
-
-		// check that, if there is a value for this option, it is a class
-		if ((result != null) && !env.getUMLReflection().isClass(result)) {
-			result = null;
 		}
 
 		return result;

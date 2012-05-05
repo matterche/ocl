@@ -111,7 +111,8 @@ public class ParsingOptionsTest
 		// without the option
 		assertSame(ocl.getEnvironment().getOCLStandardLibrary().getOclAny(),
 			TypeUtil.commonSuperType(null, ocl.getEnvironment(), apple, stem));
-
+	}
+	public void test_implicitRootClass_option_commonSupertype2() {
 		ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions
 			.implicitRootClass(ocl.getEnvironment()),
 			EcorePackage.Literals.EOBJECT);
@@ -130,7 +131,8 @@ public class ParsingOptionsTest
 			.getEnvironment(), EcorePackage.Literals.EOBJECT, apple));
 		assertEquals(UMLReflection.UNRELATED_TYPE, TypeUtil.getRelationship(ocl
 			.getEnvironment(), apple, EcorePackage.Literals.EOBJECT));
-
+	}
+	public void test_implicitRootClass_option_getRelationship2() {
 		ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions
 			.implicitRootClass(ocl.getEnvironment()),
 			EcorePackage.Literals.EOBJECT);
