@@ -1187,6 +1187,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			break outer;
 		}
 
+		if ((classifiers.size() > 1) && ParsingOptions.getValue(env, ParsingOptions.OVERLOAD_AMBIGUITY_IS_INVALID)) {
+			return null;
+		}
 		// there will at least be one remaining
 		return redefinitions.get(classifiers.get(0));
 	}

@@ -72,7 +72,6 @@ public class NamesTest extends AbstractTestSuite
 		level2bClass = (EClass) namesTestPackage.getEClassifier("Level2b");
 		level3Class = (EClass) namesTestPackage.getEClassifier("Level3");
 		level4Class = (EClass) namesTestPackage.getEClassifier("Level4");
-//		EFactory namesTestFactory = namesTestPackage.getEFactoryInstance();
 		EStructuralFeature level0Name = level0Class.getEStructuralFeature("name");
 		level0 = getObject(container, level0Name, "level0");
 		level1 = getObject(container, level0Name, "level1");
@@ -172,6 +171,9 @@ public class NamesTest extends AbstractTestSuite
 		assertQueryEquals(level2b, "Level4::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level3, "Level4::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level4, "Level4::ambiguous", "self.ambiguous()");
+	    ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.OVERLOAD_AMBIGUITY_IS_INVALID, true);
+	    helper.setContext(level3Class);
+	    assertSemanticError("self.ambiguous()", OCLMessages.OperationNotFound_ERROR_, "ambiguous()", "Level3");
 	}
 
 	public void test_ambiguous_withDynamicDispatch() {
