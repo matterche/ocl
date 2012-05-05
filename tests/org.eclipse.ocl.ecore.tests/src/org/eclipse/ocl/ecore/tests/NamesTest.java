@@ -15,7 +15,6 @@
 package org.eclipse.ocl.ecore.tests;
 
 import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -23,9 +22,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.options.EvaluationOptions;
+import org.eclipse.ocl.options.ParsingOptions;
 
 /**
  * Tests for the name overload and override resolution.
@@ -117,6 +116,7 @@ public class NamesTest extends AbstractTestSuite
 	}
 
 	public void test_overriden_withDynamicDispatch() {
+	    ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.ALL_OVERLOADS, true);
 	    EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
 		helper.setContext(level0Class);
  		assertQueryEquals(level0, "Level0::overridden", "self.overridden()");
@@ -175,6 +175,7 @@ public class NamesTest extends AbstractTestSuite
 	}
 
 	public void test_ambiguous_withDynamicDispatch() {
+	    ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.ALL_OVERLOADS, true);
 	    EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
 		helper.setContext(level0Class);
 		assertSemanticError("self.ambiguous()", OCLMessages.OperationNotFound_ERROR_, "ambiguous()", "Level0");

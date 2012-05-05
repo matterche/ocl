@@ -69,6 +69,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
+import org.eclipse.ocl.internal.evaluation.CachedTypeChecker;
 import org.eclipse.ocl.internal.evaluation.IterationTemplate;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateAny;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateClosure;
@@ -81,7 +82,6 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateOne;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
-import org.eclipse.ocl.internal.evaluation.OperationCache;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
@@ -100,7 +100,6 @@ import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
-import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -131,9 +130,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	private EvaluationEnvironment.Enumerations<EL> enumerations;
 
 	/**
-	 * Ccahe supporting dynamic opration lookup. 
+	 * Cache supporting dynamic operation lookup. 
 	 */
-	private final OperationCache<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> operationCache;
+	private final CachedTypeChecker<C, O, P> cachedTypeChecker;
 	
 	/**
 	 * Constructor
@@ -154,12 +153,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		boolean dynamicDispatch = EvaluationOptions.getValue(evalEnv, EvaluationOptions.DYNAMIC_DISPATCH);
 		if (dynamicDispatch) {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
-			UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = environment.getUMLReflection();
 			TypeChecker<C, O, P> typeChecker = OCLUtil.getAdapter(environment, TypeChecker.class);
-			operationCache = new OperationCache<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(uml, typeChecker);
+			if (typeChecker instanceof CachedTypeChecker<?,?,?>) {
+				cachedTypeChecker = (CachedTypeChecker<C,O,P>)typeChecker;
+			}
+			else {
+				cachedTypeChecker = null;
+			}
 		}
 		else {
-			operationCache = null;
+			cachedTypeChecker = null;
 		}
 	}
 
@@ -205,9 +208,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// evaluate source
 		Object sourceVal = safeVisitExpression(source);
-		if (operationCache != null) {
+		if (cachedTypeChecker != null) {
 			C dynamicSourceType = getEvaluationEnvironment().getType(sourceVal);
-			oper = operationCache.getDynamicOperation(dynamicSourceType, oper);
+			oper = cachedTypeChecker.getDynamicOperation(dynamicSourceType, oper);
 			if (oper == null) {			// Ambiguous overload
 				return getInvalid();
 			}

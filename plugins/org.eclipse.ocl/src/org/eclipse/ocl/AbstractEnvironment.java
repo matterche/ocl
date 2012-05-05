@@ -26,18 +26,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.internal.evaluation.BasicTypeChecker;
+import org.eclipse.ocl.internal.evaluation.CachedTypeCheckerImpl;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Option;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.types.CollectionType;
-import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
@@ -1194,7 +1193,17 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      */
     protected TypeChecker<C, O, P> getTypeChecker() {
     	if (typeChecker == null) {
-    		typeChecker = createTypeChecker();
+    		boolean allOverloads = ParsingOptions.getValue(this, ParsingOptions.ALL_OVERLOADS);
+    		if (allOverloads) {
+        		Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+    			if (internalParent instanceof AbstractEnvironment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+    				TypeChecker<C, O, P> typeChecker = ((AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>)internalParent).getTypeChecker();
+    				if (typeChecker != null) {
+    					return typeChecker;
+    				}
+    			}
+    		}
+	    	typeChecker = createTypeChecker();
     	}
     	
     	return typeChecker;
@@ -1212,27 +1221,13 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @see #getTypeChecker()
      */
    protected TypeChecker<C, O, P> createTypeChecker() {
-    	return new AbstractTypeChecker<C, O, P, PM>(this) {
-
-			@Override
-			protected C resolve(C type) {
-				return getTypeResolver().resolve(type);
-			}
-
-			@Override
-			protected CollectionType<C, O> resolveCollectionType(
-					CollectionKind kind, C elementType) {
-				
-				return getTypeResolver().resolveCollectionType(kind, elementType);
-			}
-
-			@Override
-			protected TupleType<O, P> resolveTupleType(
-					EList<? extends TypedElement<C>> parts) {
-				
-				return getTypeResolver().resolveTupleType(parts);
-			}
-		};
+		boolean allOverloads = ParsingOptions.getValue(this, ParsingOptions.ALL_OVERLOADS);
+		if (allOverloads) {
+			return new CachedTypeCheckerImpl<C, O, P, PM>(this);
+		}
+		else {
+			return new BasicTypeChecker<C, O, P, PM>(this);
+		}
     }
     
 	/**

@@ -1,0 +1,24 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2012 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *
+ * </copyright>
+ */
+
+package org.eclipse.ocl.internal.evaluation;
+
+import org.eclipse.ocl.TypeChecker;
+
+public interface CachedTypeChecker<C, O, P> extends TypeChecker<C, O, P>
+{
+    O getDynamicOperation(C dynamicType, O staticOperation);
+    void reset();
+}
