@@ -993,6 +993,15 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 	public boolean matchArgs(C owner, List<?> paramsOrProperties,
 			List<? extends TypedElement<C>> args) {
+		int exactitude = matchArgsWithExactitude(owner, paramsOrProperties, args);
+		return exactitude >= 0;
+	}
+	
+	/**
+	 * Return the number of arguments with exact type matches, or -ve if there is no match.
+	 */
+	private int matchArgsWithExactitude(C owner, List<?> paramsOrProperties,
+			List<? extends TypedElement<C>> args) {
 		int argsize;
 
 		if (args == null) {
@@ -1002,9 +1011,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		if (paramsOrProperties.size() != argsize) {
-			return false;
+			return -1;
 		}
-
+		int exactitude = 0;
 		int i = 0;
 		for (Object paramOrProperty : paramsOrProperties) {
 			@SuppressWarnings("null")
@@ -1017,7 +1026,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 				if (arg instanceof TypeExp<?>) {
 					continue;
 				}
-				return false;
+				return -1;
 			}
 
 			popType = resolveGenericType(owner, popType, argType);
@@ -1030,11 +1039,15 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 				continue;
 			}
 
-			if ((getRelationship(argType, popType) & SUBTYPE) == 0) {
-				return false;
+			int relationship = getRelationship(argType, popType);
+			if ((relationship & SUBTYPE) == 0) {
+				return -1;
+			}
+			if (relationship == SAME_TYPE) {
+				exactitude++;
 			}
 		}
-		return true;
+		return exactitude;
 	}
 
 	public C findSignalMatching(C receiver, List<C> signals, String name,
@@ -1065,21 +1078,24 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			.getUMLReflection();
 		List<O> operations = getOperations(owner);
 		List<O> matches = null;
-
+		int bestExactitude = 0;
 		for (O oper : operations) {
-			if (name.equals(uml.getName(oper))
-				&& matchArgs(owner, uml.getParameters(oper), args)) {
-
-				if (uml.getOwningClassifier(oper) == owner) {
-					return oper; // obviously the most specific definition
+			if (name.equals(uml.getName(oper))) {
+				int exactitude = matchArgsWithExactitude(owner, uml.getParameters(oper), args);
+				if (exactitude >= bestExactitude) {
+					if (exactitude > bestExactitude) {
+						if (matches != null) {
+							matches.clear();
+						}
+						bestExactitude = exactitude;
+					}
+					if (matches == null) {
+						// assume a small number of redefinitions
+						matches = new java.util.ArrayList<O>(3);
+					}
+	
+					matches.add(oper);
 				}
-
-				if (matches == null) {
-					// assume a small number of redefinitions
-					matches = new java.util.ArrayList<O>(3);
-				}
-
-				matches.add(oper);
 			}
 		}
 

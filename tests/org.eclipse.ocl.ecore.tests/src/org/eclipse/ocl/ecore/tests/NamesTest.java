@@ -208,4 +208,26 @@ public class NamesTest extends AbstractTestSuite
 		assertQueryInvalid(level3, "self.ambiguous()");
 		assertQueryEquals(level4, "Level4::ambiguous", "self.ambiguous()");
 	}
+
+	public void test_overloads() {
+		helper.setContext(level0Class);
+		assertQueryEquals(level0, "Level0::overload(Level4)", "self.overload(self.asLevel4())");
+
+		helper.setContext(level0Class);
+		assertQueryEquals(level0, "Level0::overload(String)", "self.overload(self.toString())");
+		assertQueryEquals(level0, "Level0::overload(Level0)", "self.overload(self.asLevel0())");
+		assertQueryEquals(level0, "Level0::overload(Level1)", "self.overload(self.asLevel1())");
+		assertQueryEquals(level0, "Level0::overload(Level2a)", "self.overload(self.asLevel2a())");
+		assertQueryEquals(level0, "Level0::overload(Level2b)", "self.overload(self.asLevel2b())");
+		assertQueryEquals(level0, "Level0::overload(Level3)", "self.overload(self.asLevel3())");
+		assertQueryEquals(level0, "Level0::overload(Level4)", "self.overload(self.asLevel4())");
+		helper.setContext(level4Class);
+		assertQueryEquals(level0, "Level0::overload(String)", "self.overload(self.toString())");
+		assertQueryEquals(level0, "Level0::overload(Level0)", "self.overload(self.asLevel0())");
+		assertQueryEquals(level0, "Level1::overload(Level1)", "self.overload(self.asLevel1())");
+		assertQueryEquals(level0, "Level2a::overload(Level2a)", "self.overload(self.asLevel2a())");
+		assertQueryEquals(level0, "Level2b::overload(Level2b)", "self.overload(self.asLevel2b())");
+		assertQueryEquals(level0, "Level3::overload(Level3)", "self.overload(self.asLevel3())");
+		assertQueryEquals(level0, "Level4::overload(Level4)", "self.overload(self.asLevel4())");
+	}
 }
