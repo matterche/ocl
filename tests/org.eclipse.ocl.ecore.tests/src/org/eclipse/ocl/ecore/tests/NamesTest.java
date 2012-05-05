@@ -116,8 +116,8 @@ public class NamesTest extends AbstractTestSuite
 	}
 
 	public void test_overriden_withDynamicDispatch() {
-	    ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.ALL_OVERLOADS, true);
-	    EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
+	    ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.USE_TYPE_CACHES, true);
+	    EvaluationOptions.setOption(ocl.getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
 		helper.setContext(level0Class);
  		assertQueryEquals(level0, "Level0::overridden", "self.overridden()");
 		assertQueryEquals(level1, "Level1::overridden", "self.overridden()");
@@ -175,8 +175,8 @@ public class NamesTest extends AbstractTestSuite
 	}
 
 	public void test_ambiguous_withDynamicDispatch() {
-	    ParsingOptions.setOption(helper.getOCL().getEnvironment(), ParsingOptions.ALL_OVERLOADS, true);
-	    EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
+	    ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.USE_TYPE_CACHES, true);
+	    EvaluationOptions.setOption(ocl.getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
 		helper.setContext(level0Class);
 		assertSemanticError("self.ambiguous()", OCLMessages.OperationNotFound_ERROR_, "ambiguous()", "Level0");
 		helper.setContext(level1Class);

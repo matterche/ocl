@@ -242,20 +242,41 @@ public class ParsingOptions {
 
     /**
      * <p>
-     * Parsing option indicating whether the parser should consider inherited operations when
-     * resolving overloads.
+     * Parsing option indicating whether the parser should consider an ambiguous
+     * overload resolution as invalid. Prior to Eclipse OCL 3.2, overloads were
+     * resolved to first rather than best match guaranteeing to avoid an ambiguity.
+     * The default behaviour avoids a parsing error by choosing the first match.
      * </p><p>
      * For backward compatibility, the default value of this option is <tt>false</tt>. 
-     * For Object Oriented behaviour use <tt>true</tt>.
-     * </p><p>
-     * Prior to OCL 2.5, when Object Oriented behaviour may be specified explicitly, it is
-     * debateable as to which behaviour is specification compliant.
+     * For predictable Object Oriented behaviour use <tt>true</tt>.
      * </p>
      * 
      * @since 3.2
      */
-    public static final Option<Boolean> ALL_OVERLOADS = new BooleanOption(
-    		OCLUtil.PLUGIN_ID, "all.overloads", false); //$NON-NLS-1$
+    public static final Option<Boolean> OVERLOAD_AMBIGUITY_IS_INVALID = new BooleanOption(
+    		OCLUtil.PLUGIN_ID, "overload.ambiguity.is.invalid", false); //$NON-NLS-1$
+
+    /**
+     * <p>
+     * Parsing option indicating whether the parser should make use of caches to
+     * accelerate repeated lookup of operations and properties. This can be very
+     * beneficial when a single stable environment is in use. It can be detrimental
+     * if environments are churned since a new cache is created for each environment.
+     * This is because additional features are environment scoped. If additional
+     * features are manipulated the caches are reset causing further detriments.
+     * This can be worked around by setting the caches to bypass until the
+     * additional features are stable.
+     * </p><p>
+     * Use of type caches is mandatory to support dynamic dispatch in the evaluator.
+     * </p><p>
+     * For backward compatibility, the default value of this option is <tt>false</tt>. 
+     * For cached behaviour use <tt>true</tt>.
+     * </p>
+     * 
+     * @since 3.2
+     */
+    public static final Option<Boolean> USE_TYPE_CACHES = new BooleanOption(
+    		OCLUtil.PLUGIN_ID, "use.type.caches", false); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

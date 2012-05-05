@@ -1211,7 +1211,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @see #getTypeChecker()
      */
    protected TypeChecker<C, O, P> createTypeChecker() {
-		boolean useTypeCaches = ParsingOptions.getValue(this, ParsingOptions.ALL_OVERLOADS);
+		boolean useTypeCaches = ParsingOptions.getValue(this, ParsingOptions.USE_TYPE_CACHES);
 		if (useTypeCaches) {
 			return new CachedTypeChecker<C, O, P, PM>(this);
 		}

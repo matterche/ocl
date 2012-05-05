@@ -44,7 +44,8 @@ public class PreferenceInitializer extends AnnotatedPreferenceInitializer
 		putPreference((PreferenceableOption<?>) EvaluationOptions.DYNAMIC_DISPATCH);
 		putPreference((PreferenceableOption<?>) EvaluationOptions.LAX_NULL_HANDLING);
 
-		putPreference((PreferenceableOption<?>) ParsingOptions.ALL_OVERLOADS);
+		putPreference((PreferenceableOption<?>) ParsingOptions.OVERLOAD_AMBIGUITY_IS_INVALID);
+		putPreference((PreferenceableOption<?>) ParsingOptions.USE_TYPE_CACHES);
 		putPreference((PreferenceableOption<?>) ParsingOptions.DEFINITION_CONSTRAINS_FEATURE);
 		putPreference((PreferenceableOption<?>) ParsingOptions.USE_COMPARE_TO_OPERATION);
 		putPreference((PreferenceableOption<?>) ParsingOptions.USE_LONG_INTEGERS);

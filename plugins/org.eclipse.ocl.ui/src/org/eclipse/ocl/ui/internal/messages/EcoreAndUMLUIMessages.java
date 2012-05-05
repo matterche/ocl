@@ -39,7 +39,8 @@ public class EcoreAndUMLUIMessages
 	public static String Preference_Severity_Ok;
 	public static String Preference_Severity_Warning;	
 	
-	public static String LPG_AllOverloads;
+	public static String LPG_UseTypeCaches;
+	public static String LPG_OverloadAmbiguityIsInvalid;
 	public static String LPG_AmbiguousAssociationEnds;
 	public static String LPG_ClosureIterator;
 	public static String LPG_DynamicDispatch;

@@ -81,8 +81,10 @@ public class EcoreAndUmlProjectPreferencePage extends AbstractProjectPreferenceP
 			EcoreAndUMLUIMessages.LPG_UseBackslashEscapeProcessing, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.SUPPORT_STATIC_FEATURES,
 			EcoreAndUMLUIMessages.LPG_SupportStaticFeatures, BOOLEANS, fieldEditorParent));
-		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.ALL_OVERLOADS,
-			EcoreAndUMLUIMessages.LPG_AllOverloads, BOOLEANS, fieldEditorParent));
+		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.USE_TYPE_CACHES,
+			EcoreAndUMLUIMessages.LPG_UseTypeCaches, BOOLEANS, fieldEditorParent));
+		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) ParsingOptions.OVERLOAD_AMBIGUITY_IS_INVALID,
+			EcoreAndUMLUIMessages.LPG_OverloadAmbiguityIsInvalid, BOOLEANS, fieldEditorParent));
 		horizontalLine = new Label(fieldEditorParent, SWT.SEPARATOR | SWT.HORIZONTAL);
 		horizontalLine.setLayoutData(new GridData(GridData.FILL, GridData.FILL, false, false, 2, 1));
 		horizontalLine.setFont(fieldEditorParent.getFont());
