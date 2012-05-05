@@ -508,7 +508,7 @@ public class EcoreEnvironment
 			org.eclipse.ocl.expressions.Variable<
 				EClassifier, EParameter> variable,
 			Constraint constraint) {
-		
+		resetTypeCaches();		
 		EStructuralFeature result;
 		
 		String name = variable.getName();
@@ -549,6 +549,7 @@ public class EcoreEnvironment
 			List<org.eclipse.ocl.expressions.Variable<
 				EClassifier, EParameter>> params,
 			Constraint constraint) {
+		resetTypeCaches();
 		EOperation result = EcoreFactory.eINSTANCE.createEOperation();
 		
 		result.setName(name);
@@ -597,6 +598,7 @@ public class EcoreEnvironment
 		EcoreUtil.remove(definition);
 		
 		definition.getConstrainedElements().clear();
+		resetTypeCaches();		
 	}
 	
 	public Constraint getDefinition(Object feature) {

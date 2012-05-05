@@ -282,4 +282,33 @@ public interface TypeChecker<C, O, P> {
 	 * @return whether the feature is defined by the standard library
 	 */
 	boolean isStandardLibraryFeature(C owner, Object feature);
+
+	/**
+	 * The extended Cached interface supports dynamic dsiaptch and more focussed lookups.
+	 * @since 3.2
+	 */
+	interface Cached<C, O, P> extends TypeChecker<C, O, P>
+	{
+		/**
+		 * Get the most derived operation of dynamicType or its ancestors that
+		 * matches staticOperation.
+		 * 
+		 * @param dynamicType
+		 * @param staticOperation
+		 * @return
+		 */
+	    O getDynamicOperation(C dynamicType, O staticOperation);
+	    
+	    /**
+	     * Reset the cache forcing lazy evaluations to restart.
+	     */
+	    void reset();
+	    
+	    /**
+	     * Reset the cache and define its bypass state. When bypassed the cache is not used, which may be
+	     * appropriate if many additional properties or operations are being defined since each of these
+	     * activities reset the cache, so there may be little benefit in populating it.
+	     */
+		void setBypass(boolean bypass);
+	}
 }

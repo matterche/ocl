@@ -1003,8 +1003,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	
 	/**
 	 * Return the number of arguments with exact type matches, or -ve if there is no match.
+	 * @since 3.2
 	 */
-	private int matchArgsWithExactitude(C owner, List<?> paramsOrProperties,
+	protected int matchArgsWithExactitude(C owner, List<?> paramsOrProperties,
 			List<? extends TypedElement<C>> args) {
 		int argsize;
 
@@ -1078,28 +1079,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			args = Collections.emptyList();
 		}
 
-		List<O> operations = getOperations(owner);
-		List<O> matches = null;
-		int bestExactitude = 0;
-		for (O oper : operations) {
-			if (name.equals(uml.getName(oper))) {
-				int exactitude = matchArgsWithExactitude(owner, uml.getParameters(oper), args);
-				if (exactitude >= bestExactitude) {
-					if (exactitude > bestExactitude) {
-						if (matches != null) {
-							matches.clear();
-						}
-						bestExactitude = exactitude;
-					}
-					if (matches == null) {
-						// assume a small number of redefinitions
-						matches = new java.util.ArrayList<O>(3);
-					}
-	
-					matches.add(oper);
-				}
-			}
-		}
+		List<O> matches = getBestMatchingOperations(owner, name, args);
 
 		if (matches != null) {
 			if (matches.size() == 1) {
@@ -1129,6 +1109,36 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		return null;
+	}
+
+	/**
+	 * @since 3.2
+	 */
+	protected List<O> getBestMatchingOperations(C owner, String name,
+			List<? extends TypedElement<C>> args) {
+		List<O> operations = getOperations(owner);
+		List<O> matches = null;
+		int bestExactitude = 0;
+		for (O oper : operations) {
+			if (name.equals(uml.getName(oper))) {
+				int exactitude = matchArgsWithExactitude(owner, uml.getParameters(oper), args);
+				if (exactitude >= bestExactitude) {
+					if (exactitude > bestExactitude) {
+						if (matches != null) {
+							matches.clear();
+						}
+						bestExactitude = exactitude;
+					}
+					if (matches == null) {
+						// assume a small number of redefinitions
+						matches = new java.util.ArrayList<O>(3);
+					}
+	
+					matches.add(oper);
+				}
+			}
+		}
+		return matches;
 	}
 
 	public boolean isStandardLibraryFeature(C owner, Object feature) {

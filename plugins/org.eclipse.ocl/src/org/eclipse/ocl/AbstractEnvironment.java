@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.evaluation.BasicTypeChecker;
-import org.eclipse.ocl.internal.evaluation.CachedTypeCheckerImpl;
+import org.eclipse.ocl.internal.evaluation.CachedTypeChecker;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
@@ -1193,16 +1193,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      */
     protected TypeChecker<C, O, P> getTypeChecker() {
     	if (typeChecker == null) {
-    		boolean allOverloads = ParsingOptions.getValue(this, ParsingOptions.ALL_OVERLOADS);
-    		if (allOverloads) {
-        		Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
-    			if (internalParent instanceof AbstractEnvironment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-    				TypeChecker<C, O, P> typeChecker = ((AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>)internalParent).getTypeChecker();
-    				if (typeChecker != null) {
-    					return typeChecker;
-    				}
-    			}
-    		}
 	    	typeChecker = createTypeChecker();
     	}
     	
@@ -1221,9 +1211,9 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @see #getTypeChecker()
      */
    protected TypeChecker<C, O, P> createTypeChecker() {
-		boolean allOverloads = ParsingOptions.getValue(this, ParsingOptions.ALL_OVERLOADS);
-		if (allOverloads) {
-			return new CachedTypeCheckerImpl<C, O, P, PM>(this);
+		boolean useTypeCaches = ParsingOptions.getValue(this, ParsingOptions.ALL_OVERLOADS);
+		if (useTypeCaches) {
+			return new CachedTypeChecker<C, O, P, PM>(this);
 		}
 		else {
 			return new BasicTypeChecker<C, O, P, PM>(this);
@@ -1248,6 +1238,15 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		return super.getAdapter(adapterType);
 	}	
+
+	/**
+	 * @since 3.2
+	 */
+	protected void resetTypeCaches() {
+		if (typeChecker instanceof TypeChecker.Cached<?,?,?>) {
+			((TypeChecker.Cached<?,?,?>)typeChecker).reset();
+		}
+	}
 
 	//
 	// Nested classes

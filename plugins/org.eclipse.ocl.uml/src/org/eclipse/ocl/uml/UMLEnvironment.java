@@ -639,7 +639,7 @@ public class UMLEnvironment
     // implements the inherited specification
     public Property defineAttribute(Classifier owner,
             Variable<Classifier, Parameter> variable, Constraint constraint) {
-
+		resetTypeCaches();		
         Property result;
 
         String name = variable.getName();
@@ -663,6 +663,7 @@ public class UMLEnvironment
     public Operation defineOperation(Classifier owner, String name,
             Classifier type, List<Variable<Classifier, Parameter>> params,
             Constraint constraint) {
+		resetTypeCaches();		
         Operation result = UMLFactory.eINSTANCE.createOperation();
 
         result.addKeyword(UMLReflection.OCL_HELPER);
@@ -715,6 +716,7 @@ public class UMLEnvironment
         EcoreUtil.remove(definition);
 
         definition.getConstrainedElements().clear();
+		resetTypeCaches();		
     }
 
     // implements the inherited specification

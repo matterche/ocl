@@ -69,7 +69,6 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
-import org.eclipse.ocl.internal.evaluation.CachedTypeChecker;
 import org.eclipse.ocl.internal.evaluation.IterationTemplate;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateAny;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateClosure;
@@ -132,7 +131,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Cache supporting dynamic operation lookup. 
 	 */
-	private final CachedTypeChecker<C, O, P> cachedTypeChecker;
+	private final TypeChecker.Cached<C, O, P> cachedTypeChecker;
 	
 	/**
 	 * Constructor
@@ -154,8 +153,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		if (dynamicDispatch) {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
 			TypeChecker<C, O, P> typeChecker = OCLUtil.getAdapter(environment, TypeChecker.class);
-			if (typeChecker instanceof CachedTypeChecker<?,?,?>) {
-				cachedTypeChecker = (CachedTypeChecker<C,O,P>)typeChecker;
+			if (typeChecker instanceof TypeChecker.Cached<?,?,?>) {
+				cachedTypeChecker = (TypeChecker.Cached<C,O,P>)typeChecker;
 			}
 			else {
 				cachedTypeChecker = null;
