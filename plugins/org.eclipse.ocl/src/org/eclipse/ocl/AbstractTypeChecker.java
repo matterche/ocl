@@ -122,7 +122,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		stdlib = env.getOCLStandardLibrary();
 		C optionValue = ParsingOptions.getValue(env, ParsingOptions.implicitRootClass(env));
 		// check that, if there is a value for this option, it is a class
-		if ((optionValue != null) && !env.getUMLReflection().isClass(optionValue)) {
+		if ((optionValue != null) && !uml.isClass(optionValue)) {
 			implicitRootClass = null;
 		}
 		else {
@@ -161,10 +161,10 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	public int getRelationship(C type1, C type2) {
 
 		if (type1 != null) {
-			type1 = env.getUMLReflection().getOCLType(type1);
+			type1 = uml.getOCLType(type1);
 		}
 		if (type2 != null) {
-			type2 = env.getUMLReflection().getOCLType(type2);
+			type2 = uml.getOCLType(type2);
 		}
 
 		// simplest case is when the types actually are the same
@@ -467,10 +467,10 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	public C commonSuperType(Object problemObject, C type1, C type2) {
 
 		if (type1 != null) {
-			type1 = env.getUMLReflection().asOCLType(type1);
+			type1 = uml.asOCLType(type1);
 		}
 		if (type2 != null) {
-			type2 = env.getUMLReflection().asOCLType(type2);
+			type2 = uml.asOCLType(type2);
 		}
 
 		if (ObjectUtil.equal(type1, type2)) {
@@ -773,8 +773,6 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	 * @return the matching operation, or <code>null</code> if not found
 	 */
 	public P findAttribute(C owner, String name) {
-		UMLReflection<?, C, O, P, ?, PM, ?, ?, ?, ?> uml = env
-			.getUMLReflection();
 		List<P> attributes = getAttributes(owner);
 		List<P> matches = null;
 
@@ -797,7 +795,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			if (matches.size() == 1) {
 				return matches.get(0);
 			} else if (!matches.isEmpty()) {
-				return mostSpecificRedefinition(matches, uml);
+				return mostSpecificRedefinition(matches);
 			}
 		}
 
@@ -1080,8 +1078,6 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			args = Collections.emptyList();
 		}
 
-		UMLReflection<?, C, O, P, ?, PM, ?, ?, ?, ?> uml = env
-			.getUMLReflection();
 		List<O> operations = getOperations(owner);
 		List<O> matches = null;
 		int bestExactitude = 0;
@@ -1109,7 +1105,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			if (matches.size() == 1) {
 				return matches.get(0);
 			} else if (!matches.isEmpty()) {
-				return mostSpecificRedefinition(matches, uml);
+				return mostSpecificRedefinition(matches);
 			}
 		}
 
@@ -1139,7 +1135,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		boolean result = owner instanceof PredefinedType<?>;
 
 		if (result) {
-			result = env.getUMLReflection().isOperation(feature)
+			result = uml.isOperation(feature)
 				? !env.getAdditionalOperations(owner).contains(feature)
 				: !env.getAdditionalAttributes(owner).contains(feature);
 		}
@@ -1153,17 +1149,13 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	 * 
 	 * @param features
 	 *            the definitions of a feature; must have at least one element
-	 * @param uml
-	 *            the UML introspector to use in determining the classifiers
-	 *            that define the various feature definitions
 	 * 
 	 * @return the most specific redefinition of the list of features
 	 * 
 	 * @throws IndexOutOfBoundsException
 	 *             if there is not at least one feature in the list
 	 */
-	private <F> F mostSpecificRedefinition(List<? extends F> features,
-			UMLReflection<?, C, ?, ?, ?, ?, ?, ?, ?, ?> uml) {
+	private <F> F mostSpecificRedefinition(List<? extends F> features) {
 
 		Map<C, F> redefinitions = new java.util.HashMap<C, F>();
 
