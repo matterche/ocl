@@ -157,13 +157,13 @@ public class NamesTest extends AbstractTestSuite
 		assertQueryEquals(level2b, "Level2a::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level3, "Level2a::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level4, "Level2a::ambiguous", "self.ambiguous()");
-/*		helper.setContext(level3Class); -- indeterminate; may be 2a or 2b
+		helper.setContext(level3Class);
 		assertQueryEquals(level0, "Level2a::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level1, "Level2a::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level2a, "Level2a::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level2b, "Level2a::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level3, "Level2a::ambiguous", "self.ambiguous()");
-		assertQueryEquals(level4, "Level2a::ambiguous", "self.ambiguous()"); */
+		assertQueryEquals(level4, "Level2a::ambiguous", "self.ambiguous()");
 		helper.setContext(level4Class);
 		assertQueryEquals(level0, "Level4::ambiguous", "self.ambiguous()");
 		assertQueryEquals(level1, "Level4::ambiguous", "self.ambiguous()");

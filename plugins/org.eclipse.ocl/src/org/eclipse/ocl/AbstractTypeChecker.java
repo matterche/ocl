@@ -1167,7 +1167,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	 */
 	private <F> F mostSpecificRedefinition(List<? extends F> features) {
 
-		Map<C, F> redefinitions = new java.util.HashMap<C, F>();
+		Map<C, F> redefinitions = new java.util.LinkedHashMap<C, F>();
 
 		for (F next : features) {
 			redefinitions.put(uml.getOwningClassifier(next), next);
