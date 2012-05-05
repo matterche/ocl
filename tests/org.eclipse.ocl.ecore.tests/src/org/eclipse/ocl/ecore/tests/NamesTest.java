@@ -15,6 +15,7 @@
 package org.eclipse.ocl.ecore.tests;
 
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -22,6 +23,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.options.EvaluationOptions;
 
 /**
@@ -33,6 +36,11 @@ public class NamesTest extends AbstractTestSuite
 	protected static final String NAMES_TEST_XMI = "/model/NamesTest.xmi";
 	
 	public EClass level0Class;
+	public EClass level1Class;
+	public EClass level2aClass;
+	public EClass level2bClass;
+	public EClass level3Class;
+	public EClass level4Class;
 	public EObject container;
 	public EObject level0;
 	public EObject level1;
@@ -50,6 +58,7 @@ public class NamesTest extends AbstractTestSuite
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
 				"xmi", new EcoreResourceFactoryImpl());		
 		}
+		initModel();
 	}
 
 	protected void initModel() {
@@ -59,6 +68,11 @@ public class NamesTest extends AbstractTestSuite
 		EClass containerClass = container.eClass();
 		EPackage namesTestPackage = containerClass.getEPackage();
 		level0Class = (EClass) namesTestPackage.getEClassifier("Level0");
+		level1Class = (EClass) namesTestPackage.getEClassifier("Level1");
+		level2aClass = (EClass) namesTestPackage.getEClassifier("Level2a");
+		level2bClass = (EClass) namesTestPackage.getEClassifier("Level2b");
+		level3Class = (EClass) namesTestPackage.getEClassifier("Level3");
+		level4Class = (EClass) namesTestPackage.getEClassifier("Level4");
 //		EFactory namesTestFactory = namesTestPackage.getEFactoryInstance();
 		EStructuralFeature level0Name = level0Class.getEStructuralFeature("name");
 		level0 = getObject(container, level0Name, "level0");
@@ -78,13 +92,119 @@ public class NamesTest extends AbstractTestSuite
 		return null;
 	}
 
-	public void test_overrides() {
-		initModel();
+	public void test_overriden_withStaticDispatch() {
 		helper.setContext(level0Class);
 		assertQueryEquals(level0, "Level0::overridden", "self.overridden()");
+		assertQueryEquals(level1, "Level0::overridden", "self.overridden()");
+		assertQueryEquals(level2a, "Level0::overridden", "self.overridden()");
+		assertQueryEquals(level2b, "Level0::overridden", "self.overridden()");
 		assertQueryEquals(level3, "Level0::overridden", "self.overridden()");
-        EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
+		assertQueryEquals(level4, "Level0::overridden", "self.overridden()");
+		helper.setContext(level2aClass);
+		assertQueryEquals(level0, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level1, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level2a, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level2b, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level3, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level4, "Level2a::overridden", "self.overridden()");
+		helper.setContext(level4Class);
+		assertQueryEquals(level0, "Level4::overridden", "self.overridden()");
+		assertQueryEquals(level1, "Level4::overridden", "self.overridden()");
+		assertQueryEquals(level2a, "Level4::overridden", "self.overridden()");
+		assertQueryEquals(level2b, "Level4::overridden", "self.overridden()");
+		assertQueryEquals(level3, "Level4::overridden", "self.overridden()");
+		assertQueryEquals(level4, "Level4::overridden", "self.overridden()");
+	}
+
+	public void test_overriden_withDynamicDispatch() {
+	    EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
+		helper.setContext(level0Class);
+ 		assertQueryEquals(level0, "Level0::overridden", "self.overridden()");
+		assertQueryEquals(level1, "Level1::overridden", "self.overridden()");
+		assertQueryEquals(level2a, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level2b, "Level2b::overridden", "self.overridden()");
 		assertQueryEquals(level3, "Level3::overridden", "self.overridden()");
-		EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, false);
+		assertQueryEquals(level4, "Level4::overridden", "self.overridden()");
+		helper.setContext(level2aClass);
+ 		assertQueryEquals(level0, "Level0::overridden", "self.overridden()");
+		assertQueryEquals(level1, "Level1::overridden", "self.overridden()");
+		assertQueryEquals(level2a, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level2b, "Level2b::overridden", "self.overridden()");
+		assertQueryEquals(level3, "Level3::overridden", "self.overridden()");
+		assertQueryEquals(level4, "Level4::overridden", "self.overridden()");
+		helper.setContext(level4Class);
+ 		assertQueryEquals(level0, "Level0::overridden", "self.overridden()");
+		assertQueryEquals(level1, "Level1::overridden", "self.overridden()");
+		assertQueryEquals(level2a, "Level2a::overridden", "self.overridden()");
+		assertQueryEquals(level2b, "Level2b::overridden", "self.overridden()");
+		assertQueryEquals(level3, "Level3::overridden", "self.overridden()");
+		assertQueryEquals(level4, "Level4::overridden", "self.overridden()");
+	}
+
+	public void test_ambiguous_withStaticDispatch() {
+		helper.setContext(level0Class);
+		assertSemanticError("self.ambiguous()", OCLMessages.OperationNotFound_ERROR_, "ambiguous()", "Level0");
+		helper.setContext(level1Class);
+		assertQueryEquals(level0, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level1, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level3, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level4, "Level1::ambiguous", "self.ambiguous()");
+		helper.setContext(level2aClass);
+		assertQueryEquals(level0, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level1, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level3, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level4, "Level2a::ambiguous", "self.ambiguous()");
+/*		helper.setContext(level3Class); -- indeterminate; may be 2a or 2b
+		assertQueryEquals(level0, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level1, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level3, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level4, "Level2a::ambiguous", "self.ambiguous()"); */
+		helper.setContext(level4Class);
+		assertQueryEquals(level0, "Level4::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level1, "Level4::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level4::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level4::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level3, "Level4::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level4, "Level4::ambiguous", "self.ambiguous()");
+	}
+
+	public void test_ambiguous_withDynamicDispatch() {
+	    EvaluationOptions.setOption(helper.getOCL().getEvaluationEnvironment(), EvaluationOptions.DYNAMIC_DISPATCH, true);
+		helper.setContext(level0Class);
+		assertSemanticError("self.ambiguous()", OCLMessages.OperationNotFound_ERROR_, "ambiguous()", "Level0");
+		helper.setContext(level1Class);
+		assertQueryInvalid(level0, "self.ambiguous()");
+		assertQueryEquals(level1, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level2b::ambiguous", "self.ambiguous()");
+		assertQueryInvalid(level3, "self.ambiguous()");
+		assertQueryEquals(level4, "Level4::ambiguous", "self.ambiguous()");
+		helper.setContext(level2aClass);
+		assertQueryInvalid(level0, "self.ambiguous()");
+		assertQueryEquals(level1, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level2b::ambiguous", "self.ambiguous()");
+		assertQueryInvalid(level3, "self.ambiguous()");
+		assertQueryEquals(level4, "Level4::ambiguous", "self.ambiguous()");
+		helper.setContext(level3Class);
+		assertQueryInvalid(level0, "self.ambiguous()");
+		assertQueryEquals(level1, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level2b::ambiguous", "self.ambiguous()");
+		assertQueryInvalid(level3, "self.ambiguous()");
+		assertQueryEquals(level4, "Level4::ambiguous", "self.ambiguous()");
+		helper.setContext(level4Class);
+		assertQueryInvalid(level0, "self.ambiguous()");
+		assertQueryEquals(level1, "Level1::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2a, "Level2a::ambiguous", "self.ambiguous()");
+		assertQueryEquals(level2b, "Level2b::ambiguous", "self.ambiguous()");
+		assertQueryInvalid(level3, "self.ambiguous()");
+		assertQueryEquals(level4, "Level4::ambiguous", "self.ambiguous()");
 	}
 }

@@ -470,6 +470,15 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 			return null;
 		}
 	}
+	 
+	/**
+	 * Assert that an expression cannot be used as a query, because semantic exception
+	 * error is thrown containing a message that is the result of messageTemplate
+	 * resolved by bindings.
+	 */
+    protected void assertSemanticError(String expression, String messageTemplate, String... bindings) {
+	    assertBadQuery(SemanticException.class, Diagnostic.ERROR, expression, messageTemplate, bindings);
+	}
    
     /**
 	 * Asserts that the <code>toString</code> representation of an AST node as

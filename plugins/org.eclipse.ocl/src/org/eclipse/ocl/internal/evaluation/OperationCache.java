@@ -109,7 +109,7 @@ public class OperationCache<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         	}
     	}
     	//
-    	//	Pick and cache the matching overload.
+    	//	Pick and cache the matching unambiguous overload.
     	//
        	String requiredName = uml.getName(staticOperation);
     	List<O> candidateOperations = name2operations.get(requiredName);
@@ -130,96 +130,18 @@ public class OperationCache<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	        			}
 	        		}
 	        		if (i >= iMax) {
-	        			typeOperations.put(staticOperation, candidateOperation);
-	        			return candidateOperation;
+	        			if (dynamicOperation == null) {
+	        				dynamicOperation = candidateOperation;
+	        			}
+	        			else {
+	        				dynamicOperation = null;
+	        				break;
+	        			}
 	        		}
 	        	}
 	    	}
     	}
-    	//
-    	//	Should never get here since staticOperation should be an available operation.
-    	//
-		typeOperations.put(staticOperation, staticOperation);
-		return staticOperation;
+		typeOperations.put(staticOperation, dynamicOperation);
+		return dynamicOperation;
     }
-
-    
-/*    private Object gatherOperationOrOperations(C type, O requiredOperation) {
-       	String requiredName = uml.getName(requiredOperation);
-    	List<O> candidateOperations = name2operations.get(requiredName);
-    	if (candidateOperations != null) {
-	    	List<PM> requiredParameters = uml.getParameters(requiredOperation);
-	    	int iMax = requiredParameters.size();
-			for (O candidateOperation : candidateOperations) {
-	    		if (requiredName.equals(uml.getName(candidateOperation))) {
-		        	List<PM> candidateParameters = uml.getParameters(candidateOperation);
-		        	if (iMax == candidateParameters.size()) {
-		        		int i = 0;
-		        		for ( ; i < iMax; i++) {
-		        			C requiredType = uml.getOCLType(requiredParameters.get(i));
-		        			C candidateType = uml.getOCLType(candidateParameters.get(i));
-		        			if (requiredType != candidateType) {			// FIXME equals
-		        				break;
-		        			}
-		        		}
-		        		if (i >= iMax) {
-		        			return candidateOperation;
-		        		}
-		        	}
-	    		}
-	    	}
-    	}
-//    	if (aDepth < 1000) {
-//	    	for (C superType : uml.getAllSupertypes(type)) {
-//	    		Object superOperationOrOperations = gatherOperationOrOperations(superType, requiredOperation, aDepth+1);
-//				operationOrOperations = mergeOperations(operationOrOperations, superOperationOrOperations);
-//	    	}
-//    	}
-    	return requiredOperation;
-    }
-    
-    private Object mergeOperations(Object operationOrOperations, Object superOperationOrOperations) {
-    	if (operationOrOperations == null) {
-    		return superOperationOrOperations;
-    	}
-    	else if (superOperationOrOperations == null) {
-    		return operationOrOperations;
-    	}
-    	else if (operationOrOperations instanceof List<?>) {
-        	Object mergedOperationOrOperations = superOperationOrOperations;
-    		for (Object anOperation : (List<?>)operationOrOperations) {
-    			mergedOperationOrOperations = mergeOperations(anOperation, mergedOperationOrOperations);
-    		}
-    		return mergedOperationOrOperations;
-    	}
-    	else if (superOperationOrOperations instanceof List<?>) {
-        	Object mergedOperationOrOperations = operationOrOperations;
-    		for (Object anOperation : (List<?>)superOperationOrOperations) {
-    			mergedOperationOrOperations = mergeOperations(mergedOperationOrOperations, anOperation);
-    		}
-    		return mergedOperationOrOperations;
-    	}
-    	else if (operationOrOperations == superOperationOrOperations) {
-    		return operationOrOperations;
-    	}
-    	else {
-    		EOperation eOperation1 = (EOperation)operationOrOperations;
-        	EOperation eOperation2 = (EOperation)superOperationOrOperations;
-    		EClass eClass1 = eOperation1.getEContainingClass();
-    		EClass eClass2 = eOperation2.getEContainingClass();
-        	if (eClass2.isSuperTypeOf(eClass1)) {
-        		return eOperation1;
-        	}
-        	else  if (eClass1.isSuperTypeOf(eClass2)) {
-        		return eOperation2;
-        	}
-        	else {
-        		List<EOperation> mergedOperationOrOperations = new ArrayList<EOperation>();
-        		mergedOperationOrOperations.add(eOperation1);
-        		mergedOperationOrOperations.add(eOperation2);
-            	return mergedOperationOrOperations;
-        	}
-    	}
-    } */
-
 }

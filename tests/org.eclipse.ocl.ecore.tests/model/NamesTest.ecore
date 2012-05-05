@@ -20,6 +20,11 @@
         <details key="body" value="'Level1::overridden'"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="ambiguous" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="'Level1::ambiguous'"/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Level2a" eSuperTypes="#//Level1">
     <eOperations name="overridden" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -27,11 +32,21 @@
         <details key="body" value="'Level2a::overridden'"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="ambiguous" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="'Level2a::ambiguous'"/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Level2b" eSuperTypes="#//Level1">
     <eOperations name="overridden" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="'Level2b::overridden'"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="ambiguous" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="'Level2b::ambiguous'"/>
       </eAnnotations>
     </eOperations>
   </eClassifiers>
@@ -46,6 +61,11 @@
     <eOperations name="overridden" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="'Level4::overridden'"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="ambiguous" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="'Level4::ambiguous'"/>
       </eAnnotations>
     </eOperations>
   </eClassifiers>
