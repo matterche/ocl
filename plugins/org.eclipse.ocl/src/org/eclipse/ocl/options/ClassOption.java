@@ -36,7 +36,11 @@ public class ClassOption<T> extends BasicOption<Class<? extends T>> implements P
 			return null;
 		}
 		try {
-			return (Class<T>) classType.getClassLoader().loadClass(string);
+			ClassLoader classLoader = classType.getClassLoader();
+			if (classLoader == null) {					// May be null for java.lang.Object
+				classLoader = getClass().getClassLoader();
+			}
+			return (Class<T>) classLoader.loadClass(string);
 		} catch (ClassNotFoundException e) {
 //			e.printStackTrace();
 			return getDefaultValue();
