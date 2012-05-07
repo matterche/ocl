@@ -147,22 +147,34 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			EvaluationEnvironment<C, O, P, CLS, E> evalEnv,
 			Map<? extends CLS, ? extends Set<? extends E>> extentMap) {
-		super(env, evalEnv, extentMap);
-		
+		super(env, evalEnv, extentMap);	
 		enumerations = OCLUtil.getAdapter(evalEnv, EvaluationEnvironment.Enumerations.class);
 		boolean dynamicDispatch = EvaluationOptions.getValue(evalEnv, EvaluationOptions.DYNAMIC_DISPATCH);
 		if (dynamicDispatch) {
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
-			TypeChecker<C, O, P> typeChecker = OCLUtil.getAdapter(environment, TypeChecker.class);
-			if (typeChecker instanceof TypeChecker.Cached<?,?,?>) {
-				cachedTypeChecker = (TypeChecker.Cached<C,O,P>)typeChecker;
-			}
-			else {
-				cachedTypeChecker = new CachedTypeChecker<C, O, P, PM>(environment);
-			}
+			cachedTypeChecker = createTypeChecker();
 		}
 		else {
 			cachedTypeChecker = null;
+		}
+	}
+
+	/**
+	 * Create the TypeChecker used to facilitate dynamic dispatch.
+	 * 
+	 * The default implementation attempts to re-use an analysis type checker, creating
+	 * an evaluation one if no analysis one available.
+	 *
+	 * @since 3.2
+	 */
+	protected TypeChecker.Cached<C,O,P> createTypeChecker() {
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
+		@SuppressWarnings("unchecked")
+		TypeChecker<C, O, P> typeChecker = OCLUtil.getAdapter(environment, TypeChecker.class);
+		if (typeChecker instanceof TypeChecker.Cached<?,?,?>) {
+			return (TypeChecker.Cached<C,O,P>)typeChecker;
+		}
+		else {
+			return new CachedTypeChecker<C, O, P, PM>(environment);
 		}
 	}
 
