@@ -12,8 +12,6 @@
  *   E.D.Willink - 364797
  *
  * </copyright>
- *
- * $Id$
  */
 
 package org.eclipse.ocl.ecore;
