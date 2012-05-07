@@ -63,6 +63,12 @@ public class EvaluationOptions {
      * </p><p>
      * Prior to OCL 2.5, when Object Oriented behaviour may be specified explicitly, it is
      * debateable as to which behaviour is specification compliant.
+     * </p><p>
+     * To avoid a major performance degradation, the dynamic dispatcher uses a cache to
+     * avoid repeated searches for operations in the inheritance tree. The consequent cost
+     * of dynamic dispatch may therefore be a few percent, If the parsing option to use
+     * type caches is enabled, the evaluator may reuse the analysis cache and avoid some
+     * startup costs.
      * </p>
      * 
      * @since 3.2

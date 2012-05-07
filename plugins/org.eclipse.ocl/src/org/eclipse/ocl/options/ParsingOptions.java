@@ -267,8 +267,6 @@ public class ParsingOptions {
      * This can be worked around by setting the caches to bypass until the
      * additional features are stable.
      * </p><p>
-     * Use of type caches is mandatory to support dynamic dispatch in the evaluator.
-     * </p><p>
      * For backward compatibility, the default value of this option is <tt>false</tt>. 
      * For cached behaviour use <tt>true</tt>.
      * </p>

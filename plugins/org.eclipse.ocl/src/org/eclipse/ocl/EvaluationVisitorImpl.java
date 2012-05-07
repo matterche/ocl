@@ -69,6 +69,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
+import org.eclipse.ocl.internal.evaluation.CachedTypeChecker;
 import org.eclipse.ocl.internal.evaluation.IterationTemplate;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateAny;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateClosure;
@@ -157,7 +158,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				cachedTypeChecker = (TypeChecker.Cached<C,O,P>)typeChecker;
 			}
 			else {
-				cachedTypeChecker = null;
+				cachedTypeChecker = new CachedTypeChecker<C, O, P, PM>(environment);
 			}
 		}
 		else {
@@ -207,6 +208,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// evaluate source
 		Object sourceVal = safeVisitExpression(source);
+		// resolve operation dynamically, before attempting to get any body since
+		//  built-in operations may be overloaded by Java/OCL functions with bodies.
 		if (cachedTypeChecker != null) {
 			C dynamicSourceType = getEvaluationEnvironment().getType(sourceVal);
 			oper = cachedTypeChecker.getDynamicOperation(dynamicSourceType, oper);
