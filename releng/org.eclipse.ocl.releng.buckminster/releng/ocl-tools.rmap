@@ -26,7 +26,7 @@
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(build.type=S)(resolve.target.platform=true))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/modeling/emft/mwe/updates/releases">
+      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -49,7 +49,7 @@
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(build.type=S)(resolve.target.platform=true))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
