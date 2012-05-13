@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
 import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
@@ -62,7 +63,20 @@ public class OCLinEcoreDocument extends BaseDocument
 			StringBuilder s = new StringBuilder();
 			for (Resource.Diagnostic diagnostic : errors) {
 				s.append("\n");
-				s.append(diagnostic.toString());
+				if (diagnostic instanceof XtextSyntaxDiagnostic) {
+					s.append("Syntax error: ");
+					String location = diagnostic.getLocation();
+					if (location != null) {
+						s.append(location);
+						s.append(":");
+					}
+					s.append(diagnostic.getLine());
+					s.append(" ");
+					s.append(diagnostic.getMessage());
+				}
+				else {
+					s.append(diagnostic.toString());
+				}
 			}
 			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 		}
@@ -89,6 +103,8 @@ public class OCLinEcoreDocument extends BaseDocument
 				public Object exec(XtextResource resource) throws Exception {
 					XMLResource pivotResource = getPivotResouce();
 					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
+					Resource csResource = adapter.getTarget();
+					checkForErrors(csResource);
 					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getMetaModelManager(), pivotResource, ecoreURI, null);
 //					ResourceSetImpl resourceSet = new ResourceSetImpl();
 //					XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);

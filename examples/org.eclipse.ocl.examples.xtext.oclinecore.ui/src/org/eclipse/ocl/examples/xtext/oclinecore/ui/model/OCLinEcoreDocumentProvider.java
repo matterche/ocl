@@ -155,6 +155,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				String title = helper.getString("_UI_SaveFailure_title", true);
 				String message = helper.getString("_UI_SaveFailure_message", true);
 				ErrorDialog.openError(null, title, message, helper.createErrorStatus(e));
+				monitor.setCanceled(true);				// Still dirty
 			}
 		}
 		else {
