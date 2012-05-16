@@ -38,7 +38,7 @@
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
            source="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"
-           target="no-such-protocol:/this/does/not/exist">
+           target="platform:/plugin/org.eclipse.ocl.ecore/model/oclstdlib.ecore">
      </mapping>
   </extension>
 
