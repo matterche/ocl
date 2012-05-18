@@ -201,7 +201,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         ResourceSet rset = new ResourceSetImpl();
         // Ensure that a UMLResource factory is registered for the uml extension.
         // Note that when running standalone, a registration in the global registry is not certain.
-        OCL.initialize(null);
+        OCL.initialize(rset);
         Resource res = null;
         
         try {

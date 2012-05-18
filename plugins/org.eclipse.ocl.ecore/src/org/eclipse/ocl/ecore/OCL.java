@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -34,7 +35,9 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.internal.helper.PluginFinder;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -76,12 +79,40 @@ public class OCL extends org.eclipse.ocl.OCL<
 			: Resource.Factory.Registry.INSTANCE;
 		resourceFactoryRegistry.getExtensionToFactoryMap().put(
 			"ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
+		
+		EPackage.Registry packageRegistry = resourceSet == null
+				? EPackage.Registry.INSTANCE
+				: resourceSet.getPackageRegistry();
+		packageRegistry.put(org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
+		
+		final String oclEcorePluginId = OCLEcorePlugin.getPluginId();		
+		String oclLocation = System.getProperty(oclEcorePluginId);		
+		if (oclLocation == null) {
+			PluginFinder pluginFinder = new PluginFinder(oclEcorePluginId);
+			pluginFinder.resolve();
+			oclLocation = pluginFinder.get(oclEcorePluginId);
+			if (oclLocation == null) {
+				return "'" + oclEcorePluginId + "' not found on class-path"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
 		Map<URI,URI> uriMap = resourceSet != null
 				? resourceSet.getURIConverter().getURIMap()
 				: URIConverter.URI_MAP;
-		uriMap.put(URI.createURI(EcoreEnvironment.OCL_STANDARD_LIBRARY_NS_URI),
-			URI.createURI("no-such-protocol:/this/does/not/exist")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(EcoreEnvironment.OCL_STANDARD_LIBRARY_NS_URI),			
+			createURI(oclLocation, "/model/oclstdlib.ecore")); //$NON-NLS-1$
 		return null;
+	}
+	
+	private static URI createURI(String locationURI, String string) {
+		while (locationURI.endsWith("/") //$NON-NLS-1$
+				|| locationURI.endsWith("\\")) { //$NON-NLS-1$
+			locationURI = locationURI.substring(0, locationURI.length()-1);
+		}
+		if (locationURI.endsWith(".jar!")) { //$NON-NLS-1$
+			return URI.createURI(locationURI + string);
+		} else {
+			return URI.createFileURI(locationURI + string);
+		}
 	}
 
 	/**
