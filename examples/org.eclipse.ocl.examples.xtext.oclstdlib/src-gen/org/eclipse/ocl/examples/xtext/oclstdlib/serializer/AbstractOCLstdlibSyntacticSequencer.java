@@ -15,8 +15,8 @@ import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISyn
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
-@SuppressWarnings("restriction")
-public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequencer {
+@SuppressWarnings("all")
+public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected OCLstdlibGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_LibIterationCS_SemicolonKeyword_12_1_or___LeftCurlyBracketKeyword_12_0_0_RightCurlyBracketKeyword_12_0_2__;
@@ -63,7 +63,7 @@ public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequen
 
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_LibIterationCS_SemicolonKeyword_12_1_or___LeftCurlyBracketKeyword_12_0_0_RightCurlyBracketKeyword_12_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -71,7 +71,7 @@ public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequen
 	
 	/**
 	 * Syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 */
 	protected void emit_LibOperationCS_SemicolonKeyword_11_1_or___LeftCurlyBracketKeyword_11_0_0_RightCurlyBracketKeyword_11_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

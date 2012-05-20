@@ -93,6 +93,11 @@ public abstract class AbstractOCLstdlibUiModule extends DefaultUiModule {
 		return org.eclipse.xtext.common.types.ui.refactoring.JvmRefactoringResourceSetProvider.class;
 	}
 
+	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
+	public Class<? extends org.eclipse.xtext.common.types.ui.query.IJavaSearchParticipation> bindIJavaSearchParticipation() {
+		return org.eclipse.xtext.common.types.ui.query.IJavaSearchParticipation.Yes.class;
+	}
+
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
 		return org.eclipse.ocl.examples.xtext.oclstdlib.ui.labeling.OCLstdlibLabelProvider.class;

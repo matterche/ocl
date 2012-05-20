@@ -15,8 +15,8 @@ import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISyn
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
-@SuppressWarnings("restriction")
-public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSequencer {
+@SuppressWarnings("all")
+public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected OCLinEcoreGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AttributeCS_CommaKeyword_5_1_1_q;
@@ -151,7 +151,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 */
 	protected void emit_EnumerationCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -87,9 +87,6 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public Resource doLoad(String stem, String extension) throws IOException {
-		return doLoad(stem, extension, true);
-	}	
-	public Resource doLoad(String stem, String extension, boolean doSave) throws IOException {
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
@@ -114,7 +111,7 @@ public class LoadTests extends XtextTestCase
 			if (xtextResource.getContents().size() > 0) {
 				assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 			}
-			if (doSave) {
+//			if (doSave) {
 		//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
 				xtextResource.setURI(output2URI);
 		//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
@@ -122,7 +119,7 @@ public class LoadTests extends XtextTestCase
 		//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 				assertNoResourceErrors("Save failed", xtextResource);
 			}
-		}
+//		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
 				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
@@ -168,7 +165,7 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
 			xtextResource.setURI(output2URI);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
-	//		xtextResource.save(null); -- BUG 361649
+			xtextResource.save(null);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 			assertNoResourceErrors("Save failed", xtextResource);
 		}
@@ -526,7 +523,7 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_OCLTest_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doLoad("OCLTest", "ocl", false);	/* FIXME waiting for BUG 361649 */
+		doLoad("OCLTest", "ocl");
 	}	
 
 	public void testLoad_Pivot_ocl() throws IOException, InterruptedException {
@@ -537,6 +534,6 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doLoad("RoyalAndLoyal", "ocl", false);	/* FIXME waiting for BUG 361649 */
+		doLoad("RoyalAndLoyal", "ocl");
 	}
 }
