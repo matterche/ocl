@@ -4,7 +4,7 @@
 'http://www.eclipse.org/ocl/3.1.0/Pivot',
 'http://www.eclipse.org/ocl/3.2.0/Markup')/]
 
-[template public generate1(root : Package) ? (root.eContainer() = null)]
+[template public generate(root : Package) ? (root.eContainer() = null)]
 [comment @main /]
 [let pPackages : Sequence(Package) = root->asSequence()]
 [let pClasses : Sequence(Class) = pPackages.ownedType->asSequence()]
@@ -14,14 +14,19 @@ h1(#StandardLibrary). The OCL Standard Library
 This documentation on the OCL Standard Library is auto-generated from the
 org.eclipse.ocl.examples.library/model/OCL-2.4.oclstdlib that defines
 the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.3 functionality.
-It is a prototype of functionality for OCL 2.4 where the use of models amy eliminate ambiguities.
+It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.
 
-Precedences: [for (pPrecedence : Precedence | pPackages.ownedPrecedence->asSequence()) separator(' > ') ] @[pPrecedence.name/]@ [/for]
+The library support for the Ecore and UML bindings in Juno has been upgraded so that the available operations
+are similar to those documented here for the Pivot binding.
+
+h2(#Precedences). *Precedences*
+
+[for (pPrecedence : Precedence | pPackages.ownedPrecedence->asSequence()) separator(' > ') ] @[pPrecedence.name/]@ [/for]
 
 [for (pClass : Class | pClasses->sortedBy(name)) ]
 h2(#[pClass.name/]). **@[pClass.prettyPrint(pClass)/]@**
 
-[pClass.ownedComment._body/]
+[pClass.ownedComment.prettyPrint(pClass)/]
 
 [pClass.generateSuperTypes()/]
 [pClass.generateAttributes()/]
@@ -48,7 +53,7 @@ conformsTo [for (pSuperClass : Type | pClass.superClass) separator(', ')]"@[pSup
 [for (pProperty : Property | pAttributes->sortedBy(name)) ]
 @[pProperty.prettyPrint(pClass)/]@
 
-[pProperty.ownedComment._body/]
+[pProperty.ownedComment.prettyPrint(pClass)/]
 
 [for (pConstraint : Constraint | pProperty.ownedRule->sortedBy(getName())) ]
 bc.. 
@@ -69,7 +74,7 @@ p.
 [for (pProperty : Property | pAssociations->sortedBy(name)) ]
 @[prettyPrint(pClass)/]@
 
-[pProperty.ownedComment._body/]
+[pProperty.ownedComment.prettyPrint(pClass)/]
 
 [for (pConstraint : Constraint | pProperty.ownedRule->sortedBy(getName())) ]
 bc.. 
@@ -90,7 +95,7 @@ p.
 [for (pIteration : Operation | pIterations->sortedBy(name)) ]
 @[prettyPrint(pClass)/]@
 
-[pIteration.ownedComment._body/]
+[pIteration.ownedComment.prettyPrint(pClass)/]
 
 [for (pConstraint : Constraint | pIteration.ownedRule->sortedBy(getName())) ]
 bc.. 
@@ -114,7 +119,7 @@ p.
 precedence: @[pOperation.precedence.name/]@
 [/if]
 
-[pOperation.ownedComment._body/]
+[pOperation.ownedComment.prettyPrint(pClass)/]
 
 [for (pConstraint : Constraint | pOperation.ownedRule->sortedBy(getName())) ]
 bc.. 
@@ -130,8 +135,48 @@ p.
 [query public getName(constraint : Constraint) : String =
 if constraint.name->notEmpty() then constraint.name else '' endif /]
 
+[template public prettyPrint(element : Comment, scope : Namespace)]
+[let markup : Markup = decode(element, scope)]
+[for (element : MarkupElement | markup.elements)][element.prettyPrint(scope)/][/for]
+[/let]
+[/template]
+
+[template public prettyPrint(element : FontElement, scope : Namespace)]
+[let tag : String = if element.font = 'e' then '_' else '*' endif]
+[tag/][for (subElement : MarkupElement | element.elements)][subElement.prettyPrint(scope)/][/for][tag/][/let]
+[/template]
+
+[template public prettyPrint(element : MarkupElement, scope : Namespace)]
+$$[element.eClass().name/]
+[/template]
+
+[template public prettyPrint(element : NewLineElement, scope : Namespace)]
+[element.text/]
+[/template]
+
+[template public prettyPrint(element : NullElement, scope : Namespace)]
+[/template]
+
+[template public prettyPrint(element : OclCodeElement, scope : Namespace)]
+bc.. 
+[for (subElement : MarkupElement | element.elements)][subElement.prettyPrint(scope)/][/for]
+p. 
+
+[/template]
+
+[template public prettyPrint(element : OclTextElement, scope : Namespace)]
+@[for (subElement : MarkupElement | element.elements)][subElement.prettyPrint(scope)/][/for]@
+[/template]
+
+[template public prettyPrint(element : TextElement, scope : Namespace)]
+[element.text/]
+[/template]
+
 [query public prettyPrint(constraint : Constraint, scope : Namespace) : String =
 invoke('org.eclipse.ocl.examples.build.utilities.TextilePrettyPrinter$Expr', 'prettyPrint(org.eclipse.ocl.examples.pivot.util.Visitable, org.eclipse.ocl.examples.pivot.Namespace)', Sequence{constraint, scope})/]
+
+[query public decode(element : Comment, scope : Namespace) : Markup =
+invoke('org.eclipse.ocl.examples.build.utilities.TextilePrettyPrinter$Name', 'decode(org.eclipse.ocl.examples.pivot.Comment, org.eclipse.ocl.examples.pivot.Namespace)', Sequence{element, scope})/]
 
 [query public prettyPrint(element : Element, scope : Namespace) : String =
 invoke('org.eclipse.ocl.examples.build.utilities.TextilePrettyPrinter$Name', 'prettyPrint(org.eclipse.ocl.examples.pivot.util.Visitable, org.eclipse.ocl.examples.pivot.Namespace)', Sequence{element, scope})/]
