@@ -3,8 +3,9 @@
 <stringAttribute key="org.eclipse.acceleo.ide.ui.ARGUMENTS" value=""/>
 <booleanAttribute key="org.eclipse.acceleo.ide.ui.COMPUTE_PROFILING" value="false"/>
 <booleanAttribute key="org.eclipse.acceleo.ide.ui.COMPUTE_TRACEABILITY" value="false"/>
-<stringAttribute key="org.eclipse.acceleo.ide.ui.LAUNCHING_STRATEGY_DESCRIPTION" value="Acceleo Plug-in Application (Default)"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.LAUNCHING_STRATEGY_DESCRIPTION" value="Java Application (Advanced)"/>
 <stringAttribute key="org.eclipse.acceleo.ide.ui.MODEL_PATH" value="/org.eclipse.ocl.examples.library/model/OCL-2.4.oclstdlib"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.PROFILE_MODEL_PATH" value=""/>
 <stringAttribute key="org.eclipse.acceleo.ide.ui.TARGET_PATH" value="/org.eclipse.ocl.doc/doc"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/acceleo/GenerateStandardLibraryAsTextile.java"/>
