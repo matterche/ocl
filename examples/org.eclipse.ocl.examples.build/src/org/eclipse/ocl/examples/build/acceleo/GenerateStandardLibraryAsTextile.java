@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy;
@@ -29,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.markup.MarkupPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
+import org.eclipse.xtext.resource.XtextResource;
 
 /**
  * Entry point of the 'GenerateStandardLibraryAsTextile' generation module.
@@ -48,7 +50,7 @@ public class GenerateStandardLibraryAsTextile extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generate1" };
+    public static final String[] TEMPLATE_NAMES = { "generate" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
@@ -403,6 +405,8 @@ public class GenerateStandardLibraryAsTextile extends AbstractAcceleoGenerator {
 	    else {
 	        packageRegistry.put("/org.eclipse.ocl.examples.xtext.markup/model/Markup.ecore", MarkupPackage.eINSTANCE);
 	    }
+	    Map<Object, Object> loadOptions = resourceSet.getLoadOptions();
+	    loadOptions.put(XtextResource.OPTION_ENCODING, "UTF-8");
 	}
 
     /**
