@@ -2,251 +2,437 @@ h1(#StandardLibrary). The OCL Standard Library
 
 This documentation on the OCL Standard Library is auto-generated from the
 org.eclipse.ocl.examples.library/model/OCL-2.4.oclstdlib that defines
-the behavior of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.3 functionality.
-It is a prototype of functionality for OCL 2.4 where the use of models may eliminate ambiguities.
+the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.3 functionality.
+It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.
 
-Precedences:  @NAVIGATION@  >  @UNARY@  >  @MULTIPLICATIVE@  >  @ADDITIVE@  >  @RELATIONAL@  >  @EQUALITY@  >  @AND@  >  @OR@  >  @XOR@  >  @IMPLIES@ 
+The library support for the Ecore and UML bindings in Juno has been upgraded so that the available operations
+are similar to those documented here for the Pivot binding.
 
-h2(#Bag). **@Bag<T>@**
+h2(#Precedences). *Precedences*
+
+ @NAVIGATION@  >  @UNARY@  >  @MULTIPLICATIVE@  >  @ADDITIVE@  >  @RELATIONAL@  >  @EQUALITY@  >  @AND@  >  @OR@  >  @XOR@  >  @IMPLIES@ 
+
+h2(#AnyClassifier). **@AnyClassifier(T)@**
 
 
 
-conformsTo  "@NonUniqueCollection<T>@":#NonUniqueCollection,  "@NonOrderedCollection<T>@":#NonOrderedCollection
+conformsTo "@Class@":#Class, "@OclType@":#OclType
+
+
+
+
+
+h2(#Bag). **@Bag(T)@**
+
+A bag is a collection with duplicates allowed. That is, one object can be an element of a bag many times.
+There is no ordering defined on the elements in a bag.
+Bag is itself an instance of the metatype BagType.
+
+
+conformsTo "@Collection(T)@":#Collection
 
 
 
 *Operations*
 
-@=(object2 : OclAny) : Boolean@
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-True if self and bag contain the same elements, the same number of times.
+True if @self@ and bag contain the same elements, the same number of times.
 
-@<>(object2 : OclAny) : Boolean@
+
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
 
 
-@excluding(object : OclAny) : Bag<T>@
+@excluding(object : OclAny) : Bag(T)@
 
-The bag containing all elements of self apart from all occurrences of object.
+The bag containing all elements of @self@ apart from all occurrences of object.
 
-@flatten<T2>() : Bag<T2>@
 
-Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as self. If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of self.
+@flatten(T2)() : Bag(T2)@
 
-@including(object : T) : Bag<T>@
+Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as @self@.
+If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of @self@.
 
-The bag containing all elements of self plus object.
+
+@including(object : T) : Bag(T)@
+
+The bag containing all elements of @self@ plus object.
+
+
+@intersection(bag : Collection(T)) : Bag(T)@
+
+The intersection of @self@ and bag; the bag of all elements that are in both @self@ and s.
+
+
+@intersection(s : UniqueCollection(T)) : Set(T)@
+
+The intersection of @self@ and s; the set of all elements that are in both @self@ and s.
+
+
+@selectByKind(TT)(type : AnyClassifier(TT)) : Bag(TT)@
+
+
+
+@selectByType(TT)(type : AnyClassifier(TT)) : Bag(TT)@
+
+
+
+@union(bag : Collection(T)) : Bag(T)@
+
+The union of @self@ and bag; the bag of all elements that are in @self@ and all elements that are in bag.
+
+
+@union(s : UniqueCollection(T)) : Set(T)@
+
+The union of @self@ and s; the set of all elements that are in @self@ and all elements that are in s.
+
 
 
 *Iterations*
 
-@reject(i : T | body : Lambda T() : Boolean) : Bag<T>@
+@closure(i : T | body : Lambda T() : Set(T)) : Set(T)@
 
-The sub-bag of the source bag for which body is false.
+The closure of applying body transitively to every distinct element of the source collection.
 
-@select(i : T | body : Lambda T() : Boolean) : Bag<T>@
 
-The sub-bag of the source bag for which body is true.
+@collect(V)(i : T | body : Lambda T() : V) : Bag(V)@
+
+
+
+@collectNested(V)(i : T | body : Lambda T() : V) : Bag(T)@
+
+The Bag of elements which results from applying body to every member of the source nonordered collection.
+
+
+@reject(i : T | body : Lambda T() : Boolean) : Bag(T)@
+
+The sub-bag of the source bag for which body is @false@.
+
+bc.. 
+self->reject(iterator | body) = self->select(iterator | not body)
+p. 
+.
+
+
+@select(i : T | body : Lambda T() : Boolean) : Bag(T)@
+
+The sub-bag of the source bag for which body is @true@.
+
+bc.. 
+self->select(iterator | body) =
+self->iterate(iterator; result : Bag(T) = Bag{} |
+if body then result->including(iterator)
+else result
+endif)
+p. 
+
+
+
+@sortedBy(i : T | body : Lambda T() : OclAny) : Sequence(T)@
+
+Results in the Sequence containing all elements of the source collection.
+The element for which body has the lowest value comes first, and so on.
+The type of the body expression must have the < operation defined.
+The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
+
 
 
 h2(#Boolean). **@Boolean@**
 
-The standard type Boolean represents the common true/false values. Boolean is itself an instance of the metatype PrimitiveType (from UML).
+The standard type Boolean represents the common true/false values.
+Boolean is itself an instance of the metatype PrimitiveType (from UML).
 
-conformsTo  "@OclAny@":#OclAny
+
+conformsTo "@OclAny@":#OclAny
 
 
 
 *Operations*
 
-@=(object2 : OclAny) : Boolean@
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-Returns true if the logical value of self is the same as the numeric value of object2, false otherwise.
+Returns @true@ if the logical value of @self@ is the same as the numeric value of object2, @false@ otherwise.
 
-@<>(object2 : OclAny) : Boolean@
+
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-Returns true if the logical value of self is the not same as the numeric value of object2, false otherwise.
+Returns @true@ if the logical value of @self@ is the not same as the numeric value of object2, @false@ otherwise.
 
-@allInstances<OclSelf>() : Set<OclSelf>@
 
-Returns Set{false, true}.
+@allInstances() : Set(OclSelf)@
+
+Returns @Set{false, true}@.
+
 
 @and(b : Boolean) : Boolean@
 precedence: @AND@
 
-True if both b1 and b are true.
+True if both b1 and b are @true@.
+
 
 @implies(b : Boolean) : Boolean@
 precedence: @IMPLIES@
 
-True if self is false, or if self is true and b is true.
+True if @self@ is @false@, or if @self@ is @true@ and b is @true@.
+
 
 @not() : Boolean@
 precedence: @UNARY@
 
-True if self is false.
+True if @self@ is @false@.
+
 
 @or(b : Boolean) : Boolean@
 precedence: @OR@
 
-True if either self or b is true.
+True if either @self@ or b is @true@.
+
 
 @toString() : String@
 
-Converts self to a string value.
+Converts @self@ to a string value.
+
 
 @xor(b : Boolean) : Boolean@
 precedence: @XOR@
 
-True if either self or b is true, but not both.
+True if either @self@ or b is @true@, but not both.
 
 
 
-h2(#Classifier). **@Classifier<T>@**
+
+h2(#Class). **@Class@**
 
 
 
-conformsTo  "@OclAny@":#OclAny
-
-
-
-*Operations*
-
-@allInstances<OclSelf>() : Set<OclSelf>@
-
-Return a set of all instances of the type and derived types of self.
-
-@oclContainer<U>() : Classifier<U>@
-
-Returns the object for which self is a composed content or null if there is no such object.
-
-@oclContents<U>() : Set<Classifier<U>>@
-
-Returns the composed contents of self.
-
-
-
-h2(#Collection). **@Collection<T>@**
-
-Collection is the abstract supertype of all collection types in the OCL Standard Library. Each occurrence of an object in a collection is called an element. If an object occurs twice in a collection, there are two elements.
-
-conformsTo  "@OclAny@":#OclAny
+conformsTo "@OclAny@":#OclAny
 
 
 
 *Operations*
 
-@=(object2 : OclAny) : Boolean@
+@oclType() : ClassClassifier(OclSelf)@
+
+Evaluates to the type of which self is an instance.
+
+
+
+
+h2(#ClassClassifier). **@ClassClassifier(T)@**
+
+
+
+conformsTo "@AnyClassifier(T)@":#AnyClassifier
+
+
+
+
+
+h2(#Collection). **@Collection(T)@**
+
+Collection is the abstract supertype of all collection types in the OCL Standard Library.
+Each occurrence of an object in a collection is called an element.
+If an object occurs twice in a collection, there are two elements.
+
+This sub clause defines the properties on Collections that have identical semantics for all collection subtypes.
+Some operations may be defined within the subtype as well,
+which means that there is an additional postcondition or a more specialized return value.
+Collection is itself an instance of the metatype CollectionType.
+
+The definition of several common operations is different for each subtype.
+These operations are not mentioned in this sub clause.
+
+The semantics of the collection operations is given in the form of a postcondition that uses the IterateExp of the IteratorExp construct.
+The semantics of those constructs is defined in Clause 10 (“Semantics Described using UML”).
+In several cases the postcondition refers to other collection operations,
+which in turn are defined in terms of the IterateExp or IteratorExp constructs.
+
+Well-formedness rules
+
+ A collection cannot contain @invalid@ values.
+ 
+ context Collection
+ inv: self->forAll(not oclIsInvalid())
+
+
+conformsTo "@OclAny@":#OclAny
+
+
+
+*Operations*
+
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-True if c is a collection of the same kind as self and contains the same elements in the same quantities and in the same order, in the case of an ordered collection type.
+True if c is a collection of the same kind as @self@ and contains the same elements in the same quantities and in the same order,
+in the case of an ordered collection type.
 
-@<>(object2 : OclAny) : Boolean@
+
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-True if c is not equal to self.
+True if c is not equal to @self@.
 
-@asBag() : Bag<T>@
 
-The Bag that contains all the elements from self.
+@asBag() : Bag(T)@
 
-@asOrderedSet() : OrderedSet<T>@
+The Bag that contains all the elements from @self@.
 
-An OrderedSet that contains all the elements from self, with duplicates removed, in an order dependent on the particular concrete collection type.
 
-@asSequence() : Sequence<T>@
+@asOrderedSet() : OrderedSet(T)@
 
-A Sequence that contains all the elements from self, in an order dependent on the particular concrete collection type.
+An OrderedSet that contains all the elements from @self@, with duplicates removed,
+in an order dependent on the particular concrete collection type.
 
-@asSet() : Set<T>@
 
-The Set containing all the elements from self, with duplicates removed.
+@asSequence() : Sequence(T)@
+
+Sequence that contains all the elements from @self@, in an order dependent on the particular concrete collection type.
+
+
+@asSet() : Set(T)@
+
+The Set containing all the elements from @self@, with duplicates removed.
+
 
 @count(object : OclAny) : Integer@
 
-The number of times that object occurs in the collection self.
+The number of times that object occurs in the collection @self@.
+
 
 @excludes(object : OclAny) : Boolean@
 
-True if object is not an element of self, false otherwise.
+True if object is not an element of @self@, @false@ otherwise.
 
-@excludesAll<T2>(c2 : Collection<T2>) : Boolean@
 
-Does self contain none of the elements of c2 ?
+@excludesAll(T2)(c2 : Collection(T2)) : Boolean@
 
-@excluding(object : OclAny) : Collection<T>@
+Does @self@ contain none of the elements of c2 ?
 
-The collection containing all elements of self apart from object.
 
-@flatten<T2>() : Collection<T2>@
+@excluding(object : OclAny) : Collection(T)@
 
-If the element type is not a collection type, this results in the same collection as self. If the element type is a collection type, the result is a collection containing all the elements of all the recursively flattened elements of self.
+The collection containing all elements of @self@ apart from object.
+
+
+@flatten(T2)() : Collection(T2)@
+
+If the element type is not a collection type, this results in the same collection as @self@.
+If the element type is a collection type, the result is a collection containing all the elements of all the recursively flattened elements of @self@.
+
 
 @includes(object : OclAny) : Boolean@
 
-True if object is an element of self, false otherwise.
+True if object is an element of @self@, @false@ otherwise.
 
-@includesAll<T2>(c2 : Collection<T2>) : Boolean@
 
-Does self contain all the elements of c2 ?
+@includesAll(T2)(c2 : Collection(T2)) : Boolean@
 
-@including(object : T) : Collection<T>@
+Does @self@ contain all the elements of c2 ?
 
-The collection containing all elements of self plus object.
+
+@including(object : T) : Collection(T)@
+
+The collection containing all elements of @self@ plus object.
+
 
 @isEmpty() : Boolean@
 
-Is self the empty collection?
-Note: null-&gt;isEmpty() returns ‘true’ in virtue of the implicit casting from null to Bag{}
+Is @self@ the empty collection?
+
+Note: @null->isEmpty()@ returns @true@ in virtue of the implicit casting from @null@ to @Bag{}@.
+
 
 @max() : T@
 
-The element with the maximum value of all elements in self. Elements must be of a type supporting the max operation. The max operation - supported by the elements - must take one parameter of type T and be both associative and commutative. UnlimitedNatural, Integer and Real fulfill this condition.
+The element with the maximum value of all elements in @self@.
+Elements must be of a type supporting the max operation.
+The max operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
+UnlimitedNatural, Integer and Real fulfill this condition.
+
 
 @min() : T@
 
-The element with the minimum value of all elements in self. Elements must be of a type supporting the min operation. The min operation - supported by the elements - must take one parameter of type T and be both associative and commutative. UnlimitedNatural, Integer and Real fulfill this condition.
+The element with the minimum value of all elements in @self@.
+Elements must be of a type supporting the min operation.
+The min operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
+UnlimitedNatural, Integer and Real fulfill this condition.
+
 
 @notEmpty() : Boolean@
 
-Is self not the empty collection?
-null-&gt;notEmpty() returns ‘false’ in virtue of the implicit casting from null to Bag{}.
+Is @self@ not the empty collection?
 
-@product<T2>(c2 : Collection<T2>) : Set<Tuple<first : T, second : T2>>@
+@null->notEmpty()@ returns @false@ in virtue of the implicit casting from @null@ to @Bag{}@.
 
-The cartesian product operation of self and c2.
+
+@oclType() : CollectionClassifier(OclSelf, T)@
+
+Evaluates to the type of which @self@ is an instance.
+
+
+@product(T2)(c2 : Collection(T2)) : Set(Tuple(first : T, second : T2))@
+
+The cartesian product operation of @self@ and c2.
+
+
+@selectByKind(TT)(type : AnyClassifier(TT)) : Collection(TT)@
+
+
+
+@selectByType(TT)(type : AnyClassifier(TT)) : Collection(TT)@
+
+
 
 @size() : Integer@
 
-The number of elements in the collection self.
+The number of elements in the collection @self@.
+
 
 @sum() : T@
 
-The addition of all elements in self. Elements must be of a type supporting the + operation. The + operation must take one parameter of type T and be both associative: (a+b)+c = a+(b+c), and commutative: a+b = b+a. UnlimitedNatural, Integer and Real fulfill this condition.
-If the + operation is not both associative and commutative, the sum expression is not well-formed, which may result in unpredictable results during evaluation. If an implementation is able to detect a lack of associativity or commutativity, the implementation may bypass the evaluation and return an invalid result.
+The addition of all elements in @self@.
+Elements must be of an @OclSummable@ type to provide the zero() and sum() operations.
+The _sum_ operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).
+UnlimitedNatural, Integer and Real fulfill this condition.
+
+If the _sum_ operation is not both associative and commutative, the _sum_ expression is not well-formed,
+which may result in unpredictable results during evaluation.
+If an implementation is able to detect a lack of associativity or commutativity,
+the implementation may bypass the evaluation and return an @invalid@ result.
+
 
 
 *Iterations*
 
 @any(i : T | body : Lambda T() : Boolean) : T@
 
-Returns any element in the source collection for which body evaluates to true. If there is more than one element for which body is true, one of them is returned. There must be at least one element fulfilling body, otherwise the result of this IteratorExp is null.
+Returns any element in the source collection for which body evaluates to @true@.
+If there is more than one element for which body is @true@, one of them is returned.
+There must be at least one element fulfilling body, otherwise the result of this IteratorExp is @null@.
 
-@collect<V>(i : T | body : Lambda T() : V) : Collection<V>@
 
-The Collection of elements that results from applying body to every member of the source set. The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source. collectNested is defined individually for each subclass of CollectionType.
+@collect(V)(i : T | body : Lambda T() : V) : Collection(V)@
 
-@collectNested<V>(i : T | body : Lambda T() : V) : Collection<T>@
+The Collection of elements that results from applying body to every member of the source set.
+The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
+collectNested is defined individually for each subclass of CollectionType.
+
+
+@collectNested(V)(i : T | body : Lambda T() : V) : Collection(T)@
 
 The Collection of elements which results from applying body to every member of the source collection.
 
+
 @exists(i : T | body : Lambda T() : Boolean) : Boolean@
 
-Results in true if body evaluates to true for at least one element in the source collection.
+Results in @true@ if body evaluates to @true@ for at least one element in the source collection.
+
 
 @exists(i : T, j : T | body : Lambda T() : Boolean) : Boolean@
 
@@ -254,7 +440,8 @@ Results in true if body evaluates to true for at least one element in the source
 
 @forAll(i : T | body : Lambda T() : Boolean) : Boolean@
 
-Results in true if the body expression evaluates to true for each element in the source collection; otherwise, result is false.
+Results in @true@ if the body expression evaluates to @true@ for each element in the source collection; otherwise, result is @false@.
+
 
 @forAll(i : T, j : T | body : Lambda T() : Boolean) : Boolean@
 
@@ -262,50 +449,115 @@ Results in true if the body expression evaluates to true for each element in the
 
 @isUnique(i : T | body : Lambda T() : OclAny) : Boolean@
 
-Results in true if body evaluates to a different value for each element in the source collection; otherwise, result is false.
+Results in @true@ if body evaluates to a different value for each element in the source collection; otherwise, result is @false@.
 
-@iterate<Tacc>(i : Tacc : ; Tacc) : Tacc@
+
+@iterate(Tacc)(i : Tacc : ; Tacc | body : Lambda T() : Tacc) : Tacc@
 
 
 
 @one(i : T | body : Lambda T() : Boolean) : Boolean@
 
-Results in true if there is exactly one element in the source collection for which body is true.
+Results in @true@ if there is exactly one element in the source collection for which body is @true@.
 
-@reject(i : T | body : Lambda T() : Boolean) : Collection<T>@
 
-The sub-collection of the source collection for which body is false.
+@reject(i : T | body : Lambda T() : Boolean) : Collection(T)@
 
-@select(i : T | body : Lambda T() : Boolean) : Collection<T>@
+The sub-collection of the source collection for which body is @false@.
 
-The sub-collection of the source collection for which body is true.
 
-@sortedBy(i : T | body : Lambda T() : OclAny) : OrderedCollection<T>@
+@select(i : T | body : Lambda T() : Boolean) : Collection(T)@
 
-Results in the Collection containing all elements of the source collection. The element for which body has the lowest value comes first, and so on. The type of the body expression must have the &lt; operation defined. The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).
+The sub-collection of the source collection for which body is @true@.
+
+
+@sortedBy(i : T | body : Lambda T() : OclAny) : Sequence(T)@
+
+Results in the Collection containing all elements of the source collection.
+The element for which body has the lowest value comes first, and so on.
+The type of the body expression must have the < operation defined.
+The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
+
+
+
+h2(#CollectionClassifier). **@CollectionClassifier(T, E)@**
+
+
+
+conformsTo "@AnyClassifier(T)@":#AnyClassifier
+
+*Attributes*
+
+@elementType : E@
+
+Evaluates to the type of the collection elements.
+
+
+
+
 
 
 h2(#Enumeration). **@Enumeration@**
 
-This is enum
+The Enumeration type is the type of an OrderedSet of EnumerationLiteral.
 
-conformsTo  "@OclAny@":#OclAny
+
+conformsTo "@OclAny@":#OclAny
 
 
 
 *Operations*
 
-@allInstances<OclSelf>() : Set<OclSelf>@
+@allInstances() : Set(OclSelf)@
 
-Return a set of all enumeration values of self.
+Return a set of all enumeration values of @self@.
+
+
+@oclType() : EnumerationClassifier(OclSelf)@
+
+Evaluates to the type of which @self@ is an instance.
+
+
+
+
+h2(#EnumerationClassifier). **@EnumerationClassifier(T)@**
+
+The standard type EnumerationClassifier represents the metatype of an Enumeration.
+
+
+conformsTo "@AnyClassifier(T)@":#AnyClassifier
+
+*Attributes*
+
+@ownedLiteral : OrderedSet(EnumerationLiteral)@
+
+Evaluates to the literals of the enumeration.
+
+
+
+
+
+
+h2(#EnumerationLiteral). **@EnumerationLiteral@**
+
+The standard type EnumerationLiteral represents a named constant value of an Enumeration.
+
+
+conformsTo "@OclAny@":#OclAny
+
+
 
 
 
 h2(#Integer). **@Integer@**
 
-The standard type Integer represents the mathematical concept of integer. Note that UnlimitedNatural is a subclass of Integer, so for each parameter of type Integer, you can use an unlimited natural as the actual parameter. Integer is itself an instance of the metatype PrimitiveType (from UML).
+The standard type Integer represents the mathematical concept of integer.
+Note that UnlimitedNatural is a subclass of Integer, so for each parameter of type Integer,
+you can use an unlimited natural as the actual parameter.
+Integer is itself an instance of the metatype PrimitiveType (from UML).
 
-conformsTo  "@Real@":#Real
+
+conformsTo "@Real@":#Real
 
 
 
@@ -314,177 +566,273 @@ conformsTo  "@Real@":#Real
 @-() : Integer@
 precedence: @UNARY@
 
-The negative value of self.
+The negative value of @self@.
 
-@+(i : Integer) : Integer@
+
+@+(i : OclSelf) : Integer@
 precedence: @ADDITIVE@
 
-The value of the addition of self and i.
+The value of the addition of @self@ and i.
 
-@-(i : Integer) : Integer@
+
+@-(i : OclSelf) : Integer@
 precedence: @ADDITIVE@
 
-The value of the subtraction of i from self.
+The value of the subtraction of i from @self@.
 
-@*(i : Integer) : Integer@
+
+@*(i : OclSelf) : Integer@
 precedence: @MULTIPLICATIVE@
 
-The value of the multiplication of self and i.
+The value of the multiplication of @self@ and i.
 
-@/(i : Integer) : Real@
+
+@/(i : OclSelf) : Real@
 precedence: @MULTIPLICATIVE@
 
-The value of self divided by i. Evaluates to invalid if r is equal to zero.
+The value of @self@ divided by i.
+Evaluates to @invalid@ if r is equal to zero.
+
 
 @abs() : Integer@
 
-The absolute value of self.
+The absolute value of @self@.
+
+
+@compareTo(that : OclSelf) : Integer@
+
+The comparison of @self@ with @that@. -ve if less than, 0 if equal, +ve if greater than.
+
 
 @div(i : Integer) : Integer@
 
-The number of times that i fits completely within self.
+The number of times that i fits completely within @self@.
+
 
 @mod(i : Integer) : Integer@
 
-The result is self modulo i.
+The result is @self@ modulo i.
 
-@max(i : Integer) : Integer@
 
-The maximum of self an i.
+@max(i : OclSelf) : Integer@
 
-@min(i : Integer) : Integer@
+The maximum of @self@ an i.
 
-The minimum of self an i.
+
+@min(i : OclSelf) : Integer@
+
+The minimum of @self@ an i.
+
 
 @toString() : String@
 
-Converts self to a string value.
+Converts @self@ to a string value.
 
 
-
-h2(#NonOrderedCollection). **@NonOrderedCollection<T>@**
-
-The NonOrderedCollection type provides the shared functionality of the Bag and Set collections for which the elements are not ordered. The common supertype of NonOrderedCollection is Collection.
-
-conformsTo  "@Collection<T>@":#Collection
-
-
-
-*Operations*
-
-@intersection(bag : Bag<T>) : Bag<T>@
-
-The intersection of self and bag.
-
-@intersection(s : Set<T>) : Set<T>@
-
-The intersection of self and s (i.e., the set of all elements that are in both self and s).
-
-@union(bag : Bag<T>) : Bag<T>@
-
-The union of self and bag.
-
-@union(s : Set<T>) : Set<T>@
-
-The union of self and s.
-
-
-*Iterations*
-
-@closure(i : T | body : Lambda T() : Set<T>) : Set<T>@
-
-The closure of applying body transitively to every distinct element of the source collection.
-
-@collect<V>(i : T | body : Lambda T() : V) : Bag<V>@
-
-
-
-@collectNested<V>(i : T | body : Lambda T() : V) : Bag<T>@
-
-The Bag of elements which results from applying body to every member of the source nonordered collection.
-
-
-h2(#NonUniqueCollection). **@NonUniqueCollection<T>@**
-
-The NonUniqueCollection type provides the shared functionality of the Bag and Sequence collections for which the elements are not unique. The common supertype of NonUniqueCollection is Collection.
-
-conformsTo  "@Collection<T>@":#Collection
-
-
-
-
-*Iterations*
-
-@sortedBy(i : T | body : Lambda T() : OclAny) : Sequence<T>@
-
-Results in the Sequence containing all elements of the source collection. The element for which body has the lowest value comes first, and so on. The type of the body expression must have the &lt; operation defined. The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).
 
 
 h2(#OclAny). **@OclAny@**
 
-All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny. Conceptually, OclAny behaves as a supertype for all the types. Features of OclAny are available on each object in all OCL expressions. OclAny is itself an instance of the metatype AnyType.
-All classes in a UML model inherit all operations defined on OclAny. To avoid name conflicts between properties in the model and the properties inherited from OclAny, all names on the properties of OclAny start with ‘ocl.’ Although theoretically there may still be name conflicts, they can be avoided. One can also use qualification by OclAny (name of the type) to explicitly refer to the OclAny properties.
+All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny.
+Conceptually, OclAny behaves as a supertype for all the types.
+Features of OclAny are available on each object in all OCL expressions.
+OclAny is itself an instance of the metatype AnyType.
+
+All classes in a UML model inherit all operations defined on OclAny.
+To avoid name conflicts between properties in the model and the properties inherited from OclAny,
+all names on the properties of OclAny start with ‘ocl.’
+Although theoretically there may still be name conflicts, they can be avoided.
+One can also use qualification by OclAny (name of the type) to explicitly refer to the OclAny properties.
+
 Operations of OclAny, where the instance of OclAny is called object.
 
 
 
 
+
 *Operations*
 
-@=(object2 : OclAny) : Boolean@
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-True if self is the same object as object2. Infix operator.
+True if @self@ is the same object as object2. Infix operator.
 
-@<>(object2 : OclAny) : Boolean@
+
+bc.. 
+post: result = self = object2
+p. 
+
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-True if self is a different object from object2. Infix operator.
+True if @self@ is a different object from object2. Infix operator.
 
-@oclAsSet<OclSelf>() : Set<OclSelf>@
 
-Returns a Set with self as the sole content, unless self is null in which case returns an empty set,
+bc.. 
+post: result = not (self = object2)
+p. 
 
-@oclAsType<TT>(type : Classifier<TT>) : TT@
+@oclAsSet() : Set(OclSelf)@
 
-Evaluates to self, where self is of the type identified by T. The type T may be any classifier defined in the UML model; if the actual type of self at evaluation time does not conform to T, then the oclAsType operation evaluates to invalid.
-In the case of feature redefinition, casting an object to a supertype of its actual type does not access the supertype’s definition of the feature; according to the semantics of redefinition, the redefined feature simply does not exist for the object. However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
+Returns a Set with @self@ as the sole content, unless @self@ is @null@ in which case returns an empty set,
+
+
+@oclAsType(TT)(type : AnyClassifier(TT)) : TT@
+
+Evaluates to @self@, where @self@ is of the type identified by T.
+The type T may be any classifier defined in the UML model;
+if the actual type of @self@ at evaluation time does not conform to T,
+then the oclAsType operation evaluates to @invalid@.
+
+In the case of feature redefinition, casting an object to a supertype of its actual type
+does not access the supertype’s definition of the feature;
+according to the semantics of redefinition, the redefined feature simply does not exist for the object.
+However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
+
+
+bc.. 
+post IsSelf: result = self
+p. 
+
+bc.. 
+post IsType: result.oclIsTypeOf(type)
+p. 
 
 @oclIsInState(statespec : OclState) : Boolean@
 
-Evaluates to true if the self is in the state indentified by statespec.
+Evaluates to @true@ if the @self@ is in the state indentified by statespec.
+
 
 @oclIsInvalid() : Boolean@
 
-Evaluates to true if the self is equal to OclInvalid.
+Evaluates to @true@ if the @self@ is equal to OclInvalid.
 
-@oclIsKindOf<T>(type : Classifier<T>) : Boolean@
 
-Evaluates to true if the type of self conforms to t. That is, self is of type t or a subtype of t.
+bc.. 
+post: result = self.oclIsTypeOf(OclInvalid)
+p. 
+
+@oclIsKindOf(T)(type : AnyClassifier(T)) : Boolean@
+
+Evaluates to @true@ if the type of @self@ conforms to t.
+That is, @self@ is of type t or a subtype of t.
+
 
 @oclIsNew() : Boolean@
 
-Can only be used in a postcondition. Evaluates to true if the self is created during performing the operation (for instance, it didn’t exist at precondition time).
+Can only be used in a postcondition.
+Evaluates to @true@ if the @self@ is created during performing the operation (for instance, it didn’t exist at precondition time).
 
-@oclIsTypeOf<T>(type : Classifier<T>) : Boolean@
 
-Evaluates to true if self is of the type t but not a subtype of t
+@oclIsTypeOf(T)(type : AnyClassifier(T)) : Boolean@
+
+Evaluates to @true@ if @self@ is of the type t but not a subtype of t
+
 
 @oclIsUndefined() : Boolean@
 
-Evaluates to true if the self is equal to invalid or equal to null.
+Evaluates to @true@ if the @self@ is equal to @invalid@ or equal to @null@.
 
-@oclType<OclSelf>() : Classifier<OclSelf>@
 
-Evaluates to the type of which self is an instance.
+bc.. 
+post: result = self.oclIsTypeOf(OclVoid) or self.oclIsTypeOf(OclInvalid)
+p. 
+
+@oclType() : AnyClassifier(OclSelf)@
+
+Evaluates to the type of which @self@ is an instance.
+
+
+@toString() : String@
+
+Returns a string representation of @self@.
+
+
+
+
+h2(#OclComparable). **@OclComparable@**
+
+The type OclComparable defines the compareTo operation used by the sortedBy iteration. Only types that provide a derived
+compareTo implementation may be sorted.
+
+
+conformsTo "@OclAny@":#OclAny
+
+
+
+*Operations*
+
+@compareTo(that : OclSelf) : Integer@
+
+Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.
+
+The compareTo operation should be commutative.
+
+
+@>(that : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is greater than @that@.
+
+
+@<(that : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is less than @that@.
+
+
+@<=(that : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is less than or equal to @that@.
+
+
+@>=(that : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is greater than or equal to @that@.
+
+
+
+
+h2(#OclElement). **@OclElement@**
+
+The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined
+for OclElement are therefore applicable to all user-defined types.
+
+
+conformsTo "@OclAny@":#OclAny
+
+
+
+*Operations*
+
+@allInstances() : Set(OclSelf)@
+
+Return a set of all instances of the type and derived types of self.
+
+
+@oclContainer() : OclElement@
+
+Returns the object for which self is a composed content or null if there is no such object.
+
+
+@oclContents() : Set(OclElement)@
+
+Returns the composed contents of self.
+
 
 
 
 h2(#OclInvalid). **@OclInvalid@**
 
-The type OclInvalid is a type that conforms to all other types. It has one single instance, identified as  invalid. Any property call applied on invalid results in invalid, except for the operations oclIsUndefined() and oclIsInvalid(). OclInvalid is itself an instance of the metatype InvalidType.
+The type OclInvalid is a type that conforms to all other types.
+It has one single instance, identified as  @invalid@.
+Any property call applied on invalid results in @invalid@, except for the operations oclIsUndefined() and oclIsInvalid().
+OclInvalid is itself an instance of the metatype InvalidType.
 
-conformsTo  "@OclVoid@":#OclVoid
+
+conformsTo "@OclVoid@":#OclVoid
 
 
 *Associations*
@@ -496,19 +844,22 @@ conformsTo  "@OclVoid@":#OclVoid
 
 *Operations*
 
-@allInstances<OclSelf>() : Set<OclSelf>@
+@allInstances() : Set(OclSelf)@
 
-Returns invalid.
+Returns @invalid@.
 
-@=(object2 : OclAny) : Boolean@
+
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-Returns invalid.
+Returns @invalid@.
 
-@<>(object2 : OclAny) : Boolean@
+
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-Returns invalid.
+Returns @invalid@.
+
 
 @oclBadOperation() : OclInvalid@
 
@@ -520,13 +871,39 @@ Returns 'invalid'.
 
 
 
+
+h2(#OclLambda). **@OclLambda@**
+
+The type OclLambda is the implicit supertype of all Lambda types. The operations defined for OclLambda
+therefore apply to all lambda expressions.
+
+
+conformsTo "@OclAny@":#OclAny
+
+
+
+
+
 h2(#OclMessage). **@OclMessage@**
 
-OclMessage This sub clause contains the definition of the standard type OclMessage. As defined in this sub clause, each ocl message type is actually a template type with one parameter. ‘T’ denotes the parameter. A concrete ocl message type is created by substituting an operation or signal for the T.
-The predefined type OclMessage is an instance of MessageType. Every OclMessage is fully determined by either the operation, or signal given as parameter. Note that there is conceptually an undefined (infinite) number of these types, as each is determined by a different operation or signal. These types are unnamed. Every type has as attributes the name of the operation or signal, and either all formal parameters of the operation, or all attributes of the signal. OclMessage is itself an instance of the metatype MessageType.
+OclMessage
+This sub clause contains the definition of the standard type OclMessage.
+As defined in this sub clause, each ocl message type is actually a template type with one parameter.
+‘T’ denotes the parameter.
+A concrete ocl message type is created by substituting an operation or signal for the T.
+
+The predefined type OclMessage is an instance of MessageType.
+Every OclMessage is fully determined by either the operation, or signal given as parameter.
+Note that there is conceptually an undefined (infinite) number of these types,
+as each is determined by a different operation or signal.
+These types are unnamed. Every type has as attributes the name of the operation or signal,
+and either all formal parameters of the operation, or all attributes of the signal.
+OclMessage is itself an instance of the metatype MessageType.
+
 OclMessage has a number of predefined operations, as shown in the OCL Standard Library.
 
-conformsTo  "@OclAny@":#OclAny
+
+conformsTo "@OclAny@":#OclAny
 
 
 
@@ -534,19 +911,37 @@ conformsTo  "@OclAny@":#OclAny
 
 @hasReturned() : Boolean@
 
-True if type of template parameter is an operation call, and the called operation has returned a value. This implies the fact that the message has been sent. False in all other cases.
+True if type of template parameter is an operation call, and the called operation has returned a value.
+This implies the fact that the message has been sent. False in all other cases.
+
 
 @result() : OclAny@
 
-Returns the result of the called operation, if type of template parameter is an operation call, and the called operation has returned a value. Otherwise the invalid value is returned.
+Returns the result of the called operation, if type of template parameter is an operation call,
+and the called operation has returned a value. Otherwise the @invalid@ value is returned.
+
 
 @isOperationCall() : Boolean@
 
-Returns true if the OclMessage represents the sending of a UML Operation call.
+Returns @true@ if the OclMessage represents the sending of a UML Operation call.
+
 
 @isSignalSent() : Boolean@
 
-Returns true if the OclMessage represents the sending of a UML Signal.
+Returns @true@ if the OclMessage represents the sending of a UML Signal.
+
+
+
+
+h2(#OclSelf). **@OclSelf@**
+
+The pseudo-type OclSelf denotes the statically determinate type of @self@ in Operation
+and Iteration signatures. Instances of OclSelf are never created.
+
+
+conformsTo "@OclAny@":#OclAny
+
+
 
 
 
@@ -554,55 +949,115 @@ h2(#OclState). **@OclState@**
 
 
 
-conformsTo  "@OclAny@":#OclAny
+conformsTo "@OclAny@":#OclAny
 
+
+
+
+
+h2(#OclSummable). **@OclSummable@**
+
+The type OclSummable defines the sum and zero operations used by the Collection::sum iteration. Only types that provide derived
+sum and zero implementations may be summed.
+
+
+conformsTo "@OclAny@":#OclAny
+
+
+
+*Operations*
+
+@sum(that : OclSelf) : OclSelf@
+
+Return the sum of self and that.
+
+The sum operation should be associative.
+
+
+@zero() : OclSelf@
+
+Return the 'zero' value of self to initialize a summation.
+
+zero().sum(self) = self.
 
 
 
 
 h2(#OclTuple). **@OclTuple@**
 
+The type OclTuple is the implicit supertype of all Tuple types. The operations defined for OclTuple
+therefore apply to all tuples.
 
 
-conformsTo  "@OclAny@":#OclAny
+conformsTo "@OclAny@":#OclAny
 
 
 
 *Operations*
 
-@=(object2 : OclAny) : Boolean@
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
 
 
-@<>(object2 : OclAny) : Boolean@
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
+
+
+
+
+h2(#OclType). **@OclType@**
+
+The type OclType is the implicit supertype of any UML type. Operations defined
+for OclType are therefore applicable to all UML types.
+
+
+conformsTo "@OclElement@":#OclElement
+
+
+
+*Operations*
+
+@conformsTo(type2 : OclType) : Boolean@
+
+Returns true if type2 conforms to self.
 
 
 
 
 h2(#OclVoid). **@OclVoid@**
 
-The type OclVoid is a type that conforms to all other types except OclInvalid. It has one single instance, identified as null, that corresponds with the UML LiteralNull value specification. Any property call applied on null results in invalid, except for the oclIsUndefined(), oclIsInvalid(), =(OclAny) and &lt;&gt;(OclAny) operations. However, by virtue of the implicit conversion to a collection literal, an expression evaluating to null can be used as source of collection operations (such as ‘isEmpty’). If the source is the null literal, it is implicitly converted to Bag{}.
+The type OclVoid is a type that conforms to all other types except OclInvalid.
+It has one single instance, identified as @null@, that corresponds with the UML LiteralNull value specification.
+Any property call applied on @null@ results in @invalid@, except for the
+oclIsUndefined(), oclIsInvalid(), =(OclAny) and <>(OclAny) operations.
+However, by virtue of the implicit conversion to a collection literal,
+an expression evaluating to @null@ can be used as source of collection operations (such as ‘isEmpty’).
+If the source is the @null@ literal, it is implicitly converted to Bag{}.
+
 OclVoid is itself an instance of the metatype VoidType.
 
-conformsTo  "@OclAny@":#OclAny
+
+conformsTo "@OclAny@":#OclAny
 
 
 
 *Operations*
 
-@allInstances<OclSelf>() : Set<OclSelf>@
+@allInstances() : Set(OclSelf)@
 
-Returns Set{null}.
+Returns @Set{null}@.
 
-@=(object2 : OclAny) : Boolean@
+
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
-Redefines the OclAny operation, returning true if object is null, invalid if object is invalid, false otherwise.
+Redefines the OclAny operation, returning @true@ if object is @null@, @invalid@
+if object is @invalid@, @false@ otherwise.
 
-@<>(object2 : OclAny) : Boolean@
+
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
 
@@ -624,382 +1079,500 @@ precedence: @OR@
 
 @toString() : String@
 
-Returns 'null'.
+Returns @null@.
 
 
 
-h2(#OrderedCollection). **@OrderedCollection<T>@**
 
-The OrderedCollection type provides the shared functionality of the OrderedSet and Sequence collections for which the elements are ordered. The common supertype of OrderedCollection is Collection.
+h2(#OrderedSet). **@OrderedSet(T)@**
 
-conformsTo  "@Collection<T>@":#Collection
+The OrderedSet is a Set, the elements of which are ordered.
+It contains no duplicates. OrderedSet is itself an instance of the metatype OrderedSetType.
+An OrderedSet is not a subtype of Set, neither a subtype of Sequence.
+The common supertype of Sets and OrderedSets is Collection.
+
+
+conformsTo "@Sequence(T)@":#Sequence, "@UniqueCollection(T)@":#UniqueCollection
 
 
 
 *Operations*
+
+@=(object2 : OclSelf) : Boolean@
+precedence: @EQUALITY@
+
+
+
+@<>(object2 : OclSelf) : Boolean@
+precedence: @EQUALITY@
+
+
+
+@-(s : UniqueCollection(OclAny)) : OrderedSet(T)@
+precedence: @ADDITIVE@
+
+The elements of @self@, which are not in s.
+
+
+@append(object : T) : OrderedSet(T)@
+
+The set of elements, consisting of all elements of @self@, followed by object.
+
+
+@excluding(object : OclAny) : OrderedSet(T)@
+
+The ordered set  containing all elements of @self@ apart from object.
+
+The order of the remaining elements is not changed.
+
+
+@flatten(T2)() : OrderedSet(T2)@
+
+
+
+@including(object : T) : OrderedSet(T)@
+
+The ordered set containing all elements of @self@ plus object added as the last element if not already present.
+
+
+@insertAt(index : Integer, object : T) : OrderedSet(T)@
+
+The ordered set consisting of @self@ with object present at position index.
+
+
+@intersection(o : Collection(T)) : OrderedSet(T)@
+
+
+
+@prepend(object : T) : OrderedSet(T)@
+
+The sequence consisting of object, followed by all elements in @self@.
+
+
+bc.. 
+post IsAtStart: result->at(1) = object
+p. 
+
+bc.. 
+post IsShiftedAlong: Sequence{1..self->size()}->forAll(index : Integer | self->at(index) = result->at(index + 1))
+p. 
+
+bc.. 
+post IsSizePlusOne: result->size() = self->size() + 1
+p. 
+
+@reverse() : OrderedSet(T)@
+
+The ordered set of elements with same elements but with the opposite order.
+
+
+@selectByKind(TT)(type : AnyClassifier(TT)) : OrderedSet(TT)@
+
+
+
+@selectByType(TT)(type : AnyClassifier(TT)) : OrderedSet(TT)@
+
+
+
+@subOrderedSet(lower : Integer, upper : Integer) : OrderedSet(T)@
+
+The sub-set of @self@ starting at number lower, up to and including element number upper.
+
+
+@union(o : Sequence(T)) : OrderedSet(T)@
+
+The ordered set consisting of all elements in @self@ and all elements in o.
+
+
+
+*Iterations*
+
+@reject(i : T | body : Lambda T() : Boolean) : OrderedSet(T)@
+
+The ordered set of the source ordered set for which body is @false@.
+
+
+@select(i : T | body : Lambda T() : Boolean) : OrderedSet(T)@
+
+The ordered set of the source ordered set for which body is @true@
+
+
+@sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet(T)@
+
+Results in the ordered set containing all elements of the source collection.
+The element for which body has the lowest value comes first, and so on.
+The type of the body expression must have the < operation defined.
+The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
+
+
+
+h2(#Real). **@Real@**
+
+The standard type Real represents the mathematical concept of real.
+Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real,
+so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.
+Real is itself an instance of the metatype PrimitiveType (from UML).
+
+
+conformsTo "@OclComparable@":#OclComparable, "@OclSummable@":#OclSummable
+
+
+
+*Operations*
+
+@=(object2 : OclSelf) : Boolean@
+precedence: @EQUALITY@
+
+Returns @true@ if the numeric value of @self@ is the same as the numeric value of object2, @false@ otherwise.
+
+
+@<>(object2 : OclSelf) : Boolean@
+precedence: @EQUALITY@
+
+Returns @true@ if the numeric value of @self@ is the not the same as the numeric value of object2, @false@ otherwise.
+
+
+@+(r : OclSelf) : Real@
+precedence: @ADDITIVE@
+
+The value of the addition of @self@ and r.
+
+
+@-(r : OclSelf) : Real@
+precedence: @ADDITIVE@
+
+The value of the subtraction of r from @self@.
+
+
+@*(r : OclSelf) : Real@
+precedence: @MULTIPLICATIVE@
+
+The value of the multiplication of @self@ and r.
+
+
+@-() : Real@
+precedence: @UNARY@
+
+The negative value of @self@.
+
+
+@/(r : OclSelf) : Real@
+precedence: @MULTIPLICATIVE@
+
+The value of @self@ divided by r. Evaluates to @invalid@ if r is equal to zero.
+
+
+@>(r : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is greater than r.
+
+
+@<(r : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is less than r.
+
+
+@<=(r : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is less than or equal to r.
+
+
+@>=(r : OclSelf) : Boolean@
+precedence: @RELATIONAL@
+
+True if @self@ is greater than or equal to r.
+
+
+@abs() : Real@
+
+The absolute value of @self@.
+
+
+@compareTo(that : OclSelf) : Integer@
+
+The comparison of @self@ with @that@. -ve if less than, 0 if equal, +ve if greater than.
+
+
+@floor() : Integer@
+
+The largest integer that is less than or equal to @self@.
+
+
+@max(r : OclSelf) : Real@
+
+The maximum of @self@ and r.
+
+
+@min(r : OclSelf) : Real@
+
+The minimum of @self@ and r.
+
+
+@round() : Integer@
+
+The integer that is closest to @self@. When there are two such integers, the largest one.
+
+
+@toString() : String@
+
+Converts @self@ to a string value.
+
+
+
+
+h2(#Sequence). **@Sequence(T)@**
+
+A sequence is a collection where the elements are ordered.
+An element may be part of a sequence more than once.
+Sequence is itself an instance of the metatype SequenceType.
+A Sentence is not a subtype of Bag.
+The common supertype of Sentence and Bags is Collection.
+
+
+conformsTo "@Collection(T)@":#Collection
+
+
+
+*Operations*
+
+@=(object2 : OclSelf) : Boolean@
+precedence: @EQUALITY@
+
+True if @self@ contains the same elements as s in the same order.
+
+
+@<>(object2 : OclSelf) : Boolean@
+precedence: @EQUALITY@
+
+
+
+@append(object : T) : Sequence(T)@
+
+The sequence of elements, consisting of all elements of @self@, followed by object.
+
 
 @at(index : Integer) : T@
 
 The i-th element of sequence.
 
+
+@excluding(object : OclAny) : Sequence(T)@
+
+The sequence containing all elements of @self@ apart from all occurrences of object.
+
+The order of the remaining elements is not changed.
+
+
 @first() : T@
 
-The first element in self.
+The first element in @self@.
+
+
+@flatten(T2)() : Sequence(T2)@
+
+Redefines the Collection operation. If the element type is not a collection type, this results in the same sequence as @self@.
+If the element type is a collection type, the result is the sequence containing all the elements
+of all the recursively flattened elements of @self@. The order of the elements is partial.
+
+
+@including(object : T) : Sequence(T)@
+
+The sequence containing all elements of @self@ plus object added as the last element.
+
 
 @indexOf(obj : OclAny) : Integer@
 
 The index of object obj in the ordered collection.
 
+
+@insertAt(index : Integer, object : T) : Sequence(T)@
+
+The sequence consisting of @self@ with object inserted at position index.
+
+
+@intersection(c : Collection(T)) : Bag(T)@
+
+The intersection of @self@ and bag; the bag of all elements that are in both @self@ and s.
+
+
+@intersection(s : UniqueCollection(T)) : OrderedSet(T)@
+
+The intersection of @self@ and s; the set of all elements that are in both @self@ and s.
+
+
 @last() : T@
 
-The last element in self.
+The last element in @self@.
 
-@reverse() : OrderedCollection<T>@
 
-The ordered collection of elements with same elements but with the opposite order.
+@prepend(object : T) : Sequence(T)@
+
+The sequence consisting of object, followed by all elements in @self@.
+
+
+@reverse() : Sequence(T)@
+
+The sequence containing the same elements but with the opposite order.
+
+
+@selectByKind(TT)(type : AnyClassifier(TT)) : Sequence(TT)@
+
+
+
+@selectByType(TT)(type : AnyClassifier(TT)) : Sequence(TT)@
+
+
+
+@subSequence(lower : Integer, upper : Integer) : Sequence(T)@
+
+The sub-sequence of @self@ starting at number lower, up to and including element number upper.
+
+
+@union(s : Sequence(T)) : Sequence(T)@
+
+The sequence consisting of all elements in @self@, followed by all elements in s.
+
 
 
 *Iterations*
 
-@closure(i : T | body : Lambda T() : OrderedSet<T>) : OrderedSet<T>@
+@closure(i : T | body : Lambda T() : OrderedSet(T)) : OrderedSet(T)@
 
 The closure of applying body transitively to every distinct element of the source collection.
 
-@collect<V>(i : T | body : Lambda T() : V) : Sequence<V>@
+
+@collect(V)(i : T | body : Lambda T() : V) : Sequence(V)@
 
 
 
-@collectNested<V>(i : T | body : Lambda T() : V) : Sequence<T>@
+@collectNested(V)(i : T | body : Lambda T() : V) : Sequence(T)@
 
 The sequence of elements that results from applying body to every member of the source ordered collection.
 
 
-h2(#OrderedSet). **@OrderedSet<T>@**
+@reject(i : T | body : Lambda T() : Boolean) : Sequence(T)@
 
-The OrderedSet is a Set, the elements of which are ordered. It contains no duplicates. OrderedSet is itself an instance of the metatype OrderedSetType. An OrderedSet is not a subtype of Set, neither a subtype of Sequence. The common supertype of Sets and OrderedSets is Collection.
+The subsequence of the source sequence for which body is @false@.
 
-conformsTo  "@UniqueCollection<T>@":#UniqueCollection,  "@OrderedCollection<T>@":#OrderedCollection
+
+@select(i : T | body : Lambda T() : Boolean) : Sequence(T)@
+
+The subsequence of the source sequence for which body is @true@.
+
+
+@sortedBy(i : T | body : Lambda T() : OclAny) : Sequence(T)@
+
+Results in the Sequence containing all elements of the source collection.
+The element for which body has the lowest value comes first, and so on.
+The type of the body expression must have the < operation defined.
+The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
+
+
+
+h2(#Set). **@Set(T)@**
+
+
+
+conformsTo "@Bag(T)@":#Bag, "@UniqueCollection(T)@":#UniqueCollection
 
 
 
 *Operations*
 
-@=(object2 : OclAny) : Boolean@
+@=(object2 : OclSelf) : Boolean@
+precedence: @EQUALITY@
+
+Evaluates to @true@ if @self@ and s contain the same elements.
+
+
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
 
 
-@<>(object2 : OclAny) : Boolean@
-precedence: @EQUALITY@
-
-
-
-@-(s : Set<OclAny>) : OrderedSet<T>@
+@-(s : UniqueCollection(OclAny)) : Set(T)@
 precedence: @ADDITIVE@
 
+The elements of @self@, which are not in s.
 
 
-@append(object : T) : OrderedSet<T>@
+@excluding(object : OclAny) : Set(T)@
 
-The set of elements, consisting of all elements of self, followed by object.
-
-@excluding(object : OclAny) : OrderedSet<T>@
-
-The ordered set  containing all elements of self apart from object.
-The order of the remaining elements is not changed.
-
-@flatten<T2>() : OrderedSet<T2>@
+The set containing all elements of @self@ without object.
 
 
+@flatten(T2)() : Set(T2)@
 
-@including(object : T) : OrderedSet<T>@
-
-The ordered set containing all elements of self plus object added as the last element if not already present.
-
-@insertAt(index : Integer, object : T) : OrderedSet<T>@
-
-The ordered set consisting of self with object present at position index.
-
-@intersection(o : Set<T>) : OrderedSet<T>@
+Redefines the Collection operation. If the element type is not a collection type, this results in the same set as @self@.
+If the element type is a collection type, the result is the set containing all the elements of all the recursively flattened elements of @self@.
 
 
+@including(object : T) : Set(T)@
 
-@prepend(object : T) : OrderedSet<T>@
+The set containing all elements of @self@ plus object.
 
-The sequence consisting of object, followed by all elements in self.
-post: result-&gt;size = self-&gt;size() + 1
-post: result-&gt;at(1) = object
-post:   Sequence{1..self-&gt;size()}-&gt;forAll(index : Integer | self-&gt;at(index) = result-&gt;at(index + 1))
 
-@reverse() : OrderedSet<T>@
+@intersection(s : Collection(T)) : Set(T)@
 
-The ordered set of elements with same elements but with the opposite order.
+The intersection of @self@ and s (i.e., the set of all elements that are in both @self@ and s).
 
-@subOrderedSet(lower : Integer, upper : Integer) : OrderedSet<T>@
 
-The sub-set of self starting at number lower, up to and including element number upper.
+@selectByKind(TT)(type : AnyClassifier(TT)) : Set(TT)@
 
-@symmetricDifference(s : Set<OclAny>) : OrderedSet<T>@
 
-The ordered set containing all the elements that are in self after removal of all elements of s.
 
-@union(o : OrderedSet<T>) : OrderedSet<T>@
+@selectByType(TT)(type : AnyClassifier(TT)) : Set(TT)@
 
-The ordered set consisting of all elements in self and all elements in o.
 
-@union(s : Set<T>) : Set<T>@
 
-The set consisting of all elements in self and all elements in s.
+@union(s : Collection(T)) : Set(T)@
+
+The set consisting of all elements in @self@ and all elements in s.
+
 
 
 *Iterations*
 
-@reject(i : T | body : Lambda T() : Boolean) : OrderedSet<T>@
+@reject(i : T | body : Lambda T() : Boolean) : Set(T)@
 
-The ordered set of the source ordered set for which body is false.
+The subset of the source set for which body is @false@.
 
-@select(i : T | body : Lambda T() : Boolean) : OrderedSet<T>@
 
-The ordered set of the source ordered set for which body is true
+@select(i : T | body : Lambda T() : Boolean) : Set(T)@
 
+The subset of set for which expr is @true@.
 
-h2(#Real). **@Real@**
 
-The standard type Real represents the mathematical concept of real. Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real, so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter. Real is itself an instance of the metatype PrimitiveType (from UML).
+@sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet(T)@
 
-conformsTo  "@OclAny@":#OclAny
+Results in the ordered set containing all elements of the source collection.
+The element for which body has the lowest value comes first, and so on.
+The type of the body expression must have the < operation defined.
+The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 
-
-
-*Operations*
-
-@=(object2 : OclAny) : Boolean@
-precedence: @EQUALITY@
-
-Returns true if the numeric value of self is the same as the numeric value of object2, false otherwise.
-
-@<>(object2 : OclAny) : Boolean@
-precedence: @EQUALITY@
-
-Returns true if the numeric value of self is the not the same as the numeric value of object2, false otherwise.
-
-@+(r : Real) : Real@
-precedence: @ADDITIVE@
-
-The value of the addition of self and r.
-
-@-(r : Real) : Real@
-precedence: @ADDITIVE@
-
-The value of the subtraction of r from self.
-
-@*(r : Real) : Real@
-precedence: @MULTIPLICATIVE@
-
-The value of the multiplication of self and r.
-
-@-() : Real@
-precedence: @UNARY@
-
-The negative value of self.
-
-@/(r : Real) : Real@
-precedence: @MULTIPLICATIVE@
-
-The value of self divided by r. Evaluates to invalid if r is equal to zero.
-
-@>(r : Real) : Boolean@
-precedence: @RELATIONAL@
-
-True if self is greater than r.
-
-@<(r : Real) : Boolean@
-precedence: @RELATIONAL@
-
-True if self is less than r.
-
-@<=(r : Real) : Boolean@
-precedence: @RELATIONAL@
-
-True if self is less than or equal to r.
-
-@>=(r : Real) : Boolean@
-precedence: @RELATIONAL@
-
-True if self is greater than or equal to r.
-
-@abs() : Real@
-
-The absolute value of self.
-
-@floor() : Integer@
-
-The largest integer that is less than or equal to self.
-
-@max(r : Real) : Real@
-
-The maximum of self and r.
-
-@min(r : Real) : Real@
-
-The minimum of self and r.
-
-@oclAsType<TT>(type : Classifier<TT>) : TT@
-
-
-
-@round() : Integer@
-
-The integer that is closest to self. When there are two such integers, the largest one.
-
-@toString() : String@
-
-Converts self to a string value.
-
-
-
-h2(#Sequence). **@Sequence<T>@**
-
-A sequence is a collection where the elements are ordered. An element may be part of a sequence more than once. Sequence is itself an instance of the metatype SequenceType. A Sentence is not a subtype of Bag. The common supertype of Sentence and Bags is Collection.
-
-conformsTo  "@OrderedCollection<T>@":#OrderedCollection,  "@NonUniqueCollection<T>@":#NonUniqueCollection
-
-
-
-*Operations*
-
-@=(object2 : OclAny) : Boolean@
-precedence: @EQUALITY@
-
-True if self contains the same elements as s in the same order.
-
-@<>(object2 : OclAny) : Boolean@
-precedence: @EQUALITY@
-
-
-
-@append(object : T) : Sequence<T>@
-
-The sequence of elements, consisting of all elements of self, followed by object.
-
-@excluding(object : OclAny) : Sequence<T>@
-
-The sequence containing all elements of self apart from all occurrences of object.
-The order of the remaining elements is not changed.
-
-@flatten<T2>() : Sequence<T2>@
-
-Redefines the Collection operation. If the element type is not a collection type, this results in the same sequence as self. If the element type is a collection type, the result is the sequence containing all the elements of all the recursively flattened elements of self. The order of the elements is partial.
-
-@including(object : T) : Sequence<T>@
-
-The sequence containing all elements of self plus object added as the last element.
-
-@insertAt(index : Integer, object : T) : Sequence<T>@
-
-The sequence consisting of self with object inserted at position index.
-
-@prepend(object : T) : Sequence<T>@
-
-The sequence consisting of object, followed by all elements in self.
-
-@reverse() : Sequence<T>@
-
-The sequence containing the same elements but with the opposite order.
-
-@subSequence(lower : Integer, upper : Integer) : Sequence<T>@
-
-The sub-sequence of self starting at number lower, up to and including element number upper.
-
-@union(s : Sequence<T>) : Sequence<T>@
-
-The sequence consisting of all elements in self, followed by all elements in s.
-
-
-*Iterations*
-
-@reject(i : T | body : Lambda T() : Boolean) : Sequence<T>@
-
-The subsequence of the source sequence for which body is false.
-
-@select(i : T | body : Lambda T() : Boolean) : Sequence<T>@
-
-The subsequence of the source sequence for which body is true.
-
-
-h2(#Set). **@Set<T>@**
-
-
-
-conformsTo  "@UniqueCollection<T>@":#UniqueCollection,  "@NonOrderedCollection<T>@":#NonOrderedCollection
-
-
-
-*Operations*
-
-@=(object2 : OclAny) : Boolean@
-precedence: @EQUALITY@
-
-Evaluates to true if self and s contain the same elements.
-
-@<>(object2 : OclAny) : Boolean@
-precedence: @EQUALITY@
-
-
-
-@-(s : Set<OclAny>) : Set<T>@
-precedence: @ADDITIVE@
-
-The elements of self, which are not in s.
-
-@excluding(object : OclAny) : Set<T>@
-
-The set containing all elements of self without object.
-
-@flatten<T2>() : Set<T2>@
-
-Redefines the Collection operation. If the element type is not a collection type, this results in the same set as self. If the element type is a collection type, the result is the set containing all the elements of all the recursively flattened elements of self.
-
-@including(object : T) : Set<T>@
-
-The set containing all elements of self plus object.
-
-@intersection(s : Set<T>) : Set<T>@
-
-The intersection of self and s (i.e., the set of all elements that are in both self and s).
-
-@symmetricDifference(s : Set<OclAny>) : Set<T>@
-
-The sets containing all the elements that are in self or s, but not in both.
-
-
-*Iterations*
-
-@reject(i : T | body : Lambda T() : Boolean) : Set<T>@
-
-The subset of the source set for which body is false.
-
-@select(i : T | body : Lambda T() : Boolean) : Set<T>@
-
-The subset of set for which expr is true.
 
 
 h2(#String). **@String@**
 
-The standard type String represents strings, which can be both ASCII or Unicode. String is itself an instance of the metatype PrimitiveType (from UML).
+The standard type String represents strings, which can be both ASCII or Unicode.
+String is itself an instance of the metatype PrimitiveType (from UML).
 
-conformsTo  "@OclAny@":#OclAny
+
+conformsTo "@OclComparable@":#OclComparable, "@OclSummable@":#OclSummable
 
 
 
 *Operations*
 
-@=(object2 : OclAny) : Boolean@
+@=(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
 
 
-@<>(object2 : OclAny) : Boolean@
+@<>(object2 : OclSelf) : Boolean@
 precedence: @EQUALITY@
 
 
@@ -1007,123 +1580,261 @@ precedence: @EQUALITY@
 @+(s : String) : String@
 precedence: @ADDITIVE@
 
-The concatenation of self and s.
+The concatenation of @self@ and s.
+
 
 @at(i : Integer) : String@
 
-Queries the character at position i in self.
+Queries the character at position i in @self@.
 
-@characters() : Sequence<String>@
 
-Obtains the characters of self as a sequence.
+@characters() : Sequence(String)@
+
+Obtains the characters of @self@ as a sequence.
+
+
+@compareTo(that : OclSelf) : Integer@
+
+The comparison of @self@ with @that@. -ve if less than, 0 if equal, +ve if greater than.
+
 
 @concat(s : String) : String@
 
-The concatenation of self and s.
+The concatenation of @self@ and s.
+
+
+@endsWith(s : String) : Boolean@
+
+Returns true if @self@ ends with the string s.
+Every string ends with the empty string.
+
 
 @equalsIgnoreCase(s : String) : Boolean@
 
-Queries whether s and self are equivalent under case-insensitive collation.
+Queries whether s and @self@ are equivalent under case-insensitive collation.
+
 
 @indexOf(s : String) : Integer@
 
-Queries the index in self at which s is a substring of self, or zero if s is not a substring of self. The empty string is considered to be a substring of every string but the empty string, at index 1. No string is a substring of the empty string.
+Queries the first index in @self@ at which s is a substring of @self@, or zero if s is not a substring of @self@.
+The empty string is a substring of every string at index 1 (and also at all other indexes).
+
+
+@lastIndexOf(s : String) : Integer@
+
+Queries the last in @self@ at which s is a substring of @self@, or zero if s is not a substring of @self@.
+The empty string is a substring of every string at index @self@-size()+1 (and also at all other indexes).
+
+
+@matches(regex : String) : Boolean@
+
+Use a regular expression match and return true if self matches regex, false otherwise.
+
+
+@replaceAll(regex : String, replacement : String) : String@
+
+Return a string derived from self by replacing all matches of regex by replacement.
+
+
+@replaceFirst(regex : String, replacement : String) : String@
+
+Return a string derived from self by replacing the first match of regex by replacement.
+
 
 @size() : Integer@
 
-The number of characters in self.
+The number of characters in @self@.
+
+
+@startsWith(s : String) : Boolean@
+
+Returns true if @self@ starts with the string s.
+Every string starts with the empty string.
+
+
+@substituteAll(oldSubstring : String, newSubstring : String) : String@
+
+Return a string derived from self by replacing all occurrences of oldSubstring by newSubstring.
+
+
+@substituteFirst(oldSubstring : String, newSubstring : String) : String@
+
+Return a string derived from self by replacing the first occurrence of oldSubstring by newSubstring.
+Returns invalid if there is no first occurrence.
+
 
 @substring(lower : Integer, upper : Integer) : String@
 
-The sub-string of self starting at character number lower, up to and including character number upper. Character numbers run from 1 to self.size().
+The sub-string of @self@ starting at character number lower, up to and including character number upper. Character numbers run from 1 to self.size().
+
 
 @toBoolean() : Boolean@
 
-Converts self to a boolean value.
+Converts @self@ to a boolean value.
+
 
 @toInteger() : Integer@
 
-Converts self to an Integer value.
+Converts @self@ to an Integer value.
+
 
 @toLower() : String@
 
 This is a deprecated variant of toLowerCase() preserving compatibility with traditional Eclipse OCL behaviour.
 
+
 @toLowerCase() : String@
 
-Converts self to lower case, using the locale defined by looking up oclLocale in the current environment. Otherwise, returns the same string as self.
+Converts @self@ to lower case, using the locale defined by looking up oclLocale in the current environment.
+Otherwise, returns the same string as @self@.
+
 
 @toReal() : Real@
 
-Converts self to a Real value.
+Converts @self@ to a Real value.
+
 
 @toString() : String@
 
-Returns self.
+Returns @self@.
+
 
 @toUpper() : String@
 
 This is a deprecated variant of toUpperCase() preserving compatibility with traditional Eclipse OCL behaviour.
 
+
 @toUpperCase() : String@
 
-Converts self to upper case, using the locale defined by looking up oclLocale in the current environment. Otherwise, returns the same string as self.
+Converts @self@ to upper case, using the locale defined by looking up oclLocale in the current environment.
+Otherwise, returns the same string as @self@.
 
-@>(s : String) : Boolean@
+
+@tokenize() : Sequence(String)@
+
+Partition @self@ into a sequence substrings separated by any of space, line-feed, carriage-return, form-feed and horizontal-tab delimiters.
+The delimiters are omitted from the return.
+
+
+@tokenize(delimiters : String) : Sequence(String)@
+
+Partition @self@ into a sequence substrings separated by characters in the delimiters. The delimiters are omitted from the return.
+
+
+@tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence(String)@
+
+Partition @self@ into a sequence substrings separated by characters in the delimiters. If returnDelimeters is
+true the returned sequence includes the delimiters, otherwise the delimiters are omitted.
+
+
+@trim() : String@
+
+Return @self@ with leading and trailing whitespace removed.
+
+
+@>(s : OclSelf) : Boolean@
 precedence: @RELATIONAL@
 
-True if self is greater than s, using the locale defined by looking up oclLocale in the current environment.
+True if @self@ is greater than s, using the locale defined by looking up oclLocale in the current environment.
 
-@<(s : String) : Boolean@
+
+@<(s : OclSelf) : Boolean@
 precedence: @RELATIONAL@
 
-True if self is less than s, using the locale defined by looking up oclLocale in the current environment.
+True if @self@ is less than s, using the locale defined by looking up oclLocale in the current environment.
 
-@<=(s : String) : Boolean@
+
+@<=(s : OclSelf) : Boolean@
 precedence: @RELATIONAL@
 
-True if self is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+True if @self@ is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 
-@>=(s : String) : Boolean@
+
+@>=(s : OclSelf) : Boolean@
 precedence: @RELATIONAL@
 
-True if self is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
-
-
-
-h2(#Tuple). **@Tuple@**
-
-
-
-conformsTo  "@OclAny@":#OclAny
+True if @self@ is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 
 
 
 
+h2(#Type). **@Type@**
 
-h2(#UniqueCollection). **@UniqueCollection<T>@**
 
-The UniqueCollection type provides the shared functionality of the OrderedSet and Set collections for which the elements are unique. The common supertype of UniqueCollection is Collection.
 
-conformsTo  "@Collection<T>@":#Collection
+conformsTo "@OclType@":#OclType
 
+
+
+
+
+h2(#UniqueCollection). **@UniqueCollection(T)@**
+
+The UniqueCollection type provides the shared functionality of the OrderedSet and Set
+collections for which the elements are unique.
+The common supertype of UniqueCollection is Collection.
+
+
+conformsTo "@Collection(T)@":#Collection
+
+
+
+*Operations*
+
+@-(s : UniqueCollection(OclAny)) : UniqueCollection(T)@
+precedence: @ADDITIVE@
+
+The elements of @self@, which are not in s.
+
+
+@symmetricDifference(s : UniqueCollection(OclAny)) : Set(T)@
+
+The set containing all the elements that are in @self@ or s, but not in both.
+
+
+@union(s : Collection(T)) : Set(T)@
+
+The set consisting of all elements in @self@ and all elements in s.
 
 
 
 *Iterations*
 
-@sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet<T>@
+@sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet(T)@
 
-Results in the ordered set containing all elements of the source collection. The element for which body has the lowest value comes first, and so on. The type of the body expression must have the &lt; operation defined. The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c, then a &lt; c).
+Results in the ordered set containing all elements of the source collection.
+The element for which body has the lowest value comes first, and so on.
+The type of the body expression must have the < operation defined.
+The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
+
 
 
 h2(#UnlimitedNatural). **@UnlimitedNatural@**
 
-The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification. This includes a special unlimited value (*) that encodes the upper value of  a multiplicity specification. UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.
-Note that although UnlimitedNatural is a subclass of Integer, the unlimited value cannot be represented as an Integer. Any use of the unlimited value as an integer or real is replaced by the invalid value.
+The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.
+This includes a special _unlimited_ value (*) that encodes the upper value of  a multiplicity specification.
+UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.
 
-conformsTo  "@Integer@":#Integer
+Note that although UnlimitedNatural is a subclass of Integer, the _unlimited_ value cannot be represented as an Integer.
+Any use of the _unlimited_ value as an integer or real is replaced by the @invalid@ value.
 
+
+conformsTo "@Integer@":#Integer
+
+
+
+*Operations*
+
+@oclAsType(TT)(type : AnyClassifier(TT)) : TT@
+
+Evaluates to @self@, where @self@ is of the type identified by T.
+The type T may be any classifier defined in the UML model;
+if the actual type of @self@ at evaluation time does not conform to T,
+then the oclAsType operation evaluates to @invalid@.
+
+The standard behavior is redefined for UnlimitedNatural. Numeric values may be converted to
+Real or Integer, but the _unlimited_ value may not.
+Conversion of _unlimited_ to Real or Integer returns @invalid@.
 
 
 
