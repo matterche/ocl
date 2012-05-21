@@ -427,7 +427,8 @@ public class PrettyPrinter
 			}
 			else {
 	//			EObject parent = element.eContainer();
-				EObject parent = PivotUtil.getNamespace(element.eContainer());
+				EObject unspecializedElement = element instanceof TemplateableElement ? ((TemplateableElement)element).getUnspecializedElement() : element;
+				EObject parent = PivotUtil.getNamespace((unspecializedElement != null ? unspecializedElement : element).eContainer());
 	            if (parent instanceof org.eclipse.ocl.examples.pivot.Package) {
 	                String name = ((org.eclipse.ocl.examples.pivot.Package)parent).getName();
 	                if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
